@@ -1,0 +1,328 @@
+<!--<div class="mygallery" style="display:none;">-->
+<!--  <div class="tn3 album">-->
+    
+<!--    <ol>-->
+<!--      <?php-->
+
+<!--print_r('test');-->
+
+
+<!--$dir = UPLOAD_FILEPATH_PHOTO_IMAGES;-->
+
+<!--$pc1_title=photoCategoryTitle($pageAlias[2]); -->
+
+<!--$dir = $dir.$pc1_title;-->
+
+<!--$pp1_title=photoProjectTitle($pageAlias[3]); -->
+
+<!--$dir = $dir."/".$pp1_title;-->
+
+
+
+//$dir = UPLOAD_FILEPATH_PHOTO_IMAGES.$pc_title."/".$pp_title ;
+
+
+
+<!--				$dirContents = scandir($dir);-->
+
+<!--				$count = 0;-->
+
+<!--				foreach($dirContents as $image) {-->
+
+<!--					if (isImageFile($image)) {-->
+
+					  
+
+<!--						$path1 = READ_FILEPATH_PHOTO_IMAGES.$pc1_title."/";-->
+
+<!--						$pp_title =$pp1_title .'/';-->
+
+<!--						$imgName = $image ; ?>-->
+<!--      <li>-->
+<!--        <h4>-->
+<!--          <?=$pp1_title?>-->
+<!--        </h4>-->
+<!--        <div class="tn3 description">-->
+<!--          <?=$imgName?>-->
+<!--        </div>-->
+<!--        <a href="<?=SITEURL?><?=$path1?><?=$pp_title?><?=$imgName?>"> <img src="<?=SITEURL?><?=$path1?><?=$pp_title?><?=$imgName?>" style="height:235px;" /> </a> </li>-->
+<!--      <?php	 $count++;-->
+
+						
+
+<!--					}-->
+
+<!--				} ?>-->
+<!--    </ol>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<div class="">-->
+<!--  <div class="justify-content-center">-->
+<!--    <div class="col ">-->
+<!--      <div class="gallery-container" id="animated-thumbnails-gallery">-->
+          
+<!--          <?php-->
+
+<!--$dir = UPLOAD_FILEPATH_PHOTO_IMAGES;-->
+
+<!--$pc1_title=photoCategoryTitle($pageAlias[2]);-->
+
+//$pc1_title=$pageAlias[2];
+
+<!--$dir = $dir.$pc1_title;-->
+
+<!--$pp1_title=photoProjectTitle($pageAlias[3]); -->
+
+//$pp1_title=$pageAlias[3];
+
+<!--$dir = $dir."/".$pp1_title;-->
+
+
+
+//$dir = UPLOAD_FILEPATH_PHOTO_IMAGES.$pc_title."/".$pp_title ;
+
+
+
+<!--				$dirContents = scandir($dir);-->
+
+<!--				$count = 0;-->
+
+<!--				foreach($dirContents as $image) {-->
+
+<!--					if (isImageFile($image)) {-->
+
+					  
+
+<!--						$path1 = READ_FILEPATH_PHOTO_IMAGES.$pc1_title."/";-->
+
+<!--						$pp_title =$pp1_title .'/';-->
+
+<!--						$imgName = $image ; ?>-->
+<!--        <a data-lg-size="1600-1067" class="gallery-item" data-src="<?=SITEURL?><?=$path1?><?=$pp_title?><?=$imgName?>" data-sub-html="<h4><?=$imgName?></h4>">-->
+<!--          <img alt="<?=$imgName?>" class="img-responsive" src="<?=SITEURL?><?=$path1?><?=$pp_title?><?=$imgName?>" />-->
+<!--        </a>-->
+<!--        <?php	 $count++;-->
+
+						
+
+<!--					}-->
+
+<!--				} ?>-->
+        
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<link href="https://www.cssscript.com/demo/sticky.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="<?=SITEURL?>css/lightgallery-bundle.css" />
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css'>
+
+
+<style>
+    body {
+    font-family: 'Montserrat-Regular'!important; 
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    background-color: #121212 !important;
+    }
+    a {
+    text-decoration: none !important;
+}
+</style>
+
+
+
+ <meta charset="UTF-8">
+      <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+      <meta name="apple-mobile-web-app-title" content="CodePen">
+      <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+      <link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+      <title>CodePen - lightGallery demo with justifiedGallery</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lightgallery.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-zoom.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-thumbnail.css">
+      <style>
+         body {
+         padding: 40px;
+         background-image: linear-gradient(#e8f0ff 0%, white 52.08%);
+         color: #0e3481;
+         min-height: 100vh;
+         }
+         .header .lead {
+         max-width: 620px;
+         }
+         /** Below CSS is completely optional **/
+         .gallery-item {
+         width: 200px;
+         padding: 5px;
+         }
+      </style>
+
+   <body translate="no" style="position: relative;">
+
+      <div class="container-sm">
+         <div class="row justify-content-center">
+            <div class="col col-md-10">
+               <div class="gallery-container justified-gallery" id="animated-thumbnails-gallery" style="height: 4078px;">
+                  <a data-lg-size="1600-1067" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@tobbes_rd' >Tobias Rademacher </a></h4><p> Location - <a href='https://unsplash.com/s/photos/puezgruppe%2C-wolkenstein-in-gr%C3%B6den%2C-s%C3%BCdtirol%2C-italien'>Puezgruppe, Wolkenstein in Gröden, Südtirol, Italien</a>layers of blue.</p>" style="width: 506px; height: 337.333px; top: 5px; left: 5px;" data-lg-id="4a1b06c6-b7f9-42a1-b279-3578dfdcf13a">
+                  <img alt="layers of blue." class="img-responsive" src="https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 506px; height: 338px; margin-left: -253px; margin-top: -169px;">
+                  </a>
+                  <a data-lg-size="1600-2400" data-pinterest-text="Pin it2" data-tweet-text="lightGallery slide  2" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1608481337062-4093bf3ed404?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@therawhunter' >Massimiliano Morosinotto </a></h4><p> Location - <a href='https://unsplash.com/s/photos/tre-cime-di-lavaredo%2C-italia'>Tre Cime di Lavaredo, Italia</a>This is the Way</p>" style="width: 94px; height: 140.286px; top: 347.333px; left: 5px;" data-lg-id="fef82d2e-6cca-41e0-8471-396718f26efa">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1608481337062-4093bf3ed404?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 94px; height: 141px; margin-left: -47px; margin-top: -70.5px;">
+                  </a>
+                  <a data-lg-size="1600-2400" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1605973029521-8154da591bd7?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@thesaboo' >Sascha Bosshard </a></h4><p> Location - <a href='https://unsplash.com/s/photos/pizol%2C-mels%2C-schweiz'>Pizol, Mels, Schweiz</a></p>" style="width: 94px; height: 140.286px; top: 347.333px; left: 104px;" data-lg-id="778751bf-7c08-4b0d-b809-534b7871f3b5">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1605973029521-8154da591bd7?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 94px; height: 141px; margin-left: -47px; margin-top: -70.5px;">
+                  </a>
+                  <a data-lg-size="1600-2398" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1526281216101-e55f00f0db7a?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@yusufevli' >Yusuf Evli </a></h4><p> Foggy Road</p>" style="width: 94px; height: 140.286px; top: 347.333px; left: 203px;" data-lg-id="1de35074-b58a-4975-8866-c1ad760bbdfe">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1526281216101-e55f00f0db7a?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 94px; height: 141px; margin-left: -47px; margin-top: -70.5px;">
+                  </a>
+                  <a data-lg-size="1600-1067" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@flovayn' >Jay Mantri</a></h4><p>  Misty shroud over a forest</p>" style="width: 209px; height: 140.286px; top: 347.333px; left: 302px;" data-lg-id="ef11b640-6154-4e1e-95bb-bde4a9bd3602">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 209px; height: 141px; margin-left: -104.5px; margin-top: -70.5px;">
+                  </a>
+                  <a data-lg-size="1600-1067" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1505820013142-f86a3439c5b2?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@flovayn' >Florian van Duyn</a></h4><p>Location - <a href='Bled, Slovenia'>Bled, Slovenia</a> </p>" style="width: 506px; height: 337.333px; top: 492.619px; left: 5px;" data-lg-id="94150e0c-8be9-48c7-9355-5da5cf71ee4f">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1505820013142-f86a3439c5b2?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 506px; height: 338px; margin-left: -253px; margin-top: -169px;">
+                  </a>
+                  <a data-lg-size="1600-1126" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1477322524744-0eece9e79640?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@juanster' >Juan Davila</a></h4><p>Location - <a href='Bled, Slovenia'>Bled, Slovenia</a> Wooded lake island </p>" style="width: 506px; height: 356.308px; top: 834.952px; left: 5px;" data-lg-id="02c3be74-dbc4-4ef7-8fc1-49713ceed027">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1477322524744-0eece9e79640?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 506px; height: 357px; margin-left: -253px; margin-top: -178.5px;">
+                  </a>
+                  <a data-lg-size="1600-1063" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@davidmarcu' >David Marcu</a></h4><p>Location - <a href='https://unsplash.com/s/photos/ciuca%C8%99-peak%2C-romania'>Ciucaș Peak, Romania</a> Alone in the unspoilt wilderness </p>" style="width: 506px; height: 335.225px; top: 1196.26px; left: 5px;" data-lg-id="ca5ab36d-33b5-4005-978c-78021e1661da">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 506px; height: 336px; margin-left: -253px; margin-top: -168px;">
+                  </a>
+                  <a data-lg-size="1600-2400" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1585338447937-7082f8fc763d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@whoisbenjamin' >whoisbenjamin</a></h4>
+                     <p>Location - <a href='https://unsplash.com/s/photos/ciuca%C8%99-peak%2C-romania'>Snowdonia National Park, Blaenau Ffestiniog, UK</a> 
+                     A swan on a calm misty lake in the mountains of Snowdonia, North Wales. <a href='https://unsplash.com/photos/9V6EkAoTWJM'>Link</a> </p>" style="width: 162px; height: 242.966px; top: 1536.49px; left: 5px;" data-lg-id="7f521bfe-413f-4360-9092-828816a19f69">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1585338447937-7082f8fc763d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 162px; height: 243px; margin-left: -81px; margin-top: -121.5px;">
+                  </a>
+                  <a data-lg-size="1600-1144" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1476842384041-a57a4f124e2e?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@aaronburden' >Aaron Burden</a></h4><p>Location - <a href='https://unsplash.com/s/photos/grayling%2C-michigan%2C-united-states'>Grayling, Michigan, United States</a> Colorful trees near a lake. <a href='https://unsplash.com/photos/00QWN1J0g48'>Link</a> </p>" style="width: 339px; height: 242.966px; top: 1536.49px; left: 172px;" data-lg-id="add5a8c6-76ec-4f17-b630-7752c0247922">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1476842384041-a57a4f124e2e?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 339px; height: 243px; margin-left: -169.5px; margin-top: -121.5px;">
+                  </a>
+                  <a data-lg-size="1600-1067" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1465311530779-5241f5a29892?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@kalenemsley' >Kalen Emsley</a></h4><p>Location - <a href='https://unsplash.com/s/photos/yukon-territory%2C-canada'>Yukon Territory, Canada</a> No captions. <a href='https://unsplash.com/photos/eHpYD4U5830'>Link</a> </p>" style="width: 506px; height: 337.333px; top: 1784.45px; left: 5px;" data-lg-id="026435a4-8688-4208-977a-b32ec145c30d">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1465311530779-5241f5a29892?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 506px; height: 338px; margin-left: -253px; margin-top: -169px;">
+                  </a>
+                  <a data-lg-size="1600-1067" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1461301214746-1e109215d6d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@kace' >Kace Rodriguez</a></h4><p>Location - <a href='https://unsplash.com/s/photos/pfeiffer-beach%2C-united-states'>Pfeiffer Beach, United States</a> Pfeiffer Beach at Dusk. <a href='https://unsplash.com/photos/eHpYD4U5830'>Link</a> </p>" style="width: 506px; height: 337.333px; top: 2126.79px; left: 5px;" data-lg-id="a77e25cf-864c-4f53-ae8a-9ce2b8339299">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1461301214746-1e109215d6d3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 506px; height: 338px; margin-left: -253px; margin-top: -169px;">
+                  </a>
+                  <a data-lg-size="1600-2400" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1610448721566-47369c768e70?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@patwhelen' >Pat Whelen</a></h4><p>Location - <a href='https://unsplash.com/s/photos/portsea-vic%2C-australia'>Portsea VIC, Australia</a> No caption <a href='https://unsplash.com/photos/EKLXDQ-dDRg'>Link</a> </p>" style="width: 154px; height: 231.231px; top: 2469.12px; left: 5px;" data-lg-id="85faeb72-b88f-46b8-8961-70812386aa02">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1610448721566-47369c768e70?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 154px; height: 232px; margin-left: -77px; margin-top: -116px;">
+                  </a>
+                  <a data-lg-size="1600-1067" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@derekthomson' >Derek Thomson</a></h4><p>Location - <a href='https://unsplash.com/s/photos/mcway-falls%2C-united-states'>McWay Falls, United States</a> No caption <a href='https://unsplash.com/photos/TWoL-QCZubY'>Link</a> </p>" style="width: 347px; height: 231.231px; top: 2469.12px; left: 164px;" data-lg-id="2ddb4837-1d09-4041-9b13-c16e4b641777">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 347px; height: 232px; margin-left: -173.5px; margin-top: -116px;">
+                  </a>
+                  <a data-lg-size="1600-2400" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1539678050869-2b97c7c359fd?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@michaljaneck' >Michal Janek</a></h4><p>Location - <a href='https://unsplash.com/s/photos/big-sur%2C-united-states'>Big Sur, United States</a> Coast  </p>" style="width: 117px; height: 175.059px; top: 2705.35px; left: 5px;" data-lg-id="2afa6a8e-34fe-4677-a02e-dc9e1885e43e">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1539678050869-2b97c7c359fd?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 117px; height: 176px; margin-left: -58.5px; margin-top: -88px;">
+                  </a>
+                  <a data-lg-size="1600-2400" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1446630073557-fca43d580fbe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@papillon' >Iris Papillon</a></h4><p>Location - <a href='https://unsplash.com/s/photos/big-sur%2C-united-states'>Big Sur, United States</a> Big Sur drive  </p>" style="width: 117px; height: 175.059px; top: 2705.35px; left: 127px;" data-lg-id="fd4ef2af-3831-4428-941d-87f9c10ab5b5">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1446630073557-fca43d580fbe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 117px; height: 176px; margin-left: -58.5px; margin-top: -88px;">
+                  </a>
+                  <a data-lg-size="1600-1065" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1596370743446-6a7ef43a36f9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@piyushh_dubeyy' >piyush dubey</a></h4><p>Published on August 2, 2020</p>" style="width: 262px; height: 175.059px; top: 2705.35px; left: 249px;" data-lg-id="5d650ebb-7de7-4aed-94d8-6657eaf9c490">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1596370743446-6a7ef43a36f9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 262px; height: 176px; margin-left: -131px; margin-top: -88px;">
+                  </a>
+                  <a data-lg-size="1600-2134" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1464852045489-bccb7d17fe39?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@fynn_it' >fynn</a></h4><p>Location - <a href='https://unsplash.com/s/photos/big-sur%2C-united-states'>Big Sur, United States</a> Wasserauen, Appenzell Innerrhoden, Schweiz  </p>" style="width: 166px; height: 221.737px; top: 2885.41px; left: 5px;" data-lg-id="79680168-f300-43dd-885b-5b9c47f39164">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1464852045489-bccb7d17fe39?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 166px; height: 222px; margin-left: -83px; margin-top: -111px;">
+                  </a>
+                  <a data-lg-size="1600-1060" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@danielleone' >Daniel Leone</a></h4><p>Location - <a href='https://unsplash.com/s/photos/poon-hill%2C-ghode-pani%2C-nepal'>Poon Hill, Ghode Pani, Nepal</a> Taken from the top of Poon Hill before sun rise </p>" style="width: 335px; height: 221.737px; top: 2885.41px; left: 176px;" data-lg-id="904bf445-561a-420b-ba73-d6c5e4e525be">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 335px; height: 222px; margin-left: -167.5px; margin-top: -111px;">
+                  </a>
+                  <a data-lg-size="1600-1037" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1510011560141-62c7e8fc7908?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@bboba' >Boba Jovanovic</a></h4><p>Location - <a href='https://unsplash.com/s/photos/bay-of-kotor'>Bay of Kotor</a> Boka kotorska bay </p>" style="width: 506px; height: 328.9px; top: 3112.15px; left: 5px;" data-lg-id="18502268-a6ea-4b7c-acad-918d8fdc58e5">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1510011560141-62c7e8fc7908?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 506px; height: 329px; margin-left: -253px; margin-top: -164.5px;">
+                  </a>
+                  <a data-lg-size="1600-899" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1586276393635-5ecd8a851acc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@svsdesigns' >Surendra Vikram Singh</a></h4><p>Location - <a href='https://unsplash.com/s/photos/lachung%2C-sikkim%2C-india'>Lachung, Sikkim, India</a> Cloud covered mountain </p>" style="width: 506px; height: 284.625px; top: 3446.05px; left: 5px;" data-lg-id="f0ede1ae-f683-4b39-af2b-df53fc9ff700">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1586276393635-5ecd8a851acc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 506px; height: 285px; margin-left: -253px; margin-top: -142.5px;">
+                  </a>
+                  <a data-lg-size="1600-1067" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry jg-entry-visible" data-src="https://images.unsplash.com/photo-1471931452361-f5ff1faa15ad?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2252&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@camadams' >Cam Adams</a></h4><p>Location - <a href='https://unsplash.com/s/photos/banff%2C-canada'>Banff, Canada</a> Lake along jagged mountains</p>" style="width: 506px; height: 337.333px; top: 3735.67px; left: 5px;" data-lg-id="7c3a8e51-58cc-4e8e-89e1-7d0f2d54289f">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1471931452361-f5ff1faa15ad?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 506px; height: 338px; margin-left: -253px; margin-top: -169px;">
+                  </a>
+                  <a data-lg-size="1536-2304" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" class="gallery-item jg-entry" data-src="https://images.unsplash.com/photo-1508766206392-8bd5cf550d1c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1536&amp;q=80" data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@rea_le' >Andrea Ledda</a></h4><p>Location - <a href='https://unsplash.com/s/photos/lago-goillet%2C-italy'>Lago Goillet, Italy</a>  Goillet Lake at 2561 meters above Breuil-Cervinia</p>" style="width: 0px; height: 0px; top: -96.25px; left: 5px;" data-lg-id="280abf4e-9384-42de-ba2d-56d1a579d8e0">
+                  <img class="img-responsive" src="https://images.unsplash.com/photo-1508766206392-8bd5cf550d1c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=240&amp;q=80" style="width: 0px; height: 0px; margin-left: 5px; margin-top: 7.5px;">
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+
+      <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/lightgallery.umd.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/zoom/lg-zoom.umd.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/thumbnail/lg-thumbnail.umd.js"></script>
+      
+      <script id="rendered-js">
+         jQuery("#animated-thumbnails-gallery").
+         justifiedGallery({
+           captions: false,
+           lastRow: "hide",
+           rowHeight: 180,
+           margins: 5 }).
+         
+         on("jg.complete", function () {
+           window.lightGallery(
+           document.getElementById("animated-thumbnails-gallery"),
+           {
+             autoplayFirstVideo: false,
+             pager: false,
+             galleryId: "nature",
+             plugins: [lgZoom, lgThumbnail],
+             mobileSettings: {
+               controls: false,
+               showCloseIcon: false,
+               download: false,
+               rotate: false } });
+         
+         
+         
+         });
+         //# sourceURL=pen.js
+             
+      </script>
+
+
+<script src='https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.js'></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/lightgallery.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/autoplay/lg-autoplay.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/comment/lg-comment.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/fullscreen/lg-fullscreen.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/hash/lg-hash.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/pager/lg-pager.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/rotate/lg-rotate.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/share/lg-share.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/thumbnail/lg-thumbnail.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/video/lg-video.umd.js"></script>
+<script src="https://www.cssscript.com/demo/responsive-lightbox-gallery-pure-javascript-css3-lightgallery/plugins/zoom/lg-zoom.umd.js"></script>
+<script>jQuery("#animated-thumbnails-gallery").
+justifiedGallery({
+  captions: true,
+  //lastRow: "hide",
+  rowHeight: 180,
+  margins: 5 }).
+
+on("jg.complete", function () {
+  window.lightGallery(
+  document.getElementById("animated-thumbnails-gallery"),
+  {
+    galleryId: "nature",
+    plugins: [lgAutoplay, lgComment, lgFullscreen, lgHash, lgPager, lgRotate, lgShare, lgVideo, lgZoom, lgThumbnail],
+ });
+
+
+
+});
+</script>
+
+
+
+
+
+
+
+
