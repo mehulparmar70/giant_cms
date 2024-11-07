@@ -684,10 +684,9 @@ $(document).ready(function () {
     <path d="M15.45 2.8L12.65 0l-12 12 12 12 2.8-2.8-9.2-9.2z"/>
   </symbol>
 </svg>
-</div>
-</div>
+
 <input sdf type='hidden' name="isCMS" id='isCMS'>
 
-    </div>
+    
 
 

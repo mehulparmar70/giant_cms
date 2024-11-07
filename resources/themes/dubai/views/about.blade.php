@@ -1,4 +1,4 @@
-@extends('layout.front-index')
+@includeFirst(['theme::front-index', 'front-index'])
 @section('title','About Us')
 
 @section('custom-js')
