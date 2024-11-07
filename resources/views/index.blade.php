@@ -2,93 +2,12 @@
 @includeFirst(['theme::front-index', 'front-index'])
 
 @section('custom-js')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-<style>
-.loader img{
-    width:0px;
-}
-.onscreen-banner-slider {
-    background: white;
-    font-size: 24px;
-    padding: 10px;
-}
-.onscreen-banner-slider .fa{
-  padding-top:20px;
-}
-</style>
-    <script>
-        $(".home").addClass("active");
-        $(".home_menu_active").addClass("menu_active");
-
-        /*$.fn.responsiveTabs = function() {
-
-        return this.each(function() {
-          var el = $(this),
-              tabs = el.find('.product_title_main'),
-              content = el.find('dd'),
-              placeholder = $('<div class="responsive-tabs-placeholder"></div>').insertAfter(el);
-              
-          placeholder.html(tabs.next().html());
-          tabs.on('click', function() {
-            var tab = $(this);
-            // undefined
-            if ($(tab).data('tab') != undefined) {
-              console.log('Hello');
-              $('.main-img-slider').slick('unslick');
-              $('.thumb-nav').slick('unslick');
-            }
-            tabs.not(tab).removeClass('active');
-            tab.addClass('active');
-
-            placeholder.html( tab.next().next().html() );
-          });
-
-          // tabs.filter(':first').trigger('click');
-        });
-
-      }
 
 
-      $('.responsive-tabs').responsiveTabs();*/
-    </script>
-<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
 
-<section class="banner">
-  <div class="banner_slick_123">
-    <div class="banner_123">
-  
-      @foreach ($sliders as $key => $slider)
-     
-      <div class="banner_slick_item slick-slide">
-        <img src="{{ url('/') }}/images/{{ $slider->image }}" alt="{{$slider->description}}" />
-        <div class="container">
-          <h1>
-            {{ $slider->title }}
-          </h1>
-          <a href="{{ $slider->url }}" class="discuss"> view more </a>
-          @if(session('LoggedUser'))
-            <!-- <a class="onscreen-banner-slider" href="{{ url('/powerup/slider?onscreenCms=true') }}" onclick="window.open('{{ url("/powerup/slider?onscreenCms=true") }}', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;" ><i class='fa fa-edit'></i></a> -->
-            <div class="content_banners" 
-                data-create-link="{{ route('slider.create') }}" 
-                data-edit-link="{{ route('slider.edit', $slider->id) }}" 
 
-                data-index-link="{{ route('slider.index') }}"
-                data-delete-link="{{ route('slider.delete',$slider->id) }}">
-            </div>
-
-          @endif
-        </div>
-      </div>
-      @endforeach
-    </div>
-  </div>
-</section>
 
 <!-- room -->
 <section class="banner_slider">
