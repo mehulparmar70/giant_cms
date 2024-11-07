@@ -91,6 +91,7 @@ class HomeController extends Controller
 
     }
 
+    
     public function index()
     {
         
@@ -864,7 +865,7 @@ class HomeController extends Controller
             'footerCaseStudies' =>   $this->footerCaseStudies,
 
         ];
-        return response()->view('about', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::about', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
 
