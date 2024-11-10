@@ -236,8 +236,12 @@
                     <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
                   </div>
                   <div class="col-xl-6 col-lg-5 col-md-7 about-middle-contect wow fadeIn" data-wow-offset="200" data-wow-delay="0.5s">
+                     
                     <div class="about-middle-contect-inner">
-                        {!! $pageData->description !!}
+                        <span><div class="product_title"  @if(session('LoggedUser'))
+		                                    data-link="{{route('admin.about-page.editor')}}"
+		                                @endif></div>
+                        {!! $pageData->description !!}</span>
                     </div>
                     <div class="text-md-start text-center mt-md-3 mb-md-0 mb-4"><a href="{{ $aboutLink->url }}" class="btn share-about-btn text-uppercase btn-animation--infinity">VIEW MORE</a></div>
                   </div>
