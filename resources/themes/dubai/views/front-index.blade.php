@@ -452,12 +452,13 @@
             </section>
           </div>
 </div>
-</div>
+@includeFirst(['theme::ext.script', 'ext.script'])
+@includeFirst(['theme::ext.footer', 'ext.footer'])
 </div>
 
+
     {{-- Try to load 'script' and 'footer' from the active theme; fallback to default --}}
-    @includeFirst(['theme::ext.script', 'ext.script'])
-    @includeFirst(['theme::ext.footer', 'ext.footer'])
+
 
     {{-- Additional custom JavaScript --}}
     @yield('custom-js')

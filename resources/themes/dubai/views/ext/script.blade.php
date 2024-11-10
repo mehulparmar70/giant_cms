@@ -4,7 +4,6 @@
    
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css">
  
-    x
 
      <!-- CODROP SLIDER CSS SETTINGS -->
    
@@ -39,6 +38,7 @@
     <script type="text/javascript" src="{{asset('/')}}js/demo.js"></script>
     <!-- theme script --> 
     <script src="{{asset('/')}}js/scripts.js"></script> 
+    
     
 <script src="{{asset('/')}}js/bootstrap.min.js"></script>
 
