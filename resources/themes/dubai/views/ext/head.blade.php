@@ -60,14 +60,14 @@
   <link rel="shortcut icon" href="{{asset('/')}}/img/{{getWebsiteOptions()['website_favicon']->option_value}}" type="image/x-icon">
   <link rel="icon" type="image/png" href="assets/images/favicon.png" /> 
   <!-- vendor css -->
-  <link href="{{url('/')}}/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="{{url('/')}}/css/owl.carousel.min.css" rel="stylesheet" />
-  <link href="{{url('/')}}/css/animate.css" rel="stylesheet">
+  <link href="{{url('/')}}/dubai/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="{{url('/')}}/dubai/css/owl.carousel.min.css" rel="stylesheet" />
+  <link href="{{url('/')}}/dubai/css/animate.css" rel="stylesheet">
   <!-- CODROP SLIDER CSS SETTINGS -->
-  <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/base.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="{{url('/')}}/dubai/css/base.css" media="screen" />
   <!-- theme stylesheet -->
-  <link href="{{url('/')}}/css/style.css" rel="stylesheet" />
-  <link href="{{url('/')}}/css/responsive.css" rel="stylesheet" />
+  <link href="{{url('/')}}/dubai/css/style.css" rel="stylesheet" />
+  <link href="{{url('/')}}/dubai/css/responsive.css" rel="stylesheet" />
   
 
 

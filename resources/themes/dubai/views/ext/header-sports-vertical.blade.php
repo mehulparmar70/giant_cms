@@ -2,6 +2,7 @@
   
 <style>
   
+  
   /* Limit the text to 5 characters */
 .text-limit {
     display: inline-block;
@@ -632,7 +633,7 @@ $(document).ready(function () {
         <div class="d-flex justify-content-center">
           <a href="{{ $homeLink->url }}" @if(session('LoggedUser'))
             data-link="{{route('admin.home.editor')}}"
-        @endif class="header-top-home sticky-hide d-lg-flex d-none align-items-center text-uppercase">
+        @endif class="header-top-home sticky-hide d-lg-flex d-none align-items-center text-uppercase menu_crud">
             <img class="me-2" src="{{url('/')}}/images/home-icon.png" alt="home-icon">
             <div class="hover-underline-animation left text-red">{{ $homeLink->name }}</div>
           </a>

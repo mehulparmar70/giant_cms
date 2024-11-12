@@ -63,7 +63,9 @@ var currentWindow;
 // });
 
 $('.logo-g, .product, .about, .testimonial, .blog, .contact,.menu_crud').each(function(){
-  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit' style="
+    color: white;
+"></i></a>`);
 });
 
 

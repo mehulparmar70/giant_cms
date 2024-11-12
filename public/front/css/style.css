@@ -22,11 +22,7 @@
 
 }
 
-body {
 
-  font-family: "Roboto";
-
-}
 
 .video img:hover {
 
@@ -415,7 +411,7 @@ em {
 
   border: 1px solid rgba(0, 0, 0, 0);
 
-  font-family: BebasNeueRegular;
+
 
 }
 
@@ -559,7 +555,7 @@ em {
 
   transition-duration: 0.3s;
 
-  font-family: "BebasNeueRegular";
+
 
   cursor: pointer;
 
@@ -705,7 +701,7 @@ a {
 
   background-color: #11111100;
 
-  font-family: "Roboto", sans-serif;
+
 
   width: 100%;
 
@@ -945,7 +941,7 @@ a {
 
   position: relative;
 
-  font-family: "BebasNeueRegular";
+
 
 }
 
@@ -1301,7 +1297,7 @@ a {
 
 .big_text a {
 
-  font-family: "BebasNeueRegular";
+
 
   font-size: 65px;
 
@@ -1359,7 +1355,7 @@ a {
 
   text-transform: uppercase;
 
-  font-family: "ROBOTOLIGHT_0";
+
 
   font-size: 21px;
 
@@ -1371,7 +1367,7 @@ a {
 
   margin-left: 15px;
 
-  font-family: "ROBOTOREGULAR_0";
+
 
 }
 
@@ -1413,7 +1409,7 @@ a {
 
   cursor: pointer;
 
-  font-family: "BebasNeueRegular";
+
 
   font-size: 20px;
 
@@ -1505,7 +1501,7 @@ a {
 
   cursor: pointer;
 
-  font-family: "BebasNeueRegular";
+
 
   font-size: 23px;
 
@@ -1609,7 +1605,7 @@ a {
 
   z-index: 1;
 
-  font-family: "BebasNeueRegular";
+
 
 }
 
@@ -1631,7 +1627,7 @@ a {
 
   align-items: center;
 
-  font-family: "BebasNeueRegular";
+
 
   font-size: 24px;
 
@@ -1675,7 +1671,7 @@ a {
 
   cursor: pointer;
 
-  font-family: "BebasNeueRegular";
+
 
   color: #808080;
 
@@ -2043,7 +2039,8 @@ form .top_orange {
 
   font-size: 21px;
 
-  font-family: "BebasNeueRegular";
+
+  
 
   color: #fff;
 
@@ -2087,7 +2084,8 @@ form .top_orange img {
 
   cursor: pointer;
 
-  font-family: "BebasNeueRegular";
+
+  
 
   font-size: 23px;
 
@@ -2271,7 +2269,8 @@ textarea:focus {
 
   content: "\f077";
 
-  font-family: FontAwesome;
+
+  
 
   font-weight: normal;
 
@@ -2397,7 +2396,7 @@ textarea {
 
   padding-bottom: 5px;
 
-  font-family: "Roboto";
+  
 
 }
 
@@ -2925,9 +2924,7 @@ textarea::placeholder {
 
   color: #fff;
 
-  font-family: "BebasNeueRegular";
-
-/*  padding: 35px 0;*/
+  
 
   padding: 10px 0;
 
@@ -2953,7 +2950,8 @@ textarea::placeholder {
 
   color: #fff;
 
-  font-family: "Roboto", sans-serif;
+
+  
 
   margin-left: 10px;
 
@@ -2965,7 +2963,8 @@ textarea::placeholder {
 
   color: #fff;
 
-  font-family: "Roboto", sans-serif;
+
+  
 
   margin-left: 10px;
 
@@ -3251,137 +3250,6 @@ textarea::placeholder {
 
 }
 
-.footer {
-
-  background-image: url(../images/mapdot.png);
-
-  background-repeat: no-repeat;
-
-
-
-  background-color: #eeeeee;
-
-  background-size: 55%;
-
-  background-position: top right 27%;
-
-  box-shadow: inset 0px 11px 8px -10px #969696;
-
-}
-
-.footer .footer_blk {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  padding: 40px 0 20px;
-
-}
-
-.footer .footer_blk .footer_item {
-
-  color: #000;
-
-}
-
-.footer .footer_blk .footer_item a {
-
-  color: #000;
-
-  transition: all 0.5s ease;
-
-}
-
-.footer .footer_blk .footer_item a:hover {
-
-  color: #ff6600;
-
-}
-
-.footer .footer_blk .footer_item h2 {
-
-  position: relative;
-
-  margin-bottom: 40px;
-
-  font-weight: 400;
-
-  font-size: 23px;
-
-}
-
-.footer .footer_blk .footer_item h2::before {
-
-  content: "";
-
-  width: 55px;
-
-  height: 1px;
-
-  background-color: #ff6600;
-
-  position: absolute;
-
-  bottom: -3px;
-
-}
-
-.footer .footer_blk .footer_item img {
-
-  margin-bottom: 24px;
-
-}
-
-.footer .footer_blk .footer_item p {
-
-  font-size: 14px;
-
-  font-weight: 400;
-
-  line-height: 22px;
-
-  margin-bottom: 14px;
-
-  display: flex;
-
-}
-
-.footer .footer_blk .footer_item ul li {
-
-  list-style: none;
-
-  margin-bottom: 15px;
-
-  display: flex;
-
-}
-
-.footer .footer_blk .footer_item .fa {
-
-  color: #ff6600;
-
-  margin-right: 20px;
-
-  font-size: 23px;
-
-}
-
-.footer .footer_blk .footer_item ul li a {
-
-  font-size: 15px;
-
-  font-weight: 400;
-
-  transition: all 0.5s ease;
-
-}
-
-.footer .footer_blk .footer_item ul li a:hover {
-
-  color: #e2721b;
-
-}
 
 .triangle {
 
@@ -3404,34 +3272,6 @@ textarea::placeholder {
   border-bottom: solid 6px transparent;
 
   border-top: solid 6px transparent;
-
-}
-
-.footer_bottom {
-
-  background-color: #000;
-
-  color: #fff;
-
-  padding: 20px 0;
-
-}
-
-.footer_bottom .footer_bottom_item {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-}
-
-.footer_bottom .footer_bottom_item p {
-
-  font-size: 21px;
-
-  font-family: "BebasNeueRegular";
 
 }
 
@@ -3829,7 +3669,8 @@ textarea::placeholder {
 
 .product_video .provide_video {
 
-  font-family: BebasNeueRegular;
+
+  
 
   font-size: 27px;
 
@@ -3903,7 +3744,8 @@ textarea::placeholder {
 
 .product_video h4 {
 
-  font-family: BebasNeueRegular;
+
+  
 
   font-size: 26px;
 
@@ -4019,7 +3861,8 @@ textarea::placeholder {
 
   margin-left: 15px;
 
-  font-family: BebasNeueRegular;
+
+  
 
   font-size: 22px;
 
@@ -4081,17 +3924,7 @@ textarea::placeholder {
 
 }
 
-.footer .container {
 
-  max-width: 1810px;
-
-}
-
-.footer_bottom .container {
-
-  max-width: 1810px;
-
-}
 
 .btn_form .discuss {
 
@@ -4481,7 +4314,8 @@ form {
 
   color: #fff;
 
-  font-family: "BebasNeueRegular";
+
+  
 
   left: 43px;
 
@@ -4929,7 +4763,8 @@ form input[type="submit"] {
 
   color: #fff;
 
-  font-family: BebasNeueRegular;
+
+  
 
   outline: none;
 
@@ -5157,7 +4992,8 @@ form input[type="submit"]:focus {
 
 .case_studies h5 {
 
-  font-family: BebasNeueRegular;
+
+  
 
   font-size: 26px;
 
@@ -5385,7 +5221,7 @@ form input[type="submit"]:focus {
 
   font-weight: 500;
 
-  font-family: BebasNeueRegular;
+  
 
 }
 
@@ -6149,21 +5985,6 @@ input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
 
 }*/
 
-.footerLinks li a{
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
-
-  display: -webkit-box;
-
-  -webkit-line-clamp: 1;
-
-  -webkit-box-orient: vertical;
-
-  width: 250px;
-
-}
 
 dt a:hover:not(.adminAddItem,.adminEditItem,.adminDeleteItem){
 
