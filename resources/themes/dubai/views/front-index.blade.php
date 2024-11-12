@@ -114,7 +114,7 @@
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Our Products</strong>
                   <h1 class="h3 letters" onclick="window.location.href = 'products.html';">Our <span>Products</span></h1>
-                  <div class="product_title_1"  @if(session('LoggedUser'))
+                  <div style="background-color:white" class="product_title_1"  @if(session('LoggedUser'))
                   data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
               @endif></div>
                 </div>
@@ -175,7 +175,7 @@
                         <img src="{{url('')}}/img/no-item.jpeg" />
                         <?php }?>
                           </div>
-                          <div class="product_internal_title" @if(session('LoggedUser'))
+                          <div style="background:white" class="product_internal_title" @if(session('LoggedUser'))
                           data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
                           data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
                           data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
@@ -227,7 +227,7 @@
                     @endphp
                   <strong class="letters">About Us</strong>
                   <h3 class="h3 letters" onclick="window.location.href = '{{ $aboutLink->url }}';">About <span>Us</span></h3>
-                  <div class="product_title"  @if(session('LoggedUser'))
+                  <div style="background-color:white" class="product_title"  @if(session('LoggedUser'))
                   data-link="{{route('admin.about-page.editor')}}"
               @endif></div>
                 </div>
@@ -238,7 +238,7 @@
                   <div class="col-xl-6 col-lg-5 col-md-7 about-middle-contect wow fadeIn" data-wow-offset="200" data-wow-delay="0.5s">
                      
                     <div class="about-middle-contect-inner">
-                        <span><div class="product_title"  @if(session('LoggedUser'))
+                        <span><div style="background-color:white" class="product_title"  @if(session('LoggedUser'))
 		                                    data-link="{{route('admin.about-page.editor')}}"
 		                                @endif></div>
                         {!! $pageData->description !!}</span>
@@ -298,6 +298,8 @@
                     <strong class="letters">Updates</strong>
                     <h3 class="h3 letters" onclick="window.location.href = 'updates.html';">Up<span>dates</span></h3>
                   </div>
+                  <div style="background-color:white" class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.create')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
+
                 </div>
                 <div class="updates-wrap position-relative">
                   <div class="bg-img-wrap">
@@ -306,81 +308,40 @@
                   <div class="container pt-4">
                     <div class="position-relative wow zoomInDown" data-wow-offset="200">
                       <div class="updates-slider px-xl-5 px-3">
+                        @foreach($blogsSlider as $blogsList)
                         <div class="updates-slider-item">
-                          <a href="updates-detail.html" class="updates-box">
+                          <a href="{{ route('update.index') }}" class="updates-box">
+                            <div class="update_img onscreen_media_testimonial_item" @if(session('LoggedUser'))
+
+                            data-create-link="{{route('blog.index')}}"
+    
+                   
+    
+                            data-link="{{route('blog.edit', $blogsList->id)}}"
+                            data-delete-link="{{route('blog.delete',$blogsList->id)}}"
+    
+                          @endif>
                             <div class="updates-box-img">
-                              <img src="{{asset('/')}}/dubai/images/home-banner.webp" alt="updates-img">
+                              @if(file_exists(public_path('images/'.$blogsList->image)) && $blogsList->image)
+                              <img src="{{ url('/') }}/images/{{ $blogsList->image }}" alt="Blog Image" />
+                            @else
+                              <img src="{{ url('/') }}/img/no-item.jpeg" alt="Default Image" />
+                            @endif
+
+                            </div>
                             </div>
                             <div class="updates-box-content">
-                              <h6>Lorem ipsum, dolor sit amet conse ctetur sicing sicing elit</h6>
-                              <p>Soluta ex autem obcaecati aperiam adipisci porro odio quam fugit debitis numquam hic consequuntur ratione, eligendi quos cumque non magni harum eum</p>
+                              <h6>{!! html_entity_decode($blogsList->title) !!}</h6>
+                              <p>{!! html_entity_decode($blogsList->short_description) !!}</p>
                               <span class="btn">View More</span>
                             </div>
                           </a>
                         </div>
-                        <div class="updates-slider-item">
-                          <a href="updates-detail.html" class="updates-box">
-                            <div class="updates-box-img">
-                              <img src="{{asset('/')}}/dubai/images/desert.webp" alt="updates-img">
-                            </div>
-                            <div class="updates-box-content">
-                              <h6>Lorem ipsum, dolor sit amet conse ctetur sicing sicing elit</h6>
-                              <p>Soluta ex autem obcaecati aperiam adipisci porro odio quam fugit debitis numquam hic consequuntur ratione, eligendi quos cumque non magni harum eum</p>
-                              <span class="btn">View More</span>
-                            </div>
-                          </a>
-                        </div>
-                        <div class="updates-slider-item">
-                          <a href="updates-detail.html" class="updates-box">
-                            <div class="updates-box-img">
-                              <img src="{{asset('/')}}/dubai/images/home-banner.webp" alt="updates-img">
-                            </div>
-                            <div class="updates-box-content">
-                              <h6>Lorem ipsum, dolor sit amet conse ctetur sicing sicing elit</h6>
-                              <p>Soluta ex autem obcaecati aperiam adipisci porro odio quam fugit debitis numquam hic consequuntur ratione, eligendi quos cumque non magni harum eum</p>
-                              <span class="btn">View More</span>
-                            </div>
-                          </a>
-                        </div>
-                        <div class="updates-slider-item">
-                          <a href="updates-detail.html" class="updates-box">
-                            <div class="updates-box-img">
-                              <img src="{{asset('/')}}/dubai/images/home-banner.webp" alt="updates-img">
-                            </div>
-                            <div class="updates-box-content">
-                              <h6>Lorem ipsum, dolor sit amet conse ctetur sicing sicing elit</h6>
-                              <p>Soluta ex autem obcaecati aperiam adipisci porro odio quam fugit debitis numquam hic consequuntur ratione, eligendi quos cumque non magni harum eum</p>
-                              <span class="btn">View More</span>
-                            </div>
-                          </a>
-                        </div>
-                        <div class="updates-slider-item">
-                          <a href="updates-detail.html" class="updates-box">
-                            <div class="updates-box-img">
-                              <img src="{{asset('/')}}/dubai/images/desert.webp" alt="updates-img">
-                            </div>
-                            <div class="updates-box-content">
-                              <h6>Lorem ipsum, dolor sit amet conse ctetur sicing sicing elit</h6>
-                              <p>Soluta ex autem obcaecati aperiam adipisci porro odio quam fugit debitis numquam hic consequuntur ratione, eligendi quos cumque non magni harum eum</p>
-                              <span class="btn">View More</span>
-                            </div>
-                          </a>
-                        </div>
-                        <div class="updates-slider-item">
-                          <a href="updates-detail.html" class="updates-box">
-                            <div class="updates-box-img">
-                              <img src="{{asset('/')}}/dubai/images/home-banner.webp" alt="updates-img">
-                            </div>
-                            <div class="updates-box-content">
-                              <h6>Lorem ipsum, dolor sit amet conse ctetur sicing sicing elit</h6>
-                              <p>Soluta ex autem obcaecati aperiam adipisci porro odio quam fugit debitis numquam hic consequuntur ratione, eligendi quos cumque non magni harum eum</p>
-                              <span class="btn">View More</span>
-                            </div>
-                          </a>
-                        </div>
+                        @endforeach
+
                       </div>
                       <div class="updates-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-3">
-                        <a href="updates.html" class="btn text-uppercase btn-animation--infinity">VIEW ALL UPDATES</a>
+                        <a href="{{url('updates')}}" class="btn text-uppercase btn-animation--infinity">VIEW ALL UPDATES</a>
                       </div>
                       <div class="updates-mobile-nav owl-nav d-md-none d-block">
                         <button class="owl-prev updates-second-prev"><span aria-label="Previous">‹</span></button>

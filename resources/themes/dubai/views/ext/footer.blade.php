@@ -34,60 +34,117 @@
           <div class="container">
             <div class="footer-top-row">
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50">
+              @php
+        // Fetch specific menu items by ID from the url_list table
+        $clientLink = App\Models\admin\UrlList::find(102);  // Home link
+        $awardsLink = App\Models\admin\UrlList::find(103);  // Our Products link
+        $videoLink = App\Models\admin\UrlList::find(104);  // About link
+        $newsletterLink = App\Models\admin\UrlList::find(105);  // Case Studies link
+        $partnersLink = App\Models\admin\UrlList::find(106);  // Testimonials link
+        // Fetch specific menu items by ID from the url_list table
+        $homeLink = App\Models\admin\UrlList::find(95);  // Home link
+        $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
+        $aboutLink = App\Models\admin\UrlList::find(97);  // About link
+        $caseStudiesLink = App\Models\admin\UrlList::find(100);  // Case Studies link
+        $testimonialsLink = App\Models\admin\UrlList::find(98);  // Testimonials link
+        $updatesLink = App\Models\admin\UrlList::find(113);  // Updates link
+        $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
+    @endphp
                 <div class="footer-top-heading"><h6>Information</h6></div>
                 <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Our products</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li class="menu_crud" @if(session('LoggedUser'))
+                data-link="{{route('admin.home.editor')}}"
+            @endif><a href="{{ $homeLink->url }}" @if(session('LoggedUser'))
+                data-link="{{route('admin.home.editor')}}"
+            @endif>{{ $homeLink->name }}</a></li>
+                  <li class="menu_crud" @if(session('LoggedUser'))
+                  data-link="{{route('admin.product-page.editor')}}"
+              @endif><a href="{{ $productLink->url }}" @if(session('LoggedUser'))
+                  data-link="{{route('admin.product-page.editor')}}"
+              @endif>{{ $productLink->name }}</a></li>
+                  <li class="menu_crud" @if(session('LoggedUser'))
+                data-link="{{route('admin.about-page.editor')}}"
+            @endif><a href="{{ $aboutLink->url }}" @if(session('LoggedUser'))
+                data-link="{{route('admin.about-page.editor')}}"
+            @endif>{{ $aboutLink->name }}</a></li>
+                  <li class="menu_crud" @if(session('LoggedUser'))
+                data-link="{{route('admin.blog-page.editor')}}"
+            @endif><a href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
+                data-link="{{route('admin.blog-page.editor')}}"
+            @endif>{{ $updatesLink->name }}</a></li> 
+                  <li class="menu_crud" @if(session('LoggedUser'))
+                data-link="{{route('admin.contact-page.editor')}}"
+            @endif><a href="{{ $contactLink->url }}" @if(session('LoggedUser'))
+                data-link="{{route('admin.contact-page.editor')}}"
+            @endif>{{ $contactLink->name }}</a></li>
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="0.3s">
                 <div class="footer-top-heading"><h6>Categories</h6></div>
                 <ul>
-                  <li><a href="#">Custom inflatable Games</a></li>
-                  <li><a href="#">Sports Inflatable</a></li>
-                  <li><a href="#">Arches & Tunnels</a></li>
-                  <li><a href="#">Brand Activation Inflatables</a></li>
-                  <li><a href="#">Inflatable Shelters & Dome</a></li>
-                  <li><a href="#">Advertising Inflatables</a></li>
-                  <li><a href="#">Inflatable POS & Replica</a></li>
-                  <li><a href="#">Custom Shape Inflatable</a></li>
+                @foreach(customMainCat() as $key => $topInflatableLp)
+             
+                  <li class="menu_crud" data-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true  "><a href="{{url('')}}/{{$topInflatableLp->slug}}" @if(session('LoggedUser'))
+                     
+                      data-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true  "
+                     
+                    @endif>{{$topInflatableLp->name}}</a></li>
+              
+                  @endforeach
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="0.6s">
                 <div class="footer-top-heading"><h6>Products</h6></div>
                 <ul>
-                  <li><a href="#">Custom Event Inflatables</a></li>
-                  <li><a href="#">Helium Filled Inflatables</a></li>
-                  <li><a href="#">Custom Built Characters</a></li>
-                  <li><a href="#">custom built replicas</a></li>
-                  <li><a href="#">custom inflatable structures</a></li>
-                  <li><a href="#">Theatrical Inflatables</a></li>
+                @foreach(customMainCat() as $key => $topInflatableLp)
+          <?php 
+          $getSubCategories = getSubCategories($topInflatableLp->id);
+              if (!empty($getSubCategories)) {
+                foreach($getSubCategories as $cat)
+                {
+          ?>
+          <li class="menu_crud" data-link="{{route('admin.category.edit', $cat->id)}}?type=sub_category&onscreenCms=true&id={{$cat->parent_id}}"><a href="{{url('')}}/{{$cat->slug}}" @if(session('LoggedUser'))
+                     data-link="{{route('admin.category.edit', $cat->id)}}?type=sub_category&onscreenCms=true&id={{$cat->parent_id}}"
+                    
+                   @endif>{{$cat->name}}</a></li>
+
+                
+                  <?php }}  ?>
+                  @endforeach
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="0.9s">
                 <div class="footer-top-heading"><h6>Updates</h6></div>
                 <ul>
-                  <li><a href="#">Don't buy an inflatable until you've read this.</a></li>
-                  <li><a href="#">3 assential steps to take....</a></li>
-                  <li><a href="#">The Secret Sauce To Brand Awareness And Fan Engagement</a></li>
-                  <li><a href="#">Keep 'em coming back for more...</a></li>
-                  <li><a href="#">The Advantages of our Exclusive</a></li>
+                @foreach($blogsSlider as $blogsList)
+
+                  <li class="menu_crud" @if(session('LoggedUser'))
+
+
+data-link="{{route('blog.edit', $blogsList->id)}}"
+
+@endif><a href="{{ route('update.index') }}" @if(session('LoggedUser'))
+
+
+data-link="{{route('blog.edit', $blogsList->id)}}"
+
+@endif>{!! html_entity_decode($blogsList->title) !!} </a></li>
+
+                  @endforeach
+
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="1.2s">
                 <div class="footer-top-heading"><h6>Testimonials</h6></div>
                 <ul>
-                  <li><a href="#">Chloe Jeffers-Thrand</a></li>
-                  <li><a href="#">Terence Lattanzio</a></li>
-                  <li><a href="#">Jason Fair</a></li>
-                  <li><a href="#">Ly Truong</a></li>
-                  <li><a href="#">Joanna Ohis</a></li>
-                  <li><a href="#">Woggia Lake Run and Ride</a></li>
-                  <li><a href="#">Julie Noorman</a></li>
-                  <li><a href="#">Paula Barras</a></li>
+                @foreach($testimonials as $testimonial)
+                  <li class="menu_crud" @if(session('LoggedUser'))
+
+data-link="{{route('testimonials.edit', $testimonial->id)}}"
+
+@endif><a href="{{url('testimonials')}}?testimonial={{$testimonial->id}}">{{$testimonial->client_name}}</a></li>
+
+                  @endforeach
                 </ul>
               </div>
             </div>
@@ -95,7 +152,7 @@
         </div>
         <div class="footer-bottom">
           <div class="footer-bottom-bg">
-            <img src="assets/images/footer-bg-pattern.webp" alt="footer-bg-pattern">
+            <img src="{{asset('/')}}/dubai/images/footer-bg-pattern.webp" alt="footer-bg-pattern">
           </div>
           <div class="container-fluid">
             <div class="footer-bottom-row text-center">
@@ -103,7 +160,7 @@
                 <h6>This Website is Designed By:</h6>
                 <div class="footer-bottom-img d-flex align-items-center justify-content-center">
                   <a href="https://www.thestudio5.com.au" target="_blank">
-                    <img src="assets/images/studio-logo.webp" alt="studio-logo">
+                    <img src="{{asset('/')}}/dubai/images/studio-logo.webp" alt="studio-logo">
                   </a>
                 </div>
                 <div class="footer-web-url theme-heading">
@@ -114,7 +171,7 @@
                 <h6>A Venture of Giant Inflatables Indla</h6>
                 <div class="footer-bottom-img d-flex align-items-center justify-content-center">
                   <a href="https://www.giantinflatables.in/" target="_blank">
-                    <img src="assets/images/footer-logo.webp" alt="footer-logo">
+                    <img src="{{asset('/')}}/dubai/images/footer-logo.webp" alt="footer-logo">
                   </a>
                 </div>
                 <div class="footer-web-url theme-heading">
@@ -126,7 +183,7 @@
                 <h6>Digital Brand & Marketing Partner</h6>
                 <div class="footer-bottom-img d-flex align-items-center justify-content-center">
                   <a href="https://www.searchmediabroker.com/" target="_blank">
-                    <img src="assets/images/search-media-broker-logo.webp" alt="search-media-broker-logo">
+                    <img src="{{asset('/')}}/dubai/images/search-media-broker-logo.webp" alt="search-media-broker-logo">
                   </a>
                 </div>
                 <div class="footer-web-url theme-heading">
