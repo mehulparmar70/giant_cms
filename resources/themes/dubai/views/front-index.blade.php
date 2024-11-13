@@ -140,10 +140,10 @@
                           <div class="products-box-img">
                             <?php if(!empty($topInflatableLp->image))
                             {
-                              ?>                  <img src="{{url('')}}/images/{{$topInflatableLp->image}}" style="height: 540px !important;" />
+                              ?>                  <img src="{{url('')}}/images/{{$topInflatableLp->image}}"  />
                               <?php }else{?>
                           @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-                            <img src="{{url('')}}/images/{{$productImage->image}}" style="height: 540px !important;" />
+                            <img src="{{url('')}}/images/{{$productImage->image}}"  />
                             @endforeach
                             <?php }?>
                             
@@ -169,7 +169,7 @@
                             <?php if(!empty($topInflatableLp->image))
                             {
                               ?>
-                              <img src="{{url('')}}/images/{{$topInflatableLp->image}}" style="height: 540px !important;" />
+                              <img src="{{url('')}}/images/{{$topInflatableLp->image}}"  />
                               <?php }else{?>
           
                         <img src="{{url('')}}/img/no-item.jpeg" />

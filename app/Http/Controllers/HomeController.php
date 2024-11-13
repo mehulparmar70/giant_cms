@@ -220,8 +220,8 @@ class HomeController extends Controller
             'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'newsletterSlider' =>  Newsletter::where(['status' => 1])->orderBy('item_no')->get(),
         ];
-
-        return view('product-internal', $data);
+        
+        return view('theme::product-internal', $data);
     }
     
     public function product_internal($slug)
@@ -333,7 +333,7 @@ class HomeController extends Controller
                             'search_index' => $current_cat->search_index, 'search_follow' => $current_cat->search_follow,
                             'canonical_url' => $current_cat->canonical_url
                         ],
-
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             // 'pageData' =>  $current_cat,
             'criteriaData' => $criteriaData,
             'criteriaMetas' => $this->criteriaMetas,
@@ -369,7 +369,8 @@ class HomeController extends Controller
             'productTitle' =>  Pages::where('type', 'product_page')->first(),
 
         ];
-        return response()->view('product-internal', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        // dd($data);
+        return response()->view('theme::product-internal', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
 

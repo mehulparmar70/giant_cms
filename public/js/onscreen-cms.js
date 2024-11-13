@@ -573,7 +573,7 @@ function popupmenu(link, type, event) {
   if (event) {
     event.preventDefault();
     event.stopPropagation(); // Prevent any additional handlers from triggering
-}
+  }
 
   console.log('Popupmenu function triggered'); // For debugging
   // First fetch request to get the content for #modalBodyContent
@@ -581,7 +581,7 @@ function popupmenu(link, type, event) {
     // Create a new modal container for the 'edit' modal
     const modalContainer = document.createElement('div');
     modalContainer.classList.add('modal-container');
-    modalContainer.style.zIndex = getMaxZIndex() + 1; // Increment zIndex for each new popup
+    modalContainer.style.zIndex = getMaxZIndex() + 999999999; // Increment zIndex for each new popup
     document.body.appendChild(modalContainer);
 
     fetch(link)
@@ -602,78 +602,78 @@ function popupmenu(link, type, event) {
         .catch(error => {
             console.error('Error loading content:', error);
         });
-}
-else if(type === 'deletemodal')
-{Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    // Perform the delete action if confirmed
-    fetch(link, {
-      method: 'POST',
-      headers: {
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to delete the item.');
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.success) {
-        // Show success message using SweetAlert2
-        Swal.fire({
-          icon: 'success',
-          title: 'Deleted!',
-          text: data.message,
-          timer: 2000, // Auto close after 2 seconds
-          showConfirmButton: false
-        });
-        window.location.reload(); // Optionally reload the page after successful deletion
-      } else {
-        // Show error message if the server response indicates failure
-        Swal.fire({
-          icon: 'error',
-          title: 'Error!',
-          text: data.message
-        });
-      }
-    })
-    .catch(error => {
-      // Handle any unexpected errors during the fetch request
-   
-      console.error('Error deleting item:', error);
-    });
   }
-});
-}
-else
-{
-  fetch(link)
-  .then(response => response.text())
-            .then(data => {
-                document.getElementById('modalBodyContent').innerHTML = data;
-                document.getElementById('ajaxModal').style.display = 'block';
+  else if(type === 'deletemodal')
+  {Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Perform the delete action if confirmed
+      fetch(link, {
+        method: 'POST',
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to delete the item.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          // Show success message using SweetAlert2
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: data.message,
+            timer: 2000, // Auto close after 2 seconds
+            showConfirmButton: false
+          });
+          window.location.reload(); // Optionally reload the page after successful deletion
+        } else {
+          // Show error message if the server response indicates failure
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: data.message
+          });
+        }
+      })
+      .catch(error => {
+        // Handle any unexpected errors during the fetch request
+    
+        console.error('Error deleting item:', error);
+      });
+    }
+  });
+  }
+  else
+  {
+    fetch(link)
+    .then(response => response.text())
+              .then(data => {
+                  document.getElementById('modalBodyContent').innerHTML = data;
+                  document.getElementById('ajaxModal').style.display = 'block';
 
-                const editorElement = document.querySelector('#ajaxModal #editor'); // Ensure the correct selector
-                if (editorElement) {
-                    initializeEditor(editorElement);
-                }
-                initializeDynamicContent();
-             
-            })
-            .catch(error => console.error('Error loading content:', error));
-}
- 
+                  const editorElement = document.querySelector('#ajaxModal #editor'); // Ensure the correct selector
+                  if (editorElement) {
+                      initializeEditor(editorElement);
+                  }
+                  initializeDynamicContent();
+              
+              })
+              .catch(error => console.error('Error loading content:', error));
+  }
+  
 }
 
 function getMaxZIndex() {

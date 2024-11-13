@@ -4,7 +4,7 @@
      tabindex="-1" 
      role="dialog" 
      aria-labelledby="popupFormLabel" 
-     aria-hidden="true">
+     aria-hidden="false">
 
   <div class="cmsModal-dialog " role="document">
     <div class="cmsModal-content">
