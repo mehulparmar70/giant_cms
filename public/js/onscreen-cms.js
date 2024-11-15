@@ -431,7 +431,10 @@ $('.onscreen_product_main_category_menu').each(function(){
 //   $(this).append(`<div class="onscreen-product-detail-slider-thumb"><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-plus'></i></a><a href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit'></i></a><a href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Main-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
 
 $('.my_slider_thumb').each(function(){
-  $(this).append(`<span class="deleteImageSlider" data-id="`+$(this).attr('data-delete-link')+`"><i class='fa fa-trash'></i></span>`);
+  $(this).append(`
+    <span class="deleteImageSlider" data-id="`+$(this).attr('data-link')+`"><i class='fa fa-plus'></i></span>
+    <span class="deleteImageSlider" data-id="`+$(this).attr('data-delete-link')+`"><i class='fa fa-trash'></i></span>
+  `);
 });
 
 $('body').on('click','.adminDeleteItem',function (e) { 

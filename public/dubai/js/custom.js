@@ -362,7 +362,7 @@ $("a").each(function() {
 
   if (url == baseUrl+'/products') {
     // console.log(baseUrl);  
-    $(this).attr('href',baseUrl+'/custom-industrial-inflatable-products')
+    $(this).attr('href',baseUrl+'/products')
   }
   // console.log(url);
   // console.log(baseUrl);
