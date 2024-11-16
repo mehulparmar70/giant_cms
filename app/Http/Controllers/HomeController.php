@@ -836,6 +836,9 @@ class HomeController extends Controller
         //Session::forget('homePageCatId');
         $data = [
             'pageData' =>  Pages::where('type', 'about_page')->first(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
+            'pageData' =>  Pages::where('type', 'contact_page')->first(),
             'industriesData' =>  Pages::where('type', 'industrie_page')->first(),
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
             'videos' =>  Video::where(['status' => 1])->orderBy('item_no')->get(),
