@@ -158,6 +158,7 @@ class HomeController extends Controller
             'criteriaMetaData' => $searchData,
             'criteriaMetas' => $this->criteriaMetas,
             'searchData' => $searchData,
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             'pageData' =>  Pages::where('type', 'product_page')->first(),
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
             'awardSlider' =>  Award::where('status', 1)->limit(20)->orderBy('item_no')->get(),
@@ -189,11 +190,11 @@ class HomeController extends Controller
 
         ];
         if($searach_criteria){
-            return response()->view('search', $data)->header('Cache-Control:public', 'max-age=31536000');
+            return response()->view('theme::search', $data)->header('Cache-Control:public', 'max-age=31536000');
 
         }else{
 
-        return response()->view('product', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::product', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
         }
     }
@@ -232,11 +233,11 @@ class HomeController extends Controller
         if(isset($current_cat)){
             // dd($current_cat);
             if(!isset($current_cat)){
-                return redirect(url('custom-industrial-inflatable-products'));
+                return redirect(url('products'));
             }
             
             if($current_cat->status == 0){
-                return redirect(url('custom-industrial-inflatable-products'));
+                return redirect(url('products'));
             }
             $mainCategory = Category::find($current_cat->parent_id);
             $subCategory = Category::where(['parent_id' => $mainCategory->id, 'status' => 1])->get();
@@ -257,6 +258,7 @@ class HomeController extends Controller
                 'pageData' =>  $isCheckCategory,
                 'topCategories' => $this->topCategories,
                 'subCategory' => $subCategory,
+                'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
                 'productDetail' =>  $isCheckCategory,
                 'productImages' =>  Media::where('media_id', $current_cat->id)->orderBy('item_no','asc')->get(),
                 'industries' =>  Industries::where(['status' => 1])->orderBy('item_no')->limit(50)->get(),
@@ -286,7 +288,7 @@ class HomeController extends Controller
                 'productTitle' =>  Pages::where('type', 'product_page')->first(),
 
             ];
-            return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+            return response()->view('theme::product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
         }
         
@@ -294,10 +296,10 @@ class HomeController extends Controller
         $current_cat = Category::where(['slug' => $slug, 'status' => 1])->first();
         // dd($current_cat);
         if(!isset($current_cat)){
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
         if($current_cat->status == 0){
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
 
         $criteriaData = Criteria::where('slug', $slug)->first();
@@ -455,7 +457,7 @@ class HomeController extends Controller
         ];
         
         
-        return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
 
@@ -467,11 +469,11 @@ class HomeController extends Controller
             return redirect(url('').'/'.$slug);
         }
         else{
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
 
         if($current_cat->status == 0){
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
 
         $mainCategory = Category::find($current_cat->parent_id);
@@ -523,7 +525,7 @@ class HomeController extends Controller
 
         ];
         
-        return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
 
     }
@@ -641,13 +643,13 @@ class HomeController extends Controller
             'footerCaseStudies' =>   $this->footerCaseStudies,
 
         ];
-        return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
 
         }
         else{
 
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
     }
     

@@ -9,7 +9,9 @@
 </head>
 
 <body class="lazyload pr-0">
-    <?php $current_page = ''; ?>
+    <?php $current_page = ''; 
+    $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
+    ?>
     
     {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
     @includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'])
@@ -113,7 +115,7 @@
               <div class="container">
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Our Products</strong>
-                  <h1 class="h3 letters" onclick="window.location.href = 'products.html';">Our <span>Products</span></h1>
+                  <h1 class="h3 letters" onclick="window.location.href = '{{ $productLink->url }}';">Our <span>Products</span></h1>
                   <div style="background-color:white" class="product_title_1"  @if(session('LoggedUser'))
                   data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
               @endif></div>
@@ -201,9 +203,9 @@
                           data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true"
                           data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
                           data-index-link="{{route('admin.category.list')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                        @endif></div
+                        @endif></div>
                           <div class="products-box-heading text-uppercase theme-heading">
-                            <h5>{{ $topInflatableLp->name }}s</h5>
+                            <h5>{{ $topInflatableLp->name }}</h5>
                           </div>
                         </div>
                       </a>

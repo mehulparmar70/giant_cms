@@ -43,7 +43,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 // Route::get('sitemap', [SitemapController::class, 'siteMap'])->name('siteMap');
 
 
-Route::get('custom-industrial-inflatable-products', [HomeController::class, 'product'])->name('products');
+Route::get('products', [HomeController::class, 'product'])->name('products');
 Route::get('/about', [HomeController::class, 'about'])->name('admin');
 Route::get('client', [HomeController::class, 'client']);
 Route::get('videos', [HomeController::class, 'videos']);

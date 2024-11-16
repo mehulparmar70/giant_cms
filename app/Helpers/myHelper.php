@@ -442,7 +442,7 @@ function getReffrel(){
                 return ['name' => 'About Us', 'url' => $link];
             }elseif($slug == 'about'){   
                 return ['name' => 'About Us', 'url' => $link];
-            }elseif($slug == 'products' || $slug == 'custom-industrial-inflatable-products'){   
+            }elseif($slug == 'products' || $slug == 'products'){   
                 return ['name' => 'INDUSTRIAL INFLATABLE PRODUCTS', 'url' => $link];
             }
             elseif($slug == 'testimonials'){

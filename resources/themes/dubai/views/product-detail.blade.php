@@ -1,108 +1,21 @@
-@extends('layout.front-index')
-@section('title','Product Details')
+<!DOCTYPE HTML>
+<html>
+  <head>
+  {{-- Try to load 'head' from the active theme; fallback to default --}}
+    @includeFirst(['theme::ext.head', 'ext.head'])
 
+    {{-- Additional theme-specific CSS --}}
+    @yield('addon-css')
+  </head>
+  <body>
+  <?php $current_page = ''; ?>
+    
+    {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
+    @includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'])
 
-	@section('custom-head')
+    {{-- Main content of the page --}}
 
-	<style>
-		.magnify-modal {
-			box-shadow: 0 0 6px 2px rgba(0, 0, 0, .3);
-			}
-
-			.magnify-header .magnify-toolbar {
-			background-color: rgba(0, 0, 0, .5);
-			}
-			.magnify-stage {
-			border-width: 0;
-
-			text-align:center;
-			}
-
-			.magnify-footer {
-			bottom: 10px;
-			}
-
-			.magnify-footer .magnify-toolbar {
-			background-color: rgba(0, 0, 0, .5);
-			border-radius: 5px;
-			}
-
-			.magnify-loader {
-			background-color: transparent;
-			}
-
-			.magnify-header,
-			.magnify-footer {
-			pointer-events: none;
-			}
-
-			.magnify-button {
-			pointer-events: auto;
-			}
-
-		.Biginflatables .img_thumbnail img {
-			border-radius: 5px;
-			width: 100%;
-			height: auto;
-			object-fit: contain;
-			background: black;
-		}
-		.my_slider_block{
-			margin:0 auto;
-		}
-		.my_slider_block .Biginflatables .slick-slide {
-			height: 400px;
-		}
-		.deleteImageSlider {
-		  cursor: pointer;
-		}
-		.my_slider_block .Biginflatables .img_thumbnail img{
-			object-fit: contain;
-			height: 400px;
-			background: black;
-		}
-			.slick-prev.slick-arrow {
-				left: 3% !important;
-				z-index: 0 !important;
-			}
-
-			.slick-next.slick-arrow {
-				right: 3% !important;
-				z-index: 0 !important;
-			}
-			
-			.image_gallery .product_cat_name {
-		    background-color: #8460a6;
-		    display: flex;
-		    align-items: center;
-		    padding: 9px 15px;
-		}
-	</style>
-
-	@endsection
-
-@section('custom-js')
-
-<script>
-$(document).ready(function () {
-  $( ".lazyload" ).css('overflow', 'auto');
-  $( ".loader" ).hide();
-});
-
-$(".product").addClass( "active");
-$(".our_product_menu").addClass( "active");
-$(".product_menu_active").addClass( "menu_active");
-	
-function goBack() {
-  window.history.back();
-}
-
-
-</script>
-@endsection
-@section('content')
-
-<?php 
+	<?php 
 // dd($mainCategory);
 $industriesPageData = getPageData('industrie_page');
 $subCategory = $current_cat;
@@ -182,243 +95,347 @@ $intArray = array_map(
 );
 
 $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray)->get();
+$productLink = App\Models\admin\UrlList::find(96);  // Our Products link
+$homeLink = App\Models\admin\UrlList::find(95);  // Home link
 ?>
-<style>
-	.deleteImageSlider {
-		  cursor: pointer;
-		}
-</style>
-<!-- back -->
-<div class="our_product product_detail product_detail_now">
-	<section class="back">
-	  <div class="container">
-	    <div class="back_sec">
-	      <span>home &nbsp; :
-	        <p class="breadcrumb-item"><a href="{{$mainCategorySlug}}">{{getSocialMedia()->product_title}}</a></p>
-	        
-					@if(getParentCategory($subCategory->id)['category'])
-						&nbsp&nbsp&nbsp: <p class="breadcrumb-item"><a href="{{url('')}}/{{getParentCategory($subCategory->id)['category']->slug}}">{{getParentCategory($subCategory->id)['category']->name}}</a></p>
-                        @endif
+
+        <!-- banner area part -->
+        <section class="product-detail-banner-section common-inner-banner header-top-space position-relative">
+          <div class="bg-img-wrap">
+            <img class="bg-img-top opacity-50" src="{{asset('/')}}/dubai/images/about-banner.webp" alt="about-banner">
+            <img class="bg-img-bottom" src="{{asset('/')}}/dubai/images/red-effect-bottom.webp" alt="red-effect-bottom">
+          </div>
+          <div class="container position-relative">
+            <div class="breadcrumb">
+              <div class="breadcrumb-left">
+				
+                <a href="{{ $homeLink->url }}" class="header-top-home d-flex align-items-center text-uppercase">
+                  <img class="me-2" src="{{asset('/')}}/dubai/images/home-icon.png" alt="home-icon">Home
+                </a>
+                <a href="{{$mainCategorySlug}}" class="header-top-home d-flex align-items-center text-uppercase py-1 me-3">{{getParentCategory($subCategory->id)['category']->name}}</a>
+
 
 						@if(getParentCategory($subCategory->id)['subcategory'])
-						&nbsp&nbsp&nbsp: <p class="breadcrumb-item"><a href="{{url('')}}/{{$subCategorySlug}}">{{getParentCategory($subCategory->id)['subcategory']->name}}</a></p>
+						<span class="text-uppercase">{{getParentCategory($subCategory->id)['subcategory']->name}}</span>
                         @endif
 
 						@if(getParentCategory($subCategory->id)['subcategory2'])
-						&nbsp&nbsp&nbsp: <p class="breadcrumb-item"><a href="{{url('')}}/{{$subCategory2Slug}}">{{getParentCategory($subCategory->id)['subcategory2']->name}}</a></p>
+						<span class="text-uppercase">{{getParentCategory($subCategory->id)['subcategory2']->name}}</span>
                         @endif
-	      </span>
-	      <a href="{{$mainCategorySlug}}" class="read_all"><p>back</p></a>
-	    </div>
-	  </div>
-	</section>
+            
+              </div>
+              <a href="{{ $productLink->url }}" class="breadcrumb-back text-uppercase">Back<img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle"></a>
+            </div>
+            <div class="row g-4 mt-4">
+              <div class="col-xl-9 col-md-8">
+                <div class="product-detail-wrap wow fadeInLeft" data-wow-offset="200">
+                  <div class="product-detail-title d-flex gap-1 flex-md-row flex-column justify-content-md-between justify-content-center align-items-center">
+				  @if(getParentCategory($subCategory->id)['subcategory'])
+						<h5 class="me-2 mt-1">{{getParentCategory($subCategory->id)['subcategory']->name}}</h5>
+                        @endif
 
-	<!-- tab -->
-	<section class="tab_blk">
-	  <div class="container">
-	    <div class="big_text top_banner_left">
-	      <a href="#">{{getSocialMedia()->product_title}}</a>
-	      <span>
-	        {{ $productTitle->page_title }}
-	      <div class="product_title"  @if(session('LoggedUser'))
-	                                    data-link="{{route('admin.product-page.editor')}}"
-	                                @endif></div>
-	      </span>
-	    </div>
+						@if(getParentCategory($subCategory->id)['subcategory2'])
+						<h5 class="me-2 mt-1">{{getParentCategory($subCategory->id)['subcategory2']->name}}</h5>
+                        @endif
+						<div class="product_title"  @if(session('LoggedUser'))
+						data-link="{{route('admin.product-page.editor')}}"
+					@endif></div>
+                    <div class="dropdown">
+                      <button class="btn btn-animation dropdown-toggle py-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Other SUB CATEGORY
+                        <img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="arrow-circle">
+                      </button>
+                      <ul class="dropdown-menu">
+					  @foreach(getCustomSubCategories($current_cat->parent_id) as $key => $subCategories1)
+                        <li><a class="dropdown-item" href="sub-categories.html"><span class="hover-underline-animation left">{{$subCategory->name}}</span></a></li>
+						@endforeach
 
-	    <dl class="responsive-tabs">
-	    	<?php $toEndMain  = count(customMainCat(0, 16)); ?>
-	    	@foreach(customMainCat(0, 16) as $key => $mainCategoryAll)
-	    	<div class="onscreen_product_main_category_title2" @if(session('LoggedUser'))
-	            data-link="{{route('admin.category.edit', $mainCategoryAll->id)}}?type=main_category&onscreenCms=true"
-	            data-delete-link="{{route('admin.index')}}/category/delete/{{ $mainCategoryAll->id}}"
-	        @endif>
-		      <dt class="@if($mainCategory->id == $mainCategoryAll->id)
-											active ft-clr-white
-										@else ft-clr-grey @endif @if (0 === --$toEndMain) last_tab @endif"><a href="{{$mainCategoryAll->slug}}">{{$mainCategoryAll->name}}</a></dt>
-	      </div>
-		    @endforeach
-	    </dl>
-	    <?php $toEnd  = count(getCustomSubCategories($current_cat->parent_id)); ?>
-	    <div class="inner_tab">
-	    	<div class="container">
-	    		<div class="big_text" style="margin-top: 30px; margin-bottom: 0px">
-	          @if(session('LoggedUser'))
-	          <a href="#" class="onscreen_product_internal_title onscreen_product_internal_title3" @if(session('LoggedUser'))
-							data-link="{{route('admin.category.edit', $mainCategory->id)}}?type=main_category&onscreenCms=true&id={{$mainCategory->id}}"
-							data-create-subcategory="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$mainCategory->id}}"
-							data-delete-link="{{route('admin.index')}}/category/delete/{{ $mainCategory->id}}"
-							@endif></a>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="mt-4 mb-5 me-2">
+                    <div class="product-detail-slider">
+						<?php if (count($productImages) > 0) {?>
+							@foreach($productImages as $productImage)
+							<div class="my_slider_thumb" style=""
+							@if(session('LoggedUser'))
+								data-link="{{route('admin.photo.manage')}}?page=manage&main_category={{$mainCategory->id}}&sub_category={{$subCategory->id}}"
+								data-delete-link="{{url('api')}}/media/media-delete/{{$productImage->id}}"
+								data-id="{{$productImage->id}}"
 							@endif
-	          <a href="#" class="orange-title">{{$mainCategory->name}}</a>
-	          <span>{{$mainCategory->short_description}}</span>
-	        </div>
-	    		<!-- <div class="big_text" style="margin-top: 30px; margin-bottom: 0px">
-	          @if(session('LoggedUser'))
-	          <a href="#" class="onscreen_product_internal_title onscreen_product_internal_title3" @if(session('LoggedUser'))
-							data-link="{{route('admin.category.edit', $current_cat->id)}}?type=sub_category&onscreenCms=true&id={{$current_cat->parent_id}}"
-							data-create-subcategory="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$current_cat->parent_id}}"
-							data-delete-link="{{route('admin.index')}}/category/delete/{{ $current_cat->id}}"
-							@endif></a>
-							@endif
-	          <a href="#">{{$subCategory->name}}</a>
-	          <span>{{$subCategory->short_description}}</span>
-	        </div> -->
-	        
-	        <dl class="responsive-tabs responsive_tabs" id="responsive-tabs">
-	        	
-	        	@foreach(getCustomSubCategories($current_cat->parent_id) as $key => $subCategories1)
-	        	<div>
-		        	@if(session('LoggedUser'))
-			          	<a style="text-align: center;" href="#" class="onscreen_product_internal_title onscreen_product_internal_title3" @if(session('LoggedUser'))
-								data-link="{{route('admin.category.edit', $subCategories1->id)}}?type=sub_category&onscreenCms=true&id={{$current_cat->parent_id}}"
-								data-create-subcategory="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$current_cat->parent_id}}"
-								data-delete-link="{{route('admin.index')}}/category/delete/{{ $subCategories1->id}}"
-								@endif>
-										
-									</a>
-								@endif
-	        		<dt data-isproduct="1" data-tab="<?= $key ?>" class="@if($current_cat->id == $subCategories1->id)
-											active ft-clr-white
-										@else ft-clr-grey @endif @if (0 === --$toEnd) last_tab @endif"><a href="{{url('')}}/{{$subCategories1->slug}}"><?php echo strtolower($subCategories1->name); ?></a>
-							</dt>
-							<dd>
-								<div class="inner_tab_blk">
-									<div class="inner_tab_blk_right">
-										<div class="image_gallery">
-											<div class="product_cat_name">
-	                      <img src="{{url('')}}/images/person.png" alt="person" />
-	                      <p>{{$subCategory->name}}</p>
-                      	@if(session('LoggedUser'))
-							          	<a href="#" class="onscreen_product_internal_title onscreen_product_internal_title3" @if(session('LoggedUser'))
-													data-link="{{route('admin.category.edit', $current_cat->id)}}?type=sub_category&onscreenCms=true&id={{getParentCategory($current_cat->id)['category']->id}}"
-													data-create-subcategory="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{getParentCategory($current_cat->id)['category']->id}}"
-													data-delete-link="{{route('admin.index')}}/category/delete/{{ $current_cat->id}}"
-													@endif></a>
-												@endif
-	                    </div>
-	                    <div class="product-images demo-gallery">
-	                      <!-- Begin product thumb nav -->
-	                      <ul class="thumb-nav " id="thumb-nav-<?= $key ?>">
-	                      	<?php if (count($productImages) > 0) {?>
-	                      	@foreach($productImages as $productImage)
-	                      	<div class="my_slider_thumb" style=""
-															@if(session('LoggedUser'))
-																data-link="{{route('admin.photo.manage')}}?page=manage&main_category={{$mainCategory->id}}&sub_category={{$subCategory->id}}"
-																data-delete-link="{{url('api')}}/media/media-delete/{{$productImage->id}}"
-																data-id="{{$productImage->id}}"
-															@endif
-														>
-		                        <li>
-		                          <img src="{{url('')}}/images/{{$productImage->image}}" alt="banner" />
-		                        </li>
-	                      	</div>
-	                        @endforeach
-	                      <?php } else { ?>
-	                      	<div class="" style="">
-		                        <li>
-		                          <img src="{{url('')}}/images/noimage.png" alt="banner" />
-		                        </li>
-	                      	</div>
-	                      <?php } ?>
-	                      </ul>
-	                      <!-- End product thumb nav -->
-	                      <div class="main-img-slider" id="main-img-slider-<?= $key ?>">
-	                      	<?php if (count($productImages) > 0) {?>
-	                      	@foreach($productImages as $productImage)
-	                      	<div class="BigInnerinflatableSub_slider mb-3 image-set"
-													@if(session('LoggedUser'))
-														data-link="{{route('admin.photo.manage')}}?page=manage&pagefrom=productpage&type=sub_category&onscreenCms=true&main_category={{$current_cat->id}}&sub_category={{$subCategory->id}}"
-														data-delete-link="{{url('api')}}/media/media-delete/{{$current_cat->id}}"
-														data-id="{{url('api')}}/media/media-delete/{{$current_cat->id}}"
-													@endif
-												>
-	                          <a data-fancybox="gallery" href="{{url('')}}/images/{{$productImage->image}}" > 
-	                          	<img src="{{url('')}}/images/{{$productImage->image}}" alt="banner" />
-	                          </a>
-	                        </div>
-	                        @endforeach
-	                        <?php } else { ?>
-	                      	<div class="BigInnerinflatableSub_slider mb-3 image-set"
-														@if(session('LoggedUser'))
-															data-link="{{route('admin.photo.manage')}}?page=manage&onscreenCms=true&main_category={{$current_cat->id}}&sub_category={{$subCategory->id}}"
-															data-delete-link="{{url('api')}}/media/media-delete/{{$current_cat->id}}"
-															data-id="{{url('api')}}/media/media-delete/{{$current_cat->id}}"
-														@endif
-													>
-		                          <a data-fancybox="gallery" href="{{url('')}}/images/noimage.png" > 
-		                          	<img src="{{url('')}}/images/noimage.png" alt="banner" />
-		                          </a>
-		                        </div>
-	                      <?php } ?>
-	                      </div>
-	                      <!-- End Product Images Slider -->
-	                    </div>
-										</div>
-										@if($productDetail->description)
-	                  <div class="description">
-	                    <div class="container">
-	                      <div class="description_wrap">
-	                      		<div class="onscreen_product_internal_title onscreen_product_internal_title3" @if(session('LoggedUser'))
-																	data-link="{{route('admin.category.edit', $current_cat->id)}}?type=sub_category&onscreenCms=true&id={{$mainCategory->id}}"
-																	data-create-subcategory="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$mainCategory->id}}"
-																	data-delete-link="{{route('admin.index')}}/category/delete/{{ $current_cat->id}}"
-																	@endif></div>
-														<div class="description_blk">
-															<div class="description_blk_item">
-																<p>{!! $productDetail->description !!}</p>
-															</div>
-														</div>
-	                      </div>
-	                    </div>
-	                  </div>
-	                  @endif
-									</div>
-									<div class="inner_tab_blk_left">
-	                	@include('widget.contact-form1')    
-	                </div>
-								</div>
-							</dd>
-						</div>
-	        	@endforeach
-	        </dl>
-	    	</div>	
-	    </div>
-	  </div>
-	</section>
-
-	<section class="banner_slider top_banner">
-    <div class="container">
-      <div class="big_text">
-        <a href="#">Other Main Categories</a>
+						>
+                      <a href="{{url('')}}/images/{{$productImage->image}}" class="product-detail-slider-item" data-fancybox="gallery">
+                        <div class="product-detail-slider-img">
+                          <img src="{{url('')}}/images/{{$productImage->image}}" alt="product-banner">
+                        </div>
+                        <button type="button" class="product-enlarge-btn theme-heading d-flex align-items-center gap-2">
+                          <img src="{{asset('/')}}/dubai/images/search-icon.svg" alt="search-icon">
+                          Click To Enlarge
+                        </button>
+					</div>
+                      </a>
+					  @endforeach
+					  <?php } else { ?>
+                      <a href="{{url('')}}/images/noimage.png" class="product-detail-slider-item" data-fancybox="gallery">
+                        <div class="product-detail-slider-img">
+                          <img src="{{url('')}}/images/noimage.png" alt="product-banner">
+                        </div>
+                        <button type="button" class="product-enlarge-btn theme-heading d-flex align-items-center gap-2">
+                          <img src="{{asset('/')}}/dubai/images/search-icon.svg" alt="search-icon">
+                          Click To Enlarge
+                        </button>
+                      </a>
+					  <?php } ?>
+               
+                    </div>
+                    <div class="product-detail-custom-nav slider-reverse-arrows d-flex justify-content-between mt-4 px-3">
+                      <div class="text-uppercase my-auto">Products - <span class="product-slider-counter"></span></div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="about-banner-desc wow zoomIn" data-wow-offset="200">
+					<div class="menu_crud" @if(session('LoggedUser'))
+					data-link="{{route('admin.about-page.editor')}}" @endif>
+					<a href="{{ $productLink->url }}" @if(session('LoggedUser'))
+						data-link="{{route('admin.about-page.editor')}}"
+					@endif></a>
+					</div>
+				
+					<p>{!! $productDetail->description !!}</p>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-4 wow fadeInRight" data-wow-offset="200">
+                <div class="share-concept-form-box -sticky mx-auto">
+                  <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
+                  <form action="" class="share-concept-form ms-2">
+                    <div class="share-concept-field d-flex align-items-start">
+                      <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/user-icon.svg" alt="user icon"></div>
+                      <input class="share-concept-form-input" type="text" placeholder="Name">
+                    </div>
+                    <div class="share-concept-field d-flex align-items-start">
+                      <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone icon"></div>
+                      <input class="share-concept-form-input" type="tel" placeholder="Phone Number">
+                    </div>
+                    <div class="share-concept-field d-flex align-items-start">
+                      <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail icon"></div>
+                      <input class="share-concept-form-input" type="email" placeholder="Email">
+                    </div>
+                    <div class="share-concept-field d-flex align-items-start">
+                      <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/country-glob-icon.svg" alt="country icon"></div>
+                      <select class="share-concept-form-input" name="" id="">
+                        <option value="">Select Country</option>
+                        <option value="">Dubai</option>
+                        <option value="">America</option>
+                      </select>
+                    </div>
+                    <div class="share-concept-field d-flex align-items-start">
+                      <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/message-icon.svg" alt="message icon"></div>
+                      <textarea class="share-concept-form-input" type="text" placeholder="Share Your Inflatables Requirement"></textarea>
+                    </div>
+                    <div class="share-concept-field d-flex justify-content-center mb-0">
+                      <img src="{{asset('/')}}/dubai/images/captcha-image.jpg" alt="captcha-image">
+                    </div>
+                    <div class="share-concept-field text-center share-concept-info mb-4">
+                      <strong>We do not sell or rent your information.</strong>
+                    </div>
+                    <div class="text-center">
+                      <button class="btn btn-animation--infinity" type="submit">SUBMIT</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="position-relative text-center mt-md-2 mt-4 pb-4">
+              <a href="{{ $productLink->url }}" class="btn btn-back text-uppercase">
+                <img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle">
+                BACK PREVIOUS PAGE
+              </a>
+            </div>
+          </div>
+        </section>
+        <!-- content area part -->
+        <div class="main-content">
+          <section class="updates-contact-section position-relative overflow-hidden">
+            <div class="bg-img-wrap">
+                <img class="bg-img-bottom opacity-25" src="{{asset('/')}}/dubai/images/desert-transparent.webp" alt="desert-bg">
+            </div>
+            <div class="updates-section products-slider-section">
+              <div class="container">
+                <div class="theme-stroke-heading text-center text-uppercase">
+                  <strong class="letters">Our Products</strong>
+                  <h1 class="h3 letters" onclick="window.location.href = '{{ $productLink->url }}';">Our <span>Products</span></h1>
+				  <span>    <div style="background-color:white" class="product_title_1"  @if(session('LoggedUser'))
+					data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
+				@endif></div></span>
+                </div>
+              </div>
+              <div class="updates-wrap position-relative">
+                <div class="bg-img-wrap">
+                  <img class="bg-img-top" src="{{asset('/')}}/dubai/images/red-effect-top.webp" alt="red-effect-top">
+                </div>
+                <div class="container position-relative pt-md-4">
+                  <div class="updates-slider">
+					@if(count(customMainCat()) > 0)
+                    @foreach(customMainCat() as $key => $topInflatableLp)
+                    <?php 
+                        $getSubCategories = getSubCategories($topInflatableLp->id); 
+                        if (!empty($getSubCategories)) {
+                        
+                    ?>
+                    <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
+                      <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
+                        <div class="animated-border-box-glow">
+                          <div class="products-box-img">
+							<?php if(!empty($topInflatableLp->image))
+                            {
+                              ?>                  <img src="{{url('')}}/images/{{$topInflatableLp->image}}"  />
+                              <?php }else{?>
+                          @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
+                            <img src="{{url('')}}/images/{{$productImage->image}}"  />
+                            @endforeach
+                            <?php }?>
+                            
+                          </div>
+						  <div class="product_internal_title" @if(session('LoggedUser'))
+                          data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                          data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                          data-delete-link="{{route('admin.category.delete',$topInflatableLp->id)}}"
+                          data-index-link="{{route('admin.category.list')}}"
+                        @endif></div>
+                          <div class="products-box-heading text-uppercase theme-heading">
+                            <h5>{{ $topInflatableLp->name }}</h5>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+					<?php } else { ?>
+                    <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
+                      <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
+                        <div class="animated-border-box-glow">
+                          <div class="products-box-img">
+							<?php if(!empty($topInflatableLp->image))
+                            {
+                              ?>
+                              <img src="{{url('')}}/images/{{$topInflatableLp->image}}"  />
+                              <?php }else{?>
+          
+                        <img src="{{url('')}}/img/no-item.jpeg" />
+                        <?php }?>
+                          </div>
+						  <div style="background:white" class="product_internal_title" @if(session('LoggedUser'))
+                          data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                          data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                          data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                          data-index-link="{{route('admin.category.list')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                        @endif></div>
+                          <div class="products-box-heading text-uppercase theme-heading">
+                            <h5>{{ $topInflatableLp->name }}</h5>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+					<?php } ?>
+                    @endforeach
+                  @else
+                    <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
+                      <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
+                        <div class="animated-border-box-glow">
+                          <div class="products-box-img">
+                            <img src="{{url('')}}/img/no-item.jpeg" />
+                          </div>
+						  <div class="product_internal_title" @if(session('LoggedUser'))
+                          data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                          data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true"
+                          data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                          data-index-link="{{route('admin.category.list')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                        @endif></div>
+                          <div class="products-box-heading text-uppercase theme-heading">
+                            <h5>{{ $topInflatableLp->name }}</h5>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+					@endif
+       
+                  </div>
+                  <div class="updates-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-4">
+                    <a href="{{ $productLink->url }}" class="btn text-uppercase btn-animation--infinity">VIEW ALL PRODUCTS</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-section">
+              <div class="container">
+                <div class="theme-stroke-heading text-center text-uppercase">
+                  <strong class="letters">Get In Touch</strong>
+                  <h3 class="h3 letters" onclick="window.location.href = 'contact.html';">Get In <span>Touch</span></h3>
+                </div>
+              </div>
+              <div class="container position-relative pt-4">
+                <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
+                  <div class="share-concept-form-box wow flipInY" data-wow-offset="200">
+                    <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
+                    <form action="" class="share-concept-form ms-2">
+                      <div class="share-concept-field d-flex align-items-start">
+                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/user-icon.svg" alt="user icon"></div>
+                        <input class="share-concept-form-input" type="text" placeholder="Name">
+                      </div>
+                      <div class="share-concept-field d-flex align-items-start">
+                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone icon"></div>
+                        <input class="share-concept-form-input" type="tel" placeholder="Phone Number">
+                      </div>
+                      <div class="share-concept-field d-flex align-items-start">
+                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail icon"></div>
+                        <input class="share-concept-form-input" type="email" placeholder="Email">
+                      </div>
+                      <div class="share-concept-field d-flex align-items-start">
+                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/country-glob-icon.svg" alt="country icon"></div>
+                        <select class="share-concept-form-input" name="" id="">
+                          <option value="">Select Country</option>
+                          <option value="">Dubai</option>
+                          <option value="">America</option>
+                        </select>
+                      </div>
+                      <div class="share-concept-field d-flex align-items-start">
+                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/message-icon.svg" alt="message icon"></div>
+                        <textarea class="share-concept-form-input" type="text" placeholder="Share Your Inflatables Requirement"></textarea>
+                      </div>
+                      <div class="share-concept-field d-flex justify-content-center mb-0">
+                        <img src="{{asset('/')}}/dubai/images/captcha-image.jpg" alt="captcha-image">
+                      </div>
+                      <div class="share-concept-field text-center share-concept-info mb-4">
+                        <strong>We do not sell or rent your information.</strong>
+                      </div>
+                      <div class="text-center">
+                        <button class="btn btn-animation--infinity" type="submit">SUBMIT</button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="contact-links-box text-center wow flipInY" data-wow-offset="200">
+                    <p>Award Winning Inflatable Designer & Manufacturer</p>
+                    <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
+                    <div class="mt-sm-4 mt-2 mb-2">
+                      <a class="contact-link" href="tel:+919429613531"><img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone-icon"> +91 87587 13931</a>
+                    </div>
+                    <div class="mb-sm-4 mb-2">
+                      <a class="contact-link" href="mailto:sales@giantinflatables.ae"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail-icon"> sales@giantinflatables.ae</a>
+                    </div>
+                    <div class="mb-2">
+                      <a class="contact-social-link" href="#" target="_blank"><img src="{{asset('/')}}/dubai/images/facebook.png" alt="facebook-icon"></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
-      <div class="banner_slider_blk_top">
-      	@foreach(getSubCategories($current_cat->parent_id) as $key => $subCategories1)
-      	<?php $imageName = getSubCategoryImages($subCategories1->id, 2, 'DESC')[0]['image']; ?>
-        <a href="{{url('')}}/{{$subCategories1->slug}}" class="banner_slider_item onscreen_product_internal_title onscreen_product_internal_title3 <?php if(session('LoggedUser')){ echo 'other_cat_admin'; } ?>" @if(session('LoggedUser'))
-													data-link="{{route('admin.category.edit', $current_cat->id)}}?type=sub_category&onscreenCms=true&id={{$subCategories1->id}}"
-													data-create-subcategory="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$subCategories1->id}}"
-													data-delete-link="{{route('admin.index')}}/category/delete/{{ $current_cat->id}}"
-													@endif>
-          <img src="{{url('')}}/images/{{$imageName}}" />
-          <p>{{$subCategories1->name}} </p>
-        </a>
-        @endforeach
-      </div>
+      <!-- footer part -->
+     
+      @includeFirst(['theme::ext.footer', 'ext.footer'])
     </div>
-  </section>
-
-  <section class="gray">
-	  <div class="container">
-	    @include('widget.experts')
-	  </div>
-	</section>
-
-	<!-- room -->
-  <section class="banner_slider banner_margin">
-    <div class="container">
-    	@include('widget.industries-serve-with-title')
-    </div>
-  </section>
-</div>
-@endsection
+    <!-- Modal -->
+   
+    @includeFirst(['theme::ext.script', 'ext.script'])
+  </body>
+</html>
