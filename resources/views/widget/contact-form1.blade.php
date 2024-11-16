@@ -91,7 +91,7 @@
     <div class="share-concept-icon d-flex align-items-center justify-content-center">
       <img src="{{asset('/')}}/dubai/images/message-icon.svg" alt="message icon">
     </div>
-    <textarea class="share-concept-form-input" name="requirement" placeholder="Share Your Inflatables Requirement"></textarea>
+    <textarea class="share-concept-form-input" name="message" placeholder="Share Your Inflatables Requirement"></textarea>
   </div>
 
   <div class="share-concept-field d-flex justify-content-center mb-0">

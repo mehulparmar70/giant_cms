@@ -250,41 +250,7 @@
                   <div class="col-xl-3 col-lg-4 col-md-5 wow fadeInRight" data-wow-offset="200">
                     <div class="share-concept-form-box share-about-box mx-md-0 mx-auto">
                       <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
-                      <form action="" class="share-concept-form ms-2">
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/user-icon.svg" alt="user icon"></div>
-                          <input class="share-concept-form-input" type="text" placeholder="Name">
-                        </div>
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone icon"></div>
-                          <input class="share-concept-form-input" type="tel" placeholder="Phone Number">
-                        </div>
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail icon"></div>
-                          <input class="share-concept-form-input" type="email" placeholder="Email">
-                        </div>
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/country-glob-icon.svg" alt="country icon"></div>
-                          <select class="share-concept-form-input" name="" id="">
-                            <option value="">Select Country</option>
-                            <option value="">Dubai</option>
-                            <option value="">America</option>
-                          </select>
-                        </div>
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/message-icon.svg" alt="message icon"></div>
-                          <textarea class="share-concept-form-input" type="text" placeholder="Share Your Inflatables Requirement"></textarea>
-                        </div>
-                        <div class="share-concept-field d-flex justify-content-center mb-0">
-                          <img src="{{asset('/')}}/dubai/images/captcha-image.jpg" alt="captcha-image">
-                        </div>
-                        <div class="share-concept-field text-center share-concept-info mb-4">
-                          <strong>We do not sell or rent your information.</strong>
-                        </div>
-                        <div class="text-center">
-                          <button class="btn btn-animation--infinity" type="submit">SUBMIT</button>
-                        </div>
-                      </form>
+                          @include('widget.contact-form1')
                     </div>
                   </div>
                 </div>
@@ -365,40 +331,7 @@
                     <div class="share-concept-form-box wow flipInY" data-wow-offset="200">
                       <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                       <form action="" class="share-concept-form ms-2">
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/user-icon.svg" alt="user icon"></div>
-                          <input class="share-concept-form-input" type="text" placeholder="Name">
-                        </div>
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone icon"></div>
-                          <input class="share-concept-form-input" type="tel" placeholder="Phone Number">
-                        </div>
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail icon"></div>
-                          <input class="share-concept-form-input" type="email" placeholder="Email">
-                        </div>
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/country-glob-icon.svg" alt="country icon"></div>
-                          <select class="share-concept-form-input" name="" id="">
-                            <option value="">Select Country</option>
-                            <option value="">Dubai</option>
-                            <option value="">America</option>
-                          </select>
-                        </div>
-                        <div class="share-concept-field d-flex align-items-start">
-                          <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/message-icon.svg" alt="message icon"></div>
-                          <textarea class="share-concept-form-input" type="text" placeholder="Share Your Inflatables Requirement"></textarea>
-                        </div>
-                        <div class="share-concept-field d-flex justify-content-center mb-0">
-                          <img src="{{asset('/')}}/dubai/images/captcha-image.jpg" alt="captcha-image">
-                        </div>
-                        <div class="share-concept-field text-center share-concept-info mb-4">
-                          <strong>We do not sell or rent your information.</strong>
-                        </div>
-                        <div class="text-center">
-                          <button class="btn btn-animation--infinity" type="submit">SUBMIT</button>
-                        </div>
-                      </form>
+                        @include('widget.contact-form1')
                     </div>
                     <div class="contact-links-box text-center wow flipInY" data-wow-offset="200">
                       <p>Award Winning Inflatable Designer & Manufacturer</p>
