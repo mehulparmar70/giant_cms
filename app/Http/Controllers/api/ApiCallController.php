@@ -14,7 +14,7 @@ use Intervention\Image\Facades\Image;
 class ApiCallController extends Controller
 {
     public function sendContact(Request $request){
-        // return($request->all());
+        // dd($request->all());
 
         // New code for captcha
         // checkEmailFilter();
@@ -36,7 +36,7 @@ class ApiCallController extends Controller
                 $response = json_decode($requestRecaptcha);
                 
                 if($response->success==true && $response->score >= 0.5){
-                    $to = 'sales@giantinflatables.in';
+                    $to = 'sales@giantinflatables.ae, sales@giantinflatables.in, krutarth@live.com ';                     
 
                     sendMailNotification('contact_inquiry', $to, 'Inquiry From: '.$request->name,
                         ['name'=>$request->name,
@@ -46,13 +46,13 @@ class ApiCallController extends Controller
                         'msg' => $request->message,
                         'page_url' => $request->page_url,
                     ]);
-
+                    
                     $add = new contactus;
                     $add->full_name = $request->name;
                     $add->country = $request->country;
                     $add->phone_no = $request->phone;
                     $add->email = $request->email;
-                    $add->message = $request->msg;
+                    $add->message = $request->message;
                     $add->page_url = $request->page_url;
                     $add->status = 'success';
                     $add->save();
@@ -70,7 +70,7 @@ class ApiCallController extends Controller
                     $add->country = $request->country;
                     $add->phone_no = $request->phone;
                     $add->email = $request->email;
-                    $add->message = $request->msg;
+                    $add->message = $request->message;
                     $add->page_url = $request->page_url;
                     $add->status = 'fail';
                     $add->save();
@@ -122,7 +122,7 @@ class ApiCallController extends Controller
                   'image' => $request->image,
                   'product_url' => $request->product_url,
                   'page_url' => $request->page_url,
-                  'msg' => $request->message
+                  'message' => $request->message
             ]);
 
             // check for failed ones
