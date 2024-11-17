@@ -87,19 +87,19 @@ $('.content_banners').each(function(){
   
   
   // Append buttons for Create, Edit, Delete, and List actions
-  $(this).append(`
+  $(this).append(`<div class="iconstyle">
       <a class="onscreen-banner-slider" href="${createLink}" class="onscreen-menu adminEditItem" title="Create" onclick="popupmenu('${createLink}', 'editmodal', event); return false;">
-          <i class="fa fa-plus"></i>
+          <i class="fa fa-plus-square-o" style="color:white"></i>
       </a>
       <a class="onscreen-banner-slider" href="${editLink}" class="onscreen-menu adminEditItem" title="Edit" onclick="popupmenu('${editLink}', 'editmodal', event); return false;">
-          <i class="fa fa-edit"></i>
+          <i class="fa fa-pencil-square" style="color:white"></i>
       </a>
       <a class="onscreen-banner-slider" href="${deleteLink}" class="onscreen-menu adminEditItem" title="Delete" onclick="popupmenu('${deleteLink}', 'deletemodal', event); return false;">
-          <i class="fa fa-trash"></i>
+          <i class="fa fa-trash-o" style="color:white"></i>
       </a>
       <a class="onscreen-banner-slider" href="${listLink}" class="onscreen-menu adminEditItem" title="List" onclick="popupmenu('${listLink}', 'editmodal', event); return false;">
-          <i class="fa fa-list"></i>
-      </a>
+          <i class="fa fa-list-alt" style="color:white"></i>
+      </a></div>
   `);
 });
 

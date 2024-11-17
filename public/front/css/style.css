@@ -1,27 +1,3 @@
-* {
-
-  box-sizing: border-box;
-
-  padding: 0;
-
-  margin: 0;
-
-}
-
-.container {
-
-  max-width: 1920px;
-
-  margin: 0 auto;
-
-  padding: 0 15px 0 15px;
-
-  font-weight: 400;
-
-  width: 100%;
-
-}
-
 
 
 .video img:hover {
@@ -44,13 +20,6 @@ a {
 
 }
 
-img {
-
-  vertical-align: middle;
-
-  max-width: 100%;
-
-}
 
 .blue_sec {
 
@@ -6076,4 +6045,9 @@ dt a:hover:not(.adminAddItem,.adminEditItem,.adminDeleteItem){
 .ulclass
 {
   margin-bottom: 0% !important;
+}
+
+.iconstyle
+{
+  background-color:black;
 }
