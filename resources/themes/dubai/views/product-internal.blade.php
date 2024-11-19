@@ -79,15 +79,15 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                 </a>
                 <a href="{{ $productLink->url }}" class="header-top-home d-flex align-items-center text-uppercase py-1 me-3">Our Products</a>
                 @if(getParentCategory($current_cat->id)['category'])
-                <span class="text-uppercase">{{getParentCategory($current_cat->id)['category']->name}}</span>
+                <span class="text-uppercase">{!!getParentCategory($current_cat->id)['category']->name!!}</span>
                           @endif
       
               @if(getParentCategory($current_cat->id)['subcategory'])
-             <span class="text-uppercase">{{getParentCategory($current_cat->id)['subcategory']->name}}</span>
+             <span class="text-uppercase">{!!getParentCategory($current_cat->id)['subcategory']->name!!}</span>
                           @endif
       
               @if(getParentCategory($current_cat->id)['subcategory2'])
-               <span class="text-uppercase">{{getParentCategory($current_cat->id)['subcategory2']->name}}</span>
+               <span class="text-uppercase">{!!getParentCategory($current_cat->id)['subcategory2']->name!!}</span>
                           @endif
                 <!-- <span class="text-uppercase">Category Name</span> -->
               </div>
@@ -95,18 +95,18 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
             </div>
             <div class="theme-stroke-heading text-center text-uppercase mb-4">
               @if(getParentCategory($current_cat->id)['category'])
-              <strong class="letters">{{getParentCategory($current_cat->id)['category']->name}}</strong>
-              <h3 class="h3 letters">{{getParentCategory($current_cat->id)['category']->name}}</h3>
+              <strong class="letters">{!!getParentCategory($current_cat->id)['category']->name!!}</strong>
+              <h3 class="h3 letters">{!!getParentCategory($current_cat->id)['category']->name!!}</h3>
                         @endif
     
             @if(getParentCategory($current_cat->id)['subcategory'])
-           <strong class="letters">{{getParentCategory($current_cat->id)['subcategory']->name}}</strong>
-           <h3 class="h3 letters">{{getParentCategory($current_cat->id)['subcategory']->name}}</h3>
+           <strong class="letters">{!!getParentCategory($current_cat->id)['subcategory']->name!!}</strong>
+           <h3 class="h3 letters">{!!getParentCategory($current_cat->id)['subcategory']->name!!}</h3>
                         @endif
     
             @if(getParentCategory($current_cat->id)['subcategory2'])
-             <strong class="letters">{{getParentCategory($current_cat->id)['subcategory2']->name}}</strong>
-             <h3 class="h3 letters">{{getParentCategory($current_cat->id)['subcategory2']->name}}</h3>
+             <strong class="letters">{!!getParentCategory($current_cat->id)['subcategory2']->name!!}</strong>
+             <h3 class="h3 letters">{!!getParentCategory($current_cat->id)['subcategory2']->name!!}</h3>
                         @endif
           
             </div>

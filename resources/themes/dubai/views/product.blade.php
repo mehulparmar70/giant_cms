@@ -63,7 +63,7 @@
                 data-index-link="{{ route('admin.category.list') }}"
               @endif></div>
                       <div class="products-box-heading text-uppercase theme-heading">
-                        <h5>{{ $topInflatableLp->name }}</h5>
+                        <h5>{{ strip_tags($topInflatableLp->name) }}</h5>
                       </div>
                     </div>
                   </a>

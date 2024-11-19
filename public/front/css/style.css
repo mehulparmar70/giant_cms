@@ -6050,4 +6050,24 @@ dt a:hover:not(.adminAddItem,.adminEditItem,.adminDeleteItem){
 .iconstyle
 {
   background-color:black;
+  padding:5px;
+}
+
+
+
+.content_banners {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 308%);
+  width: fit-content;
+  padding: 2px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+ 
 }

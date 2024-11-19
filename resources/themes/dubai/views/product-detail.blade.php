@@ -112,7 +112,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                 <a href="{{ $homeLink->url }}" class="header-top-home d-flex align-items-center text-uppercase">
                   <img class="me-2" src="{{asset('/')}}/dubai/images/home-icon.png" alt="home-icon">Home
                 </a>
-                <a href="{{$mainCategorySlug}}" class="header-top-home d-flex align-items-center text-uppercase py-1 me-3">{{getParentCategory($subCategory->id)['category']->name}}</a>
+                <a href="{{$mainCategorySlug}}" class="header-top-home d-flex align-items-center text-uppercase py-1 me-3">{!!getParentCategory($subCategory->id)['category']->name!!}</a>
 
 
 						@if(getParentCategory($subCategory->id)['subcategory'])

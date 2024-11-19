@@ -49,7 +49,7 @@ var currentWindow;
     $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+
     `"class='onscreen-logo' onclick="currentWindow = popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+
     `', 'toolbar=no, location=no',event); return false;"> 
-    <i class='fa fa-edit'></i></a>`);
+    <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img></a>`);
   });
 
 
@@ -89,16 +89,16 @@ $('.content_banners').each(function(){
   // Append buttons for Create, Edit, Delete, and List actions
   $(this).append(`<div class="iconstyle">
       <a class="onscreen-banner-slider" href="${createLink}" class="onscreen-menu adminEditItem" title="Create" onclick="popupmenu('${createLink}', 'editmodal', event); return false;">
-          <i class="fa fa-plus-square-o" style="color:white"></i>
+          <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img>
       </a>
       <a class="onscreen-banner-slider" href="${editLink}" class="onscreen-menu adminEditItem" title="Edit" onclick="popupmenu('${editLink}', 'editmodal', event); return false;">
-          <i class="fa fa-pencil-square" style="color:white"></i>
+          <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img>
       </a>
       <a class="onscreen-banner-slider" href="${deleteLink}" class="onscreen-menu adminEditItem" title="Delete" onclick="popupmenu('${deleteLink}', 'deletemodal', event); return false;">
-          <i class="fa fa-trash-o" style="color:white"></i>
+          <img src="`+base_url+`/front/deleteicon.svg" height="24" width="24"></img>
       </a>
       <a class="onscreen-banner-slider" href="${listLink}" class="onscreen-menu adminEditItem" title="List" onclick="popupmenu('${listLink}', 'editmodal', event); return false;">
-          <i class="fa fa-list-alt" style="color:white"></i>
+                    <img src="`+base_url+`/front/listicon.svg" height="24" width="24"></img>
       </a></div>
   `);
 });
