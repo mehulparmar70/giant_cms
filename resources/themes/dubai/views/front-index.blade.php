@@ -116,7 +116,7 @@
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Our Products</strong>
                   <h1 class="h3 letters" onclick="window.location.href = '{{ $productLink->url }}';">Our <span>Products</span></h1>
-                  <div style="background-color:white" class="product_title_1"  @if(session('LoggedUser'))
+                  <div  class="product_title_1"  @if(session('LoggedUser'))
                   data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
               @endif></div>
                 </div>
@@ -229,7 +229,7 @@
                     @endphp
                   <strong class="letters">About Us</strong>
                   <h3 class="h3 letters" onclick="window.location.href = '{{ $aboutLink->url }}';">About <span>Us</span></h3>
-                  <div style="background-color:white" class="product_title"  @if(session('LoggedUser'))
+                  <div class="product_title"  @if(session('LoggedUser'))
                   data-link="{{route('admin.about-page.editor')}}"
               @endif></div>
                 </div>
@@ -240,9 +240,7 @@
                   <div class="col-xl-6 col-lg-5 col-md-7 about-middle-contect wow fadeIn" data-wow-offset="200" data-wow-delay="0.5s">
                      
                     <div class="about-middle-contect-inner">
-                        <span><div style="background-color:white" class="product_title"  @if(session('LoggedUser'))
-		                                    data-link="{{route('admin.about-page.editor')}}"
-		                                @endif></div>
+                        <span>
                         {!! $pageData->description !!}</span>
                     </div>
                     <div class="text-md-start text-center mt-md-3 mb-md-0 mb-4"><a href="{{ $aboutLink->url }}" class="btn share-about-btn text-uppercase btn-animation--infinity">VIEW MORE</a></div>
@@ -266,7 +264,7 @@
                     <strong class="letters">Updates</strong>
                     <h3 class="h3 letters" onclick="window.location.href = 'updates.html';">Up<span>dates</span></h3>
                   </div>
-                  <div style="background-color:white" class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.create')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
+                  <div  class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.create')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
 
                 </div>
                 <div class="updates-wrap position-relative">
