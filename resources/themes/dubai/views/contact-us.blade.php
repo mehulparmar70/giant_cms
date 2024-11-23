@@ -1,4 +1,4 @@
-@extends('layout.front-index')
+{{-- @extends('layout.front-index')
 @section('title','Contact Us')
 
 @section('custom-js')
@@ -104,4 +104,72 @@ function goBack() {
 	  </div>
 	</section>
 </div>
-@endsection
+@endsection --}}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    {{-- Try to load 'head' from the active theme; fallback to default --}}
+    @includeFirst(['theme::ext.head', 'ext.head'])
+
+    {{-- Additional theme-specific CSS --}}
+    @yield('addon-css')
+</head>
+
+<body class="lazyload pr-0">
+	<?php $current_page = ''; ?>
+
+	@includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'])
+
+	<section class="contact-banner-section common-inner-banner header-top-space position-relative">
+		<div class="bg-img-wrap">
+		  <img class="bg-img-top opacity-50" src="{{asset('/')}}/dubai/images/about-banner.webp" alt="about-banner">
+		</div>
+		<div class="container position-relative">
+		  <div class="breadcrumb">
+			<div class="breadcrumb-left">
+			  <a href="index.html" class="header-top-home d-flex align-items-center text-uppercase">
+				<img class="me-2" src="{{asset('/')}}/dubai/images/home-icon.png" alt="home-icon">Home
+			  </a>
+			  <span class="text-uppercase">Contact</span>
+			</div>
+			<a href="{{ url()->previous() }}" class="breadcrumb-back text-uppercase">Back<img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle"></a>
+		  </div>
+		  <div class="contact-section">
+			<div class="container">
+			  <div class="theme-stroke-heading text-center text-uppercase">
+				<strong class="letters">Get In Touch</strong>
+				<h3 class="h3 letters">Get In <span>Touch</span></h3>
+			  </div>
+			</div>
+			<div class="container position-relative pt-4">
+			  <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
+				<div class="share-concept-form-box wow flipInY" data-wow-offset="200">
+				  <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
+				  @include('widget.contact-form1')
+				</div>
+				<div class="contact-links-box text-center wow flipInY" data-wow-offset="200">
+					<p>Award Winning Inflatable Designer & Manufacturer</p>
+					<img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
+					<div class="mt-sm-4 mt-2 mb-2">
+					  <a class="contact-link" href="tel:+919429613531"><img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone-icon"> +91 87587 13931</a>
+					</div>
+					<div class="mb-sm-4 mb-2">
+					  <a class="contact-link" href="mailto:sales@giantinflatables.ae"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail-icon"> sales@giantinflatables.ae</a>
+					</div>
+					<div class="mb-2">
+					  <a class="contact-social-link" href="#" target="_blank"><img src="{{asset('/')}}/dubai/images/facebook.png" alt="facebook-icon"></a>
+					</div>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </section>
+
+@includeFirst(['theme::ext.script', 'ext.script'])
+@includeFirst(['theme::ext.footer', 'ext.footer'])
+</div>
+    @yield('custom-js')
+</body>
+</html>
