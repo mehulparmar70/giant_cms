@@ -773,12 +773,14 @@ class HomeController extends Controller
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
             'pageData' =>  Blog::where('slug', $slug)->first(),
             'videos' =>  Video::where(['status' => 1])->orderBy('item_no')->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'blogDetail' =>  Blog::where('slug', $slug)->first(),
             'latestBlogs' =>  Blog::where('status',1)->limit(6)->get(),
             'topCategories' => $this->topCategories,
             'industries' =>  Industries::where(['status' => 1])->orderBy('item_no')->limit(50)->get(),
             'latestUpdates' =>  Blog::where('status',1)->where('slug', '!=' ,$slug)->limit(3)->get(),
             'footerTestimonial' =>  $this->footerTestimonial,
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             'footerVideo' =>   $this->footerVideo,
             'footerBlog' =>   $this->footerBlog,
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
@@ -793,7 +795,7 @@ class HomeController extends Controller
             'footerCaseStudies' =>   $this->footerCaseStudies,
 
         ];
-        return response()->view('update-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::update-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
     }
 
     public function newsletters_details($slug)
@@ -1038,7 +1040,9 @@ class HomeController extends Controller
         //Session::forget('homePageCatId');
         $data = [
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             'videos' =>  Video::where(['status' => 1])->orderBy('item_no')->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'updates' =>  Blog::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->paginate(6),
             'footerTestimonial' =>  $this->footerTestimonial,
             'footerVideo' =>   $this->footerVideo,
@@ -1069,7 +1073,7 @@ class HomeController extends Controller
 
         ];
 
-        return response()->view('updates', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::updates', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
     public function partenrs()

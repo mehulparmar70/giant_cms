@@ -53,7 +53,7 @@
                     <div class="animated-border-box-glow">
                       <div class="products-box-img has-slider">
                         @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-                        <img src="{{url('/')}}/images/{{$productImage->image}}" style="" />
+                        <img src="{{url('/')}}/images/{{$productImage->image}}"  />
                         @endforeach
                       </div>
                       <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
@@ -109,7 +109,7 @@
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Updates</strong>
                   <h3 class="h3 letters" onclick="window.location.href = 'updates.html';">Up<span>dates</span></h3>
-                  <div style="background-color:white" class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.create')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
+                  <div  class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.create')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
                 </div>
               </div>
               <div class="updates-wrap position-relative">

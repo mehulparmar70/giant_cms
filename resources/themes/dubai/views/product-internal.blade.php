@@ -195,12 +195,13 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                 @endif
           
               </div>
+            
               <div class="about-banner-desc -sub-cat wow zoomIn" data-wow-offset="200">
                 <div class="description_blk_item TopContent" @if(session('LoggedUser'))
-                  data-link="{{route('admin.category.edit', $current_cat->id)}}?type=main_category&onscreenCms=true&id={{$current_cat->id}}"
-              @endif>
-                <p>     {!! html_entity_decode($current_cat->description) !!}</p>
-              </div>
+                data-link="{{route('admin.category.edit', $current_cat->id)}}?type=main_category&onscreenCms=true&id={{$current_cat->id}}"
+            @endif></div>
+                 {!! html_entity_decode($current_cat->description) !!}
+              
               </div>
               <div class="position-relative text-center mt-2">
                 <a href="{{ $productLink->url }}" class="btn btn-back text-uppercase">
@@ -223,7 +224,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                   <strong class="letters">Updates</strong>
                   <h3 class="h3 letters" onclick="window.location.href = 'updates.html';">Up<span>dates</span></h3>
                 </div>
-                <div style="background-color:white" class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.create')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
+                <div  class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.create')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
 
               </div>
               <div class="updates-wrap position-relative">

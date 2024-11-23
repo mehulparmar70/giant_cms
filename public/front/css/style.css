@@ -14,30 +14,6 @@
 
 }
 
-a {
-
-  text-decoration: none;
-
-}
-
-
-.blue_sec {
-
-  background-color: #348899;
-
-  color: #fff;
-
-  font-size: 18px;
-
-
-
-  text-align: center;
-
-  padding: 18px 0;
-
-  letter-spacing: 0.05em;
-
-}
 
 em {
 
@@ -2293,21 +2269,9 @@ form .form_wrap .form_item img {
 
 }
 
-form {
 
-  width: 320px;
 
-  box-shadow: 0 0 17px #d4d3d3;
 
-  border-radius: 5px;
-
-}
-
-form .form_wrap {
-
-  padding: 20px 17px 15px;
-
-}
 
 form .blue_text {
 
@@ -5918,11 +5882,11 @@ input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
 
 }
 
-.pt-1{
+/* .pt-1{
 
   padding-top: 10%;
 
-}
+} */
 
 .newsletter_card .crud{
 
@@ -5936,11 +5900,11 @@ input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
 
 }
 
-.fontSize a{
+/* .fontSize a{
 
   font-size: 18px !important;
 
-}
+} */
 
 /*.tab_blk .responsive-tabs .active a{
 
@@ -6019,7 +5983,7 @@ dt a:hover:not(.adminAddItem,.adminEditItem,.adminDeleteItem){
 
 }*/
 
-.breadcrumb-item a{
+/* .breadcrumb-item a{
 
   color: #835fa6; 
 
@@ -6035,13 +5999,13 @@ dt a:hover:not(.adminAddItem,.adminEditItem,.adminDeleteItem){
 
   background-color: unset;
 
-}
+} */
 
-.orange-title{
+/* .orange-title{
 
   color: #ff6600 !important;
 
-}
+} */
 .ulclass
 {
   margin-bottom: 0% !important;

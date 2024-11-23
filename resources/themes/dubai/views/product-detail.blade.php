@@ -157,7 +157,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                     <div class="product-detail-slider">
 						<?php if (count($productImages) > 0) {?>
 							@foreach($productImages as $productImage)
-							<div class="my_slider_thumb" style=""
+							<div class="my_slider_thumb"
 							@if(session('LoggedUser'))
 								data-link="{{route('admin.photo.manage')}}?page=manage&main_category={{$mainCategory->id}}&sub_category={{$subCategory->id}}"
 								data-delete-link="{{url('api')}}/media/media-delete/{{$productImage->id}}"
@@ -230,7 +230,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Our Products</strong>
                   <h1 class="h3 letters" onclick="window.location.href = '{{ $productLink->url }}';">Our <span>Products</span></h1>
-				  <span>    <div style="background-color:white" class="product_title_1"  @if(session('LoggedUser'))
+				  <span>    <div  class="product_title_1"  @if(session('LoggedUser'))
 					data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
 				@endif></div></span>
                 </div>

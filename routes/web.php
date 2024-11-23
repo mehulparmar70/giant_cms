@@ -61,6 +61,8 @@ Route::get('updates/{slug}', [HomeController::class, 'updates_details']);
 Route::get('contact-us', [HomeController::class, 'contact'])->name('contact');
 
 
+//admin views
+
 Route::prefix('powerup')->group(function () {
 
 

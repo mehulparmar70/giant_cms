@@ -22,7 +22,7 @@
     cursor: pointer;
     text-align: center;
     z-index: 99999999;
-    background: white;
+    background: black;
   }
 </style>
 @endif
