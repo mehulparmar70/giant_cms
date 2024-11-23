@@ -1251,6 +1251,8 @@ class HomeController extends Controller
         $data = [
             'blogs' =>  Blog::where('status', 1)->orderBy('item_no')->get(),
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'footerTestimonial' =>  $this->footerTestimonial,
             'footerVideo' =>   $this->footerVideo,
             'footerBlog' =>   $this->footerBlog,
@@ -1273,6 +1275,8 @@ class HomeController extends Controller
         $data = [
             'current_page' =>  'contact',
             'pageData' =>  Pages::where('type', 'contact_page')->first(),
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'footerTestimonial' =>  $this->footerTestimonial,
             'footerVideo' =>   $this->footerVideo,
             'footerBlog' =>   $this->footerBlog,
@@ -1287,7 +1291,8 @@ class HomeController extends Controller
 
             'industries' =>  Industries::where(['status' => 1])->orderBy('item_no')->limit(50)->get(),
         ];
-        return response()->view('contact-us', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        // dd($data);
+        return response()->view('theme::contact-us  ', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
     }
 
     public function thankyou()
