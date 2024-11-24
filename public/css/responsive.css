@@ -159,9 +159,9 @@
         height: 41px;
         width: 45px;
     }
-    .share-concept-form-box, .contact-links-box, .shareconceptModal .modal-dialog {
+    /* .share-concept-form-box, .contact-links-box, .shareconceptModal .modal-dialog {
         max-width: 340px;
-    }
+    } */
     .contact-section .contact-link {
         font-size: 18px;
     }
@@ -1002,9 +1002,9 @@
         font-size: 12px;
     }
 
-    .share-concept-form-box, .contact-links-box, .shareconceptModal .modal-dialog {
+    /* .share-concept-form-box, .contact-links-box, .shareconceptModal .modal-dialog {
         max-width: 285px;
-    }
+    } */
     .share-concept-form-box > img {
         max-width: 103%;
         width: 103%;

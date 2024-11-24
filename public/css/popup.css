@@ -190,3 +190,6 @@
 	border: 2px solid #555555;
 }
 
+#inquirypopup div {
+  z-index: 99999;
+}

@@ -117,7 +117,8 @@ function goBack() {
 </head>
 
 <body class="lazyload pr-0">
-	<?php $current_page = ''; ?>
+	<?php $current_page = '';
+	$homeLink = App\Models\admin\UrlList::find(95);  // Home link ?>
 
 	@includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'])
 
@@ -128,7 +129,7 @@ function goBack() {
 		<div class="container position-relative">
 		  <div class="breadcrumb">
 			<div class="breadcrumb-left">
-			  <a href="index.html" class="header-top-home d-flex align-items-center text-uppercase">
+			  <a href="{{ $homeLink->url }}" class="header-top-home d-flex align-items-center text-uppercase">
 				<img class="me-2" src="{{asset('/')}}/dubai/images/home-icon.png" alt="home-icon">Home
 			  </a>
 			  <span class="text-uppercase">Contact</span>

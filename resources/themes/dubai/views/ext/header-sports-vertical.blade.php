@@ -157,14 +157,7 @@
     background-color: #2e2e2e;
 }
 
-/* Buttons */
-.btn {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
+
 
 #ajaxForm
 {
@@ -610,10 +603,7 @@ $(document).ready(function () {
                 <a href="{{ $productLink->url }}" @if(session('LoggedUser'))
                   data-link="{{route('admin.product-page.editor')}}"
               @endif><span class="hover-underline-animation left">{{ $productLink->name }}</span></a>
-                <ul>
-                  <li class="menu_crud"><a href="product-detail.html"><span class="hover-underline-animation left">Product Detail</span></a></li>
-                  <li class="menu_crud"><a href="sub-categories.html"><span class="hover-underline-animation left">Sub Categories</span></a></li>
-                </ul>
+               
               </li>
               <li class="menu_crud"  @if(session('LoggedUser'))
               data-link="{{route('admin.blog-page.editor')}}"
@@ -689,7 +679,7 @@ $(document).ready(function () {
           <strong>Any <span>Size,</span> Any <span>Shape</span></strong>
         </div>
         <div class="header-share-concept">
-          <a href="#" class="d-flex" data-bs-toggle="modal" data-bs-target="#shareconceptModal"><img src="{{url('/')}}/images/share-concept.png" alt="share-concept"></a>
+          <a href="#" class="d-flex" onclick="loadInquiryModal(event)"><img src="{{url('/')}}/images/share-concept.png" alt="share-concept"></a>
         </div>
       </div>
     </div>
@@ -705,6 +695,31 @@ $(document).ready(function () {
 
 <input sdf type='hidden' name="isCMS" id='isCMS'>
 
-    
+<div id="inquirypopup">
+  
+</div>
 
+<script>
+  function loadInquiryModal(event) {
+  event.preventDefault();
 
+  fetch('{{ route("load-inquiry-modal") }}')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('inquirypopup').innerHTML = html;
+
+      // Ensure modal element is properly initialized
+      const modalElement = document.getElementById('shareconceptModal');
+      const modal = new bootstrap.Modal(modalElement);
+      
+      modal.show();
+
+      // Attach the close event listener (if needed for manual control)
+      modalElement.addEventListener('hidden.bs.modal', function () {
+        // Optional: Clean up the modal-container div when closed
+        document.getElementById('modal-container').innerHTML = '';
+      });
+    })
+    .catch(error => console.error('Error loading modal:', error));
+}
+</script>

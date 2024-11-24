@@ -26,6 +26,7 @@
       <div class="cmsModal-body" id="modalBodyContentpopup">
         @if(isset($pageData) && !empty($pageData))
           @includeWhen($type == 'About', 'admin.home-editor.about-page')
+          @includeWhen($type == 'About_Section1', 'admin.aboutsection1')
           @includeWhen($type == 'Product', 'admin.home-editor.product-page')
           @includeWhen($type == 'CaseStudies', 'admin.home-editor.casestudies-page')
           @includeWhen($type == 'Blog_Page', 'admin.home-editor.blog-page')

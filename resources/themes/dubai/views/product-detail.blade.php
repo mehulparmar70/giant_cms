@@ -32,6 +32,7 @@ $subCategory = $current_cat;
 	$subCategory2Slug = '';
 
 	// dd($current_products);
+	$contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
 
 
 ?>
@@ -147,7 +148,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                       </button>
                       <ul class="dropdown-menu">
 					  @foreach(getCustomSubCategories($current_cat->parent_id) as $key => $subCategories1)
-                        <li><a class="dropdown-item" href="sub-categories.html"><span class="hover-underline-animation left">{{$subCategory->name}}</span></a></li>
+                        <li><a class="dropdown-item" href="{{ $subCategories1->slug }}"><span class="hover-underline-animation left">{{$subCategory->name}}</span></a></li>
 						@endforeach
 
                       </ul>
@@ -163,7 +164,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
 								data-delete-link="{{url('api')}}/media/media-delete/{{$productImage->id}}"
 								data-id="{{$productImage->id}}"
 							@endif
-						>
+						></div>
                       <a href="{{url('')}}/images/{{$productImage->image}}" class="product-detail-slider-item" data-fancybox="gallery">
                         <div class="product-detail-slider-img">
                           <img src="{{url('')}}/images/{{$productImage->image}}" alt="product-banner">
@@ -172,8 +173,9 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                           <img src="{{asset('/')}}/dubai/images/search-icon.svg" alt="search-icon">
                           Click To Enlarge
                         </button>
-					</div>
-                      </a>
+					</a>
+					
+                     
 					  @endforeach
 					  <?php } else { ?>
                       <a href="{{url('')}}/images/noimage.png" class="product-detail-slider-item" data-fancybox="gallery">
@@ -194,12 +196,11 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                   </div>
                 </div>
                 <div class="about-banner-desc wow zoomIn" data-wow-offset="200">
-					<div class="menu_crud" @if(session('LoggedUser'))
-					data-link="{{route('admin.about-page.editor')}}" @endif>
-					<a href="{{ $productLink->url }}" @if(session('LoggedUser'))
-						data-link="{{route('admin.about-page.editor')}}"
-					@endif></a>
-					</div>
+					<div class="onscreen_product_internal_title onscreen_product_internal_title3" @if(session('LoggedUser'))
+																	data-link="{{route('admin.category.edit', $current_cat->id)}}?type=sub_category&onscreenCms=true&id={{$mainCategory->id}}"
+																	data-create-subcategory="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$mainCategory->id}}"
+																	data-delete-link="{{route('admin.index')}}/category/delete/{{ $current_cat->id}}"
+																	@endif></div>
 				
 					<p>{!! $productDetail->description !!}</p>
                 </div>
@@ -334,7 +335,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
               <div class="container">
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Get In Touch</strong>
-                  <h3 class="h3 letters" onclick="window.location.href = 'contact.html';">Get In <span>Touch</span></h3>
+                  <h3 class="h3 letters" onclick="window.location.href = '{{ $contactLink->url }}';">Get In <span>Touch</span></h3>
                 </div>
               </div>
               <div class="container position-relative pt-4">
