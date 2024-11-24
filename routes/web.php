@@ -153,6 +153,7 @@ Route::get('/page-editor/client', [PageController::class, 'clientPageEditor'])->
 Route::get('/page-editor/awards', [PageController::class, 'awardsPageEditor'])->name('admin.awards-page.editor');
 Route::get('/page-editor/updates', [PageController::class, 'updatesPageEditor'])->name('admin.updates-page.editor');
 Route::get('/page-editor/industries', [PageController::class, 'industriePageEditor'])->name('admin.industries-page.editor');
+Route::get('/page-editor/about-section1/{id}', [PageController::class, 'Aboutsection1'])->name('admin.aboutsection1');
 
 Route::get('/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('admin.home.editor');
 Route::get('industries-create', [IndustriesController::class,'create'])->name('industries-create');
@@ -207,6 +208,7 @@ Route::post('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class
 Route::post('/award/store', [AwardController::class, 'store'])->name('award.store');
 Route::get('/award/createaward', [AwardController::class, 'createaward'])->name('award.createaward');
 Route::put('/award/{id}', [AwardController::class, 'update'])->name('award.update');
+Route::put('/sectionupdate/{id}', [PageController::class, 'updatesection'])->name('section.update');
 
 
 Route::post('/admin/item-bulk-delete',[ItemPriorityController::class, 'ItemBulkDelete'])->name('item.bulk-delete');

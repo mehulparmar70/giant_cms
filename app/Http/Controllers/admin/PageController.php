@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\Pages;
 use App\Models\admin\UrlList;
+use App\Models\admin\AboutSection;
 use Intervention\Image\Facades\Image;
 use GeneaLabs\NovaGutenberg\Gutenberg;
 use App\Models\admin\Partners;
@@ -28,6 +29,17 @@ class PageController extends Controller
     public function aboutPageEditor(){
         $type = 'About';
         $data = [
+     
+            'pageData' =>  Pages::where('type', 'about_page')->first(),
+            'url_list' =>  UrlList::where('type', 'page_link')->where('id',97)->where('status',1)->first(),
+            'type' => $type,
+        ];
+        return view('admin.home-editor.popup-page', $data);
+    }
+    public function Aboutsection1($id){
+        $type = 'About_Section1';
+        $data = [
+            'section' =>  AboutSection::where('id', $id)->first(),
             'pageData' =>  Pages::where('type', 'about_page')->first(),
             'url_list' =>  UrlList::where('type', 'page_link')->where('id',97)->where('status',1)->first(),
             'type' => $type,
@@ -573,5 +585,50 @@ class PageController extends Controller
     //         }
     //     }
     // }
+
+    public function updatesection(Request $request, $id)
+    {
+     
+    
+        if($request->file('image')){
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+    
+            // Compress and save the image
+            $image_path = public_path('images/' . $image_name);
+            Image::make($image)
+                ->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($image_path, 75); // 75% quality
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('images/' . $request->old_image));
+            }
+        } else {
+            $image_name = $request->old_image;
+        }
+    
+        // Update the award details
+        $aboutsection = AboutSection::find($id);
+        $aboutsection->title = $request->title;
+        $aboutsection->description = $request->description;
+        $aboutsection->icon = $image_name;
+        $save = $aboutsection->save();
+    
+        if ($save) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Section Updated...'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong, try again later...'
+            ]);
+        }
+    }
     
 }

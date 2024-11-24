@@ -610,10 +610,7 @@ $(document).ready(function () {
                 <a href="{{ $productLink->url }}" @if(session('LoggedUser'))
                   data-link="{{route('admin.product-page.editor')}}"
               @endif><span class="hover-underline-animation left">{{ $productLink->name }}</span></a>
-                <ul>
-                  <li class="menu_crud"><a href="product-detail.html"><span class="hover-underline-animation left">Product Detail</span></a></li>
-                  <li class="menu_crud"><a href="sub-categories.html"><span class="hover-underline-animation left">Sub Categories</span></a></li>
-                </ul>
+               
               </li>
               <li class="menu_crud"  @if(session('LoggedUser'))
               data-link="{{route('admin.blog-page.editor')}}"

@@ -32,6 +32,7 @@ $subCategory = $current_cat;
 	$subCategory2Slug = '';
 
 	// dd($current_products);
+	$contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
 
 
 ?>
@@ -147,7 +148,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                       </button>
                       <ul class="dropdown-menu">
 					  @foreach(getCustomSubCategories($current_cat->parent_id) as $key => $subCategories1)
-                        <li><a class="dropdown-item" href="sub-categories.html"><span class="hover-underline-animation left">{{$subCategory->name}}</span></a></li>
+                        <li><a class="dropdown-item" href="{{ $subCategories1->slug }}"><span class="hover-underline-animation left">{{$subCategory->name}}</span></a></li>
 						@endforeach
 
                       </ul>
@@ -334,7 +335,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
               <div class="container">
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Get In Touch</strong>
-                  <h3 class="h3 letters" onclick="window.location.href = 'contact.html';">Get In <span>Touch</span></h3>
+                  <h3 class="h3 letters" onclick="window.location.href = '{{ $contactLink->url }}';">Get In <span>Touch</span></h3>
                 </div>
               </div>
               <div class="container position-relative pt-4">

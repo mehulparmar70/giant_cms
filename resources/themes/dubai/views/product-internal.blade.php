@@ -57,6 +57,8 @@ $intArray = array_map(
 $current_criteria = DB::table('criteria_metas')->whereIn('categories', $intArray)->get();
 $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
 $homeLink = App\Models\admin\UrlList::find(95);  // Home link
+$updatesLink = App\Models\admin\UrlList::find(113);  // Updates link
+$contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
 ?>
 
 <?php 
@@ -97,16 +99,25 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
               @if(getParentCategory($current_cat->id)['category'])
               <strong class="letters">{!!getParentCategory($current_cat->id)['category']->name!!}</strong>
               <h3 class="h3 letters">{!!getParentCategory($current_cat->id)['category']->name!!}</h3>
+              <div  class="product_title_1"  @if(session('LoggedUser'))
+              data-link="{{route('admin.about-page.editor')}}?onscreenCms=true"
+          @endif></div>
                         @endif
     
             @if(getParentCategory($current_cat->id)['subcategory'])
            <strong class="letters">{!!getParentCategory($current_cat->id)['subcategory']->name!!}</strong>
            <h3 class="h3 letters">{!!getParentCategory($current_cat->id)['subcategory']->name!!}</h3>
+           <div  class="product_title_1"  @if(session('LoggedUser'))
+              data-link="{{route('admin.about-page.editor')}}?onscreenCms=true"
+          @endif></div>
                         @endif
     
             @if(getParentCategory($current_cat->id)['subcategory2'])
              <strong class="letters">{!!getParentCategory($current_cat->id)['subcategory2']->name!!}</strong>
              <h3 class="h3 letters">{!!getParentCategory($current_cat->id)['subcategory2']->name!!}</h3>
+             <div  class="product_title_1"  @if(session('LoggedUser'))
+              data-link="{{route('admin.about-page.editor')}}?onscreenCms=true"
+          @endif></div>
                         @endif
           
             </div>
@@ -222,9 +233,12 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
               <div class="container">
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Updates</strong>
-                  <h3 class="h3 letters" onclick="window.location.href = 'updates.html';">Up<span>dates</span></h3>
+                  <h3 class="h3 letters" onclick="window.location.href = '{{ $updatesLink->url }}';">Up<span>dates</span></h3>
+                  <div class="menu_crud"  @if(session('LoggedUser'))
+                  data-link="{{route('admin.blog-page.editor')}}"
+              @endif></div>
                 </div>
-                <div  class="title-crud fontSize" @if(session('LoggedUser')) data-create-link="{{route('blog.create')}}" data-delete="{{route('blog.index')}}" data-link="{{route('blog.index')}}" @endif></div>
+                
 
               </div>
               <div class="updates-wrap position-relative">
@@ -237,16 +251,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                       @foreach($blogsSlider as $blogsList)
                       <div class="updates-slider-item">
                         <a href="{{ route('update.index') }}" class="updates-box">
-                          <div class="update_img onscreen_media_testimonial_item" @if(session('LoggedUser'))
-
-                          data-create-link="{{route('blog.index')}}"
-  
-                 
-  
-                          data-link="{{route('blog.edit', $blogsList->id)}}"
-                          data-delete-link="{{route('blog.delete',$blogsList->id)}}"
-  
-                        @endif>
+              
                           <div class="updates-box-img">
                             @if(file_exists(public_path('images/'.$blogsList->image)) && $blogsList->image)
                             <img src="{{ url('/') }}/images/{{ $blogsList->image }}" alt="Blog Image" />
@@ -255,7 +260,12 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                           @endif
 
                           </div>
-                          </div>
+                          <div align="right"  class="onscreen_blog_detail_page" @if(session('LoggedUser'))
+                          data-create-link="{{route('blog.create')}}"
+                          data-link="{{route('blog.edit', $blogsList->id)}}"
+                          data-delete-link="{{route('blog.delete',$blogsList->id)}}"
+                          data-index-link="{{ route('blog.index') }}"
+                        @endif></div>
                           <div class="updates-box-content">
                             <h6>{!! html_entity_decode($blogsList->title) !!}</h6>
                             <p>{!! html_entity_decode($blogsList->short_description) !!}</p>
@@ -281,48 +291,14 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
               <div class="container">
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Get In Touch</strong>
-                  <h3 class="h3 letters" onclick="window.location.href = 'contact.html';">Get In <span>Touch</span></h3>
+                  <h3 class="h3 letters" onclick="window.location.href = '{{ $contactLink->url }}';">Get In <span>Touch</span></h3>
                 </div>
               </div>
               <div class="container position-relative pt-4">
                 <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
                   <div class="share-concept-form-box wow flipInY" data-wow-offset="200">
                     <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
-                    <form action="" class="share-concept-form ms-2">
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/user-icon.svg" alt="user icon"></div>
-                        <input class="share-concept-form-input" type="text" placeholder="Name">
-                      </div>
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone icon"></div>
-                        <input class="share-concept-form-input" type="tel" placeholder="Phone Number">
-                      </div>
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail icon"></div>
-                        <input class="share-concept-form-input" type="email" placeholder="Email">
-                      </div>
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/country-glob-icon.svg" alt="country icon"></div>
-                        <select class="share-concept-form-input" name="" id="">
-                          <option value="">Select Country</option>
-                          <option value="">Dubai</option>
-                          <option value="">America</option>
-                        </select>
-                      </div>
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/message-icon.svg" alt="message icon"></div>
-                        <textarea class="share-concept-form-input" type="text" placeholder="Share Your Inflatables Requirement"></textarea>
-                      </div>
-                      <div class="share-concept-field d-flex justify-content-center mb-0">
-                        <img src="{{asset('/')}}/dubai/images/captcha-image.jpg" alt="captcha-image">
-                      </div>
-                      <div class="share-concept-field text-center share-concept-info mb-4">
-                        <strong>We do not sell or rent your information.</strong>
-                      </div>
-                      <div class="text-center">
-                        <button class="btn btn-animation--infinity" type="submit">SUBMIT</button>
-                      </div>
-                    </form>
+                    @include('widget.contact-form1')
                   </div>
                   <div class="contact-links-box text-center wow flipInY" data-wow-offset="200">
                     <p>Award Winning Inflatable Designer & Manufacturer</p>

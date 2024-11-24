@@ -10,6 +10,7 @@
   <body>
   <?php $current_page = '';     $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
   $homeLink = App\Models\admin\UrlList::find(95);  // Home link
+  $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
   ?>
     
     {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
@@ -158,48 +159,14 @@
               <div class="container">
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Get In Touch</strong>
-                  <h3 class="h3 letters" onclick="window.location.href = 'conatct.html';">Get In <span>Touch</span></h3>
+                  <h3 class="h3 letters" onclick="window.location.href = '{{ $contactLink->url }}';">Get In <span>Touch</span></h3>
                 </div>
               </div>
               <div class="container position-relative pt-4">
                 <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
                   <div class="share-concept-form-box wow flipInY" data-wow-offset="200">
                     <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
-                    <form action="" class="share-concept-form ms-2">
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/user-icon.svg" alt="user icon"></div>
-                        <input class="share-concept-form-input" type="text" placeholder="Name">
-                      </div>
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone icon"></div>
-                        <input class="share-concept-form-input" type="tel" placeholder="Phone Number">
-                      </div>
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail icon"></div>
-                        <input class="share-concept-form-input" type="email" placeholder="Email">
-                      </div>
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/country-glob-icon.svg" alt="country icon"></div>
-                        <select class="share-concept-form-input" name="" id="">
-                          <option value="">Select Country</option>
-                          <option value="">Dubai</option>
-                          <option value="">America</option>
-                        </select>
-                      </div>
-                      <div class="share-concept-field d-flex align-items-start">
-                        <div class="share-concept-icon d-flex align-items-center justify-content-center"><img src="{{asset('/')}}/dubai/images/message-icon.svg" alt="message icon"></div>
-                        <textarea class="share-concept-form-input" type="text" placeholder="Share Your Inflatables Requirement"></textarea>
-                      </div>
-                      <div class="share-concept-field d-flex justify-content-center mb-0">
-                        <img src="{{asset('/')}}/dubai/images/captcha-image.jpg" alt="captcha-image">
-                      </div>
-                      <div class="share-concept-field text-center share-concept-info mb-4">
-                        <strong>We do not sell or rent your information.</strong>
-                      </div>
-                      <div class="text-center">
-                        <button class="btn btn-animation--infinity" type="submit">SUBMIT</button>
-                      </div>
-                    </form>
+                    @include('widget.contact-form1')
                   </div>
                   <div class="contact-links-box text-center wow flipInY" data-wow-offset="200">
                     <p>Award Winning Inflatable Designer & Manufacturer</p>

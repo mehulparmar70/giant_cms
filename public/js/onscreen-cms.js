@@ -389,7 +389,7 @@ $('.onscreen_blog_detail_page').each(function(){
     <a class="adminAddItem" title="Add" href="`+$('.route-blog-create').text()+`"onclick="popupmenu('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img></a>
     <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img></a>
     <a class="adminDeleteItem" title="Delete" href="`+$('data-delete-link').text()+`"onclick="popupmenu('`+$(this).attr('data-delete-link')+'?onscreenCms=true'+`', 'deletemodal',event); return false;"> <img src="`+base_url+`/front/deleteicon.svg" height="24" width="24"></img></a>
-    <a class="adminDeleteItem" title="Delete" href="`+$('data-index-link').text()+`"onclick="popupmenu('`+$(this).attr('data-index-link')+'?onscreenCms=true'+`', 'list',event); return false;"> <img src="`+base_url+`/front/listicon.svg" height="24" width="24"></img></a>`);
+    <a class="adminDeleteItem" title="List" href="`+$('data-index-link').text()+`"onclick="popupmenu('`+$(this).attr('data-index-link')+'?onscreenCms=true'+`', 'list',event); return false;"> <img src="`+base_url+`/front/listicon.svg" height="24" width="24"></img></a>`);
 });
 
 $('.product_internal_title').each(function() {
@@ -1909,6 +1909,50 @@ function edittestimonailsubmit(id) {
   });
 }
 
+function editsectionsubmit(id) {
+  var form = document.getElementById('sectionajax'); // Get the form element
+  var formData = new FormData(form); // Create FormData object with form data
+
+  $.ajax({
+      type: "POST",
+      url: base_url+"/powerup/sectionupdate/"+id, // Form action URL
+      data: formData, // Form data
+      contentType: false, // Let the browser set the content type
+      processData: false, // Do not process the data
+      success: function(response) {
+        if (response.success) { 
+            iziToast.success({
+                title: 'Success',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+            $('.modal-container').remove();
+
+            // Refresh the content of the already open popup or page
+            // If you want to refresh specific content, you can re-fetch it using an AJAX request or reload the page
+            location.reload(); 
+        } else {
+            iziToast.error({
+                title: 'Error',
+                message: response.message,
+                position: 'center',   // Centering the notification
+                timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                transitionOut: 'fadeOutUp',
+                class: 'mac-style-toast',     // Custom class for macOS style
+                layout: 2,    
+            });
+        }
+    },
+
+
+  });
+}
 function editawardsubmit(id) {
   var form = document.getElementById('awardeditajax'); // Get the form element
   var formData = new FormData(form); // Create FormData object with form data

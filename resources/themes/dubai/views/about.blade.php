@@ -9,7 +9,11 @@
 </head>
 
 <body class="lazyload pr-0">
-    <?php $current_page = ''; ?>
+    <?php $current_page = ''; 
+    $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
+    $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
+    $homeLink = App\Models\admin\UrlList::find(95);  // Home link
+    ?>
     
     {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
     @includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'])
@@ -23,62 +27,44 @@
       <div class="container position-relative">
         <div class="breadcrumb">
           <div class="breadcrumb-left">
-            <a href="index.html" class="header-top-home d-flex align-items-center text-uppercase">
+            <a href="{{ $homeLink->url }}" class="header-top-home d-flex align-items-center text-uppercase">
               <img class="me-2" src="{{asset('/')}}/dubai/images/home-icon.png" alt="home-icon">Home
             </a>
             <span class="text-uppercase">About</span>
           </div>
-          <a href="index.html" class="breadcrumb-back text-uppercase">Back<img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle"></a>
+          <a href="{{ $homeLink->url }}" class="breadcrumb-back text-uppercase">Back<img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle"></a>
         </div>
         <div class="theme-stroke-heading text-center text-uppercase">
           <strong class="letters">About Us</strong>
           <h1 class="h3 letters">About <span>Us</span></h1>
+          <div  class="product_title_1"  @if(session('LoggedUser'))
+              data-link="{{route('admin.about-page.editor')}}?onscreenCms=true"
+          @endif></div>
         </div>
         <div class="row g-xxl-5 g-lg-4 g-3">
           <div class="col-xl-9 col-md-8">
             <div class="about-banner-blocks-wrap wow fadeInLeft" data-wow-offset="200">
               <div class="row g-xxl-5 g-lg-4 g-3">
+                @foreach($sections as $sec)
                 <div class="col-sm-6">
                   <div class="about-banner-block">
+                    <div  class="product_title_1"  @if(session('LoggedUser'))
+                  data-link="{{route('admin.aboutsection1',$sec->id)}}?onscreenCms=true"
+              @endif></div>
                     <div class="about-block-icon">
-                      <img src="{{asset('/')}}/dubai/images/professional-team-icon.png" alt="professional-team-icon">
+                      <img src="{{asset('/')}}images/{{$sec->icon}}" alt="professional-team-icon">
                     </div>
-                    <h6>Professional Team</h6>
-                    <p>Sed ut perspiciatis miani tes ipsum, dolor sit amet kedi consectetur adipisicing elit</p>
+                    <h6>{{$sec->title}}</h6>
+                    <p>{{$sec->description}}</p>
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="about-banner-block">
-                    <div class="about-block-icon">
-                      <img src="{{asset('/')}}/dubai/images/smart-services-icon.png" alt="smart-services-icon">
-                    </div>
-                    <h6>Smart Services</h6>
-                    <p>Sed ut perspiciatis miani tes ipsum, dolor sit amet kedi consectetur adipisicing elit</p>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="about-banner-block">
-                    <div class="about-block-icon">
-                      <img src="{{asset('/')}}/dubai/images/smart-work-icon.png" alt="smart-work-icon">
-                    </div>
-                    <h6>Smart Work</h6>
-                    <p>Sed ut perspiciatis miani tes ipsum, dolor sit amet kedi consectetur adipisicing elit</p>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="about-banner-block">
-                    <div class="about-block-icon">
-                      <img src="{{asset('/')}}/dubai/images/great-support-icon.png" alt="great-support-icon">
-                    </div>
-                    <h6>Great Support</h6>
-                    <p>Sed ut perspiciatis miani tes ipsum, dolor sit amet kedi consectetur adipisicing elit</p>
-                  </div>
-                </div>
+                @endforeach
+
               </div>
             </div>
             <div class="about-banner-desc wow zoomIn" data-wow-offset="200">
               <div class="about-middle-contect-inner">
-                <span><div  class="product_title"  @if(session('LoggedUser'))
+                <span>       <div class="menu_crud"  @if(session('LoggedUser'))
                   data-link="{{route('admin.about-page.editor')}}"
               @endif></div>
                         {!! $pageData->description !!}</span>
@@ -103,7 +89,7 @@
                 <div class="container">
                   <div class="theme-stroke-heading text-center text-uppercase">
                     <strong class="letters">Our Products</strong>
-                    <h1 class="h3 letters" onclick="window.location.href = 'products.html';">Our <span>Products</span></h1>
+                    <h1 class="h3 letters" onclick="window.location.href = '{{ $productLink->url }}';">Our <span>Products</span></h1>
                     <div  class="product_title_1"  @if(session('LoggedUser'))
                     data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
                 @endif></div>
@@ -208,84 +194,12 @@
                     </div>
                   </div>
                 </div>
-                {{-- <div class="updates-wrap position-relative">
-                  <div class="bg-img-wrap">
-                    <img class="bg-img-top" src="{{asset('/')}}/dubai/images/red-effect-top.webp" alt="red-effect-top">
-                  </div>
-                  <div class="container position-relative pt-lg-4">
-                    <div class="updates-slider">
-                      <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
-                        <a href="products.html" class="products-box text-center wow zoomIn" data-wow-offset="200">
-                          <div class="animated-border-box-glow">
-                            <div class="products-box-img">
-                              <img src="{{asset('/')}}/dubai/images/home-banner.webp" alt="products-img">
-                            </div>
-                            <div class="products-box-heading text-uppercase theme-heading">
-                              <h5>MAIN-CATEGORY NAME-1</h5>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
-                        <a href="products.html" class="products-box text-center wow zoomIn" data-wow-offset="200">
-                          <div class="animated-border-box-glow">
-                            <div class="products-box-img">
-                              <img src="{{asset('/')}}/dubai/images/home-banner.webp" alt="products-img">
-                            </div>
-                            <div class="products-box-heading text-uppercase theme-heading">
-                              <h5>MAIN-CATEGORY NAME-2</h5>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
-                        <a href="products.html" class="products-box text-center wow zoomIn" data-wow-offset="200">
-                          <div class="animated-border-box-glow">
-                            <div class="products-box-img">
-                              <img src="{{asset('/')}}/dubai/images/home-banner.webp" alt="products-img">
-                            </div>
-                            <div class="products-box-heading text-uppercase theme-heading">
-                              <h5>MAIN-CATEGORY NAME-3</h5>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
-                        <a href="products.html" class="products-box text-center wow zoomIn" data-wow-offset="200">
-                          <div class="animated-border-box-glow">
-                            <div class="products-box-img">
-                              <img src="{{asset('/')}}/dubai/images/home-banner.webp" alt="products-img">
-                            </div>
-                            <div class="products-box-heading text-uppercase theme-heading">
-                              <h5>MAIN-CATEGORY NAME-4</h5>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
-                        <a href="products.html" class="products-box text-center wow zoomIn" data-wow-offset="200">
-                          <div class="animated-border-box-glow">
-                            <div class="products-box-img">
-                              <img src="{{asset('/')}}/dubai/images/home-banner.webp" alt="products-img">
-                            </div>
-                            <div class="products-box-heading text-uppercase theme-heading">
-                              <h5>MAIN-CATEGORY NAME-5</h5>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="updates-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-4">
-                      <a href="{{ url('products') }}" class="btn text-uppercase btn-animation--infinity">VIEW ALL PRODUCTS</a>
-                    </div>
-                  </div>
-                </div> --}}
               </div>
               <div class="contact-section">
                 <div class="container">
                   <div class="theme-stroke-heading text-center text-uppercase">
                     <strong class="letters">Get In Touch</strong>                    
-                    <h3 class="h3 letters" onclick="window.location.href = 'contact.html';">Get In <span>Touch</span></h3>
+                    <h3 class="h3 letters" onclick="window.location.href = '{{ $contactLink->url }}';">Get In <span>Touch</span></h3>
                   </div>
                 </div>
                 <div class="container position-relative pt-4">

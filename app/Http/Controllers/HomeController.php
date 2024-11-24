@@ -17,6 +17,7 @@ use App\Models\admin\Client;
 use App\Models\admin\CaseStudies;
 use App\Models\admin\Product;
 use App\Models\admin\Media;
+use App\Models\admin\AboutSection;
 use App\Models\admin\Category;
 use App\Models\admin\CriteriaMeta;
 use App\Models\admin\Criteria;
@@ -171,7 +172,7 @@ class HomeController extends Controller
             'topInflatables4' =>  $this->topInflatables4,
             'industries' =>  Industries::where(['status' => 1])->orderBy('item_no')->limit(50)->get(),
             'topInflatableAll' =>  $this->topInflatableAll,
-            'productTitle' =>  Pages::where('type', 'product_page')->first(),
+            'productTitle' =>  Pages::where('type', 'product_page')->first(['meta_title']),
             'products1' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('item_no')->skip(0)->take(3)->get(),
             'products2' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('item_no')->skip(3)->take(3)->get(),
             'products3' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('item_no')->skip(6)->take(3)->get(),
@@ -839,10 +840,10 @@ class HomeController extends Controller
     {
         //Session::forget('homePageCatId');
         $data = [
+            'sections' => AboutSection::all(), // Fetch all records from the table
             'pageData' =>  Pages::where('type', 'about_page')->first(),
             'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
-            'pageData' =>  Pages::where('type', 'contact_page')->first(),
             'industriesData' =>  Pages::where('type', 'industrie_page')->first(),
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
             'videos' =>  Video::where(['status' => 1])->orderBy('item_no')->get(),
@@ -873,6 +874,7 @@ class HomeController extends Controller
             'footerCaseStudies' =>   $this->footerCaseStudies,
 
         ];
+        // dd($data);
         return response()->view('theme::about', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
