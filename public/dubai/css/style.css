@@ -452,7 +452,7 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
     /* display: none; */
 }
 .main-header.sticky {
-    background-image: linear-gradient(0deg, black 20%, rgb(75 75 75) 180%);
+    background-image: linear-gradient(0deg, black 20%, rgb(75 75 75) 180%) !important;
 }
 .main-header.sticky .container-fluid {
     border-radius: 100px;
