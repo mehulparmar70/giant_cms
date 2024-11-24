@@ -375,6 +375,7 @@
         <div id="modalBodyContent"></div>
         <div id="addnewsletter"></div>
 
+ 
 <!-- header -->
 <div class="wrapper overflow-hidden">
   <div class="main-container">
@@ -598,10 +599,14 @@ $(document).ready(function () {
               <li class="menu_crud"><a href="{{ $homeLink->url }}" class="active" @if(session('LoggedUser'))
                 data-link="{{route('admin.home.editor')}}"
             @endif><span class="hover-underline-animation left">{{ $homeLink->name }}</span></a></li>
-              <li class="menu_crud"><a href="{{ $aboutLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.about-page.editor')}}"
+          @endif><a href="{{ $aboutLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.about-page.editor')}}"
             @endif><span class="hover-underline-animation left">{{ $aboutLink->name }}</span></a></li>
-              <li class="menu_crud">
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.product-page.editor')}}"
+          @endif>
                 <a href="{{ $productLink->url }}" @if(session('LoggedUser'))
                   data-link="{{route('admin.product-page.editor')}}"
               @endif><span class="hover-underline-animation left">{{ $productLink->name }}</span></a>
@@ -610,10 +615,16 @@ $(document).ready(function () {
                   <li class="menu_crud"><a href="sub-categories.html"><span class="hover-underline-animation left">Sub Categories</span></a></li>
                 </ul>
               </li>
-              <li class="menu_crud"><a href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud"  @if(session('LoggedUser'))
+              data-link="{{route('admin.blog-page.editor')}}"
+          @endif>
+          <a href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.blog-page.editor')}}"
-            @endif><span class="hover-underline-animation left">{{ $updatesLink->name }}</span></a></li>
-              <li class="menu_crud"><a href="{{ $contactLink->url }}" @if(session('LoggedUser'))
+            @endif><span class="hover-underline-animation left">{{ $updatesLink->name }}</span></a>
+          </li>
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.contact-page.editor')}}"
+          @endif><a href="{{ $contactLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.contact-page.editor')}}"
             @endif><span class="hover-underline-animation left">{{ $contactLink->name }}</span></a></li>
             </ul>
@@ -642,13 +653,19 @@ $(document).ready(function () {
               <li class="menu_crud"  @if(session('LoggedUser'))
               data-link="{{route('admin.about-page.editor')}}"
               @endif><a class="btn-animation" href="{{ $aboutLink->url }}">{{ $aboutLink->name }}</a></li>
-              <li class="menu_crud"><a class="btn-animation" href="{{ $productLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud"  @if(session('LoggedUser'))
+              data-link="{{route('admin.product-page.editor')}}"
+          @endif><a class="btn-animation" href="{{ $productLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.product-page.editor')}}"
             @endif>{{ $productLink->name }}</a></li>
-              <li class="menu_crud"><a class="btn-animation" href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.blog-page.editor')}}"
+          @endif><a class="btn-animation" href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.blog-page.editor')}}"
             @endif>{{ $updatesLink->name }}</a></li>
-              <li class="menu_crud"><a class="btn-animation" href="{{ $contactLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.contact-page.editor')}}"
+          @endif><a class="btn-animation" href="{{ $contactLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.contact-page.editor')}}"
             @endif>{{ $contactLink->name }}</a></li>
             </ul>

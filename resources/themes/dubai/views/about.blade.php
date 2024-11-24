@@ -78,7 +78,7 @@
             </div>
             <div class="about-banner-desc wow zoomIn" data-wow-offset="200">
               <div class="about-middle-contect-inner">
-                <span><div style="background-color:white" class="product_title"  @if(session('LoggedUser'))
+                <span><div  class="product_title"  @if(session('LoggedUser'))
                   data-link="{{route('admin.about-page.editor')}}"
               @endif></div>
                         {!! $pageData->description !!}</span>
@@ -104,7 +104,7 @@
                   <div class="theme-stroke-heading text-center text-uppercase">
                     <strong class="letters">Our Products</strong>
                     <h1 class="h3 letters" onclick="window.location.href = 'products.html';">Our <span>Products</span></h1>
-                    <div style="background-color:white" class="product_title_1"  @if(session('LoggedUser'))
+                    <div  class="product_title_1"  @if(session('LoggedUser'))
                     data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
                 @endif></div>
                   </div>

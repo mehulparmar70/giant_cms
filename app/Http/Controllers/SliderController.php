@@ -54,7 +54,7 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-     
+       
         $slider_no = Slider::orderBy('slider_no', 'desc')->first();
 
         if($slider_no){

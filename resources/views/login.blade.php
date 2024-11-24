@@ -58,7 +58,7 @@ border-radius: 1rem;
 
 <!-- /.card -->
   <div class="col-sm-12 col-md-12 col-lg-12 mt-5 text-center">
-    <img src="{{route('index')}}/img/{{getWebsiteOptions()['website_logo']['option_value']}}" alt="">
+    <img src="{{route('index')}}/img/{{getWebsiteOptions()['website_logo']['option_value']}}" alt="" width="300px">
   </div>
 
   <div class="card card-outline card-danger login-form" style="background-image: url('{{route("index")}}/admin/img/login_window_bg.png');padding: 33px;">

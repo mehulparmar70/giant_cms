@@ -63,9 +63,7 @@ var currentWindow;
 // });
 
 $('.logo-g, .product, .about, .testimonial, .blog, .contact,.menu_crud').each(function(){
-  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit' style="
-    color: white;
-"></i></a>`);
+  $(this).append(`<a href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='onscreen-menu adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img></a>`);
 });
 
 
@@ -87,19 +85,19 @@ $('.content_banners').each(function(){
   
   
   // Append buttons for Create, Edit, Delete, and List actions
-  $(this).append(`
+  $(this).append(`<div class="iconstyle">
       <a class="onscreen-banner-slider" href="${createLink}" class="onscreen-menu adminEditItem" title="Create" onclick="popupmenu('${createLink}', 'editmodal', event); return false;">
-          <i class="fa fa-plus"></i>
+          <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img>
       </a>
       <a class="onscreen-banner-slider" href="${editLink}" class="onscreen-menu adminEditItem" title="Edit" onclick="popupmenu('${editLink}', 'editmodal', event); return false;">
-          <i class="fa fa-edit"></i>
+          <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img>
       </a>
       <a class="onscreen-banner-slider" href="${deleteLink}" class="onscreen-menu adminEditItem" title="Delete" onclick="popupmenu('${deleteLink}', 'deletemodal', event); return false;">
-          <i class="fa fa-trash"></i>
+          <img src="`+base_url+`/front/deleteicon.svg" height="24" width="24"></img>
       </a>
       <a class="onscreen-banner-slider" href="${listLink}" class="onscreen-menu adminEditItem" title="List" onclick="popupmenu('${listLink}', 'editmodal', event); return false;">
-          <i class="fa fa-list"></i>
-      </a>
+                    <img src="`+base_url+`/front/listicon.svg" height="24" width="24"></img>
+      </a></div>
   `);
 });
 
@@ -141,7 +139,7 @@ $('.product_title_1').each(function() {
   var html = `<div class="onscreen-our-product">
                 <a class="adminEditItem" title="Edit" href="${$(this).attr('data-link')}?onscreenCms=true" 
                    onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
-                  <i class='fa fa-edit'></i>
+                  <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img>
                 </a>
               </div>`;
   $(this).prepend(html);
@@ -151,17 +149,17 @@ $('.product_title').each(function() {
   var html = `<div class="onscreen-our-product">
                 <a class="adminAddItem" title="Add" href="${$(this).attr('data-link')}" 
                    onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
-                  <i class='fa fa-plus'></i>
+                 <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img>
                 </a>
                 <a class="adminEditItem" title="Edit" href="${$(this).attr('data-link')}?onscreenCms=true" 
                    onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
-                  <i class='fa fa-edit'></i>
+                  <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img>
                 </a>`;
   
   if ($(this).attr('data-delete-link') != undefined) {
     html += `<a class="adminDeleteItem" title="Delete" href="${$(this).attr('data-delete-link')}" 
                data-msg='This action will delete Main-Category & photos permanently. If you are sure about this, then Press OK or Press Cancel Now'>
-              <i class='fa fa-trash'></i></a>`;
+              <img src="`+base_url+`/front/deleteicon.svg" height="24" width="24"></img>`;
   }
   
   html += `</div>`;
@@ -200,12 +198,12 @@ $('.onscreen_media_testimonial_item').each(function(){
   var html = `<div class="onscreen-media-testimonial-item-link" style="position: absolute;margin-left: 87%;display: flex;">`;
   
   if ($(this).attr('data-create-link') != undefined) {
-    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-create-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img></a>`;
   } else {
-    html += `<a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-plus'></i></a>`;
+    html += `<a class="adminAddItem" title="Add" href="`+$('.route-testimonial-create').text()+`"onclick="popupmenu('`+$('.route-testimonial-create').text()+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img></a>`;
   }
-  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit'></i></a>
-  <a class="adminDeleteItem" title="Delete" onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal',event);"> <i class='fa fa-trash'></i></a>`;
+  html += `<a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img></a>
+  <a class="adminDeleteItem" title="Delete" onclick="popupmenu('`+$(this).attr('data-delete-link')+`', 'deletemodal',event);"> <img src="`+base_url+`/front/deleteicon.svg" height="24" width="24"></img></a>`;
   $(this).prepend(html);
 });
 $('.onscreen_media_casestudies_item').each(function(){
@@ -286,7 +284,7 @@ $('.footer_page_blog_information').each(function(){
 });
 
 $('.TopContent, .FieldsTexts').each(function(){
-  $(this).before(`<a  href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='top-content-pages adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit'></i></a>`);
+  $(this).before(`<a  href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"class='top-content-pages adminEditItem' title="Edit" onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img></a>`);
 });
 
 $('.onscreen_product_internal_title2').each(function(){
@@ -313,13 +311,13 @@ $('.crud').each(function(){
 $('.title-crud').each(function() {
   $(this).prepend(`
     <a class="adminAddItem" title="Add" href="${$(this).attr('data-create-link')}" onclick="popupmenu('${$(this).attr('data-create-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
-      <i class='fa fa-plus'></i>
+      <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img>
     </a>
     <a class="adminEditItem" title="Edit" href="${$(this).attr('data-link')}?onscreenCms=true" onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
-      <i class='fa fa-edit'></i>
+     <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img>
     </a>
     <a class="adminDeleteItem" title="Delete" href="${$(this).attr('data-link')}?onscreenCms=true" onclick="popupmenu('${$(this).attr('data-link')}?onscreenCms=true', 'toolbar=no, location=no', event); return false;">
-      <i class='fa fa-trash'></i>
+<img src="`+base_url+`/front/deleteicon.svg" height="24" width="24"></img>
     </a>
   `);
 });
@@ -387,20 +385,24 @@ $('.onscreen_page_blog_block').each(function(){
 });
 
 $('.onscreen_blog_detail_page').each(function(){
-  $(this).before(`<div class="onscreen-popup-title-link"><a class="adminAddItem" title="Add" href="`+$('.route-blog-create').text()+`"onclick="popupmenu('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$('route-blog-index').text()+`"onclick="popupmenu('`+$('.route-blog-index').text()+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-trash'></i></a>`);
+  $(this).before(`<div class="onscreen-popup-title-link">
+    <a class="adminAddItem" title="Add" href="`+$('.route-blog-create').text()+`"onclick="popupmenu('`+$('.route-blog-create').text()+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img></a>
+    <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'?onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img></a>
+    <a class="adminDeleteItem" title="Delete" href="`+$('data-delete-link').text()+`"onclick="popupmenu('`+$(this).attr('data-delete-link')+'?onscreenCms=true'+`', 'deletemodal',event); return false;"> <img src="`+base_url+`/front/deleteicon.svg" height="24" width="24"></img></a>
+    <a class="adminDeleteItem" title="Delete" href="`+$('data-index-link').text()+`"onclick="popupmenu('`+$(this).attr('data-index-link')+'?onscreenCms=true'+`', 'list',event); return false;"> <img src="`+base_url+`/front/listicon.svg" height="24" width="24"></img></a>`);
 });
 
 $('.product_internal_title').each(function() {
   var html = '';
 
   // Accessing the data attributes properly using $(this).attr('data-create-link'), etc.
-  html += `<a class="adminAddItem" title="Add" href="` + $(this).attr('data-create-link') + `" onclick="popupmenu('` + $(this).attr('data-create-link') + `', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-plus'></i></a>`;
+  html += `<a class="adminAddItem" title="Add" href="` + $(this).attr('data-create-link') + `" onclick="popupmenu('` + $(this).attr('data-create-link') + `', 'toolbar=no, location=no',event); return false;">  <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img></i></a>`;
 
-  html += `<a class="adminEditItem" title="Edit" href="` + $(this).attr('data-edit-link') + `" onclick="popupmenu('` + $(this).attr('data-edit-link') + `', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit'></i></a>`;
+  html += `<a class="adminEditItem" title="Edit" href="` + $(this).attr('data-edit-link') + `" onclick="popupmenu('` + $(this).attr('data-edit-link') + `', 'toolbar=no, location=no',event); return false;">  <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img></a>`;
 
-  html += `<a class="adminDeleteItem" title="Delete" href="` + $(this).attr('data-delete-link') + `" data-msg="This action will delete Sub-Category & photos permanently. If you are sure about this, press OK or Cancel now."> <i class='fa fa-trash'></i></a>`;
+  html += `<a class="adminDeleteItem" title="Delete" href="` + $(this).attr('data-delete-link') + `" data-msg="This action will delete Sub-Category & photos permanently. If you are sure about this, press OK or Cancel now.">  <img src="`+base_url+`/front/deleteicon.svg" height="24" width="24"></img></a>`;
 
-  html += `<a class="adminListItem" title="List" href="` + $(this).attr('data-index-link') + `" onclick="popupmenu('` + $(this).attr('data-index-link') + `', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-list'></i></a>`;
+  html += `<a class="adminListItem" title="List" href="` + $(this).attr('data-index-link') + `" onclick="popupmenu('` + $(this).attr('data-index-link') + `', 'toolbar=no, location=no',event); return false;">  <img src="`+base_url+`/front/listicon.svg" height="24" width="24"></img></a>`;
 
   // Append the generated HTML
   $(this).prepend(html);

@@ -7,16 +7,6 @@ $(".setting a").addClass( "active-menu");
 </script>
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-
-    <div class="row">
-        <div class="col-sm-6">
-            <h3 class="mb-0">Settings / Logo Manage</h3>
-          </div>
-    </div>
-    
-    </section>
 
 
     <div class="">
@@ -109,7 +99,7 @@ $(".setting a").addClass( "active-menu");
 
                       <tr>
                         <td colspan="2">
-                    <h5 class="text-danger text-center bg-dark">Logo Manage</h5></td>
+                    <h5 class="text-danger text-center bg-dark">SEO Manage</h5></td>
                       </tr>
                         <tr>
                           <td><label for="title">Robots.txt</label></td>
