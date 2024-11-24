@@ -41,7 +41,9 @@ Route::get('sitemapEdit', [HomeController::class, 'sitemapEdit'])->name('sitemap
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 // Route::get('sitemap', [SitemapController::class, 'siteMap'])->name('siteMap');
-
+Route::get('/load-inquiry-modal', function () {
+    return view('widget.inquirynow');
+})->name('load-inquiry-modal');
 
 Route::get('products', [HomeController::class, 'product'])->name('products');
 Route::get('/about', [HomeController::class, 'about'])->name('admin');

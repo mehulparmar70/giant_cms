@@ -360,5 +360,8 @@
 
     {{-- Additional custom JavaScript --}}
     @yield('custom-js')
+    
 </body>
+
+
 </html>

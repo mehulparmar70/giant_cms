@@ -295,7 +295,9 @@ $('.onscreen_casestudiesedit').each(function(){
 });
 
 $('.onscreen_product_internal_title3').each(function(){
-  $(this).prepend(`<div class="onscreen-product-internal-title-link3"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-subcategory')+`"onclick="popupmenu('`+$(this).attr('data-create-subcategory')+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-plus'></i></a><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <i class='fa fa-edit'></i></a><a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <i class='fa fa-trash'></i></a>`);
+  $(this).prepend(`<div class="onscreen-product-internal-title-link3"><a class="adminAddItem" title="Add" href="`+$(this).attr('data-create-subcategory')+`"onclick="popupmenu('`+$(this).attr('data-create-subcategory')+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/addicon.svg" height="24" width="24"></img></a>
+  <a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'&onscreenCms=true'+`"onclick="popupmenu('`+$(this).attr('data-link')+'&onscreenCms=true'+`', 'toolbar=no, location=no',event); return false;"> <img src="`+base_url+`/front/editicon.svg" height="24" width="24"></img></a>
+  <a class="adminDeleteItem" title="Delete" href="`+$(this).attr('data-delete-link')+`"data-msg="This action will delete Sub-Category & photos permanently If you are sure about this, then Press OK  or Press Cancel Now"> <img src="`+base_url+`/front/deleteicon.svg" height="24" width="24"></img></a>`);
 });
 
 $('.header_crud').each(function(){
@@ -2652,4 +2654,27 @@ function deletephoto(imageId) {
       });
     }
   });
+}
+
+function loadInquiryModal(event) {
+  event.preventDefault();
+
+  fetch('{{ route("load-inquiry-modal") }}')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('inquirypopup').innerHTML = html;
+
+      // Ensure modal element is properly initialized
+      const modalElement = document.getElementById('shareconceptModal');
+      const modal = new bootstrap.Modal(modalElement);
+      
+      modal.show();
+
+      // Attach the close event listener (if needed for manual control)
+      modalElement.addEventListener('hidden.bs.modal', function () {
+        // Optional: Clean up the modal-container div when closed
+        document.getElementById('modal-container').innerHTML = '';
+      });
+    })
+    .catch(error => console.error('Error loading modal:', error));
 }

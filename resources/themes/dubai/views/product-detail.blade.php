@@ -164,7 +164,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
 								data-delete-link="{{url('api')}}/media/media-delete/{{$productImage->id}}"
 								data-id="{{$productImage->id}}"
 							@endif
-						>
+						></div>
                       <a href="{{url('')}}/images/{{$productImage->image}}" class="product-detail-slider-item" data-fancybox="gallery">
                         <div class="product-detail-slider-img">
                           <img src="{{url('')}}/images/{{$productImage->image}}" alt="product-banner">
@@ -173,8 +173,9 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                           <img src="{{asset('/')}}/dubai/images/search-icon.svg" alt="search-icon">
                           Click To Enlarge
                         </button>
-					</div>
-                      </a>
+					</a>
+					
+                     
 					  @endforeach
 					  <?php } else { ?>
                       <a href="{{url('')}}/images/noimage.png" class="product-detail-slider-item" data-fancybox="gallery">
@@ -195,12 +196,11 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                   </div>
                 </div>
                 <div class="about-banner-desc wow zoomIn" data-wow-offset="200">
-					<div class="menu_crud" @if(session('LoggedUser'))
-					data-link="{{route('admin.about-page.editor')}}" @endif>
-					<a href="{{ $productLink->url }}" @if(session('LoggedUser'))
-						data-link="{{route('admin.about-page.editor')}}"
-					@endif></a>
-					</div>
+					<div class="onscreen_product_internal_title onscreen_product_internal_title3" @if(session('LoggedUser'))
+																	data-link="{{route('admin.category.edit', $current_cat->id)}}?type=sub_category&onscreenCms=true&id={{$mainCategory->id}}"
+																	data-create-subcategory="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$mainCategory->id}}"
+																	data-delete-link="{{route('admin.index')}}/category/delete/{{ $current_cat->id}}"
+																	@endif></div>
 				
 					<p>{!! $productDetail->description !!}</p>
                 </div>
