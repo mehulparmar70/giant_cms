@@ -2678,3 +2678,28 @@ function loadInquiryModal(event) {
     })
     .catch(error => console.error('Error loading modal:', error));
 }
+
+function submitContact() {
+  const form = document.getElementById('contact-form');
+  let formData = new FormData(form);
+
+  fetch(''+base_url+'/api/admin/send-contact', {
+    method: 'POST',
+    headers: {
+      'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+    },
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      window.location.href = "{{ route('theme::thank-you') }}"; // Redirect on success
+    } else {
+      alert(data.message || "An error occurred. Please try again.");
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Failed to submit the form. Please try again.');
+  });
+}

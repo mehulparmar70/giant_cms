@@ -1,5 +1,5 @@
 
-<form action="{{route('send-contact')}}" method="post" class="share-concept-form ms-2">
+<form id="contact-form" method="post" class="share-concept-form ms-2">
   @csrf
   <input type="hidden" name="token_response" class="token_response">
 
@@ -56,6 +56,7 @@
   </div>
 
   <div class="text-center">
-    <button class="btn btn-animation--infinity" type="submit">SUBMIT</button>
+  <button type="button" class="btn btn-animation--infinity" onclick="submitContact()">SUBMIT</button>
+    <!-- <button class="btn btn-animation--infinity" type="submit">SUBMIT</button> -->
   </div>
 </form>

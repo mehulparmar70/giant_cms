@@ -106,23 +106,17 @@ class ApiCallController extends Controller
 
     public function sendContact(Request $request)
 {
+    
     // Validate the incoming request
-    $request->validate([
-        'name' => 'required|string',
-        'phone' => 'nullable|string',
-        'email' => 'nullable|email',
-        'country' => 'nullable|string',
-        'message' => 'nullable|string',
-        'token_response' => 'required|string', // Captcha response
-    ]);
 
+ 
     // Handle Cloudflare Turnstile validation
     $turnstileResponse = $request->input('token_response');
     $secretKey = '0x4AAAAAAA029Z3KTwy3UWm2gh4L04U_raY'; // Replace with your actual Cloudflare secret key
     $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
     $response = file_get_contents("{$url}?secret={$secretKey}&response={$turnstileResponse}");
     $responseKeys = json_decode($response, true);
-
+   
     // Check if the CAPTCHA validation is successful
     if (isset($responseKeys['success']) && $responseKeys['success'] == true) {
         // Proceed with sending the email
@@ -136,7 +130,7 @@ class ApiCallController extends Controller
             'msg' => $request->message,
             'page_url' => $request->url(), // Current page URL
         ]);
-
+       
         // Save the form data into the database
         $add = new Contactus;
         $add->full_name = $request->name;

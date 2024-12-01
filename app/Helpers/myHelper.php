@@ -353,15 +353,15 @@ function sendMailNotification(string $type = "", string $to = 'sales@giantinflat
             break;
     }
 if($type == 'enquire'){
-    $formView = 'mail/send-inquiry';
+    $formView = 'theme::mail/send-inquiry';
 }else{
-    $formView = 'mail/send-notification';
+    $formView = 'theme::mail/send-notification';
 }
 
 
 
 try{
-    Mail::send('mail/thankyou-notification', $data, function($message) use ($user){
+    Mail::send('theme::mail/thankyou-notification', $data, function($message) use ($user){
         $message->from('sales@giantinflatables.in', 'Giant Inflatables Asia');
         $message->to($user['email']);
         $message->subject('Thank you for contacting us.');
