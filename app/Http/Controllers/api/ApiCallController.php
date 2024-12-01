@@ -107,16 +107,33 @@ class ApiCallController extends Controller
     public function sendContact(Request $request)
 {
     
-    // Validate the incoming request
-
- 
     // Handle Cloudflare Turnstile validation
     $turnstileResponse = $request->input('token_response');
     $secretKey = '0x4AAAAAAA029Z3KTwy3UWm2gh4L04U_raY'; // Replace with your actual Cloudflare secret key
+
+    // Set up cURL request
     $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
-    $response = file_get_contents("{$url}?secret={$secretKey}&response={$turnstileResponse}");
+    $postData = http_build_query([
+        'secret' => $secretKey,
+        'response' => $turnstileResponse,
+    ]);
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/x-www-form-urlencoded'
+    ]);
+
+    $response = curl_exec($ch);
+    if (curl_errno($ch)) {
+        return redirect()->back()->with('fail', 'CAPTCHA verification failed: ' . curl_error($ch));
+    }
+    curl_close($ch);
+
     $responseKeys = json_decode($response, true);
-   
+
     // Check if the CAPTCHA validation is successful
     if (isset($responseKeys['success']) && $responseKeys['success'] == true) {
         // Proceed with sending the email
