@@ -369,15 +369,15 @@ try{
     });
 
     Mail::send($formView, $data, function($message) use ($user){
-        $message->from('sales@giantinflatables.in', 'Giant Inflatables Asia');
-        $message->to('sales@giantinflatables.in');
+        $message->from('sales@giantinflatables.ae', 'Giant Inflatables Asia');
+        $message->to('sales@giantinflatables.ae');
         $message->subject($user['subject']);
         $message->replyTo($user['email']);
         
         $message->bcc(['myalivecreate@gmail.com']);
 
-        $message->bcc(['krutarth@live.com', 'prakash@thestudio5.com.au',
-        'myalivecreate@gmail.com', 'krishna@thestudio5.com.au']);
+        $message->bcc(['krutarth@live.com', 'sales@giantinflateables.in',
+        'myalivecreate@gmail.com',]);
     
     
         // $message->bcc(['krutarth@live.com', 'sales@giantinflatables.in', 'david@giantinflatables.com.au',
