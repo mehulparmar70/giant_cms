@@ -252,6 +252,9 @@ Route::get('/{category}/{subCategory}/{slug}', [HomeController::class, 'category
 // Route::get('/{category}/{subCategory}/{subCategory2}/{slug}', [HomeController::class, 'category_subcategory_subcategory2_product']);
 
 Route::get('/search', [HomeController::class, 'search_criteria']);
+Route::get('/thank-you', function () {
+    return view('thank-you'); // Replace 'thank-you' with your actual Blade view name
+})->name('theme::thank-you');
 
 Route::get('{slug}', function ($slug) {
     // Skip dynamic routing for 'powerup' prefixed URLs

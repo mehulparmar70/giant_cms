@@ -162,7 +162,7 @@ class ApiCallController extends Controller
         $add->save();
 
         // Redirect to the thank-you page
-        return redirect()->route('theme::thank-you');
+        return redirect()->route('thank-you');
     } else {
         // Handle failed CAPTCHA
         return redirect()->back()->with('fail', 'Failed CAPTCHA. Please try again.');
