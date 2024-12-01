@@ -2,6 +2,7 @@
 <form id="contact-form" method="post" class="share-concept-form ms-2">
   @csrf
   <input type="hidden" name="cf-turnstile-response" class="cf-turnstile-response">
+  <input type="hidden" name="page_url" value="{{ url()->current() }}">
 
   <div class="share-concept-field d-flex align-items-start">
     <div class="share-concept-icon d-flex align-items-center justify-content-center">

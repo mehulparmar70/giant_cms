@@ -7,6 +7,7 @@
     {{-- Additional theme-specific CSS --}}
     @yield('addon-css')
 
+    @if($redirectUrl)
     <script type="text/javascript">
       // Set the countdown time (3 seconds in this case)
       var countdownTime = 10;
@@ -17,13 +18,14 @@
               countdownTime--;
               document.getElementById("countdown").textContent = countdownTime + " Sec";
           } else {
-              window.location.href = "{{ url('/') }}"; // Redirect to the homepage
+            window.location.href = "{{ $redirectUrl }}"; // Redirect to the homepage
           }
       }
 
       // Update the countdown every 1 second (1000ms)
       setInterval(updateCountdown, 1000);
   </script>
+  @endif
   </head>
   <body>
   <?php $current_page = ''; 
@@ -43,7 +45,7 @@
             <h1 class="h3">
               <span>Thank you!</span> Your inquiry has been <span>successfully submitted,</span> <br>
               and we will get back to you within 24 hours. <br>
-              But that's okay! <br> Redirecting you to the <span>HOME</span> page shortly...
+              Redirecting you to the <span>HOME</span> page shortly...
               <img class="d-block mx-auto mt-md-4 mt-2 mb-md-1" src="{{asset('/')}}/dubai/images/home-big-icon.jpg" alt="home-icon">
               <span id="countdown">in 10 Sec</span>
             </h1>

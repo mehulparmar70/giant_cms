@@ -281,6 +281,18 @@ class HomeController extends Controller
         'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
     ], 404);
     }
+
+    public function thankYouPage(Request $request)
+    {
+        $redirectUrl = $request->input('redirect_url');  // Capture the query parameter
+        
+        return view('theme::thank-you', [
+            'redirectUrl' => $redirectUrl,
+            'pageData' => Pages::where('type', '404')->first(),  // Fetch 404 page data or adjust as needed
+            'testimonials' => Testimonials::where('status', 1)->orderBy('item_no')->orderBy('id', 'DESC')->limit(50)->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+        ]);
+    }
     
     public function product_internal($slug)
     {

@@ -2693,7 +2693,8 @@ function submitContact() {
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      window.location.href = "{{ route('theme::thank-you') }}"; // Redirect on success
+      // Redirect to the thank you page with the redirect URL passed from the controller
+      window.location.href = data.redirect_url; // Use the redirect URL from the response
     } else {
       alert(data.message || "An error occurred. Please try again.");
     }

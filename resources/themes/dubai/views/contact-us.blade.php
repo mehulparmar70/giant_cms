@@ -147,6 +147,7 @@ function goBack() {
 			  <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
 				<div class="share-concept-form-box wow flipInY" data-wow-offset="200">
 				  <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
+
 				  @include('widget.contact-form1')
 				</div>
 				<div class="contact-links-box text-center wow flipInY" data-wow-offset="200">

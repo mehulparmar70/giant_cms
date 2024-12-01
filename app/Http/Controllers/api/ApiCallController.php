@@ -147,7 +147,7 @@ class ApiCallController extends Controller
             'email' => $request->email,
             'country' => $request->country,
             'msg' => $request->message,
-            'page_url' => $request->url(), // Current page URL
+            'page_url' => $request->input('page_url'), // Current page URL
         ]);
        
         // Save the form data into the database
@@ -157,12 +157,17 @@ class ApiCallController extends Controller
         $add->phone_no = $request->phone;
         $add->email = $request->email;
         $add->message = $request->message;
-        $add->page_url = $request->url(); // Capture the current page URL
+        $add->page_url = $request->input('page_url'); // Capture the current page URL
         $add->status = 'success';
         $add->save();
 
         // Redirect to the thank-you page
-        return redirect()->route('thank-you');
+        // Redirect to the thank-you page and pass the original URL as a query parameter
+        return response()->json([
+            'success' => true,
+            'redirect_url' => route('thank-you', ['redirect_url' => $request->input('page_url')])
+        ]);
+
     } else {
         // Handle failed CAPTCHA
         return redirect()->back()->with('fail', 'Failed CAPTCHA. Please try again.');
