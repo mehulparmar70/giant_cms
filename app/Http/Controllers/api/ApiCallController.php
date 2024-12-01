@@ -13,96 +13,149 @@ use Intervention\Image\Facades\Image;
 
 class ApiCallController extends Controller
 {
-    public function sendContact(Request $request){
-        // dd($request->all());
+    // public function sendContact(Request $request){
+    //     // dd($request->all());
 
-        // New code for captcha
-        // checkEmailFilter();
-
-        $emailArray = explode(", ",checkEmailFilter()->email);
+    //     // New code for captcha
+    //     // checkEmailFilter();
+ 
+    //     $emailArray = explode(", ",checkEmailFilter()->email);
         
-        if( in_array( $request->email ,$emailArray ) )
-        {
-            return ['status' => 'fail', 'message' => $request->email.'found'];
-        }
-        else{
-            if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['token_response'])){
-                // return ($request->input());
-                $url='https://www.google.com/recaptcha/api/siteverify';
-                $secret='6Leh9bkUAAAAAOyJzjm921a2KlmNuiBZ5OzkD0cX';
-                $recaptcha_response=$_POST['token_response'];
+    //     if( in_array( $request->email ,$emailArray ) )
+    //     {
+    //         return ['status' => 'fail', 'message' => $request->email.'found'];
+    //     }
+    //     else{
+    //         if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['token_response'])){
+    //             // return ($request->input());
+    //             $url='https://www.google.com/recaptcha/api/siteverify';
+    //             $secret='6Leh9bkUAAAAAOyJzjm921a2KlmNuiBZ5OzkD0cX';
+    //             $recaptcha_response=$_POST['token_response'];
                 
-                $requestRecaptcha = file_get_contents($url . '?secret=' . $secret . '&response=' . $recaptcha_response);
-                $response = json_decode($requestRecaptcha);
+    //             $requestRecaptcha = file_get_contents($url . '?secret=' . $secret . '&response=' . $recaptcha_response);
+    //             $response = json_decode($requestRecaptcha);
                 
-                if($response->success==true && $response->score >= 0.5){
-                    $to = 'sales@giantinflatables.ae, sales@giantinflatables.in, krutarth@live.com ';                     
+    //             if($response->success==true && $response->score >= 0.5){
+    //                 $to = 'sales@giantinflatables.ae, sales@giantinflatables.in, krutarth@live.com ';                     
 
-                    sendMailNotification('contact_inquiry', $to, 'Inquiry From: '.$request->name,
-                        ['name'=>$request->name,
-                        'phone'=>$request->phone,
-                        'email' => $request->email,
-                        'country' => $request->country,
-                        'msg' => $request->message,
-                        'page_url' => $request->page_url,
-                    ]);
+    //                 sendMailNotification('contact_inquiry', $to, 'Inquiry From: '.$request->name,
+    //                     ['name'=>$request->name,
+    //                     'phone'=>$request->phone,
+    //                     'email' => $request->email,
+    //                     'country' => $request->country,
+    //                     'msg' => $request->message,
+    //                     'page_url' => $request->page_url,
+    //                 ]);
                     
-                    $add = new contactus;
-                    $add->full_name = $request->name;
-                    $add->country = $request->country;
-                    $add->phone_no = $request->phone;
-                    $add->email = $request->email;
-                    $add->message = $request->message;
-                    $add->page_url = $request->page_url;
-                    $add->status = 'success';
-                    $add->save();
-                    return back()->with('success', 'Thank you for showing interest in our work and sending 
-                    us the quote request. We will get back to you within 24 hours.');
-                    return('success');
-                    return ['status' => 'success', 'message' => 'Thank you for showing interest in our work and sending 
-                    us the quote request. We will get back to you within 24 hours.'];
-                }
-                else{
+    //                 $add = new contactus;
+    //                 $add->full_name = $request->name;
+    //                 $add->country = $request->country;
+    //                 $add->phone_no = $request->phone;
+    //                 $add->email = $request->email;
+    //                 $add->message = $request->message;
+    //                 $add->page_url = $request->page_url;
+    //                 $add->status = 'success';
+    //                 $add->save();
+    //                 return back()->with('success', 'Thank you for showing interest in our work and sending 
+    //                 us the quote request. We will get back to you within 24 hours.');
+    //                 return('success');
+    //                 return ['status' => 'success', 'message' => 'Thank you for showing interest in our work and sending 
+    //                 us the quote request. We will get back to you within 24 hours.'];
+    //             }
+    //             else{
                     
                   
-                    $add = new contactus;
-                    $add->full_name = $request->name;
-                    $add->country = $request->country;
-                    $add->phone_no = $request->phone;
-                    $add->email = $request->email;
-                    $add->message = $request->message;
-                    $add->page_url = $request->page_url;
-                    $add->status = 'fail';
-                    $add->save();
-                    return back()->with('fail', 'Thank you for showing interest in our work and sending 
-                    us the quote request. We will get back to you within 24 hours.');
-                    return('success');
-                    return ['status' => 'fail', 'message' => 'Thank you for showing interest in our work and sending 
-                    us the quote request. We will get back to you within 24 hours.'];   
-                }   
-            }
-        }
+    //                 $add = new contactus;
+    //                 $add->full_name = $request->name;
+    //                 $add->country = $request->country;
+    //                 $add->phone_no = $request->phone;
+    //                 $add->email = $request->email;
+    //                 $add->message = $request->message;
+    //                 $add->page_url = $request->page_url;
+    //                 $add->status = 'fail';
+    //                 $add->save();
+    //                 return back()->with('fail', 'Thank you for showing interest in our work and sending 
+    //                 us the quote request. We will get back to you within 24 hours.');
+    //                 return('success');
+    //                 return ['status' => 'fail', 'message' => 'Thank you for showing interest in our work and sending 
+    //                 us the quote request. We will get back to you within 24 hours.'];   
+    //             }   
+    //         }
+    //     }
 
 
-        // return checkEmailFilter();
+    //     // return checkEmailFilter();
 
 
-        // // return ($request->input());
+    //     // // return ($request->input());
      
 
-        // $to = 'sales@giantinflatables.in';
+    //     // $to = 'sales@giantinflatables.in';
 
-        // sendMailNotification('contact_inquiry', $to, 'Inquiry From: '.$request->name,
-        //         ['name'=>$request->name, 'phone'=>$request->phone,
-        //         'email' => $request->email,
-        //         'country' => $request->country,
-        //         'msg' => $request->message,
-        //         'page_url' => $request->page_url,
+    //     // sendMailNotification('contact_inquiry', $to, 'Inquiry From: '.$request->name,
+    //     //         ['name'=>$request->name, 'phone'=>$request->phone,
+    //     //         'email' => $request->email,
+    //     //         'country' => $request->country,
+    //     //         'msg' => $request->message,
+    //     //         'page_url' => $request->page_url,
 
-        // ]);
+    //     // ]);
 
-        // return back()->with('success', 'Contact Inquiry Sent...');
+    //     // return back()->with('success', 'Contact Inquiry Sent...');
+    // }
+
+    public function sendContact(Request $request)
+{
+    // Validate the incoming request
+    $request->validate([
+        'name' => 'required|string',
+        'phone' => 'nullable|string',
+        'email' => 'nullable|email',
+        'country' => 'nullable|string',
+        'message' => 'nullable|string',
+        'token_response' => 'required|string', // Captcha response
+    ]);
+
+    // Handle Cloudflare Turnstile validation
+    $turnstileResponse = $request->input('token_response');
+    $secretKey = 'your-cloudflare-turnstile-secret-key'; // Replace with your actual Cloudflare secret key
+    $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+    $response = file_get_contents("{$url}?secret={$secretKey}&response={$turnstileResponse}");
+    $responseKeys = json_decode($response, true);
+
+    // Check if the CAPTCHA validation is successful
+    if (isset($responseKeys['success']) && $responseKeys['success'] == true) {
+        // Proceed with sending the email
+                    // $to = 'sales@giantinflatables.ae, sales@giantinflatables.in, krutarth@live.com';
+        $to = 'mehulp7054@gmail.com'; // Replace with actual email addresses
+        sendMailNotification('contact_inquiry', $to, 'Inquiry From: '.$request->name, [
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'country' => $request->country,
+            'msg' => $request->message,
+            'page_url' => $request->url(), // Current page URL
+        ]);
+
+        // Save the form data into the database
+        $add = new Contactus;
+        $add->full_name = $request->name;
+        $add->country = $request->country;
+        $add->phone_no = $request->phone;
+        $add->email = $request->email;
+        $add->message = $request->message;
+        $add->page_url = $request->url(); // Capture the current page URL
+        $add->status = 'success';
+        $add->save();
+
+        // Redirect to the thank-you page
+        return redirect()->route('theme::thank-you');
+    } else {
+        // Handle failed CAPTCHA
+        return redirect()->back()->with('fail', 'Failed CAPTCHA. Please try again.');
     }
+}
+
 
 
     public function sendContactEnquiry(Request $request){
