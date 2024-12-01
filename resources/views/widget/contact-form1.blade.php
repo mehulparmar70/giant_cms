@@ -1,7 +1,7 @@
 
 <form id="contact-form" method="post" class="share-concept-form ms-2">
   @csrf
-  <input type="hidden" name="token_response" class="token_response">
+  <input type="hidden" name="cf-turnstile-response" class="cf-turnstile-response">
 
   <div class="share-concept-field d-flex align-items-start">
     <div class="share-concept-icon d-flex align-items-center justify-content-center">
@@ -60,3 +60,8 @@
     <!-- <button class="btn btn-animation--infinity" type="submit">SUBMIT</button> -->
   </div>
 </form>
+<script>
+  function onTurnstileSuccess(token) {
+    document.querySelector('.cf-turnstile-response').value = token;
+  }
+</script>

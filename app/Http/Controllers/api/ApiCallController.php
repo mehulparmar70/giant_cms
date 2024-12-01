@@ -108,7 +108,9 @@ class ApiCallController extends Controller
 {
     
     // Handle Cloudflare Turnstile validation
-    $turnstileResponse = $request->input('token_response');
+ 
+    // Retrieve the correct Turnstile response
+    $turnstileResponse = $request->input('cf-turnstile-response');
     $secretKey = '0x4AAAAAAA029Z3KTwy3UWm2gh4L04U_raY'; // Replace with your actual Cloudflare secret key
 
     // Set up cURL request
