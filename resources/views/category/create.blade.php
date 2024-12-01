@@ -113,16 +113,16 @@ else{
 
 
 <form method="post" id="addCategory" enctype="multipart/form-data" class="form-horizontal" onsubmit="return false;">
-  <div class="cmsModal-formGroup">
-  @csrf
-  <div class="p-0">
+  
+    @csrf
+
     <input type="hidden" id="page_type" value="singleUpload">
-    <div class="hidden-block form-group row">
+    <div class="cmsModal-row">
       @if($pageType == 'sub_category')
-      <div class="category-block col-sm-4">
-        <div class="sub-category">
+      <div class="cmsModal-column">
+        <div class="cmsModal-formGroup">
           <label class="cmsModal-formLabel" for="search_index">Main Category</label>
-          <select name="category_parent_id" class="cmsModal-formControl category_parent_id" required>
+          <select name="category_parent_id" class="cmsModal-formSelect category_parent_id" required>
             <option value="">Select Main Category</option>
             @foreach($parent_categories as $parent_category)
             <option value="{{$parent_category->id}}" @if(isset($_REQUEST['id']) && $_REQUEST['id']==$parent_category->
@@ -137,7 +137,7 @@ else{
           </select>
 
           <span class="text-danger">@error('category_parent_id') {{$message}} @enderror</span>
-        </div>
+        
         @if(isset($_REQUEST['id']))
 
         <input type="hidden" name="parent_id" class="parent_id" value="{{$_REQUEST['id']}}" />
@@ -151,13 +151,16 @@ else{
 
         <input type="hidden" name="page_type" value="sub_category" />
 
+      
       </div>
-
+    </div>
       @else
       <input type="hidden" name="parent_id" class="parent_id" value="0">
       @endif
+   
 
-      <div class="@if($pageType == 'main_category') col-sm-4 col-md-3 @else col-sm-4 @endif">
+      <div class="@if($pageType == 'main_category') cmsModal-column @else cmsModal-column @endif">
+        <div class="cmsModal-formGroup">
         <label class="cmsModal-formLabel" for="search_index">Add {{$pageTitle}}</label>
         <input type="hidden" name="type" value="name">
         <input type="text" class="cmsModal-formControl name-input" name="name" placeholder="Add {{$pageTitle}}"
@@ -165,166 +168,125 @@ else{
 
         <span class="text-danger">@error('name') {{$message}} @enderror</span>
       </div>
-   
-      <div class="@if($pageType == 'main_category') col-sm-4 col-md-6 @else col-sm-6 mt-2 @endif">
+      </div>
+
+      <div class="@if($pageType == 'main_category') cmsModal-column @else cmsModal-column @endif">
+        <div class="cmsModal-formGroup">
         <label class="cmsModal-formLabel" for="search_index">Short
           Description</label>
-        <input type="text" class="cmsModal-formControl" name="short_description" placeholder="Short Description">{{old('short_description')}}</input>
+        <input type="text" class="cmsModal-formControl" name="short_description"
+          placeholder="Short Description">{{old('short_description')}}</input>
         <span class="text-danger">@error('short_description') {{$message}} @enderror</span>
+      </div>
+      </div>
       </div>
 
 
-      <div class="form-group row">
-        <div class="col-sm-12 pt-3 pb-3">
+      <div class="cmsModal-row">
+        <div class="cmsModal-column">
+          <div class="cmsModal-formGroup">
           <label class="cmsModal-formLabel" for="search_index">Add {{$pageTitle}}
             Description</label>
           <textarea id="editor" name="description" placeholder="Category Descriptions">{{old('description')}}</textarea>
 
           <span class="text-danger">@error('description') {{$message}} @enderror</span>
         </div>
+      </div>
+      </div>
 
 
-        <div class="col-sm-6">
+        <div class="cmsModal-row">
 
-          <div class="col-sm-12">
+          <div class="cmsModal-column">
+            <div class="cmsModal-formGroup">
             <label class="cmsModal-formLabel" for="search_index">Add Feature Image</label><br>
             <input type="file" name="image" class="file_input " id="image" accept="image/png,image/jpeg,image/webp" />
             <span class="text-danger">@error('image') {{$message}} @enderror</span>
-          </div>
-          <div class="col-sm-12 mt-5">
             <img class="elevation-2 perview-img" width="120" src="{{asset('/')}}img/no-item.jpeg">
           </div>
         </div>
-
+          <div class="cmsModal-column">
+          
         @if(isset($_REQUEST['onscreenCms']) && $_REQUEST['onscreenCms'] == 'true')
         <input type="hidden" name="onscreenCms" value="true">
         @endif
-
-
-        <div class="col-sm-6">
-        <label class="cmsModal-formLabel" for="search_index">Add SEO CONTENTS</label>
-        <div class="@if($pageType == 'main_category') col-sm-12 col-md-12 @else col-sm-12 @endif">
-        <input class="cmsModal-formControl" name="slug" placeholder="URL label" value="{{old('slug')}}" required>
-        <span class="text-danger">@error('slug') {{$message}} @enderror</span>
-      </div>
-          <div class="col-sm-12 mb-2  p-0">
+          <div class="@if($pageType == 'main_category') cmsModal-formGroup @else cmsModal-formGroup @endif">
+          <label class="cmsModal-formLabel" for="search_index">Add SEO CONTENTS</label>
+            <input class="cmsModal-formControl" name="slug" placeholder="URL label" value="{{old('slug')}}" required>
+            <span class="text-danger">@error('slug') {{$message}} @enderror</span>
 
             <input type="text" class="cmsModal-formControl" name="meta_title" placeholder="Seo Title"
-              value="{{old('meta_title')}}">
-            <span class="text-danger">@error('meta_title') {{$message}} @enderror</span>
+            value="{{old('meta_title')}}">
+          <span class="text-danger">@error('meta_title') {{$message}} @enderror</span>
+
+          <input type="text" class="cmsModal-formControl" name="meta_keyword" placeholder="Seo Keywords with ,"
+          value="{{old('meta_keyword')}}">
+        <span class="text-danger">@error('meta_keyword') {{$message}} @enderror</span>
+
+        <textarea type="text" class="cmsModal-formControl" name="meta_description"
+        placeholder="Seo Description">{{old('meta_description')}}</textarea>
+      <span class="text-danger">@error('meta_description') {{$message}} @enderror</span>
           </div>
 
-          <div class="col-sm-12 mb-2  p-0">
-            <input type="text" class="cmsModal-formControl" name="meta_keyword" placeholder="Seo Keywords with ,"
-              value="{{old('meta_keyword')}}">
-            <span class="text-danger">@error('meta_keyword') {{$message}} @enderror</span>
-          </div>
-          <div class="col-sm-12 mb-2  p-0">
-            <textarea type="text" class="cmsModal-formControl" name="meta_description"
-              placeholder="Seo Description">{{old('meta_description')}}</textarea>
-            <span class="text-danger">@error('meta_description') {{$message}} @enderror</span>
-          </div>
-          <div class="row col-sm-12">
-            <div class="col-sm-6">
-              <label class="cmsModal-formLabel" for="search_index">Allow search engines?</label>
-              <select class="cmsModal-formControl col-sm-5" name="search_index">
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
+          <div class="cmsModal-row">
+            <div class="cmsModal-column">
+                <div class="cmsModal-formGroup">
+                    <label for="" class="cmsModal-formLabel">Allow Search Engine?</label>
+                    <select class="cmsModal-formSelect mx-width-150" name="search_index">
+                        <option selected value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
             </div>
+            <div class="cmsModal-column">
+                <div class="cmsModal-formGroup">
+                    <label for="" class="cmsModal-formLabel">Follow Links?</label>
+                    <select class="cmsModal-formSelect mx-width-150" name="search_follow">
+                        <option selected value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
-            <div class="col-sm-6">
-              <label class="cmsModal-formLabel" for="search_follow">Follow links?</label>
-              <select class="cmsModal-formControl col-sm-5" name="search_follow">
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-            </div>
+        <div class="cmsModal-formGroup">
+          <label for="" class="cmsModal-formLabel">Canonical URL</label>
+          <input type="text" name="" id="" class="cmsModal-formControl" name="canonical_url" placeholder="Canonical URL" />
+          <div class="mt-15px">
+              <input class="cmsModal-formCheckbox mr-15px" type="checkbox" id="exampleCheck1" name="status" checked />
+              <a href="javascript:void(0)" type="button" class="cmsBtn green">Active</a>
           </div>
-          <div class="col-sm-12 mt-2">
-            <label class="cmsModal-formLabel" for="search_follow">Canonical Url </label>
-            <input type="text" class="cmsModal-formControl" name="canonical_url" placeholder="Canonical URL">
-            <span class="text-dark"></span>
-          </div>
-          <div class="col-sm-6 mt-2">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1" checked />
-              <h5> <span class="badge badge-success">Active</span></h5>
-            </div>
-          </div>
+      </div>
+    
+        </div>
         </div>
 
 
-        <!-- <div class="col-sm-6">
-                        <div class="col-sm-12">
-                          <div class="col-sm-12 pl-0 mt-3">
-                            <input type="text" class="cmsModal-formControl" name="canonical_url" 
-                              placeholder="Canonical URL" >
-                            <span class="text-dark"></span>
-                          </div>
-  
-                          </div>
-                          <div class="col-sm-6 mt-4">
-                            <div class="form-check">
-                              <input type="checkbox" class="form-check-input  pull-right" name="status" 
-                                  id="exampleCheck1"
-                                checked
-                                  />
-                                  
-                                <h5> <span class="badge badge-success">Active</span></h5>
-                                
-                            </div>	
-                            
-                          </div>
-                        
-                        
-                        
-                        
-                        
-                        </div> -->
-
-
+        <div class="cmsModal-footer">
         @if($pageType == 'main_category')
 
 
 
-        <div class="col-sm-12 text-center mt-4 row">
-          {{-- @if(request()->get('onscreenCms') == 'true')
-          <div class="col-sm-6 mt-4 text-right">
-
-            <button type="submit" class="" name="close" value="1"><i class="fa fa-floppy-o"
-                aria-hidden="true"></i>
-              Save & Close</button>
-          </div>
-          @endif --}}
-          <div class="col-sm-6 @if(request()->get('onscreenCms') == 'true') text-left @else text-right @endif mt-4">
-            {{-- <button type="submit" class=""><i class="fa fa-floppy-o" aria-hidden="true"></i>
-              Save & Create Sub Category</button> --}}
-            <button type="button" onclick="addCategorieSubmit()" class="cmsBtn blue"><i class="fa fa-floppy-o"
-                aria-hidden="true"></i>
+      
+            <button type="button" class="cmsBtn blue">
+              Close</button>
+            <button type="button" onclick="addCategorieSubmit()" class="cmsBtn blue">
               Save Category</button>
-          </div>
-        </div>
+       
+       
 
-       @elseif($pageType == 'sub_category')
+        @elseif($pageType == 'sub_category')
 
-        <div class="col-sm-12 text-center mt-4 row">
-          <button type="button" onclick="addCategorieSubmit()" class="cmsBtn blue"><i class="fa fa-floppy-o"
-            aria-hidden="true"></i>
-          Save Category</button>
-          <!-- <button type="submit" class="cmsBtn blue" name="close" value="1"><i
-              class="fa fa-floppy-o" aria-hidden="true"></i>
-            Save & Close</button> -->
-          <!-- <button type="submit" class="col-sm-4  mr-2"><i class="fa fa-floppy-o"
-              aria-hidden="true"></i>
-            Save & Add Photos</button>
-          <button type="submit" class="" name="close" value="2"><i class="fa fa-floppy-o"
-              aria-hidden="true"></i>
-            Save & Create Sub Category</button>
-           -->
-        </div> 
+     
+          <button type="button"  class="cmsBtn blue">
+            Close</button>
+          <button type="button" onclick="addCategorieSubmit()" class="cmsBtn blue">
+            Save Category</button>
+
+
+       
         @endif
       </div>
-      </div>
+
 
 </form>

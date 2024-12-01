@@ -74,7 +74,7 @@
           @includeWhen($type == 'Blogs', 'blog.index')
           @includeWhen($type == 'AddBlog', 'blog.create')
           @includeWhen($type == 'BlogEdit', 'blog.edit')
-          @includeWhen($type == 'BlogEdit', 'blog.edit')
+
           
 
         @elseif(isset($sliders) && !empty($sliders))

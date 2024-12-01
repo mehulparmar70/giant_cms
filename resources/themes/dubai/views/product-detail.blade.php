@@ -147,8 +147,10 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                         <img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="arrow-circle">
                       </button>
                       <ul class="dropdown-menu">
+
 					  @foreach(getCustomSubCategories($current_cat->parent_id) as $key => $subCategories1)
-                        <li><a class="dropdown-item" href="{{ $subCategories1->slug }}"><span class="hover-underline-animation left">{{$subCategory->name}}</span></a></li>
+          
+                        <li><a class="dropdown-item" href="{{ $subCategories1->slug }}"><span class="hover-underline-animation left">{{$subCategories1->name}}</span></a></li>
 						@endforeach
 
                       </ul>
@@ -158,17 +160,22 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                     <div class="product-detail-slider">
 						<?php if (count($productImages) > 0) {?>
 							@foreach($productImages as $productImage)
-							<div class="my_slider_thumb"
-							@if(session('LoggedUser'))
-								data-link="{{route('admin.photo.manage')}}?page=manage&main_category={{$mainCategory->id}}&sub_category={{$subCategory->id}}"
-								data-delete-link="{{url('api')}}/media/media-delete/{{$productImage->id}}"
-								data-id="{{$productImage->id}}"
-							@endif
-						></div>
-                      <a href="{{url('')}}/images/{{$productImage->image}}" class="product-detail-slider-item" data-fancybox="gallery">
+		
+              <a href="{{ url('images/' . $productImage->image) }}" 
+                class="product-detail-slider-item" 
+                data-fancybox="gallery"
+                data-title="{{ Str::slug($productImage->alt_text) }}">
                         <div class="product-detail-slider-img">
-                          <img src="{{url('')}}/images/{{$productImage->image}}" alt="product-banner">
+                   
+                          <img src="{{url('')}}/images/{{$productImage->image}}" alt="{{ $productImage->alt_text }}">
                         </div>
+                        <div class=" product-enlarge-btn theme-heading d-flex align-items-center gap-2 my_slider_thumb"
+                        @if(session('LoggedUser'))
+                          data-link="{{route('admin.photo.manage')}}?page=manage&main_category={{$mainCategory->id}}&sub_category={{$subCategory->id}}"
+                          data-delete-link="{{url('api')}}/media/media-delete/{{$productImage->id}}"
+                          data-id="{{$productImage->id}}"
+                        @endif
+                      ></div>
                         <button type="button" class="product-enlarge-btn theme-heading d-flex align-items-center gap-2">
                           <img src="{{asset('/')}}/dubai/images/search-icon.svg" alt="search-icon">
                           Click To Enlarge

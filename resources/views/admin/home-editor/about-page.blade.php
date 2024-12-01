@@ -1,4 +1,4 @@
-<div class="row">
+
 <form id="ajaxForm" method="post" enctype="multipart/form-data" class="form-horizontal" action="{{ route('admin.page-editor.store') }}">
     @csrf
 
@@ -32,8 +32,8 @@
         <div class="cmsModal-column">
             <div class="cmsModal-formGroup">
             <label class="cmsModal-formLabel" for="short_description">Short Description</label>
-            <input type="hidden" class="cmsModal-formControl" name="type" value="about_page">
             <input type="text" class="cmsModal-formControl" name="short_description" placeholder="Short Description" value="{{ $pageData->subtitle }}">
+            <input type="hidden" class="cmsModal-formControl" name="type" value="about_page">
         </div>
         </div>
         </div>
@@ -60,12 +60,10 @@
         </div>
 
         <!-- Form Footer Buttons -->
-        <div class="card-footer text-center">
-            <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save & Close</button>
-            <button  class="cmsBtn blue" name="closemodal"><i class="fa fa-close" aria-hidden="true"></i> Close</button>
+        <div class="cmsModal-footer">
+            <button type="submit" class="cmsBtn blue"> Save & Close</button>
+            <button  class="cmsBtn blue" name="closemodal"> Close</button>
         </div>
    
 </form>
 
-
-</div>

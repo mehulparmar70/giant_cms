@@ -139,6 +139,24 @@ class HomeController extends Controller
         return response()->view('index', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
+
+    public function product_image($slug, $imageTitle)
+{
+    // Find the product based on the slug
+    $product = Product::where('slug', $slug)->firstOrFail();
+
+    // Find the specific image based on the imageTitle
+    $productImage = ProductImage::where('alt_text', 'LIKE', '%' . str_replace('-', ' ', $imageTitle) . '%')->first();
+
+    if (!$productImage) {
+        abort(404, 'Image not found');
+    }
+
+    // Return a view or JSON response as needed
+    return view('product.image-detail', compact('product', 'productImage'));
+}
+
+
     public function product(Request $request)
     {
         //Session::forget('homePageCatId');
@@ -224,6 +242,44 @@ class HomeController extends Controller
         ];
         
         return view('theme::product-internal', $data);
+    }
+    
+    public function dynamicPage(Request $request, $slug)
+    {
+        // Check if the slug exists in the url_list table for main pages
+        $urlData = UrlList::where('url', 'like', '%' . $slug)->first();
+    
+        if ($urlData) {
+            // Determine which view to load based on URL data
+            switch ($urlData->name) {
+                case 'Products':
+                    return $this->product($request);
+                case 'About':
+                    return $this->about();
+                case 'Contact':
+                    return $this->contact();
+                case 'Blog':
+                    return $this->updates();
+                default:
+                    // Generic fallback view for other pages
+                    return view('theme::generic', ['data' => $urlData]);
+            }
+        }
+    
+        // If not found in url_list, check in the categories table
+        $category = Category::where('slug', $slug)->first();
+        if ($category) {
+            // Load the category view or call the relevant method
+            return $this->product_internal($slug);
+        }
+    
+        // If slug doesn't match any record, return a 404 response
+        // abort(404, 'Page not found');
+        return response()->view('theme::404', ['slug' => $slug,
+        'pageData' => Pages::where('type', '404')->first(),
+        'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
+        'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+    ], 404);
     }
     
     public function product_internal($slug)

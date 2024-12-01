@@ -243,7 +243,7 @@ Route::post('/admin/themes/activate/{id}', [ThemeController::class, 'activateThe
 
 });
 
-Route::get('/{slug}', [HomeController::class, 'product_internal']);
+// Route::get('/{slug}', [HomeController::class, 'product_internal']);
 
 Route::get('product/{slug}', [HomeController::class, 'product_internal']);
 Route::get('/product/{category}', [HomeController::class, 'category_product']);
@@ -253,3 +253,11 @@ Route::get('/{category}/{subCategory}/{slug}', [HomeController::class, 'category
 
 Route::get('/search', [HomeController::class, 'search_criteria']);
 
+Route::get('{slug}', function ($slug) {
+    // Skip dynamic routing for 'powerup' prefixed URLs
+    if (str_starts_with($slug, 'powerup')) {
+        abort(404); // Explicitly return a 404 for powerup routes
+    }
+
+    return app(HomeController::class)->dynamicPage(request(), $slug); // Call dynamicPage for other slugs
+})->where('slug', '.*')->name('dynamic.page');

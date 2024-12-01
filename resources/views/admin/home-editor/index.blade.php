@@ -20,7 +20,7 @@
 
 
 
-<div class="row">
+
 <form id="ajaxForm" method="post" enctype="multipart/form-data" class="form-horizontal"
   action="{{route('admin.page-editor.store')}}">
   @csrf
@@ -79,11 +79,7 @@
       
       <div class="cmsModal-column">
         @include('widget.seo-content')
-        <div class="cmsModal-formGroup">
-        <label for="cmsModal-formLabel">Page Url</label>
-        <input type="url" class="cmsModal-formControl" name="url" placeholder="Aboutus Page Url" value="{{$homeAbout->url}}">
-        <span class="text-danger">@error('about_url') {{$message}} @enderror</span>
-      </div>
+ 
       </div>
       <div class="cmsModal-column">
         @include('widget.seo-content-2')
@@ -92,15 +88,13 @@
 
  
 
-  <div class="cmsModal-row">
+  <div class="cmsModal-footer">
     @if(request()->get('onscreenCms') == 'true')
-    <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o"
-        aria-hidden="true"></i>
+    <button type="submit" class="cmsBtn blue" name="close" value="1">
       Save & Close</button>
     @else
-    <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save
+    <button type="submit" class="cmsBtn blue">Save
       Data</button>
     @endif
   </div>
 </form>
-</div>
