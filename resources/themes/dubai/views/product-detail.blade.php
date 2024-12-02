@@ -146,7 +146,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                         Other SUB CATEGORY
                         <img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="arrow-circle">
                       </button>
-                      <ul class="dropdown-menu">
+                      <ul class="dropdown-menu dropdown-menu-end">
 
 					  @foreach(getCustomSubCategories($current_cat->parent_id) as $key => $subCategories1)
           
@@ -213,7 +213,11 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                 </div>
               </div>
               <div class="col-xl-3 col-md-4 wow fadeInRight" data-wow-offset="200">
-                <div class="share-concept-form-box -sticky mx-auto">
+                <button class="btn btn-animation dropdown-toggle py-2 invisible" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Other SUB CATEGORY
+                    <img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="arrow-circle">
+                </button>
+                <div class="share-concept-form-box -sticky mx-auto mt-3">
                   <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                         @include('widget.contact-form1')
                 </div>
