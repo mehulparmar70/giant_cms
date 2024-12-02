@@ -8,21 +8,18 @@
     @yield('addon-css')
   </head>
   <body>
-  <?php $current_page = ''; 
-  $updatesLink = App\Models\admin\UrlList::find(113);  // Updates link
-    $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
-    $homeLink = App\Models\admin\UrlList::find(95);  // Home link
-    $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
-    ?>
+  <?php $current_page = '';     $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
+  $homeLink = App\Models\admin\UrlList::find(95);  // Home link
+  $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
+  ?>
     
     {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
     @includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'])
 
-    {{-- Main content of the page --}}
         <!-- banner area part -->
-        <section class="product-detail-banner-section common-inner-banner header-top-space position-relative">
+        <section class="products-banner-section common-inner-banner header-top-space position-relative">
           <div class="bg-img-wrap">
-            <img class="bg-img-top opacity-50" src="{{asset('/')}}/dubai/images/about-banner.webp" alt="about-banner">
+            <img class="bg-img-top opacity-50" src="{{asset('/')}}/dubai/images/about-banner.webp" alt="products-banner">
             <img class="bg-img-bottom" src="{{asset('/')}}/dubai/images/red-effect-bottom.webp" alt="red-effect-bottom">
           </div>
           <div class="container position-relative">
@@ -31,48 +28,46 @@
                 <a href="{{ $homeLink->url }}" class="header-top-home d-flex align-items-center text-uppercase">
                   <img class="me-2" src="{{asset('/')}}/dubai/images/home-icon.png" alt="home-icon">Home
                 </a>
-                <span class="text-uppercase">Updates</span>
+                <span class="text-uppercase">Search</span>
               </div>
-              <a href="{{ $updatesLink->url }}" class="breadcrumb-back text-uppercase">Back<img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle"></a>
+              <a href="{{ $homeLink->url }}" class="breadcrumb-back text-uppercase">Back<img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle"></a>
             </div>
-            <div class="row g-lg-4 g-3 mt-lg-4 mt-2 pb-3">
-              <div class="col-xl-9 col-md-8">
-                <div class="product-detail-wrap wow fadeInLeft" data-wow-offset="200">
-                  <div class="product-detail-title d-flex justify-content-md-start justify-content-center">
-                    <h5 class="me-2 mt-1">{{$blogDetail->title}}</h5>
-                    <div class="description_blk onscreen_blog_detail_page" @if(session('LoggedUser'))
-                    data-link="{{route('blog.edit', $blogDetail->id)}}"
-                  @endif></div>
-                  </div>
-                  <div class="mt-4 mb-lg-5 mb-4 mx-2">
-                    <div class="product-detail-slider">
-                      <a  class="product-detail-slider-item" data-fancybox="gallery">
-                        <div class="product-detail-slider-img">
-                          <img src="{{ url('/') }}/images/{{ $blogDetail->image }}" alt="product-banner">
-                        </div>
-                        <!-- <button type="button" class="product-enlarge-btn theme-heading d-flex align-items-center gap-2">
-                          <img src="{{asset('/')}}/dubai/images/search-icon.svg" alt="search-icon">
-                          Click To Enlarge
-                        </button> -->
-                      </a>
-          
+            <div class="theme-stroke-heading text-center text-uppercase mb-4">
+              <strong class="letters">Search</strong>
+              <h3 class="h3 letters">Se<span>arch</span></h3>
+              <div  class="product_title_1"  @if(session('LoggedUser'))
+              data-link="{{route('admin.blog-page.editor')}}?onscreenCms=true"
+          @endif></div>
+            </div>
+            <div class="updates-section -update-page">
+              <div class="updates-wrap position-relative">
+                <div class="container">
+                  <div class="row updates-blocks-list">
+                    
+                    @foreach($searchData as $search)
+                    
+
+                    <div class="col-md-4 col-sm-6 updates-blocks-col">
+                      <div class="updates-slider-item">
+                        <a href="{{ url('/') }}/{{$search['Slug']}}" class="updates-box wow bounce" data-wow-offset="200">
+                          <div class="updates-box-img">
+                            <img src="{{$search['Image']}}" />
+                          </div>
+                          <div class="updates-box-content">
+                
+                            <h6>{{ $search['Title'] }}</h6>
+                            <p>{!! html_entity_decode($search['Description']) !!}</p>
+                            <span class="btn">View More</span>
+                          </div>
+                        </a>
+                      </div>
                     </div>
-                    <!-- <div class="product-detail-custom-nav slider-reverse-arrows d-flex justify-content-between mt-4 px-3">
-                      <div class="text-uppercase my-auto">LATEST Images - <span class="product-slider-counter"></span></div> 
-                    </div> -->
+                    @endforeach
                   </div>
-                </div>
-                <div class="about-banner-desc wow zoomIn" data-wow-offset="200">
-                  <div class="description_blk onscreen_blog_detail_page" @if(session('LoggedUser'))
-                  data-link="{{route('blog.edit', $blogDetail->id)}}"
-                @endif></div>
-                               {!! html_entity_decode($blogDetail->full_description) !!}
-                </div>
-              </div>
-              <div class="col-xl-3 col-md-4 wow fadeInRight" data-wow-offset="200">
-                <div class="share-concept-form-box -sticky mx-md-0 mx-auto">
-                  <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
-                  @include('widget.contact-form1')
+                  <div class="pagination text-center mb-xxl-3 mb-1">
+
+          
+                  </div>
                 </div>
               </div>
             </div>
@@ -84,54 +79,11 @@
             <div class="bg-img-wrap">
                 <img class="bg-img-bottom opacity-25" src="{{asset('/')}}/dubai/images/desert-transparent.webp" alt="desert-bg">
             </div>
-            <div class="updates-section">
-              <div class="container">
-                <div class="theme-stroke-heading text-center text-uppercase">
-                  <strong class="letters">Other Updates</strong>
-                  <h3 class="h3 letters" onclick="window.location.href = '{{ $updatesLink->url }}';">Other <span>Updates</span></h3>
-                </div>
-              </div>
-              <div class="updates-wrap mt-3">
-                <div class="container pt-2">
-                  <div class="position-relative wow zoomInDown" data-wow-offset="200">
-                    <div class="updates-slider px-3">
-                      @foreach($latestUpdates as $updatesList)
-                      <div class="updates-slider-item">
-                        <a href="{{ url('updates') }}/{{$updatesList->slug}}" class="updates-box">
-                          <div class="updates-box-img">
-                            <img src="{{ url('/') }}/images/{{ $updatesList->image }}" />
-                          </div>
-                          <div class="updates-box-content">
-                            <div align="right"  class="onscreen_blog_detail_page" @if(session('LoggedUser'))
-                            data-create-link="{{route('blog.create')}}"
-                            data-link="{{route('blog.edit', $updatesList->id)}}"
-                            data-delete-link="{{route('blog.delete',$updatesList->id)}}"
-                            data-index-link="{{ route('blog.index') }}"
-                          @endif></div>
-                            <h6>{{$updatesList->title}}</h6>
-                            <p>                {!! html_entity_decode($updatesList->short_description) !!}</p>
-                            <span class="btn">View More</span>
-                          </div>
-                        </a>
-                      </div>
-                      @endforeach
-                    </div>
-                    <div class="updates-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-4">
-                      <a href="{{ $updatesLink->url }}" class="btn text-uppercase btn-animation--infinity">VIEW ALL UPDATES</a>
-                    </div>
-                    <div class="updates-mobile-nav owl-nav d-md-none d-block">
-                      <button class="owl-prev updates-second-prev"><span aria-label="Previous">‹</span></button>
-                      <button class="owl-next updates-second-next"><span aria-label="Next">›</span></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="updates-section products-slider-section">
               <div class="container">
                 <div class="theme-stroke-heading text-center text-uppercase">
                   <strong class="letters">Our Products</strong>
-                  <h3 class="h3 letters" onclick="window.location.href = '{{ $productLink->url }}';">Our <span>Products</span></h3>
+                  <h1 class="h3 letters" onclick="window.location.href = '{{ $productLink->url }}';">Our <span>Products</span></h1>
                   <div  class="product_title_1"  @if(session('LoggedUser'))
                   data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
               @endif></div>
@@ -141,8 +93,8 @@
                 <div class="bg-img-wrap">
                   <img class="bg-img-top" src="{{asset('/')}}/dubai/images/red-effect-top.webp" alt="red-effect-top">
                 </div>
-                <div class="container position-relative pt-xxl-5">
-                  <div class="products-slider pb-3">
+                <div class="container position-relative pt-xxl-4">
+                  <div class="updates-slider pb-3">
                     @foreach(customMainCat() as $key => $topInflatableLp)
                     <?php 
                     $getSubCategories = getSubCategories($topInflatableLp->id);
@@ -193,9 +145,9 @@
                     </div>
                     <?php } ?>
                     @endforeach
-         
+          
                   </div>
-                  <div class="products-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-lg-4 mt-2">
+                  <div class="updates-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-lg-4 mt-1">
                     <a href="{{ $productLink->url }}" class="btn text-uppercase btn-animation--infinity">VIEW ALL PRODUCTS</a>
                   </div>
                 </div>
@@ -224,7 +176,7 @@
                       <a class="contact-link" href="mailto:sales@giantinflatables.ae"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail-icon"> sales@giantinflatables.ae</a>
                     </div>
                     <div class="mb-2">
-                      <a class="contact-social-link" href="#" target="_blank"><img src="{{asset('/')}}/dubai/images/facebook.png" alt="facebook-icon"></a>
+                      <a class="contact-social-link" target="_blank"><img src="{{asset('/')}}/dubai/images/facebook.png" alt="facebook-icon"></a>
                     </div>
                   </div>
                 </div>
@@ -233,10 +185,13 @@
           </section>
         </div>
       </div>
+  
       @includeFirst(['theme::ext.footer', 'ext.footer'])
     </div>
-    
-   
+    <!-- Modal -->
+
+  
+
     @includeFirst(['theme::ext.script', 'ext.script'])
   </body>
 </html>

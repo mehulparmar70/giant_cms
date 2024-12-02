@@ -1191,35 +1191,38 @@ class HomeController extends Controller
         
         $getBlog = Blog::where('title', 'like', '%'.$search.'%')->orderBy('item_no')->get();
         $getCategory = Category::where('name', 'like', '%'.$search.'%')->orderBy('item_no')->get();
-        $getCaseStudies = CaseStudies::where('title', 'like', '%'.$search.'%')->orderBy('item_no')->get();
+        // $getCaseStudies = CaseStudies::where('title', 'like', '%'.$search.'%')->orderBy('item_no')->get();
         $searchKey = 0;
         if (count($getBlog) > 0) {
             foreach ($getBlog as $key => $value) {
                 $searchData[$searchKey]['Image'] = url('/').'/images/'.$value->image;
                 $searchData[$searchKey]['Description'] = $value->short_description;
                 $searchData[$searchKey]['Title'] = $value->title;
+                $searchData[$searchKey]['type'] = 'blog';
                 $searchData[$searchKey]['Slug'] = 'updates/'.$value->slug;
                 $searchKey++;
             }
         }
         if (count($getCategory) > 0) {
             foreach ($getCategory as $key => $value) {
-                $searchData[$searchKey]['Image'] = asset('/').'/images/'.getImageFromCategory($value->id)[0]->image;
+             
+                $searchData[$searchKey]['Image'] = asset('/').'images/'.$value->image;
                 $searchData[$searchKey]['Description'] = $value->meta_description;
                 $searchData[$searchKey]['Title'] = $value->name;
                 $searchData[$searchKey]['Slug'] = $value->slug;
+                $searchData[$searchKey]['type'] = 'products';
                 $searchKey++;
             }
         }
-        if (count($getCaseStudies) > 0) {
-            foreach ($getCaseStudies as $key => $value) {
-                $searchData[$searchKey]['Image'] = url('/').'/images/'.$value->image;
-                $searchData[$searchKey]['Description'] = $value->meta_description;
-                $searchData[$searchKey]['Title'] = $value->title;
-                $searchData[$searchKey]['Slug'] = 'case-studies/'.$value->slug;
-                $searchKey++;
-            }
-        }
+        // if (count($getCaseStudies) > 0) {
+        //     foreach ($getCaseStudies as $key => $value) {
+        //         $searchData[$searchKey]['Image'] = url('/').'/images/'.$value->image;
+        //         $searchData[$searchKey]['Description'] = $value->meta_description;
+        //         $searchData[$searchKey]['Title'] = $value->title;
+        //         $searchData[$searchKey]['Slug'] = 'case-studies/'.$value->slug;
+        //         $searchKey++;
+        //     }
+        // }
         
         $data = [
             'pageData' =>  Pages::where('type', 'partenr_page')->first(),
@@ -1245,7 +1248,7 @@ class HomeController extends Controller
             'products2' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('id', 'DESC')->skip(5)->take(10)->get(),
             'products3' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('id', 'DESC')->skip(10)->take(15)->get(),
             'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
-
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->paginate(10),
             'footerCategories' =>   $this->footerCategories,
             'footerProducts' =>   $this->footerProducts,
             'footerBlogs' =>   $this->footerBlogs,
@@ -1256,7 +1259,7 @@ class HomeController extends Controller
             'searchData' =>   $searchData,
         ];
         
-        return response()->view('search', $data)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::search', $data)->header('Cache-Control:public', 'max-age=31536000');
     }
     public function testimonials(Request $request)
     {

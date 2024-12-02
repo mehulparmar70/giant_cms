@@ -625,7 +625,7 @@ $(document).ready(function () {
         <div class="header-top-middle-line sticky-hide theme-heading">
           <span>Award</span> Winning Inflatable <span>Designer</span> & Manufacturer
         </div>
-        <form action="{{url('search')}}" method="POST" class="header-search position-relative d-flex">
+        <form action="{{url('search')}}" method="GET" class="header-search position-relative d-flex">
           <input type="search" name="search" placeholder="Got an idea... Type here...">
           <button type="submit" name="Submit" class="header-search-submit btn-animation position-absolute top-0 end-0">
             <img src="{{url('/')}}/images/search-icon.svg" alt="search-icon">

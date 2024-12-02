@@ -2704,3 +2704,4 @@ function submitContact() {
     alert('Failed to submit the form. Please try again.');
   });
 }
+
