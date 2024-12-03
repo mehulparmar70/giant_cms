@@ -60,39 +60,26 @@
 
 @include('widget.table-search-draggable')
 
-<div class="content-wrapper">
-
-
-
-  <div class="container-fluid">
-
-    <div class="">
-      <div class="card-body">
-        <div class="form-horizontal row">
-
-          <div class="col-md-12">
-            
-           
 
               <form id="addsliderajax" method="post" enctype="multipart/form-data" class="form-horizontal"
                 onsubmit="return false;">
-                <div class="cmsModal-formGroup">
+              
                 @csrf
-                <input type="hidden" id="page_type" value="singleUpload">
-                <div class="card-body p-2 pt-4">
-                  <div class="form-group row">
-                    <div class="col-sm-12">
-                      <input type="hidden" class="cmsModal-formControl">
-
+                
+                <div class="cmsModal-row">
+                  <div class="cmsModal-column">
+                    <div class="cmsModal-formGroup">
+              
                       <input type="text" class="cmsModal-formControl" name="title" placeholder="Slider Title"
                         value="{{old('title')}}">
 
                       <span class="text-danger">@error('title') {{$message}} @enderror</span>
+                      <input type="hidden" id="page_type" value="singleUpload">
                     </div>
                   </div>
 
-                  <div class="form-group row">
-                    <div class="col-sm-12">
+                  <div class="cmsModal-column">
+                    <div class="cmsModal-formGroup">
                       <textarea class="cmsModal-formControl" name="description"
                         placeholder="Slider Alt Text / Description">{{old('description')}}</textarea>
 
@@ -100,16 +87,18 @@
                     </div>
                   </div>
 
-                  <div class="form-group row">
-                    <div class="col-sm-12">
+                  <div class="cmsModal-column">
+                    <div class="cmsModal-formGroup">
                       <input type="url" class="cmsModal-formControl" name="url" placeholder="Slider Url" value="{{old('url')}}">
 
                       <span class="text-danger">@error('url') {{$message}} @enderror</span>
                     </div>
                   </div>
+                  </div>
 
-                  <div class="form-group row">
-                    <div class="col-sm-12">
+                  <div class="cmsModal-row">
+                    <div class="cmsModal-column">
+                      <div class="cmsModal-formGroup">
                       <input type="file" class="file_input" name="image" placeholder="Slider Image" required
                         accept="image/png,image/jpeg,image/webp" />
                       <br>
@@ -122,8 +111,11 @@
                       <img class="elevation-2 perview-img" width="120" src="{{asset('/')}}img/no-item.jpeg">
                     </div>
                   </div>
+                </div>
 
-                  <div class="form-check">
+                  <div class="cmsModal-row">
+                    <div class="cmsModal-column">
+                      <div class="cmsModal-formGroup">
                     <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1"
                       checked />
 
@@ -131,14 +123,15 @@
 
                     </td>
                   </div>
+                  </div>
+                  </div>
 
-                </div>
-            </div>
 
-            <div class="card-footer">
+         
 
-              <button type="button" onclick="addslidersubmit()" class="cmsBtn blue"><i class="fa fa-floppy-o"
-                  aria-hidden="true"></i>
+            <div class="cmsModal-footer">
+
+              <button type="button" onclick="addslidersubmit()" class="cmsBtn blue">
                 Save Slider </button>
 
 
@@ -148,12 +141,4 @@
          
 
 
-         
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </div>
+       

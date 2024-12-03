@@ -2,6 +2,7 @@
   
 <style>
   
+  
   /* Limit the text to 5 characters */
 .text-limit {
     display: inline-block;
@@ -156,14 +157,7 @@
     background-color: #2e2e2e;
 }
 
-/* Buttons */
-.btn {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
+
 
 #ajaxForm
 {
@@ -374,8 +368,9 @@
         <div id="modalBodyContent"></div>
         <div id="addnewsletter"></div>
 
+ 
 <!-- header -->
-<div class="wrapper overflow-hidden">
+<div class="wrapper">
   <div class="main-container">
   <header class="main-header">
 
@@ -458,11 +453,11 @@ $(document).ready(function () {
                         <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Sub Category</a></li>
                         <!-- <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Manage Products</a></li> -->
                         <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Manage Photos</a></li>
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.create')}}?type=video&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Video</a></li>
+                        <!-- <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.create')}}?type=video&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Video</a></li> -->
                         {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/category/create?type=sub_category&onscreenCms=true','','','','',''); return false;">Sub Category</a></li>  --}}
                         {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;">Manage Products</a></li>  --}}
-                        {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/video/create?onscreenCms=true','','','','',''); return false;">Video</a></li>  --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('testimonials.create')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Testimonial</a></li>
+                        <!-- {{-- <li><a href=""onclick="popupmenu('{{route('admin.index')}}/video/create?onscreenCms=true','','','','',''); return false;">Video</a></li>  --}} -->
+                        <!-- <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('testimonials.create')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Testimonial</a></li> -->
                         {{-- <li><a href=""onclick="popupmenu('{{route('testimonials.create')}}/testimonials/create?onscreenCms=true','','','','',''); return false;">Testimonial</a></li>  --}}
                         <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('blog.create')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Blog</a></li>
                         {{-- <li><a href="{{route('admin.index')}}/blog/create?onscreenCms=true"onclick="popupmenu('{{route('admin.index')}}/blog/create?onscreenCms=true','','','','',''); return false;">Blog</a></li> --}}
@@ -485,11 +480,11 @@ $(document).ready(function () {
                         <li><a class="adminEditItem" href=""
                             onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;"
                         >Manage Photos</a></li>
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.index')}}?type=videoIndex&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Video</a></li>
-                        {{-- <li><a href=""
+                        <!-- <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('video.index')}}?type=videoIndex&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Video</a></li> -->
+                        <!-- {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/video?onscreenCms=true','','','','',''); return false;"
-                        >Video</a></li> --}}
-                        <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('testimonials.index')}}?type=Testimonial&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Testimonial</a></li>
+                        >Video</a></li> --}} -->
+                        <!-- <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('testimonials.index')}}?type=Testimonial&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Testimonial</a></li> -->
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/testimonials?onscreenCms=true','','','','',''); return false;"
                         >Testimonial</a></li> --}}
@@ -559,7 +554,7 @@ $(document).ready(function () {
           <img src="{{url('/')}}/images/logo.svg" alt="logo">
         </a>
         <a href="{{url('')}}" class="header-mobile-logo">
-          <img class="d-lg-flex d-none" src="{{url('/')}}/images/sticky-logo.jpg" alt="small logo">
+          <img class="d-lg-flex d-none" src="{{url('/')}}/images/sticky-logo.png" alt="small logo">
           <img class="d-lg-none d-flex" src="{{url('/')}}/images/mobile-logo.jpg" alt="small logo">
         </a>
         @php
@@ -597,22 +592,29 @@ $(document).ready(function () {
               <li class="menu_crud"><a href="{{ $homeLink->url }}" class="active" @if(session('LoggedUser'))
                 data-link="{{route('admin.home.editor')}}"
             @endif><span class="hover-underline-animation left">{{ $homeLink->name }}</span></a></li>
-              <li class="menu_crud"><a href="{{ $aboutLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.about-page.editor')}}"
+          @endif><a href="{{ $aboutLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.about-page.editor')}}"
             @endif><span class="hover-underline-animation left">{{ $aboutLink->name }}</span></a></li>
-              <li class="menu_crud">
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.product-page.editor')}}"
+          @endif>
                 <a href="{{ $productLink->url }}" @if(session('LoggedUser'))
                   data-link="{{route('admin.product-page.editor')}}"
               @endif><span class="hover-underline-animation left">{{ $productLink->name }}</span></a>
-                <ul>
-                  <li class="menu_crud"><a href="product-detail.html"><span class="hover-underline-animation left">Product Detail</span></a></li>
-                  <li class="menu_crud"><a href="sub-categories.html"><span class="hover-underline-animation left">Sub Categories</span></a></li>
-                </ul>
+               
               </li>
-              <li class="menu_crud"><a href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud"  @if(session('LoggedUser'))
+              data-link="{{route('admin.blog-page.editor')}}"
+          @endif>
+          <a href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.blog-page.editor')}}"
-            @endif><span class="hover-underline-animation left">{{ $updatesLink->name }}</span></a></li>
-              <li class="menu_crud"><a href="{{ $contactLink->url }}" @if(session('LoggedUser'))
+            @endif><span class="hover-underline-animation left">{{ $updatesLink->name }}</span></a>
+          </li>
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.contact-page.editor')}}"
+          @endif><a href="{{ $contactLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.contact-page.editor')}}"
             @endif><span class="hover-underline-animation left">{{ $contactLink->name }}</span></a></li>
             </ul>
@@ -623,7 +625,7 @@ $(document).ready(function () {
         <div class="header-top-middle-line sticky-hide theme-heading">
           <span>Award</span> Winning Inflatable <span>Designer</span> & Manufacturer
         </div>
-        <form action="{{url('search')}}" method="POST" class="header-search position-relative d-flex">
+        <form action="{{url('search')}}" method="GET" class="header-search position-relative d-flex">
           <input type="search" name="search" placeholder="Got an idea... Type here...">
           <button type="submit" name="Submit" class="header-search-submit btn-animation position-absolute top-0 end-0">
             <img src="{{url('/')}}/images/search-icon.svg" alt="search-icon">
@@ -632,7 +634,7 @@ $(document).ready(function () {
         <div class="d-flex justify-content-center">
           <a href="{{ $homeLink->url }}" @if(session('LoggedUser'))
             data-link="{{route('admin.home.editor')}}"
-        @endif class="header-top-home sticky-hide d-lg-flex d-none align-items-center text-uppercase">
+        @endif class="header-top-home sticky-hide d-lg-flex d-none align-items-center text-uppercase menu_crud">
             <img class="me-2" src="{{url('/')}}/images/home-icon.png" alt="home-icon">
             <div class="hover-underline-animation left text-red">{{ $homeLink->name }}</div>
           </a>
@@ -641,13 +643,19 @@ $(document).ready(function () {
               <li class="menu_crud"  @if(session('LoggedUser'))
               data-link="{{route('admin.about-page.editor')}}"
               @endif><a class="btn-animation" href="{{ $aboutLink->url }}">{{ $aboutLink->name }}</a></li>
-              <li class="menu_crud"><a class="btn-animation" href="{{ $productLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud"  @if(session('LoggedUser'))
+              data-link="{{route('admin.product-page.editor')}}"
+          @endif><a class="btn-animation" href="{{ $productLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.product-page.editor')}}"
             @endif>{{ $productLink->name }}</a></li>
-              <li class="menu_crud"><a class="btn-animation" href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.blog-page.editor')}}"
+          @endif><a class="btn-animation" href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.blog-page.editor')}}"
             @endif>{{ $updatesLink->name }}</a></li>
-              <li class="menu_crud"><a class="btn-animation" href="{{ $contactLink->url }}" @if(session('LoggedUser'))
+              <li class="menu_crud" @if(session('LoggedUser'))
+              data-link="{{route('admin.contact-page.editor')}}"
+          @endif><a class="btn-animation" href="{{ $contactLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.contact-page.editor')}}"
             @endif>{{ $contactLink->name }}</a></li>
             </ul>
@@ -671,7 +679,7 @@ $(document).ready(function () {
           <strong>Any <span>Size,</span> Any <span>Shape</span></strong>
         </div>
         <div class="header-share-concept">
-          <a href="#" class="d-flex" data-bs-toggle="modal" data-bs-target="#shareconceptModal"><img src="{{url('/')}}/images/share-concept.png" alt="share-concept"></a>
+          <a href="#" class="d-flex" onclick="loadInquiryModal(event)"><img src="{{url('/')}}/images/share-concept.png" alt="share-concept"></a>
         </div>
       </div>
     </div>
@@ -684,10 +692,34 @@ $(document).ready(function () {
     <path d="M15.45 2.8L12.65 0l-12 12 12 12 2.8-2.8-9.2-9.2z"/>
   </symbol>
 </svg>
-</div>
-</div>
+
 <input sdf type='hidden' name="isCMS" id='isCMS'>
 
-    </div>
+<div id="inquirypopup">
+  
+</div>
 
+<script>
+  function loadInquiryModal(event) {
+  event.preventDefault();
 
+  fetch('{{ route("load-inquiry-modal") }}')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('inquirypopup').innerHTML = html;
+
+      // Ensure modal element is properly initialized
+      const modalElement = document.getElementById('shareconceptModal');
+      const modal = new bootstrap.Modal(modalElement);
+      
+      modal.show();
+
+      // Attach the close event listener (if needed for manual control)
+      modalElement.addEventListener('hidden.bs.modal', function () {
+        // Optional: Clean up the modal-container div when closed
+        document.getElementById('modal-container').innerHTML = '';
+      });
+    })
+    .catch(error => console.error('Error loading modal:', error));
+}
+</script>

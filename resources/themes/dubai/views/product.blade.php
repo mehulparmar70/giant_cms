@@ -1,237 +1,207 @@
-@extends('layout.front-index')
-@section('title','Product Page')
+<!DOCTYPE HTML>
+<html>
+  <head>
+  {{-- Try to load 'head' from the active theme; fallback to default --}}
+    @includeFirst(['theme::ext.head', 'ext.head'])
 
-@section('custom-js')
-<script>
-
-
-  
-function goBack() {
-  window.history.back();
-}
-
-
-$(document).ready(function () {
-  $( ".lazyload" ).css('overflow', 'auto');
-  $( ".loader" ).hide();
-});
-
-//         $( document ).ready(function() {
-//   $(".open-modal").click(function(){
-//     //   alert('test');
-//     var data_image = $(this).attr('data-image');
-//     var data_type = $(this).attr('data-type');
-//     var data_title = $(this).attr('data-title');
-//     var data_clientName = $(this).attr('data-clientName');
-//     var data_short_description = $(this).attr('data-short_description');
-//     var data_full_description = $(this).attr('data-full_description');
+    {{-- Additional theme-specific CSS --}}
+    @yield('addon-css')
+  </head>
+  <body>
+  <?php $current_page = ''; 
+    $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
+    $homeLink = App\Models\admin\UrlList::find(95);  // Home link
+    $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
+    ?>
     
-// 		$('.card-img').attr('src',data_image);
-// 		$('.card-image-link').val(data_image);
-        
-// 		$('.card-title').val(data_title);
-// 		$('.card-client').html(data_clientName);
-// 		$('.short-description').html(data_short_description);
-// 		$('.full-description').html(data_full_description);
+    {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
+    @includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'])
 
-
-		
-// 	}); 
-// });
-
-	$(".product").addClass( "active");
-  $(".our_product_menu").addClass( "active");
-  $(".our_product_menu i").addClass( "menu_active");
-</script>
-<style>
-  /*@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-    .showProductDetails .subCategoryImage img{
-      height: 543px !important; object-fit: cover; min-height: initial;
-    }
-  } 
-
-  @media only screen and (min-width: 1030px) and (max-width: 1366px){
-    .showProductDetails .subCategoryImage img{
-      height: 543px !important; object-fit: cover; min-height: initial;
-    }
-  }
-
-  @media only screen and (min-width: 1370px) {
-    .showProductDetails .subCategoryImage img{
-      height: 372px !important; object-fit: cover; min-height: initial;
-    }
-  }*/
-  @media only screen and (min-width: 1920px) {
-    .showProductDetails .subCategoryImage img{
-      height: 543px !important; object-fit: cover; min-height: initial;
-    }
-  }
-  @media (min-width: 1200px) and (max-width: 1599px) {
-    .showProductDetails .subCategoryImage img{
-      height: 372px !important; object-fit: cover; min-height: initial;
-    }
-  }
-  @media (min-width: 1600px) and (max-width: 1919px) {
-    .showProductDetails .subCategoryImage img{
-      height: 543px !important; object-fit: cover; min-height: initial;
-    }
-  }
-  @media (min-width: 1200px) and (max-width: 1548px) {
-    .showProductDetails .subCategoryImage img{
-      height: 543px !important; object-fit: cover; min-height: initial;
-    }
-  }
-  @media (min-width: 1040px) and (max-width: 1199px) {
-    .showProductDetails .subCategoryImage img{
-      height: 302px !important; object-fit: cover; min-height: initial;
-    }
-  }
-  @media (max-width: 1039px) {
-    .showProductDetails .subCategoryImage img{
-      height: 543px !important; object-fit: cover; min-height: initial;
-    }
-  }
-  /*@media only screen and (min-width: 600px) {
-    .showProductDetails .subCategoryImage img{
-      height: 543px !important; object-fit: cover; min-height: initial;
-    }
-  }*/
-</style>
-@endsection
-@section('content')
-<?php 
-$industriesPageData = getPageData('industrie_page');
-?>
-<div class="our_product">
-<!-- back -->
-  <section class="back">
-    <div class="container">
-      <div class="back_sec">
-        <span >home &nbsp; :
-          @if(getReffrel())
-              <p class="breadcrumb-item"><a href="{{getReffrel()['url']}}">{{getReffrel()['name']}}</a></p>&nbsp&nbsp&nbsp:
-          @endif
-          <p class="breadcrumb-item"><a href="">{{getSocialMedia()->product_title}}</a></p>
-        </span>
-        <a href="{{ url()->previous() }}" class="read_all"><p>back</p></a>
-      </div>
-    </div>
-  </section>
-
-  <?php 
-    /*echo "<pre>";
-    print_r(getMainCategories());*/
-  ?>
-  <!-- tab -->
-  <section class="tab_blk">
-    <div class="container">
-      <div class="big_text">
-        <a href="#" class="orange-title">{{getSocialMedia()->product_title}}</a>
-        <span>  {{ $pageData->page_title }}
-        
-      <div class="product_title"  @if(session('LoggedUser'))
-                                    data-link="{{route('admin.product-page.editor')}}"
-                                @endif></div>
-      </span>
-      </div>
-      <dl class="responsive-tabs">
-        <?php $toEndMain  = count(customMainCat(0, 16)); ?>
-          @foreach(customMainCat(0, 16) as $key => $mainCategoryAll)
-          <div class="onscreen_product_main_category_title2" @if(session('LoggedUser'))
-                data-link="{{route('admin.category.edit', $mainCategoryAll->id)}}?type=main_category&onscreenCms=true"
-                data-delete-link="{{route('admin.index')}}/category/delete/{{ $mainCategoryAll->id}}"
-            @endif>
-            <dt class="@if($key == 0)
-                        ft-clr-white
-                       @endif"><a style="color: #999;" href="{{$mainCategoryAll->slug}}">{{$mainCategoryAll->name}}</a></dt>
-                    </div>
-          @endforeach
-      </dl>
-      <dd>
-        <div class="tab_item">
-          @foreach(customMainCat() as $key => $topInflatableLp)
-          <?php 
-          $getSubCategories = getSubCategories($topInflatableLp->id);
-              if (!empty($getSubCategories)) {
-                $imageName = getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC')[0]['image']; 
-                /*foreach(getSubCategoryImages($getSubCategories[0]->id,10, 'DESC') as $key => $productImage){
-                  print_r($productImage);
-                }*/
-          ?>
-          <div class="item_img showProductDetails other_cat_admin" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
-            <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
-                data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
-                data-index-link="{{ route('admin.category.list') }}"
-              @endif></div>
-            <div class="tab_top subCategoryImage">
-          @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-          <img src="{{url('/')}}/images/{{$productImage->image}}" style="" />
-          @endforeach
-        </div>
-        <div class="big_text small_text">
-          <a href="{{url('')}}/{{$topInflatableLp->slug}}">{{ $topInflatableLp->name }}</a>
-        </div>
-            <!-- <div class="tab_hover">
-            <h3>product name</h3>
-          </div> -->
+    {{-- Main content of the page --}}
+        <!-- banner area part -->
+        <section class="products-banner-section common-inner-banner header-top-space position-relative">
+          <div class="bg-img-wrap">
+            <img class="bg-img-top opacity-50" src="{{asset('/')}}/dubai/images/about-banner.webp" alt="products-banner">
+            <img class="bg-img-bottom" src="{{asset('/')}}/dubai/images/red-effect-bottom.webp" alt="red-effect-bottom">
           </div>
-        <?php } else { ?>
-          <div class="item_img showProductDetails other_cat_admin" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
-            <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
-                data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
-                data-index-link="{{ route('admin.category.list') }}"
-              @endif></div>
-            <div class="tab_top subCategoryImage">
-            <img src="{{url('/')}}/images/{{$topInflatableLp->image}}"  />
-
+          <div class="container position-relative">
+            <div class="breadcrumb">
+              <div class="breadcrumb-left">
+                <a href="{{ $homeLink->url }}" class="header-top-home d-flex align-items-center text-uppercase">
+                  <img class="me-2" src="{{asset('/')}}/dubai/images/home-icon.png" alt="home-icon">Home
+                </a>
+                <span class="text-uppercase">{{$productTitle->meta_title}}</span>
+              </div>
+              <a href="{{ $homeLink->url }}" class="breadcrumb-back text-uppercase">Back<img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle"></a>
             </div>
-        <div class="big_text small_text">
-          <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="noImageFontClr">{{ $topInflatableLp->name }}</a>
-        </div>
-            <!-- <div class="tab_hover">
-            <h3>product name</h3>
-          </div> -->
+            <div class="theme-stroke-heading text-center text-uppercase">
+              <strong class="letters">{!! $productTitle->meta_title !!}</strong>
+              <h3 class="h3 letters">{!!$productTitle->meta_title!!}</h3>
+              <div  class="product_title_1"  @if(session('LoggedUser'))
+              data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
+          @endif></div>
+            </div>
+            <div class="products-wrap position-relative">
+              <div class="row g-5 px-4">
+                @foreach(customMainCat() as $key => $topInflatableLp)
+                <?php 
+                $getSubCategories = getSubCategories($topInflatableLp->id);
+                    if (!empty($getSubCategories)) {
+                      $imageName = getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC')[0]['image']; 
+                      /*foreach(getSubCategoryImages($getSubCategories[0]->id,10, 'DESC') as $key => $productImage){
+                        print_r($productImage);
+                      }*/
+                ?>
+                <div class="col-md-4 col-sm-6">
+                  <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                    <div class="animated-border-box-glow">
+                      <div class="products-box-img has-slider">
+                        @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
+                        <img src="{{url('/')}}/images/{{$productImage->image}}"  />
+                        @endforeach
+                      </div>
+                      <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
+                data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                data-index-link="{{ route('admin.category.list') }}"
+              @endif></div>
+                      <div class="products-box-heading text-uppercase theme-heading">
+                        <h5>{{ strip_tags($topInflatableLp->name) }}</h5>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <?php } else { ?>
+                <div class="col-md-4 col-sm-6">
+                  <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                    <div class="animated-border-box-glow">
+                      <div class="products-box-img has-slider">
+                        <img src="{{url('/')}}/images/{{$topInflatableLp->image}}"  />
+                      </div>
+                      <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
+                data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                data-index-link="{{ route('admin.category.list') }}"
+              @endif></div>
+                      <div class="products-box-heading text-uppercase theme-heading">
+                        <h5>{{ $topInflatableLp->name }}</h5>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <?php } ?>
+                @endforeach
+           
+    
+              </div>
+              <div class="position-relative text-center mt-lg-5 mt-4">
+                <a href="{{ $productLink->url }}" class="btn text-uppercase btn-animation--infinity">VIEW ALL PRODUCTS</a>
+              </div>
+            </div>
           </div>
-        <?php } ?>
-          @endforeach
+        </section>
+        <!-- content area part -->
+        <div class="main-content">
+          <section class="updates-contact-section position-relative overflow-hidden">
+            <div class="bg-img-wrap">
+              <img class="bg-img-bottom opacity-25" src="{{asset('/')}}/dubai/images/desert-transparent.webp" alt="desert-bg">
+            </div>
+            <div class="updates-section">
+              <div class="container">
+                <div class="theme-stroke-heading text-center text-uppercase">
+                  <strong class="letters">Updates</strong>
+                  <h3 class="h3 letters" onclick="window.location.href = '{{ $productLink->url }}';">Up<span>dates</span></h3>
+                  <div class="menu_crud"  @if(session('LoggedUser'))
+                    data-link="{{route('admin.blog-page.editor')}}"
+                @endif></div>
+                </div>
+              </div>
+              <div class="updates-wrap position-relative">
+                <div class="bg-img-wrap">
+                  <img class="bg-img-top" src="{{asset('/')}}/dubai/images/red-effect-top.webp" alt="red-effect-top">
+                </div>
+                <div class="container pt-4">
+                  <div class="position-relative wow zoomInDown" data-wow-offset="200">
+                    <div class="updates-slider px-xl-5 px-3">
+                      @foreach($blogsSlider as $blogsList)
+                      <div class="updates-slider-item">
+                        <a href="{{ route('update.index') }}" class="updates-box">
+                    
+                          <div class="updates-box-img">
+                            @if(file_exists(public_path('images/'.$blogsList->image)) && $blogsList->image)
+                            <img src="{{ url('/') }}/images/{{ $blogsList->image }}" alt="Blog Image" />
+                          @else
+                            <img src="{{ url('/') }}/img/no-item.jpeg" alt="Default Image" />
+                          @endif
+
+                          </div>
+                          <div align="right"  class="onscreen_blog_detail_page" @if(session('LoggedUser'))
+                            data-create-link="{{route('blog.create')}}"
+                            data-link="{{route('blog.edit', $blogsList->id)}}"
+                            data-delete-link="{{route('blog.delete',$blogsList->id)}}"
+                            data-index-link="{{ route('blog.index') }}"
+                          @endif></div>
+                          <div class="updates-box-content">
+                            <h6>{!! html_entity_decode($blogsList->title) !!}</h6>
+                            <p>{!! html_entity_decode($blogsList->short_description) !!}</p>
+                            <span class="btn">View More</span>
+                          </div>
+                        </a>
+                      </div>
+                      @endforeach
+
+                    </div>
+                    <div class="updates-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-md-2 mt-3">
+                      <a href="{{url('updates')}}" class="btn text-uppercase btn-animation--infinity">VIEW ALL UPDATES</a>
+                    </div>
+                    <div class="updates-mobile-nav owl-nav d-md-none d-block">
+                      <button class="owl-prev updates-second-prev"><span aria-label="Previous">‹</span></button>
+                      <button class="owl-next updates-second-next"><span aria-label="Next">›</span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-section">
+              <div class="container">
+                <div class="theme-stroke-heading text-center text-uppercase">
+                  <strong class="letters">Get In Touch</strong>
+                  <h3 class="h3 letters" onclick="window.location.href = '{{ $contactLink->url }}';">Get In <span>Touch</span></h3>
+                </div>
+              </div>
+              <div class="container position-relative pt-4">
+                <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
+                  <div class="share-concept-form-box wow flipInY" data-wow-offset="200">
+                    <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
+                    @include('widget.contact-form1')
+                  </div>
+                  <div class="contact-links-box text-center wow flipInY" data-wow-offset="200">
+                    <p>Award Winning Inflatable Designer & Manufacturer</p>
+                    <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
+                    <div class="mt-sm-4 mt-2 mb-2">
+                      <a class="contact-link" href="tel:+919429613531"><img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone-icon"> +91 87587 13931</a>
+                    </div>
+                    <div class="mb-sm-4 mb-2">
+                      <a class="contact-link" href="mailto:sales@giantinflatables.ae"><img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail-icon"> sales@giantinflatables.ae</a>
+                    </div>
+                    <div class="mb-2">
+                      <a class="contact-social-link" href="#" target="_blank"><img src="{{asset('/')}}/dubai/images/facebook.png" alt="facebook-icon"></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </dd>
+      </div>
+      @includeFirst(['theme::ext.footer', 'ext.footer'])
+  
     </div>
-  </section>
+    <!-- Modal -->
+ 
 
-  <!-- description -->
-  <section class="description">
-    <div class="container">
-      <div class="description_wrap">
-        <div class="description_blk TopContent" @if(session('LoggedUser'))
-					data-link="{{route('admin.product-page.editor')}}"
-				@endif>
-          {!! html_entity_decode($pageData->description) !!}
-      	</div>
-    	</div>
-    </div>
-  </section>
-
-  <section class="gray">
-	  <div class="container">
-	    @include('widget.experts')
-	  </div>
-	</section>
-
-	<section class="banner_slider banner_margin">
-    <div class="container">
-      @include('widget.industries-serve-with-title')
-    </div>
-  </section>
-</div>
-@endsection
-
-<style type="text/css">
-  .description .description_blk img{
-        width: auto !important;
-  }
-</style>
+    @includeFirst(['theme::ext.script', 'ext.script'])
+  </body>
+</html>

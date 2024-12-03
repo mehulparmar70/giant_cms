@@ -56,13 +56,12 @@
         @include('widget.seo-content-2')
       </div>
     </div>
-    <div class="cmsModal-row">
+    <div class="cmsModal-footer">
       @if(request()->get('onscreenCms') == 'true')
-      <button type="submit" class="cmsBtn blue" name="close" value="1"><i class="fa fa-floppy-o"
-          aria-hidden="true"></i>
+      <button type="submit" class="cmsBtn blue" name="close" value="1">
         Save & Close</button>
       @else
-      <button type="submit" class="cmsBtn blue"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;Save
+      <button type="submit" class="cmsBtn blue">Save
         Data</button>
       @endif
 

@@ -4,7 +4,6 @@
    
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css">
  
-    x
 
      <!-- CODROP SLIDER CSS SETTINGS -->
    
@@ -20,25 +19,27 @@
             }
         </script>
 
-        <link rel="stylesheet" href="{{asset('/')}}css/popup.css">
+        <link rel="stylesheet" href="{{asset('/')}}/dubai/css/popup.css">
      <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script>
 
 
          <!-- jquery library --> 
-    <script src="{{asset('/')}}js/jquery-3.7.1.min.js"></script>
+    <script src="{{asset('/')}}dubai/js/jquery-3.7.1.min.js"></script>
     <!-- vendor js -->
-    <script src="{{asset('/')}}js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('/')}}js/owl.carousel.min.js"></script>
-    <script src="{{asset('/')}}js/scrollspy.js"></script>
-    <script src="{{asset('/')}}js/wow.min.js"></script>
-    <script src="{{asset('/')}}js/wowjs-repeat-animation.js"></script>
-    <script src="{{asset('/')}}js/anime.min.js"></script>
+    <script src="{{asset('/')}}dubai/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/')}}dubai/js/owl.carousel.min.js"></script>
+    <script src="{{asset('/')}}dubai/js/scrollspy.js"></script>
+    <script src="{{asset('/')}}dubai/js/wow.min.js"></script>
+    <script src="{{asset('/')}}dubai/js/wowjs-repeat-animation.js"></script>
+    <script src="{{asset('/')}}dubai/js/anime.min.js"></script>
+    <script src="{{asset('/')}}dubai/js/fancybox.umd.js"></script>
     <!-- CODROP SLIDER SCRIPTS  -->
-    <script type="text/javascript" src="{{asset('/')}}js/imagesloaded.pkgd.min.js"></script>
-    <script type="text/javascript" src="{{asset('/')}}js/TweenMax.min.js"></script>
-    <script type="text/javascript" src="{{asset('/')}}js/demo.js"></script>
+    <script type="text/javascript" src="{{asset('/')}}dubai/js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="{{asset('/')}}dubai/js/TweenMax.min.js"></script>
+    <script type="text/javascript" src="{{asset('/')}}dubai/js/demo.js"></script>
     <!-- theme script --> 
-    <script src="{{asset('/')}}js/scripts.js"></script> 
+    <script src="{{asset('/')}}dubai/js/scripts.js"></script> 
+    
     
 <script src="{{asset('/')}}js/bootstrap.min.js"></script>
 

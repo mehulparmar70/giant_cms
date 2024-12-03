@@ -62,39 +62,43 @@
 
 
 <form id="slideridajax" method="post" enctype="multipart/form-data" class="form-horizontal" onsubmit="return false;">
-  <div class="cmsModal-formGroup">
+ 
   @csrf
   @method('PUT')
   <input type="hidden" id="page_type" value="singleUpload">
-  <div class=" p-2 pt-4">
-    <div class="form-group row">
-      <div class="col-sm-12">
-        <input type="hidden" class="cmsModal-formControl">
+ 
+    <div class="cmsModal-row">
+      <div class="cmsModal-column">
+        <div class="cmsModal-formGroup">
+    
 
         <input type="text" class="cmsModal-formControl" name="title" placeholder="Slider Title"
           value="@if(old('title')){{old('title')}}@else{{$slider->title}}@endif">
 
         <span class="text-danger">@error('title') {{$message}} @enderror</span>
       </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-sm-12">
-        <textarea class="cmsModal-formControl" name="description"
-          placeholder="Slider Alt Text / Description">@if(old('description')){{old('description')}}@else{{$slider->description}}@endif</textarea>
-
-        <span class="text-danger">@error('description') {{$message}} @enderror</span>
+      </div>
+      <div class="cmsModal-column">
+        <div class="cmsModal-formGroup">
+          <textarea class="cmsModal-formControl" name="description"
+            placeholder="Slider Alt Text / Description">@if(old('description')){{old('description')}}@else{{$slider->description}}@endif</textarea>
+  
+          <span class="text-danger">@error('description') {{$message}} @enderror</span>
+        </div>
+      </div>
+      <div class="cmsModal-column">
+        <div class="cmsModal-formGroup">
+          <input type="url" class="cmsModal-formControl" name="url" placeholder="Slider Url"
+            value="@if(old('url')){{old('url')}}@else{{$slider->url}}@endif">
+  
+          <span class="text-danger">@error('url') {{$message}} @enderror</span>
+        </div>
       </div>
     </div>
 
-    <div class="form-group row">
-      <div class="col-sm-12">
-        <input type="url" class="cmsModal-formControl" name="url" placeholder="Slider Url"
-          value="@if(old('url')){{old('url')}}@else{{$slider->url}}@endif">
+  
 
-        <span class="text-danger">@error('url') {{$message}} @enderror</span>
-      </div>
-    </div>
+  
 
     <!-- <div class="form-group row">
                     <div class="col-sm-12">
@@ -106,9 +110,10 @@
                   </div> -->
 
 
-    <div class="form-group row">
+    <div class="cmsModal-row">
 
-      <div class="col-sm-12">
+      <div class="cmsModal-column">
+        <div class="cmsModal-formGroup">
         <input type="file" class="file_input" name="image" placeholder="Slider Image"
           accept="image/png,image/jpeg,image/webp" />
 
@@ -127,6 +132,7 @@
         <input type="hidden" name="old_image" value="{{$slider->image}}">
 
       </div>
+      </div>
     </div>
 
 
@@ -141,7 +147,9 @@
                     </div> -->
 
 
-    <div class="form-check">
+    <div class="cmsModal-row">
+      <div class="cmsModal-column">
+        <div class="cmsModal-formGroup">
       <input type="checkbox" class="form-check-input  pull-right" name="status" id="exampleCheck1" @if($slider->status
       == 1)checked
       @endif
@@ -153,17 +161,18 @@
       <h5> <span class="badge badge-danger">Inactive</span></h5>@else<h5> <span
           class="badge badge-success">Active</span></h5>@endif</td>
     </div>
+    </div>
+    </div>
 
-  </div>
-  </div>
 
-  <div class="card-footer">
+ 
+
+  <div class="cmsModal-footer">
     @if(request()->get('onscreenCms') == 'true')
 
 
     @else
-    <button type="button" onclick="editslidersubmit({{$slider->id}})" class="cmsBtn blue"><i class="fa fa-floppy-o"
-        aria-hidden="true"></i>
+    <button type="button" onclick="editslidersubmit({{$slider->id}})" class="cmsBtn blue">
       Update </button>
     @endif
   </div>

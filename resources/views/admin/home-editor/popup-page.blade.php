@@ -1,10 +1,10 @@
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div id="ajaxModal" 
      class="cmsModal {{ $type }}" 
      tabindex="-1" 
      role="dialog" 
      aria-labelledby="popupFormLabel" 
-     aria-hidden="true">
+     aria-hidden="false">
 
   <div class="cmsModal-dialog " role="document">
     <div class="cmsModal-content">
@@ -26,6 +26,7 @@
       <div class="cmsModal-body" id="modalBodyContentpopup">
         @if(isset($pageData) && !empty($pageData))
           @includeWhen($type == 'About', 'admin.home-editor.about-page')
+          @includeWhen($type == 'About_Section1', 'admin.aboutsection1')
           @includeWhen($type == 'Product', 'admin.home-editor.product-page')
           @includeWhen($type == 'CaseStudies', 'admin.home-editor.casestudies-page')
           @includeWhen($type == 'Blog_Page', 'admin.home-editor.blog-page')
@@ -73,7 +74,7 @@
           @includeWhen($type == 'Blogs', 'blog.index')
           @includeWhen($type == 'AddBlog', 'blog.create')
           @includeWhen($type == 'BlogEdit', 'blog.edit')
-          @includeWhen($type == 'BlogEdit', 'blog.edit')
+
           
 
         @elseif(isset($sliders) && !empty($sliders))

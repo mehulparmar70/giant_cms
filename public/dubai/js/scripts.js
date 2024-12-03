@@ -267,6 +267,24 @@ $( document ).ready( function() {
 		});
 	}
 
+	$(document).ready(function() {
+		$('[data-fancybox="gallery"]').fancybox({
+		  // Enable History for clean URLs
+		  hash: false, // Prevents default hash-based navigation
+		  afterShow: function(instance, current) {
+			// Update the URL based on the image title
+			let imageTitle = current.opts.$orig.attr('data-title') || 'image';
+			let cleanUrl = window.location.origin + window.location.pathname + '/' + imageTitle.replace(/\s+/g, '-').toLowerCase();
+			window.history.pushState(null, null, cleanUrl);
+		  },
+		  afterClose: function() {
+			// Revert to the original URL when the Fancybox is closed
+			window.history.pushState(null, null, window.location.pathname);
+		  }
+		});
+	  });
+
+	  
 	setInterval(function () {
 		$(".boxnav__item--next").click();
 	}, 5000);

@@ -353,15 +353,15 @@ function sendMailNotification(string $type = "", string $to = 'sales@giantinflat
             break;
     }
 if($type == 'enquire'){
-    $formView = 'mail/send-inquiry';
+    $formView = 'theme::mail/send-inquiry';
 }else{
-    $formView = 'mail/send-notification';
+    $formView = 'theme::mail/send-notification';
 }
 
 
 
 try{
-    Mail::send('mail/thankyou-notification', $data, function($message) use ($user){
+    Mail::send('theme::mail/thankyou-notification', $data, function($message) use ($user){
         $message->from('sales@giantinflatables.in', 'Giant Inflatables Asia');
         $message->to($user['email']);
         $message->subject('Thank you for contacting us.');
@@ -369,15 +369,15 @@ try{
     });
 
     Mail::send($formView, $data, function($message) use ($user){
-        $message->from('sales@giantinflatables.in', 'Giant Inflatables Asia');
-        $message->to('sales@giantinflatables.in');
+        $message->from('sales@giantinflatables.ae', 'Giant Inflatables Asia');
+        $message->to('sales@giantinflatables.ae');
         $message->subject($user['subject']);
         $message->replyTo($user['email']);
         
         $message->bcc(['myalivecreate@gmail.com']);
 
-        $message->bcc(['krutarth@live.com', 'prakash@thestudio5.com.au',
-        'myalivecreate@gmail.com', 'krishna@thestudio5.com.au']);
+        $message->bcc(['krutarth@live.com', 'sales@giantinflateables.in',
+        'myalivecreate@gmail.com',]);
     
     
         // $message->bcc(['krutarth@live.com', 'sales@giantinflatables.in', 'david@giantinflatables.com.au',
@@ -442,7 +442,7 @@ function getReffrel(){
                 return ['name' => 'About Us', 'url' => $link];
             }elseif($slug == 'about'){   
                 return ['name' => 'About Us', 'url' => $link];
-            }elseif($slug == 'products' || $slug == 'custom-industrial-inflatable-products'){   
+            }elseif($slug == 'products' || $slug == 'products'){   
                 return ['name' => 'INDUSTRIAL INFLATABLE PRODUCTS', 'url' => $link];
             }
             elseif($slug == 'testimonials'){

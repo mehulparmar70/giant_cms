@@ -22,6 +22,8 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\CustomCodeController;
 use App\Http\Controllers\admin\PhotoManageController;
 use App\Http\Controllers\admin\BlockControlController;
+use Illuminate\Http\Request;
+
 
 
 $adminRewrite = 'powerup';
@@ -41,9 +43,11 @@ Route::get('sitemapEdit', [HomeController::class, 'sitemapEdit'])->name('sitemap
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 // Route::get('sitemap', [SitemapController::class, 'siteMap'])->name('siteMap');
+Route::get('/load-inquiry-modal', function () {
+    return view('widget.inquirynow');
+})->name('load-inquiry-modal');
 
-
-Route::get('custom-industrial-inflatable-products', [HomeController::class, 'product'])->name('products');
+Route::get('products', [HomeController::class, 'product'])->name('products');
 Route::get('/about', [HomeController::class, 'about'])->name('admin');
 Route::get('client', [HomeController::class, 'client']);
 Route::get('videos', [HomeController::class, 'videos']);
@@ -60,6 +64,8 @@ Route::get('updates', [HomeController::class, 'updates'])->name('update.index');
 Route::get('updates/{slug}', [HomeController::class, 'updates_details']);
 Route::get('contact-us', [HomeController::class, 'contact'])->name('contact');
 
+
+//admin views
 
 Route::prefix('powerup')->group(function () {
 
@@ -151,6 +157,7 @@ Route::get('/page-editor/client', [PageController::class, 'clientPageEditor'])->
 Route::get('/page-editor/awards', [PageController::class, 'awardsPageEditor'])->name('admin.awards-page.editor');
 Route::get('/page-editor/updates', [PageController::class, 'updatesPageEditor'])->name('admin.updates-page.editor');
 Route::get('/page-editor/industries', [PageController::class, 'industriePageEditor'])->name('admin.industries-page.editor');
+Route::get('/page-editor/about-section1/{id}', [PageController::class, 'Aboutsection1'])->name('admin.aboutsection1');
 
 Route::get('/home-editor', [HomeEditorController::class, 'homeEditorIndex'])->name('admin.home.editor');
 Route::get('industries-create', [IndustriesController::class,'create'])->name('industries-create');
@@ -205,6 +212,7 @@ Route::post('/admin/casestudies/item/delete/{id}', [CaseStudiesController::class
 Route::post('/award/store', [AwardController::class, 'store'])->name('award.store');
 Route::get('/award/createaward', [AwardController::class, 'createaward'])->name('award.createaward');
 Route::put('/award/{id}', [AwardController::class, 'update'])->name('award.update');
+Route::put('/sectionupdate/{id}', [PageController::class, 'updatesection'])->name('section.update');
 
 
 Route::post('/admin/item-bulk-delete',[ItemPriorityController::class, 'ItemBulkDelete'])->name('item.bulk-delete');
@@ -237,7 +245,7 @@ Route::post('/admin/themes/activate/{id}', [ThemeController::class, 'activateThe
 
 });
 
-Route::get('/{slug}', [HomeController::class, 'product_internal']);
+// Route::get('/{slug}', [HomeController::class, 'product_internal']);
 
 Route::get('product/{slug}', [HomeController::class, 'product_internal']);
 Route::get('/product/{category}', [HomeController::class, 'category_product']);
@@ -246,4 +254,13 @@ Route::get('/{category}/{subCategory}/{slug}', [HomeController::class, 'category
 // Route::get('/{category}/{subCategory}/{subCategory2}/{slug}', [HomeController::class, 'category_subcategory_subcategory2_product']);
 
 Route::get('/search', [HomeController::class, 'search_criteria']);
+Route::get('/thank-you', [HomeController::class, 'thankYouPage'])->name('thank-you');
 
+Route::get('{slug}', function ($slug) {
+    // Skip dynamic routing for 'powerup' prefixed URLs
+    if (str_starts_with($slug, 'powerup')) {
+        abort(404); // Explicitly return a 404 for powerup routes
+    }
+
+    return app(HomeController::class)->dynamicPage(request(), $slug); // Call dynamicPage for other slugs
+})->where('slug', '.*')->name('dynamic.page');

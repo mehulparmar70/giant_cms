@@ -57,17 +57,17 @@
 <!-- iziToast CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
 
-  <link rel="shortcut icon" href="{{asset('/')}}/img/{{getWebsiteOptions()['website_favicon']->option_value}}" type="image/x-icon">
-  <link rel="icon" type="image/png" href="assets/images/favicon.png" /> 
+  <link rel="shortcut icon" href="{{asset('/')}}images/{{getWebsiteOptions()['website_favicon']->option_value}}" type="image/x-icon">
+  <link rel="icon" type="image/png" href="{{asset('/')}}images/{{getWebsiteOptions()['website_favicon']->option_value}}" /> 
   <!-- vendor css -->
-  <link href="{{url('/')}}/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="{{url('/')}}/css/owl.carousel.min.css" rel="stylesheet" />
-  <link href="{{url('/')}}/css/animate.css" rel="stylesheet">
+  <link href="{{url('/')}}/dubai/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="{{url('/')}}/dubai/css/owl.carousel.min.css" rel="stylesheet" />
+  <link href="{{url('/')}}/dubai/css/animate.css" rel="stylesheet">
   <!-- CODROP SLIDER CSS SETTINGS -->
-  <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/base.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="{{url('/')}}/dubai/css/base.css" media="screen" />
   <!-- theme stylesheet -->
-  <link href="{{url('/')}}/css/style.css" rel="stylesheet" />
-  <link href="{{url('/')}}/css/responsive.css" rel="stylesheet" />
+  <link href="{{url('/')}}/dubai/css/style.css" rel="stylesheet" />
+  <link href="{{url('/')}}/dubai/css/responsive.css" rel="stylesheet" />
   
 
 
@@ -80,9 +80,10 @@
     <link rel="stylesheet" href="{{asset('/')}}/front/css/slick.css">
     <link rel="stylesheet" href="{{asset('/')}}/front/css/slick-theme.css">
     <link rel="stylesheet" href="{{asset('/')}}/front/fonts/fonts.css">
-    <link rel="stylesheet" href="{{asset('/')}}/front/css/fancybox.css">
+    <link rel="stylesheet" href="{{asset('/')}}/dubai/css/fancybox.css">
     <!-- <link rel="stylesheet" href="{{asset('/')}}/plugins/toastr/toastr.min.css"> -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <?php
 
   $headerCode = DB::table('custom_codes')->where('type', 'header-code')->first();

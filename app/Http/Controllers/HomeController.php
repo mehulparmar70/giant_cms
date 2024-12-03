@@ -17,6 +17,7 @@ use App\Models\admin\Client;
 use App\Models\admin\CaseStudies;
 use App\Models\admin\Product;
 use App\Models\admin\Media;
+use App\Models\admin\AboutSection;
 use App\Models\admin\Category;
 use App\Models\admin\CriteriaMeta;
 use App\Models\admin\Criteria;
@@ -91,6 +92,7 @@ class HomeController extends Controller
 
     }
 
+    
     public function index()
     {
         
@@ -137,6 +139,24 @@ class HomeController extends Controller
         return response()->view('index', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
+
+    public function product_image($slug, $imageTitle)
+{
+    // Find the product based on the slug
+    $product = Product::where('slug', $slug)->firstOrFail();
+
+    // Find the specific image based on the imageTitle
+    $productImage = ProductImage::where('alt_text', 'LIKE', '%' . str_replace('-', ' ', $imageTitle) . '%')->first();
+
+    if (!$productImage) {
+        abort(404, 'Image not found');
+    }
+
+    // Return a view or JSON response as needed
+    return view('product.image-detail', compact('product', 'productImage'));
+}
+
+
     public function product(Request $request)
     {
         //Session::forget('homePageCatId');
@@ -157,6 +177,7 @@ class HomeController extends Controller
             'criteriaMetaData' => $searchData,
             'criteriaMetas' => $this->criteriaMetas,
             'searchData' => $searchData,
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             'pageData' =>  Pages::where('type', 'product_page')->first(),
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
             'awardSlider' =>  Award::where('status', 1)->limit(20)->orderBy('item_no')->get(),
@@ -169,7 +190,7 @@ class HomeController extends Controller
             'topInflatables4' =>  $this->topInflatables4,
             'industries' =>  Industries::where(['status' => 1])->orderBy('item_no')->limit(50)->get(),
             'topInflatableAll' =>  $this->topInflatableAll,
-            'productTitle' =>  Pages::where('type', 'product_page')->first(),
+            'productTitle' =>  Pages::where('type', 'product_page')->first(['meta_title']),
             'products1' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('item_no')->skip(0)->take(3)->get(),
             'products2' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('item_no')->skip(3)->take(3)->get(),
             'products3' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('item_no')->skip(6)->take(3)->get(),
@@ -188,11 +209,11 @@ class HomeController extends Controller
 
         ];
         if($searach_criteria){
-            return response()->view('search', $data)->header('Cache-Control:public', 'max-age=31536000');
+            return response()->view('theme::search', $data)->header('Cache-Control:public', 'max-age=31536000');
 
         }else{
 
-        return response()->view('product', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::product', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
         }
     }
@@ -219,8 +240,58 @@ class HomeController extends Controller
             'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'newsletterSlider' =>  Newsletter::where(['status' => 1])->orderBy('item_no')->get(),
         ];
+        
+        return view('theme::product-internal', $data);
+    }
+    
+    public function dynamicPage(Request $request, $slug)
+    {
+        // Check if the slug exists in the url_list table for main pages
+        $urlData = UrlList::where('url', 'like', '%' . $slug)->first();
+    
+        if ($urlData) {
+            // Determine which view to load based on URL data
+            switch ($urlData->name) {
+                case 'Products':
+                    return $this->product($request);
+                case 'About':
+                    return $this->about();
+                case 'Contact':
+                    return $this->contact();
+                case 'Blog':
+                    return $this->updates();
+                default:
+                    // Generic fallback view for other pages
+                    return view('theme::generic', ['data' => $urlData]);
+            }
+        }
+    
+        // If not found in url_list, check in the categories table
+        $category = Category::where('slug', $slug)->first();
+        if ($category) {
+            // Load the category view or call the relevant method
+            return $this->product_internal($slug);
+        }
+    
+        // If slug doesn't match any record, return a 404 response
+        // abort(404, 'Page not found');
+        return response()->view('theme::404', ['slug' => $slug,
+        'pageData' => Pages::where('type', '404')->first(),
+        'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
+        'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+    ], 404);
+    }
 
-        return view('product-internal', $data);
+    public function thankYouPage(Request $request)
+    {
+        $redirectUrl = $request->input('redirect_url');  // Capture the query parameter
+        
+        return view('theme::thank-you', [
+            'redirectUrl' => $redirectUrl,
+            'pageData' => Pages::where('type', '404')->first(),  // Fetch 404 page data or adjust as needed
+            'testimonials' => Testimonials::where('status', 1)->orderBy('item_no')->orderBy('id', 'DESC')->limit(50)->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+        ]);
     }
     
     public function product_internal($slug)
@@ -231,11 +302,11 @@ class HomeController extends Controller
         if(isset($current_cat)){
             // dd($current_cat);
             if(!isset($current_cat)){
-                return redirect(url('custom-industrial-inflatable-products'));
+                return redirect(url('products'));
             }
             
             if($current_cat->status == 0){
-                return redirect(url('custom-industrial-inflatable-products'));
+                return redirect(url('products'));
             }
             $mainCategory = Category::find($current_cat->parent_id);
             $subCategory = Category::where(['parent_id' => $mainCategory->id, 'status' => 1])->get();
@@ -256,6 +327,7 @@ class HomeController extends Controller
                 'pageData' =>  $isCheckCategory,
                 'topCategories' => $this->topCategories,
                 'subCategory' => $subCategory,
+                'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
                 'productDetail' =>  $isCheckCategory,
                 'productImages' =>  Media::where('media_id', $current_cat->id)->orderBy('item_no','asc')->get(),
                 'industries' =>  Industries::where(['status' => 1])->orderBy('item_no')->limit(50)->get(),
@@ -285,7 +357,7 @@ class HomeController extends Controller
                 'productTitle' =>  Pages::where('type', 'product_page')->first(),
 
             ];
-            return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+            return response()->view('theme::product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
         }
         
@@ -293,10 +365,10 @@ class HomeController extends Controller
         $current_cat = Category::where(['slug' => $slug, 'status' => 1])->first();
         // dd($current_cat);
         if(!isset($current_cat)){
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
         if($current_cat->status == 0){
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
 
         $criteriaData = Criteria::where('slug', $slug)->first();
@@ -332,7 +404,7 @@ class HomeController extends Controller
                             'search_index' => $current_cat->search_index, 'search_follow' => $current_cat->search_follow,
                             'canonical_url' => $current_cat->canonical_url
                         ],
-
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             // 'pageData' =>  $current_cat,
             'criteriaData' => $criteriaData,
             'criteriaMetas' => $this->criteriaMetas,
@@ -368,7 +440,8 @@ class HomeController extends Controller
             'productTitle' =>  Pages::where('type', 'product_page')->first(),
 
         ];
-        return response()->view('product-internal', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        // dd($data);
+        return response()->view('theme::product-internal', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
 
@@ -453,7 +526,7 @@ class HomeController extends Controller
         ];
         
         
-        return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
 
@@ -465,11 +538,11 @@ class HomeController extends Controller
             return redirect(url('').'/'.$slug);
         }
         else{
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
 
         if($current_cat->status == 0){
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
 
         $mainCategory = Category::find($current_cat->parent_id);
@@ -521,7 +594,7 @@ class HomeController extends Controller
 
         ];
         
-        return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
 
     }
@@ -639,13 +712,13 @@ class HomeController extends Controller
             'footerCaseStudies' =>   $this->footerCaseStudies,
 
         ];
-        return response()->view('product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::product-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
 
         }
         else{
 
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url('products'));
         }
     }
     
@@ -769,12 +842,14 @@ class HomeController extends Controller
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
             'pageData' =>  Blog::where('slug', $slug)->first(),
             'videos' =>  Video::where(['status' => 1])->orderBy('item_no')->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'blogDetail' =>  Blog::where('slug', $slug)->first(),
             'latestBlogs' =>  Blog::where('status',1)->limit(6)->get(),
             'topCategories' => $this->topCategories,
             'industries' =>  Industries::where(['status' => 1])->orderBy('item_no')->limit(50)->get(),
             'latestUpdates' =>  Blog::where('status',1)->where('slug', '!=' ,$slug)->limit(3)->get(),
             'footerTestimonial' =>  $this->footerTestimonial,
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             'footerVideo' =>   $this->footerVideo,
             'footerBlog' =>   $this->footerBlog,
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
@@ -789,7 +864,7 @@ class HomeController extends Controller
             'footerCaseStudies' =>   $this->footerCaseStudies,
 
         ];
-        return response()->view('update-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::update-detail', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
     }
 
     public function newsletters_details($slug)
@@ -833,7 +908,10 @@ class HomeController extends Controller
     {
         //Session::forget('homePageCatId');
         $data = [
+            'sections' => AboutSection::all(), // Fetch all records from the table
             'pageData' =>  Pages::where('type', 'about_page')->first(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             'industriesData' =>  Pages::where('type', 'industrie_page')->first(),
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
             'videos' =>  Video::where(['status' => 1])->orderBy('item_no')->get(),
@@ -864,7 +942,8 @@ class HomeController extends Controller
             'footerCaseStudies' =>   $this->footerCaseStudies,
 
         ];
-        return response()->view('about', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        // dd($data);
+        return response()->view('theme::about', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
 
@@ -1031,7 +1110,9 @@ class HomeController extends Controller
         //Session::forget('homePageCatId');
         $data = [
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             'videos' =>  Video::where(['status' => 1])->orderBy('item_no')->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'updates' =>  Blog::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->paginate(6),
             'footerTestimonial' =>  $this->footerTestimonial,
             'footerVideo' =>   $this->footerVideo,
@@ -1062,7 +1143,7 @@ class HomeController extends Controller
 
         ];
 
-        return response()->view('updates', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::updates', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
     public function partenrs()
@@ -1110,35 +1191,38 @@ class HomeController extends Controller
         
         $getBlog = Blog::where('title', 'like', '%'.$search.'%')->orderBy('item_no')->get();
         $getCategory = Category::where('name', 'like', '%'.$search.'%')->orderBy('item_no')->get();
-        $getCaseStudies = CaseStudies::where('title', 'like', '%'.$search.'%')->orderBy('item_no')->get();
+        // $getCaseStudies = CaseStudies::where('title', 'like', '%'.$search.'%')->orderBy('item_no')->get();
         $searchKey = 0;
         if (count($getBlog) > 0) {
             foreach ($getBlog as $key => $value) {
                 $searchData[$searchKey]['Image'] = url('/').'/images/'.$value->image;
                 $searchData[$searchKey]['Description'] = $value->short_description;
                 $searchData[$searchKey]['Title'] = $value->title;
+                $searchData[$searchKey]['type'] = 'blog';
                 $searchData[$searchKey]['Slug'] = 'updates/'.$value->slug;
                 $searchKey++;
             }
         }
         if (count($getCategory) > 0) {
             foreach ($getCategory as $key => $value) {
-                $searchData[$searchKey]['Image'] = asset('/').'/images/'.getImageFromCategory($value->id)[0]->image;
+             
+                $searchData[$searchKey]['Image'] = asset('/').'images/'.$value->image;
                 $searchData[$searchKey]['Description'] = $value->meta_description;
                 $searchData[$searchKey]['Title'] = $value->name;
                 $searchData[$searchKey]['Slug'] = $value->slug;
+                $searchData[$searchKey]['type'] = 'products';
                 $searchKey++;
             }
         }
-        if (count($getCaseStudies) > 0) {
-            foreach ($getCaseStudies as $key => $value) {
-                $searchData[$searchKey]['Image'] = url('/').'/images/'.$value->image;
-                $searchData[$searchKey]['Description'] = $value->meta_description;
-                $searchData[$searchKey]['Title'] = $value->title;
-                $searchData[$searchKey]['Slug'] = 'case-studies/'.$value->slug;
-                $searchKey++;
-            }
-        }
+        // if (count($getCaseStudies) > 0) {
+        //     foreach ($getCaseStudies as $key => $value) {
+        //         $searchData[$searchKey]['Image'] = url('/').'/images/'.$value->image;
+        //         $searchData[$searchKey]['Description'] = $value->meta_description;
+        //         $searchData[$searchKey]['Title'] = $value->title;
+        //         $searchData[$searchKey]['Slug'] = 'case-studies/'.$value->slug;
+        //         $searchKey++;
+        //     }
+        // }
         
         $data = [
             'pageData' =>  Pages::where('type', 'partenr_page')->first(),
@@ -1164,7 +1248,7 @@ class HomeController extends Controller
             'products2' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('id', 'DESC')->skip(5)->take(10)->get(),
             'products3' => Category::where(['status' => 1, 'parent_id' => 0])->orderBy('id', 'DESC')->skip(10)->take(15)->get(),
             'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
-
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->paginate(10),
             'footerCategories' =>   $this->footerCategories,
             'footerProducts' =>   $this->footerProducts,
             'footerBlogs' =>   $this->footerBlogs,
@@ -1175,7 +1259,7 @@ class HomeController extends Controller
             'searchData' =>   $searchData,
         ];
         
-        return response()->view('search', $data)->header('Cache-Control:public', 'max-age=31536000');
+        return response()->view('theme::search', $data)->header('Cache-Control:public', 'max-age=31536000');
     }
     public function testimonials(Request $request)
     {
@@ -1240,6 +1324,8 @@ class HomeController extends Controller
         $data = [
             'blogs' =>  Blog::where('status', 1)->orderBy('item_no')->get(),
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'footerTestimonial' =>  $this->footerTestimonial,
             'footerVideo' =>   $this->footerVideo,
             'footerBlog' =>   $this->footerBlog,
@@ -1262,6 +1348,8 @@ class HomeController extends Controller
         $data = [
             'current_page' =>  'contact',
             'pageData' =>  Pages::where('type', 'contact_page')->first(),
+            'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'footerTestimonial' =>  $this->footerTestimonial,
             'footerVideo' =>   $this->footerVideo,
             'footerBlog' =>   $this->footerBlog,
@@ -1276,7 +1364,8 @@ class HomeController extends Controller
 
             'industries' =>  Industries::where(['status' => 1])->orderBy('item_no')->limit(50)->get(),
         ];
-        return response()->view('contact-us', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
+        // dd($data);
+        return response()->view('theme::contact-us  ', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
     }
 
     public function thankyou()

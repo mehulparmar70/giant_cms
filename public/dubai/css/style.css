@@ -445,14 +445,14 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
 .main-header {
     position: fixed;
     width: 100%;
-    background-image: linear-gradient(180deg, black, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0.0));
+    background-image: linear-gradient(180deg, black, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0.0)) !important;
     /* overflow: hidden; */
     z-index: 9999;
     transition: 0.3s;
     /* display: none; */
 }
 .main-header.sticky {
-    background-image: linear-gradient(0deg, black 20%, rgb(75 75 75) 180%);
+    background-image: linear-gradient(0deg, black 20%, rgb(75 75 75) 180%) !important;
 }
 .main-header.sticky .container-fluid {
     border-radius: 100px;
@@ -978,6 +978,10 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
 .footer-top-col ul li a {
     font-size: 13px;
     opacity: 0.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
 }
 .footer-bottom {
     position: relative;
@@ -1515,15 +1519,21 @@ a.updates-box:hover, a.updates-box:focus {
 .updates-box:hover .updates-box-img img {
     transform: scale(1.15);
     transform-origin: center;
-    -webkit-filter: brightness(.4) contrast(1.1) saturate(1.2) blur(3px);
-    filter: brightness(.4) contrast(1.1) saturate(1.2) blur(3px);
+    /* -webkit-filter: brightness(.4) contrast(1.1) saturate(1.2) blur(3px);
+    filter: brightness(.4) contrast(1.1) saturate(1.2) blur(3px); */
 }
 .updates-box-content {
     padding: 24px 14px 8px;
 }
 .updates-box-content h6, .updates-box-content .h6 {
     font-size: 30px;
-    line-height: 1;
+    line-height: 1.1em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 3.3em;
 } 
 .updates-box-content p {
     overflow: hidden;
@@ -1780,6 +1790,16 @@ a.updates-box:hover, a.updates-box:focus {
     color: #d60309;
     background-color: #000000;
 }
+.dropdown .btn-animation.dropdown-toggle ~ .dropdown-menu {
+    width: auto;
+}
+.dropdown .btn-animation.dropdown-toggle ~ .dropdown-menu .dropdown-item span{
+    white-space: nowrap;
+} 
+.dropdown .dropdown-menu-end {
+    left: auto;
+    right: 0;
+}
 .dropdown-toggle:after {
     border: none;
     margin: 0;
@@ -1975,4 +1995,15 @@ a.updates-box:hover, a.updates-box:focus {
 /* fancybox */
 .fancybox-image {
     max-width: 95%;
+}
+/* Fixes after Laravel Init */
+.updates-box-content > p.MsoNormal + p.MsoNormal,
+.updates-box-content > p:empty {
+    display: none;
+}
+.shareconceptModal {
+    z-index: 9999;
+}
+.fancybox__container {
+    z-index: 9999;
 }
