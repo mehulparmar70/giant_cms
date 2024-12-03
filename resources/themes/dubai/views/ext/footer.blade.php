@@ -92,7 +92,7 @@
                     @endif>{{$topInflatableLp->name}}</a></li>
               
                   @endforeach
-                  <li class="d-block" ><a class="text-red" href="#" >View All</a></li>
+                  <li class="d-block" ><a class="text-red" href="{{ $updatesLink->url }}" >View All</a></li>
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="0.6s">
@@ -113,7 +113,7 @@
                 
                   <?php }}  ?>
                   @endforeach
-                  <li class="d-block " ><a class="text-red" href="#" >View All</a></li>
+                  <li class="d-block " ><a class="text-red" href="{{ $updatesLink->url }}" >View All</a></li>
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="0.9s">
@@ -134,10 +134,10 @@ data-link="{{route('blog.edit', $blogsList->id)}}"
 @endif>{!! html_entity_decode($blogsList->title) !!} </a></li>
 
                   @endforeach
-                  <li class="d-block" ><a class="text-red" href="#" >View All</a></li>
+                  <li class="d-block" ><a class="text-red" href="{{ $updatesLink->url }}" >View All</a></li>
                 </ul>
               </div>
-              <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="1.2s">
+              <!-- <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="1.2s">
                 <div class="footer-top-heading"><h6>Testimonials</h6></div>
                 <ul>
                 @foreach($testimonials as $testimonial)
@@ -150,7 +150,7 @@ data-link="{{route('testimonials.edit', $testimonial->id)}}"
                   @endforeach
                   <li class="d-block" ><a class="text-red" href="#" >View All</a></li>
                 </ul>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

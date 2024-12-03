@@ -177,9 +177,9 @@ $( document ).ready( function() {
 					delay: 2000,
 				},
 			},
-			1200:{
-				items:5,
-			},
+			// 1200:{
+			// 	items:5,
+			// },
 		}
 	})
 	var footerBottomSlider = $('.footer-bottom-row');
