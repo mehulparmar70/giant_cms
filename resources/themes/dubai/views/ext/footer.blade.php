@@ -77,6 +77,11 @@
             @endif><a href="{{ $contactLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.contact-page.editor')}}"
             @endif>{{ $contactLink->name }}</a></li>
+                  <li class="menu_crud" @if(session('LoggedUser'))
+                data-link="{{route('admin.contact-page.editor')}}"
+            @endif><a href="{{ $contactLink->url }}" @if(session('LoggedUser'))
+                data-link="{{route('admin.contact-page.editor')}}"
+            @endif>View All</a></li>
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="0.3s">
@@ -91,6 +96,7 @@
                     @endif>{{$topInflatableLp->name}}</a></li>
               
                   @endforeach
+                  <li class="menu_crud" ><a href="#" >View All</a></li>
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="0.6s">
@@ -111,6 +117,7 @@
                 
                   <?php }}  ?>
                   @endforeach
+                  <li class="menu_crud" ><a href="#" >View All</a></li>
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="0.9s">
@@ -131,7 +138,7 @@ data-link="{{route('blog.edit', $blogsList->id)}}"
 @endif>{!! html_entity_decode($blogsList->title) !!} </a></li>
 
                   @endforeach
-
+                  <li class="menu_crud" ><a href="#" >View All</a></li>
                 </ul>
               </div>
               <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="1.2s">
@@ -145,6 +152,7 @@ data-link="{{route('testimonials.edit', $testimonial->id)}}"
 @endif><a href="{{url('testimonials')}}?testimonial={{$testimonial->id}}">{{$testimonial->client_name}}</a></li>
 
                   @endforeach
+                  <li class="menu_crud" ><a href="#" >View All</a></li>
                 </ul>
               </div>
             </div>

@@ -72,7 +72,7 @@
             </div>
           </div>
                   <div class="col-xl-3 col-lg-4 col-md-5 wow fadeInRight" data-wow-offset="200">
-                    <div class="share-concept-form-box share-about-box mx-md-0 mx-auto">
+                    <div class="share-concept-form-box share-about-box mx-md-0 mx-auto -sticky">
                       <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                           @include('widget.contact-form1')
                     </div>
