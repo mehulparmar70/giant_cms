@@ -9,7 +9,7 @@
 
     <script type="text/javascript">
       // Set the countdown time (3 seconds in this case)
-      var countdownTime = 10;
+      var countdownTime = 5;
       
       // Function to update the countdown every second
       function updateCountdown() {
