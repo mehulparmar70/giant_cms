@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\CategoryController;
-use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\admin\PhotoManageController;
 use App\Http\Controllers\api\MediaApiController;
 
 use App\Http\Controllers\api\SliderController;
@@ -36,12 +36,17 @@ Route::post('media/update-multiple-image-field/{id}',[ApiCallController::class, 
 
 // Route::get('get/getPetaKacheri/{id}','api\CategoryApiController@getPetaKacheri');
 
-Route::resource('photos.comments', PhotoController::class);
+Route::resource('photos.comments', PhotoManageController::class);
 
 Route::get('get/getPetaKacheri/{id}',[CategoryController::class, 'getPetaKacheri']);
 Route::get('get/getDepartment/{id}',[CategoryController::class, 'getDepartment']);
 
-Route::get('get/getSubCategories/{id}',[CategoryController::class, 'getSubCategories']);
+
+Route::get('/get/getSubCategories/{category_parent_id}', [CategoryController::class, 'getSubCategories']);
+
+Route::get('get/getSubCategories/{id}', [CategoryController::class, 'getSubCategories']);
+
+// Route::get('get/getSubCategories/{id}',[CategoryController::class, 'getSubCategories']);
 Route::get('get/getSubCategoriesList/{id}',[CategoryController::class, 'getSubCategoriesList']);
 
 Route::get('get/getSubcategoriesNoProducts/{id}',[CategoryController::class, 'getSubcategoriesNoProducts']);

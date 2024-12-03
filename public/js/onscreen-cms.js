@@ -670,7 +670,7 @@ function popupmenu(link, type, event) {
               .then(data => {
                   document.getElementById('modalBodyContent').innerHTML = data;
                   document.getElementById('ajaxModal').style.display = 'block';
-
+                  ensureFontAwesomeLoaded();
                   const editorElement = document.querySelector('#ajaxModal #editor'); // Ensure the correct selector
                   if (editorElement) {
                       initializeEditor(editorElement);
@@ -682,6 +682,17 @@ function popupmenu(link, type, event) {
   }
   
 }
+
+function ensureFontAwesomeLoaded() {
+  const faLink = document.querySelector('link[href*="font-awesome.min.css"]');
+  if (!faLink) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
+    document.head.appendChild(link);
+  }
+}
+
 
 function getMaxZIndex() {
   let maxZIndex = 0;

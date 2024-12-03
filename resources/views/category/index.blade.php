@@ -47,11 +47,7 @@
      
         </div>
 
-        <div class="mb-2">
-          <div class="col-sm-12">
-            <h3 class="mb-0">{{$pageType}}</h3>
-          </div>
-        </div>
+
       </div>
     </div>
 

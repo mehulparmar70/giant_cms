@@ -151,8 +151,7 @@ else{
                     </div>
                     </div>
                     @else
-                    <div class="cmsModal-column">
-                      <div class="cmsModal-formGroup">
+                    
 
                   <input type="hidden" name="pageType" class="parent_id" 
                       value="main_category"> 
@@ -160,8 +159,7 @@ else{
                       <input type="hidden" name="parent_id" class="parent_id" 
                       value="0"> 
 
-                    </div>
-                  </div>
+                  
                     @endif
                   
          

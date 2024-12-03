@@ -256,11 +256,28 @@ Route::get('/{category}/{subCategory}/{slug}', [HomeController::class, 'category
 Route::get('/search', [HomeController::class, 'search_criteria']);
 Route::get('/thank-you', [HomeController::class, 'thankYouPage'])->name('thank-you');
 
+// Route::get('{slug}', function ($slug) {
+//     // Skip dynamic routing for 'powerup' prefixed URLs
+//     if (request()->is('api/*')) {
+//         abort(404); // or handle it differently if needed
+//     }
+//     if ( str_starts_with($slug, 'powerup')) {
+       
+//     }
+
+//     return app(HomeController::class)->dynamicPage(request(), $slug); // Call dynamicPage for other slugs
+// })->where('slug', '.*')->name('dynamic.page');
+
 Route::get('{slug}', function ($slug) {
-    // Skip dynamic routing for 'powerup' prefixed URLs
-    if (str_starts_with($slug, 'powerup')) {
-        abort(404); // Explicitly return a 404 for powerup routes
+    // Skip dynamic routing for URLs starting with 'api/'
+    if (request()->is('api/*')) {
+        abort(404); // or handle it differently if needed
     }
 
-    return app(HomeController::class)->dynamicPage(request(), $slug); // Call dynamicPage for other slugs
-})->where('slug', '.*')->name('dynamic.page');
+    if (str_starts_with($slug, 'powerup')) {
+        abort(404);
+    }
+
+    // Fallback for other slugs
+    return app(HomeController::class)->dynamicPage(request(), $slug);
+})->where('slug', '^(?!api\/).*'); 
