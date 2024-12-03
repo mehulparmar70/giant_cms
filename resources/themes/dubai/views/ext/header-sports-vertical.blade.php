@@ -370,7 +370,7 @@
 
  
 <!-- header -->
-<div class="wrapper overflow-hidden">
+<div class="wrapper">
   <div class="main-container">
   <header class="main-header">
 

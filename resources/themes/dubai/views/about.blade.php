@@ -63,7 +63,7 @@
               </div>
             </div>
             <div class="about-banner-desc wow zoomIn" data-wow-offset="200">
-              <div class="about-middle-contect-inner">
+              <div >
                 <span>       <div class="menu_crud"  @if(session('LoggedUser'))
                   data-link="{{route('admin.about-page.editor')}}"
               @endif></div>
