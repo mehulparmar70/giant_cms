@@ -243,7 +243,7 @@
                      
                     <div class="about-middle-contect-inner">
                         <span>
-                        {!! $pageData->description !!}</span>
+                        {!! $aboutPageData->description !!}</span>
                     </div>
                     <div class="text-md-start text-center mt-md-3 mb-md-0 mb-4"><a href="{{ $aboutLink->url }}" class="btn share-about-btn text-uppercase btn-animation--infinity">VIEW MORE</a></div>
                   </div>

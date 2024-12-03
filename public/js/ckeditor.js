@@ -56,18 +56,20 @@ function createCKEditor(editorElement) {
             options: [
                 'default',
                 'Arial, Helvetica, sans-serif',
+                'Arial Rounded MT Bold',
                 'Courier New, Courier, monospace',
                 'Georgia, serif',
                 'Lucida Sans Unicode, Lucida Grande, sans-serif',
                 'Tahoma, Geneva, sans-serif',
                 'Times New Roman, Times, serif',
                 'Trebuchet MS, Helvetica, sans-serif',
-                'Verdana, Geneva, sans-serif'
+                'Verdana, Geneva, sans-serif',
+                'Roboto, sans-serif'  // New font added
             ],
             supportAllValues: true
         },
         fontSize: {
-            options: [10, 12, 14, 'default', 18, 20, 22],
+            options: [10, 12, 14, 'default', 18, 20, 22,25],
             supportAllValues: true
         },
         htmlSupport: {

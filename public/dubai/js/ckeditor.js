@@ -55,7 +55,7 @@ function createCKEditor(editorElement) {
         fontFamily: {
             options: [
                 'default',
-                'Arial, Helvetica, sans-serif',
+                'Arial,Arial Rounded MT Bold, Helvetica, sans-serif',
                 'Courier New, Courier, monospace',
                 'Georgia, serif',
                 'Lucida Sans Unicode, Lucida Grande, sans-serif',
@@ -67,7 +67,7 @@ function createCKEditor(editorElement) {
             supportAllValues: true
         },
         fontSize: {
-            options: [10, 12, 14, 'default', 18, 20, 22],
+            options: [10, 12, 14, 'default', 18, 20, 22,25],
             supportAllValues: true
         },
         htmlSupport: {
