@@ -5,7 +5,7 @@
           <div class="share-concept-form-box share-about-box mx-md-0 mx-auto">
             <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-<form action="{{route('send-contact')}}" method="post" class="share-concept-form ms-2">
+<form id="contact-form" method="post" class="share-concept-form ms-2">
   @csrf
   <input type="hidden" name="token_response" class="token_response">
 
@@ -62,10 +62,15 @@
   </div>
 
   <div class="text-center">
-    <button class="btn btn-animation--infinity" type="submit">SUBMIT</button>
+    <button type="button" class="btn btn-animation--infinity" onclick="submitContact()">SUBMIT</button>
   </div>
 </form>
 </div>
         </div>
       </div>
     </div>
+    <script>
+      function onTurnstileSuccess(token) {
+        document.querySelector('.cf-turnstile-response').value = token;
+      }
+    </script>

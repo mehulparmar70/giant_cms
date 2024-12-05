@@ -2005,8 +2005,12 @@ a.updates-box:hover, a.updates-box:focus {
     display: none;
 }
 .shareconceptModal {
-    z-index: 9999;
+    z-index: 999999 !important;
 }
 .fancybox__container {
     z-index: 9999;
+}
+figure .table
+{
+    --bs-table-bg:#ffffff00 !important;
 }

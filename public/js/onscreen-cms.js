@@ -2670,7 +2670,7 @@ function deletephoto(imageId) {
 function loadInquiryModal(event) {
   event.preventDefault();
 
-  fetch('{{ route("load-inquiry-modal") }}')
+  fetch(base_url+"/load-inquiry-modal")
     .then(response => response.text())
     .then(html => {
       document.getElementById('inquirypopup').innerHTML = html;
