@@ -37,7 +37,7 @@ Route::middleware(['check.active.theme'])->group(function () {
 
 Route::get('theme/selection', [ThemeController::class, 'index'])->name('theme.selection');
 
-Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+// Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('sitemap.xml', [HomeController::class, 'sitemap'])->name('sitemap');
 Route::get('sitemapEdit', [HomeController::class, 'sitemapEdit'])->name('sitemapEdit');
 
@@ -47,23 +47,36 @@ Route::get('/load-inquiry-modal', function () {
     return view('widget.inquirynow');
 })->name('load-inquiry-modal');
 
-Route::get('products', [HomeController::class, 'product'])->name('products');
-Route::get('/about', [HomeController::class, 'about'])->name('admin');
-Route::get('client', [HomeController::class, 'client']);
-Route::get('videos', [HomeController::class, 'videos']);
-Route::get('awards', [HomeController::class, 'awards']);
-Route::get('news-letters', [HomeController::class, 'newsletters']);
-Route::get('news-letters/{slug}', [HomeController::class, 'newsletters_details']);
-Route::get('partners', [HomeController::class, 'partenrs']);
-Route::get('partners/{slug}', [HomeController::class, 'partners_details']);
-Route::get('case-studies', [HomeController::class, 'casestudies']);
-Route::get('case-studies/{slug}', [HomeController::class, 'casestudies_details']);
-Route::get('testimonials', [HomeController::class, 'testimonials']);
+Route::get('giant-advertising-marketing-event-inflatable', [HomeController::class, 'product'])->name('products');
+Route::get('/custom-inflatable-manufacturer', [HomeController::class, 'about'])->name('admin');
+// Route::get('client', [HomeController::class, 'client']);
+// Route::get('videos', [HomeController::class, 'videos']);
+// Route::get('awards', [HomeController::class, 'awards']);
+// Route::get('news-letters', [HomeController::class, 'newsletters']);
+// Route::get('news-letters/{slug}', [HomeController::class, 'newsletters_details']);
+// Route::get('partners', [HomeController::class, 'partenrs']);
+// Route::get('partners/{slug}', [HomeController::class, 'partners_details']);
+// Route::get('case-studies', [HomeController::class, 'casestudies']);
+// Route::get('case-studies/{slug}', [HomeController::class, 'casestudies_details']);
+// Route::get('testimonials', [HomeController::class, 'testimonials']);
 
-Route::get('updates', [HomeController::class, 'updates'])->name('update.index');
-Route::get('updates/{slug}', [HomeController::class, 'updates_details']);
-Route::get('contact-us', [HomeController::class, 'contact'])->name('contact');
+Route::get('latest', [HomeController::class, 'updates'])->name('update.index');
+Route::get('latest', [HomeController::class, 'updates'])->name('update.index');
+Route::get('latest/{slug}', [HomeController::class, 'updates_details']);
+Route::get('custom-inflatable-manufacturer-dubai', [HomeController::class, 'contact'])->name('contact');
+Route::get('/page-not-found', [HomeController::class, 'pageNotFound'])->name('page.not.found');
 
+Route::get('{slug}', function ($slug) {
+    // Skip dynamic routing for 'powerup' prefixed URLs
+    if (request()->is('api/*')) {
+        abort(404); // or handle it differently if needed
+    }
+    if ( str_starts_with($slug, 'powerup')) {
+       
+    }
+
+    return app(HomeController::class)->dynamicPage(request(), $slug); // Call dynamicPage for other slugs
+})->where('slug', '.*')->name('dynamic.page');
 
 //admin views
 
@@ -254,30 +267,5 @@ Route::get('/{category}/{subCategory}/{slug}', [HomeController::class, 'category
 // Route::get('/{category}/{subCategory}/{subCategory2}/{slug}', [HomeController::class, 'category_subcategory_subcategory2_product']);
 
 Route::get('/search', [HomeController::class, 'search_criteria']);
-Route::get('/thank-you', [HomeController::class, 'thankYouPage'])->name('thank-you');
+Route::get('/thankyou', [HomeController::class, 'thankYouPage'])->name('thank-you');
 
-// Route::get('{slug}', function ($slug) {
-//     // Skip dynamic routing for 'powerup' prefixed URLs
-//     if (request()->is('api/*')) {
-//         abort(404); // or handle it differently if needed
-//     }
-//     if ( str_starts_with($slug, 'powerup')) {
-       
-//     }
-
-//     return app(HomeController::class)->dynamicPage(request(), $slug); // Call dynamicPage for other slugs
-// })->where('slug', '.*')->name('dynamic.page');
-
-Route::get('{slug}', function ($slug) {
-    // Skip dynamic routing for URLs starting with 'api/'
-    if (request()->is('api/*')) {
-        abort(404); // or handle it differently if needed
-    }
-
-    if (str_starts_with($slug, 'powerup')) {
-        abort(404);
-    }
-
-    // Fallback for other slugs
-    return app(HomeController::class)->dynamicPage(request(), $slug);
-})->where('slug', '^(?!api\/).*'); 

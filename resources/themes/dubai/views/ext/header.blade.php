@@ -107,10 +107,10 @@
 		        <a class="nav-link" href="{{url('videos')}}">videos</a>
 		      </li>
 		      <li class="nav-item blog">
-		        <a class="nav-link" href="{{url('blog')}}">blog</a>
+		        <a class="nav-link" href="{{url('latest')}}">blog</a>
 		      </li>
 		      <li class="nav-item contact">
-		        <a class="nav-link" href="{{url('contact-us')}}">contact us</a>
+		        <a class="nav-link" href="{{url('custom-inflatable-manufacturer-dubai')}}">contact us</a>
 		      </li>
 			  <div class="two_controls">    
 			      <li class="nav-item eneveloper_menu no-effect">

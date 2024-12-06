@@ -273,14 +273,32 @@ class HomeController extends Controller
             return $this->product_internal($slug);
         }
     
+        return redirect()->route('page.not.found');
         // If slug doesn't match any record, return a 404 response
         // abort(404, 'Page not found');
-        return response()->view('theme::404', ['slug' => $slug,
-        'pageData' => Pages::where('type', '404')->first(),
-        'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
-        'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
-    ], 404);
+    //     return response()->view('theme::404', ['slug' => $slug,
+    //     'pageData' => Pages::where('type', '404')->first(),
+    //     'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
+    //     'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+    // ], 404);
     }
+
+    public function pageNotFound()
+{
+    return response()->view('theme::404', [
+        'pageData' => Pages::where('type', '404')->first(),
+        'testimonials' => Testimonials::where('status', 1)
+            ->orderBy('item_no')
+            ->orderBy('id', 'DESC')
+            ->limit(50)
+            ->get(),
+        'blogsSlider' => Blog::where('status', 1)
+            ->limit(5)
+            ->orderBy('item_no')
+            ->get(),
+    ], 404);
+}
+
 
     public function thankYouPage(Request $request)
     {
