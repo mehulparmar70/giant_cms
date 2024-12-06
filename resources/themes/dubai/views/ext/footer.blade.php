@@ -77,6 +77,9 @@
             @endif><a href="{{ $contactLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.contact-page.editor')}}"
             @endif>{{ $contactLink->name }}</a></li>
+                  <li class="menu_crud" ><a href="{{ $contactLink->url }}" @if(session('LoggedUser'))
+                data-link="{{route('admin.contact-page.editor')}}"
+            @endif>{{ $contactLink->name }}</a></li>
                
                 </ul>
               </div>

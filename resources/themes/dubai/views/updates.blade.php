@@ -11,6 +11,7 @@
   <?php $current_page = '';     $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
   $homeLink = App\Models\admin\UrlList::find(95);  // Home link
   $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
+  $updatesLink = App\Models\admin\UrlList::find(113);  // Updates link
   ?>
     
     {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
@@ -46,7 +47,7 @@
                     @foreach($updates as $update)
                     <div class="col-md-4 col-sm-6 updates-blocks-col">
                       <div class="updates-slider-item">
-                        <a href="{{ url('updates') }}/{{$update->slug}}" class="updates-box wow bounce" data-wow-offset="200">
+                        <a href="{{ url($updatesLink->url) }}/{{$update->slug}}" class="updates-box wow bounce" data-wow-offset="200">
                           <div class="updates-box-img">
                             <img src="{{url('')}}/images/{{$update->image}}" />
                           </div>
