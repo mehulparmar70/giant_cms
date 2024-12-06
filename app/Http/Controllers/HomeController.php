@@ -248,7 +248,7 @@ class HomeController extends Controller
     {
         // Check if the slug exists in the url_list table for main pages
         $urlData = UrlList::where('url', 'like', '%' . $slug)->first();
-    
+ 
         if ($urlData) {
             // Determine which view to load based on URL data
             switch ($urlData->name) {
@@ -258,7 +258,7 @@ class HomeController extends Controller
                     return $this->about();
                 case 'Contact':
                     return $this->contact();
-                case 'Blog':
+                case 'Updates':
                     return $this->updates();
                 default:
                     // Generic fallback view for other pages

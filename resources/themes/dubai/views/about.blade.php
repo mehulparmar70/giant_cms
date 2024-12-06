@@ -95,67 +95,53 @@
                 @endif></div>
                   </div>
                 </div>
-                <div class="products-wrap position-relative">
+                <div class="updates-wrap position-relative">
                   <div class="bg-img-wrap">
                     <img class="bg-img-top" src="{{asset('/')}}/dubai/images/red-effect-top.webp" alt="red-effect-top">
-                    <img class="bg-img-bottom" src="{{asset('/')}}/dubai/images/red-effect-bottom.webp" alt="red-effect-bottom">
                   </div>
-                  <div class="container">
-                    <div class="row g-5 pb-2 pt-xl-3">
-                      @if(count(customMainCat()) > 0)
+                  <div class="container position-relative pt-xxl-4">
+                    <div class="updates-slider pb-3">
                       @foreach(customMainCat() as $key => $topInflatableLp)
                       <?php 
-                          $getSubCategories = getSubCategories($topInflatableLp->id); 
+                      $getSubCategories = getSubCategories($topInflatableLp->id);
                           if (!empty($getSubCategories)) {
-                          
+                            $imageName = getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC')[0]['image']; 
+                            /*foreach(getSubCategoryImages($getSubCategories[0]->id,10, 'DESC') as $key => $productImage){
+                              print_r($productImage);
+                            }*/
                       ?>
-  
-                      <div class="col-md-4 col-sm-6">
-                        <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                      <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
+                        <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                           <div class="animated-border-box-glow">
                             <div class="products-box-img">
-                              <?php if(!empty($topInflatableLp->image))
-                              {
-                                ?>                  <img src="{{url('')}}/images/{{$topInflatableLp->image}}" style="height: 540px !important;" />
-                                <?php }else{?>
-                            @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-                              <img src="{{url('')}}/images/{{$productImage->image}}" style="height: 540px !important;" />
+                              @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
+                              <img src="{{url('/')}}/images/{{$productImage->image}}"  />
                               @endforeach
-                              <?php }?>
-                              
                             </div>
-                            <div class="product_internal_title" @if(session('LoggedUser'))
+                            <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
                             data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
                             data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                            data-delete-link="{{route('admin.category.delete',$topInflatableLp->id)}}"
-                            data-index-link="{{route('admin.category.list')}}"
+                            data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                            data-index-link="{{ route('admin.category.list') }}"
                           @endif></div>
                             <div class="products-box-heading text-uppercase theme-heading">
-                              <h5>{{ $topInflatableLp->name }}</h5>
+                              <h5>{{ strip_tags($topInflatableLp->name) }}</h5>
                             </div>
                           </div>
                         </a>
                       </div>
                       <?php } else { ?>
-  
-                      <div class="col-md-4 col-sm-6">
-                        <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                      <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
+                        <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                           <div class="animated-border-box-glow">
                             <div class="products-box-img">
-                              <?php if(!empty($topInflatableLp->image))
-                              {
-                                ?>
-                                <img src="{{url('')}}/images/{{$topInflatableLp->image}}" style="height: 540px !important;" />
-                                <?php }else{?>
-            
-                          <img src="{{url('')}}/img/no-item.jpeg" />
-                          <?php }?>
+                              <img src="{{url('/')}}/images/{{$topInflatableLp->image}}"  />
                             </div>
-                            <div class="product_internal_title" @if(session('LoggedUser'))
+                            <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
                             data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
                             data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
                             data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
-                            data-index-link="{{route('admin.category.list')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                            data-index-link="{{ route('admin.category.list') }}"
                           @endif></div>
                             <div class="products-box-heading text-uppercase theme-heading">
                               <h5>{{ $topInflatableLp->name }}</h5>
@@ -165,32 +151,10 @@
                       </div>
                       <?php } ?>
                       @endforeach
-                    @else
-                      <div class="col-md-4 col-sm-6">
-                        <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
-                          <div class="animated-border-box-glow">
-                            <div class="products-box-img">
-                              <img src="{{url('')}}/img/no-item.jpeg" />
-                            </div>
-                            <div class="product_internal_title" @if(session('LoggedUser'))
-                            data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                            data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true"
-                            data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
-                            data-index-link="{{route('admin.category.list')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
-                          @endif></div
-                            <div class="products-box-heading text-uppercase theme-heading">
-                              <h5>{{ $topInflatableLp->name }}s</h5>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      @endif
-                    
-                    
-                     
+            
                     </div>
-                    <div class="position-relative text-center product-all-btn">
-                      <a href="{{ url('products') }}" class="btn text-uppercase btn-animation--infinity">VIEW ALL PRODUCTS</a>
+                    <div class="updates-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-lg-4 mt-1">
+                      <a href="{{ $productLink->url }}" class="btn text-uppercase btn-animation--infinity">VIEW ALL PRODUCTS</a>
                     </div>
                   </div>
                 </div>

@@ -634,12 +634,15 @@ $(document).ready(function () {
         <div class="d-flex justify-content-center">
           <a href="{{ $homeLink->url }}" @if(session('LoggedUser'))
             data-link="{{route('admin.home.editor')}}"
-        @endif class="header-top-home sticky-hide d-lg-flex d-none align-items-center text-uppercase menu_crud">
+        @endif class="header-top-home sticky-hide d-lg-flex d-none align-items-center text-uppercase">
             <img class="me-2" src="{{url('/')}}/images/home-icon.png" alt="home-icon">
-            <div class="hover-underline-animation left text-red">{{ $homeLink->name }}</div>
+            <!-- <div class="hover-underline-animation left text-red">{{ $homeLink->name }}</div> -->
           </a>
           <div class="main-menu d-lg-flex d-none align-items-center">
             <ul>
+              <li class="menu_crud {{ url()->current() == $homeLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
+              data-link="{{route('admin.home.editor')}}"
+              @endif><a class="btn-animation" href="{{ $homeLink->url }}">{{ $homeLink->name }}</a></li>
               <li class="menu_crud {{ url()->current() == $aboutLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
               data-link="{{route('admin.about-page.editor')}}"
               @endif><a class="btn-animation" href="{{ $aboutLink->url }}">{{ $aboutLink->name }}</a></li>
