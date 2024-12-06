@@ -33,7 +33,7 @@
 <meta property="og:image:width" content="730" />
 <meta property="og:image:height" content="548" />
 <meta property="og:description" content="@if(isset($pageData['meta_description'])){{$pageData['meta_description']}}@endif" />
-<meta property="og:site_name" content="https://www.giantinflatables.in" />
+<meta property="og:site_name" content="https://www.giantinflatables.ae" />
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 	  

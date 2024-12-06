@@ -69,8 +69,4 @@
         </div>
       </div>
     </div>
-    <script>
-      function onTurnstileSuccess(token) {
-        document.querySelector('.cf-turnstile-response').value = token;
-      }
-    </script>
+  

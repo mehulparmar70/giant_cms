@@ -2670,25 +2670,36 @@ function deletephoto(imageId) {
 function loadInquiryModal(event) {
   event.preventDefault();
 
-  fetch(base_url+"/load-inquiry-modal")
+  fetch(base_url + "/load-inquiry-modal")
     .then(response => response.text())
     .then(html => {
       document.getElementById('inquirypopup').innerHTML = html;
 
-      // Ensure modal element is properly initialized
+      // Initialize and show the modal
       const modalElement = document.getElementById('shareconceptModal');
       const modal = new bootstrap.Modal(modalElement);
-      
       modal.show();
 
-      // Attach the close event listener (if needed for manual control)
+      // Reinitialize Turnstile after ensuring modal content is added
+      setTimeout(() => {
+        if (typeof turnstile !== 'undefined') {
+          turnstile.render('.cf-turnstile', {
+            sitekey: "{{ config('services.cloudflare.turnstile.site_key') }}",
+            callback: onTurnstileSuccess  // Ensure this function is globally defined
+          });
+        } else {
+          console.error('Turnstile library not loaded');
+        }
+      }, 100);  // Delay to ensure DOM readiness
+
       modalElement.addEventListener('hidden.bs.modal', function () {
-        // Optional: Clean up the modal-container div when closed
         document.getElementById('modal-container').innerHTML = '';
       });
     })
     .catch(error => console.error('Error loading modal:', error));
 }
+
+
 
 function submitContact() {
   const form = document.getElementById('contact-form');
