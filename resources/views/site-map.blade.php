@@ -56,7 +56,7 @@
 						<div class="row p-3 sitemap">
 							<div class="col-sm-3">
 							@foreach($urls as $url)
-							<li><a href="{{url('')}}/{{$url->url}}">{{$url->name}}</a></li>
+							<li><a href="{{ url($url->url) }}">{{$url->name}}</a></li>
 								@endforeach
 							</div>
 			
