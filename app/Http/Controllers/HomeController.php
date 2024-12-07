@@ -246,6 +246,9 @@ class HomeController extends Controller
     
     public function dynamicPage(Request $request, $slug)
     {
+        if (strpos($slug, '#') !== false || strpos($slug, '!') !== false) {
+            return redirect()->route('page.not.found');
+        }
         // Check if the slug exists in the url_list table for main pages
         $urlData = UrlList::where('url', 'like', '%' . $slug)->first();
  

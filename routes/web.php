@@ -68,6 +68,9 @@ Route::get('/page-not-found', [HomeController::class, 'pageNotFound'])->name('pa
 
 Route::get('{slug}', function ($slug) {
     // Skip dynamic routing for 'powerup' prefixed URLs
+    if (strpos($slug, '#') !== false || strpos($slug, '!') !== false) {
+        return redirect()->route('page.not.found');
+    }
     if (request()->is('api/*')) {
         abort(404); // or handle it differently if needed
     }

@@ -2727,3 +2727,10 @@ function submitContact() {
   });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const currentUrl = window.location.href;
+  if (currentUrl.includes('#!')) {
+      // Redirect to a custom 404 page
+      window.location.href = '/page-not-found';
+  }
+});
