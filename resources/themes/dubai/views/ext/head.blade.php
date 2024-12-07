@@ -56,6 +56,7 @@
 
 <!-- iziToast CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+<script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 
   <link rel="shortcut icon" href="{{asset('/')}}images/{{getWebsiteOptions()['website_favicon']->option_value}}" type="image/x-icon">
   <link rel="icon" type="image/png" href="{{asset('/')}}images/{{getWebsiteOptions()['website_favicon']->option_value}}" /> 

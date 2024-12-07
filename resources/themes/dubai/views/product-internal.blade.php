@@ -250,7 +250,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
                     <div class="updates-slider px-xl-5 px-3">
                       @foreach($blogsSlider as $blogsList)
                       <div class="updates-slider-item">
-                        <a href="{{ route('update.index') }}" class="updates-box">
+                        <a href="{{ $updatesLink->url }}" class="updates-box">
               
                           <div class="updates-box-img">
                             @if(file_exists(public_path('images/'.$blogsList->image)) && $blogsList->image)

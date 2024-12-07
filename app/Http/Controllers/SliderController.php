@@ -266,6 +266,7 @@ class SliderController extends Controller
                 $slider->save();
 			$i++;
 		}
+        
     }
     
 }

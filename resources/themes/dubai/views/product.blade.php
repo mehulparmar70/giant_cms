@@ -9,6 +9,7 @@
   </head>
   <body>
   <?php $current_page = ''; 
+  $updatesLink = App\Models\admin\UrlList::find(113);  // Updates links
     $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
     $homeLink = App\Models\admin\UrlList::find(95);  // Home link
     $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
@@ -30,13 +31,13 @@
                 <a href="{{ $homeLink->url }}" class="header-top-home d-flex align-items-center text-uppercase">
                   <img class="me-2" src="{{asset('/')}}/dubai/images/home-icon.png" alt="home-icon">Home
                 </a>
-                <span class="text-uppercase">{{$productTitle->meta_title}}</span>
+                <span class="text-uppercase">{{$Urllist->name}}</span>
               </div>
               <a href="{{ $homeLink->url }}" class="breadcrumb-back text-uppercase">Back<img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle"></a>
             </div>
             <div class="theme-stroke-heading text-center text-uppercase">
-              <strong class="letters">{!! $productTitle->meta_title !!}</strong>
-              <h3 class="h3 letters">{!!$productTitle->meta_title!!}</h3>
+              <strong class="letters">{!! $Urllist->name !!}</strong>
+              <h3 class="h3 letters">{!!$Urllist->name!!}</h3>
               <div  class="product_title_1"  @if(session('LoggedUser'))
               data-link="{{route('admin.product-page.editor')}}?onscreenCms=true"
           @endif></div>
@@ -127,7 +128,7 @@
                     <div class="updates-slider px-xl-5 px-3">
                       @foreach($blogsSlider as $blogsList)
                       <div class="updates-slider-item">
-                        <a href="{{ route('update.index') }}" class="updates-box">
+                        <a href="{{ $updatesLink->url }}" class="updates-box">
                     
                           <div class="updates-box-img">
                             @if(file_exists(public_path('images/'.$blogsList->image)) && $blogsList->image)

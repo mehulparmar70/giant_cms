@@ -129,7 +129,7 @@
 
 data-link="{{route('blog.edit', $blogsList->id)}}"
 
-@endif><a href="{{ route('update.index') }}" @if(session('LoggedUser'))
+@endif><a href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
 
 
 data-link="{{route('blog.edit', $blogsList->id)}}"

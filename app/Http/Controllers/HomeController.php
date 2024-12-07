@@ -177,6 +177,7 @@ class HomeController extends Controller
             'criteriaMetaData' => $searchData,
             'criteriaMetas' => $this->criteriaMetas,
             'searchData' => $searchData,
+            'Urllist' =>  UrlList::where('id', 96)->first(),
             'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             'pageData' =>  Pages::where('type', 'product_page')->first(),
             'clients' =>  Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
@@ -254,14 +255,14 @@ class HomeController extends Controller
  
         if ($urlData) {
             // Determine which view to load based on URL data
-            switch ($urlData->name) {
-                case 'Products':
+            switch ($urlData->id) {
+                case '96':
                     return $this->product($request);
-                case 'About':
+                case '97':
                     return $this->about();
-                case 'Contact':
+                case '101':
                     return $this->contact();
-                case 'Updates':
+                case '113':
                     return $this->updates();
                 default:
                     // Generic fallback view for other pages
@@ -931,6 +932,7 @@ class HomeController extends Controller
         $data = [
             'sections' => AboutSection::all(), // Fetch all records from the table
             'pageData' =>  Pages::where('type', 'about_page')->first(),
+            'Urllist' =>  UrlList::where('id', 97)->first(),
             'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
             'industriesData' =>  Pages::where('type', 'industrie_page')->first(),
@@ -1132,6 +1134,7 @@ class HomeController extends Controller
         $data = [
             'pageData' =>  Pages::where('type', 'blog_page')->first(),
             'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
+            'Urllist' =>  UrlList::where('id', 113)->first(),
             'videos' =>  Video::where(['status' => 1])->orderBy('item_no')->get(),
             'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
             'updates' =>  Blog::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->paginate(6),

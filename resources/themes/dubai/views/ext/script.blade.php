@@ -45,7 +45,7 @@
 
 <script src="{{asset('/')}}/js/custom.js"></script>
 <script src="{{asset('/')}}/dist/js/custom.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="{{url('/')}}/drag-drop/dist/imageuploadify.min.css">

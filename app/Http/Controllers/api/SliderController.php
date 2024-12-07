@@ -75,6 +75,10 @@ class SliderController extends Controller
 
         // dd($id);
         // $slider = Slider::find($id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Order Updated...'
+        ]);
     }
     /**
      * Display the specified resource.

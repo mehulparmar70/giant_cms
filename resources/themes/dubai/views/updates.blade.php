@@ -29,13 +29,13 @@
                 <a href="{{ $homeLink->url }}" class="header-top-home d-flex align-items-center text-uppercase">
                   <img class="me-2" src="{{asset('/')}}/dubai/images/home-icon.png" alt="home-icon">Home
                 </a>
-                <span class="text-uppercase">Updates</span>
+                <span class="text-uppercase">{{$Urllist->name}}</span>
               </div>
               <a href="{{ $homeLink->url }}" class="breadcrumb-back text-uppercase">Back<img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="right-arrow-circle"></a>
             </div>
             <div class="theme-stroke-heading text-center text-uppercase mb-4">
-              <strong class="letters">Updates</strong>
-              <h3 class="h3 letters">Up<span>dates</span></h3>
+              <strong class="letters">{{$Urllist->name}}</strong>
+              <h3 class="h3 letters">{{$Urllist->name}}</h3>
               <div  class="product_title_1"  @if(session('LoggedUser'))
               data-link="{{route('admin.blog-page.editor')}}?onscreenCms=true"
           @endif></div>

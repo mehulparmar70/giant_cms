@@ -22,42 +22,78 @@
     <!-- @yield('content') -->
     <main class="position-relative">
           <div class="slideshow">
-          @foreach ($sliders as $key => $slider)
+           
+            @if ($sliders->isEmpty())
             <div class="slide">
-              <div class="slide__wrap banner-slider-item" onclick="window.location.href = '{{ $productLink->url }}';">
-                <div class="slide__img" style="background-image: url({{ url('/') }}/images/{{ $slider->image }});"></div>
-                <div class="slide__title-wrap header-top-space">
-                  <div class="banner-slider-content text-center">
-                    <div class="theme-heading">
-                      <h2 class="banner-slider-heading custom-fadedowm">{!! $slider->title !!} </h2>
-                      <div class="banner-slider-desc custom-fadedowm">
-                        <p>{{$slider->description}}</p>
-                      </div>
-                    </div>
-                    <div class="banner-slider-btn custom-fadedowm">
-                      <a href="{{ url('products') }}" class="btn btn-animation--infinity mb-4 btn-animation"><strong></strong><strong></strong><strong></strong><strong></strong>EXPLORE NOW</a>
-                    </div>
-                    @if(session('LoggedUser'))
-                        <!-- <a class="onscreen-banner-slider" href="{{ url('/powerup/slider?onscreenCms=true') }}" onclick="window.open('{{ url("/powerup/slider?onscreenCms=true") }}', 'toolbar=no, location=no','left=`+left+`,width=`+popupWinWidth+`,height=860'); return false;" ><i class='fa fa-edit'></i></a> -->
-                        <div class="content_banners" 
-                            data-create-link="{{ route('slider.create') }}" 
-                            data-edit-link="{{ route('slider.edit', $slider->id) }}" 
-
-                            data-index-link="{{ route('slider.index') }}"
-                            data-delete-link="{{ route('slider.delete',$slider->id) }}">
+                <div class="slide__wrap banner-slider-item">
+                    <div class="slide__img" style="background-image: url('{{ asset('path/to/default-image.jpg') }}');"></div>
+                    <div class="slide__title-wrap header-top-space">
+                        <div class="banner-slider-content text-center">
+                            <div class="theme-heading">
+                                <h2 class="banner-slider-heading custom-fadedowm">No Slider Found</h2>
+                                <div class="banner-slider-desc custom-fadedowm">
+                                    <p>Please add or active slider!</p>
+                                </div>
+                            </div>
+                            @if(session('LoggedUser'))
+                            <div class="content_banners" 
+                                data-create-link="{{ route('slider.create') }}" 
+                               
+                                data-index-link="{{ route('slider.index') }}" >
+                            </div>
+                        @endif
+                            <div class="banner-slider-btn custom-fadedowm">
+                                <a href="{{ url('products') }}" class="btn btn-animation--infinity mb-4 btn-animation">
+                                    <strong></strong><strong></strong><strong></strong><strong></strong>EXPLORE NOW
+                                </a>
+                            </div>
                         </div>
-
-                    @endif
-                    <div class="d-md-flex d-none justify-content-center">
-                      <a href="#jumpto" class="banner-down-btn custom-fadedowm">
-                        <img src="{{asset('/')}}/dubai/images/arrow-down-circle.svg" alt="arrow-down-circle">
-                      </a>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
+        @else
+            @foreach ($sliders as $key => $slider)
+                @if($sliders->count() > 1)
+                    <div class="slide">
+                @endif
+                    <div class="slide__wrap banner-slider-item" onclick="window.location.href = '{{ $productLink->url }}';">
+                        <div class="slide__img" style="background-image: url({{ url('/') }}/images/{{ $slider->image }});"></div>
+                        <div class="slide__title-wrap header-top-space">
+                            <div class="banner-slider-content text-center">
+                                <div class="theme-heading">
+                                    <h2 class="banner-slider-heading custom-fadedowm">{!! $slider->title !!}</h2>
+                                    <div class="banner-slider-desc custom-fadedowm">
+                                        <p>{{ $slider->description }}</p>
+                                    </div>
+                                </div>
+                                <div class="banner-slider-btn custom-fadedowm">
+                                    <a href="{{ url('products') }}" class="btn btn-animation--infinity mb-4 btn-animation">
+                                        <strong></strong><strong></strong><strong></strong><strong></strong>EXPLORE NOW
+                                    </a>
+                                </div>
+                                @if(session('LoggedUser'))
+                                    <div class="content_banners" 
+                                        data-create-link="{{ route('slider.create') }}" 
+                                        data-edit-link="{{ route('slider.edit', $slider->id) }}" 
+                                        data-index-link="{{ route('slider.index') }}" 
+                                        data-delete-link="{{ route('slider.delete', $slider->id) }}">
+                                    </div>
+                                @endif
+                                <div class="d-md-flex d-none justify-content-center">
+                                    <a href="#jumpto" class="banner-down-btn custom-fadedowm">
+                                        <img src="{{ asset('/') }}/dubai/images/arrow-down-circle.svg" alt="arrow-down-circle">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @if($sliders->count() > 1)
+                    </div>
+                @endif
             @endforeach
+        @endif
+        
+        
             
           </div><!-- /slideshow -->
           <nav class="boxnav">
@@ -280,7 +316,7 @@
                       <div class="updates-slider px-xl-5 px-3">
                         @foreach($blogsSlider as $blogsList)
                         <div class="updates-slider-item">
-                          <a href="{{ route('update.index') }}" class="updates-box">
+                          <a href="{{ $updatesLink->url }}" class="updates-box">
      
                             <div class="updates-box-img">
                               @if(file_exists(public_path('images/'.$blogsList->image)) && $blogsList->image)

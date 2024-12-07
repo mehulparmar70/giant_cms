@@ -23,10 +23,12 @@ use App\Http\Controllers\admin\CustomCodeController;
 use App\Http\Controllers\admin\PhotoManageController;
 use App\Http\Controllers\admin\BlockControlController;
 use Illuminate\Http\Request;
-
+use App\Models\admin\UrlList;
 
 
 $adminRewrite = 'powerup';
+
+$updatesLink = UrlList::find(113);
 
 use App\Http\Controllers\ThemeController;
 
@@ -47,8 +49,8 @@ Route::get('/load-inquiry-modal', function () {
     return view('widget.inquirynow');
 })->name('load-inquiry-modal');
 
-Route::get('giant-advertising-marketing-event-inflatable', [HomeController::class, 'product'])->name('products');
-Route::get('/custom-inflatable-manufacturer', [HomeController::class, 'about'])->name('admin');
+// Route::get('giant-advertising-marketing-event-inflatable', [HomeController::class, 'product'])->name('products');
+// Route::get('/custom-inflatable-manufacturer', [HomeController::class, 'about'])->name('admin');
 // Route::get('client', [HomeController::class, 'client']);
 // Route::get('videos', [HomeController::class, 'videos']);
 // Route::get('awards', [HomeController::class, 'awards']);
@@ -60,26 +62,17 @@ Route::get('/custom-inflatable-manufacturer', [HomeController::class, 'about'])-
 // Route::get('case-studies/{slug}', [HomeController::class, 'casestudies_details']);
 // Route::get('testimonials', [HomeController::class, 'testimonials']);
 
-Route::get('latest', [HomeController::class, 'updates'])->name('update.index');
-Route::get('latest', [HomeController::class, 'updates'])->name('update.index');
-Route::get('latest/{slug}', [HomeController::class, 'updates_details']);
+
+// Route::get('latest', [HomeController::class, 'updates'])->name('update.index');
+$updatesLink = App\Models\admin\UrlList::find(113);
+if ($updatesLink && $updatesLink->url) {
+    Route::get($updatesLink->url . '/{slug}', [HomeController::class, 'updates_details'])
+        ->name('updates.details');
+}
 Route::get('custom-inflatable-manufacturer-dubai', [HomeController::class, 'contact'])->name('contact');
 Route::get('/page-not-found', [HomeController::class, 'pageNotFound'])->name('page.not.found');
 
-Route::get('{slug}', function ($slug) {
-    // Skip dynamic routing for 'powerup' prefixed URLs
-    if (strpos($slug, '#') !== false || strpos($slug, '!') !== false) {
-        return redirect()->route('page.not.found');
-    }
-    if (request()->is('api/*')) {
-        abort(404); // or handle it differently if needed
-    }
-    if ( str_starts_with($slug, 'powerup')) {
-       
-    }
 
-    return app(HomeController::class)->dynamicPage(request(), $slug); // Call dynamicPage for other slugs
-})->where('slug', '.*')->name('dynamic.page');
 
 //admin views
 
@@ -272,3 +265,17 @@ Route::get('/{category}/{subCategory}/{slug}', [HomeController::class, 'category
 Route::get('/search', [HomeController::class, 'search_criteria']);
 Route::get('/thankyou', [HomeController::class, 'thankYouPage'])->name('thank-you');
 
+Route::get('{slug}', function ($slug) {
+    // Skip dynamic routing for 'powerup' prefixed URLs
+    if (strpos($slug, '#') !== false || strpos($slug, '!') !== false) {
+        return redirect()->route('page.not.found');
+    }
+    if (request()->is('api/*')) {
+        abort(404); // or handle it differently if needed
+    }
+    if ( str_starts_with($slug, 'powerup')) {
+       
+    }
+
+    return app(HomeController::class)->dynamicPage(request(), $slug); // Call dynamicPage for other slugs
+})->where('slug', '.*')->name('dynamic.page');

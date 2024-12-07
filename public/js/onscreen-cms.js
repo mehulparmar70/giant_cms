@@ -2139,7 +2139,16 @@ function initializeDynamicContent() {
                 console.log("Table Type:", tableType);
                   updateOrder(selectedData,tableType);
 
-                  toastr.success(' Order Updated...');
+                  iziToast.success({
+                    title: 'Success',
+                    message: 'Order Updated..',
+                    position: 'center',   // Centering the notification
+                    timeout: 5000,        // Adjust timeout (in milliseconds) as needed
+                    transitionIn: 'fadeInDown',   // Smooth transition like macOS
+                    transitionOut: 'fadeOutUp',
+                    class: 'mac-style-toast',     // Custom class for macOS style
+                    layout: 2,    
+                });
               }
           });
       });
@@ -2212,13 +2221,13 @@ function initializeDynamicContent() {
           var checkbox = $('#exampleCheck1');
           var statusText = $('#statusText' + id);
           
-          if (checkbox.is(':checked')) {
-            checkbox.prop('checked', false);  // Uncheck the checkbox
-            statusText.removeClass('badge-success').addClass('badge-danger').text('Inactive');  // Set status to inactive
-          } else {
-            checkbox.prop('checked', true);  // Check the checkbox
-            statusText.removeClass('badge-danger').addClass('badge-success').text('Active');  // Set status to active
-          }
+          // if (checkbox.is(':checked')) {
+          //   checkbox.prop('checked', false);  // Uncheck the checkbox
+          //   statusText.removeClass('badge-success').addClass('badge-danger').text('Inactive');  // Set status to inactive
+          // } else {
+          //   checkbox.prop('checked', true);  // Check the checkbox
+          //   statusText.removeClass('badge-danger').addClass('badge-success').text('Active');  // Set status to active
+          // }
               location.reload(); // Reload page after status update
           },
           error: function(xhr, status, error) {
@@ -2727,10 +2736,10 @@ function submitContact() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const currentUrl = window.location.href;
-  if (currentUrl.includes('#!')) {
-      // Redirect to a custom 404 page
-      window.location.href = '/page-not-found';
-  }
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//   const currentUrl = window.location.href;
+//   if (currentUrl.includes('#!')) {
+//       // Redirect to a custom 404 page
+//       window.location.href = '/page-not-found';
+//   }
+// });

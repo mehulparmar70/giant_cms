@@ -827,7 +827,7 @@ $(document).ready(function () {
 
   
     <!-- iziToast JS -->
-<script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+
 </body>
 
 </html>

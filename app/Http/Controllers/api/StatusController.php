@@ -68,7 +68,7 @@ class StatusController extends Controller
 
     public function updateStatus(Request $request)
     {
-        // dd($request->input());
+        // dd($request);
 
         $id = $request->id;
         $table =  $request->table;
