@@ -643,6 +643,29 @@ class HomeController extends Controller
         return response()->view('sitemap', $data, 200)
                          ->header('Content-Type', 'application/xml');
     }
+    public function sitemappage()
+    {
+        $data = [
+            'urls' => UrlList::where('type', 'page_link')->where('status', 1)->get(),
+            'mainCategories' => Category::where('parent_id', 0)->orderBy('item_no')->get(),
+            'blogs' => Blog::where('status', 1)->orderBy('item_no')->get(),
+            'pageData' => Pages::where('type', 'home_page')->first(),
+            'footerTestimonial' => $this->footerTestimonial,
+            'footerVideo' => $this->footerVideo,
+            'footerBlog' => $this->footerBlog,
+            'topCategories' => $this->topCategories,
+            'clients' => Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
+            'awardSlider' => Award::where('status', 1)->limit(20)->orderBy('item_no')->get(),
+            'caseStudiesSlider' => CaseStudies::where('status', 1)->orderBy('item_no')->get(),
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+            'newsletterSlider' => Newsletter::where('status', 1)->orderBy('item_no')->get(),
+        ];
+    
+        // Return the sitemap view with XML header
+        return view('theme::site-map', $data);
+        // return response()->view('sitemap', $data, 200)
+        //                  ->header('Content-Type', 'application/xml');
+    }
     
     public function sitemapEdit()
     {    $type = 'sitemap';

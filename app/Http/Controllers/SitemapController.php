@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\home;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -120,6 +120,7 @@ class SitemapController extends Controller
         'footerVideo' =>   $this->footerVideo,
         'footerBlog' =>   $this->footerBlog,
         'topCategories' => $this->topCategories,
+        
         ];
         
         return view('site-map',compact('data'));

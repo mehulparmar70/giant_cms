@@ -40,13 +40,13 @@
         $awardsLink = App\Models\admin\UrlList::find(103);  // Our Products link
         $videoLink = App\Models\admin\UrlList::find(104);  // About link
         $newsletterLink = App\Models\admin\UrlList::find(105);  // Case Studies link
-        $partnersLink = App\Models\admin\UrlList::find(106);  // Testimonials link
+
         // Fetch specific menu items by ID from the url_list table
         $homeLink = App\Models\admin\UrlList::find(95);  // Home link
         $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
         $aboutLink = App\Models\admin\UrlList::find(97);  // About link
         $caseStudiesLink = App\Models\admin\UrlList::find(100);  // Case Studies link
-        $testimonialsLink = App\Models\admin\UrlList::find(98);  // Testimonials link
+
         $updatesLink = App\Models\admin\UrlList::find(113);  // Updates link
         $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
     @endphp
@@ -140,20 +140,7 @@ data-link="{{route('blog.edit', $blogsList->id)}}"
                   <li class="d-block" ><a class="text-red" href="{{ $updatesLink->url }}" >View All</a></li>
                 </ul>
               </div>
-              <!-- <div class="footer-top-col wow fadeInUp" data-wow-offset="50" data-wow-delay="1.2s">
-                <div class="footer-top-heading"><h6>Testimonials</h6></div>
-                <ul>
-                @foreach($testimonials as $testimonial)
-                  <li class="menu_crud" @if(session('LoggedUser'))
 
-data-link="{{route('testimonials.edit', $testimonial->id)}}"
-
-@endif><a href="{{url('testimonials')}}?testimonial={{$testimonial->id}}">{{$testimonial->client_name}}</a></li>
-
-                  @endforeach
-                  <li class="d-block" ><a class="text-red" href="#" >View All</a></li>
-                </ul>
-              </div> -->
             </div>
           </div>
         </div>
