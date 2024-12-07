@@ -640,23 +640,24 @@ $(document).ready(function () {
           </a>
           <div class="main-menu d-lg-flex d-none align-items-center">
             <ul>
-              <li class="menu_crud {{ url()->current() == $homeLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
+          
+              <li class="menu_crud {{ rtrim(url()->current(), '/') == rtrim($homeLink->url, '/') ? 'active' : '' }}"  @if(session('LoggedUser'))
               data-link="{{route('admin.home.editor')}}"
               @endif><a class="btn-animation" href="{{ $homeLink->url }}">{{ $homeLink->name }}</a></li>
-              <li class="menu_crud {{ url()->current() == $aboutLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
+              <li class="menu_crud {{ basename(url()->current()) == $aboutLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
               data-link="{{route('admin.about-page.editor')}}"
               @endif><a class="btn-animation" href="{{ $aboutLink->url }}">{{ $aboutLink->name }}</a></li>
-              <li class="menu_crud {{ url()->current() == $productLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
+              <li class="menu_crud {{ basename(url()->current()) == $productLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
               data-link="{{route('admin.product-page.editor')}}"
           @endif><a class="btn-animation" href="{{ $productLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.product-page.editor')}}"
             @endif>{{ $productLink->name }}</a></li>
-              <li class="menu_crud {{ url()->current() == $updatesLink->url ? 'active' : '' }}" @if(session('LoggedUser'))
+              <li class="menu_crud {{ basename(url()->current()) == $updatesLink->url ? 'active' : '' }}" @if(session('LoggedUser'))
               data-link="{{route('admin.blog-page.editor')}}"
           @endif><a class="btn-animation" href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.blog-page.editor')}}"
             @endif>{{ $updatesLink->name }}</a></li>
-              <li class="menu_crud {{ url()->current() == $contactLink->url ? 'active' : '' }}" @if(session('LoggedUser'))
+              <li class="menu_crud {{ basename(url()->current()) == $contactLink->url ? 'active' : '' }}" @if(session('LoggedUser'))
               data-link="{{route('admin.contact-page.editor')}}"
           @endif><a class="btn-animation" href="{{ $contactLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.contact-page.editor')}}"
