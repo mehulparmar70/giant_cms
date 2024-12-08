@@ -11,7 +11,7 @@ use App\Http\Controllers\api\ItemPriorityController;
 use App\Http\Controllers\api\StatusController;
 use App\Http\Controllers\api\ApiCallController;
 
-
+Route::middleware('api')->group(function () {
 Route::post('/admin/send-contact',[ApiCallController::class, 'sendContact'])->name('send-contact');
 
 
@@ -71,3 +71,4 @@ Route::post('/admin/item-bulk-delete',[ItemPriorityController::class, 'ItemBulkD
 
 Route::post('/admin/send-enquiry',[ApiCallController::class, 'sendContactEnquiry'])->name('send-enquiry');
 Route::get('/test-mail',[ApiCallController::class, 'testMail'])->name('test-mail');
+});

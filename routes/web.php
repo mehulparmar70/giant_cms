@@ -265,17 +265,21 @@ Route::get('/{category}/{subCategory}/{slug}', [HomeController::class, 'category
 Route::get('/search', [HomeController::class, 'search_criteria']);
 Route::get('/thankyou', [HomeController::class, 'thankYouPage'])->name('thank-you');
 
+
 Route::get('{slug}', function ($slug) {
-    // Skip dynamic routing for 'powerup' prefixed URLs
+    // Skip processing API routes entirely
+ 
+
+    // Handle specific invalid slugs
     if (strpos($slug, '#') !== false || strpos($slug, '!') !== false) {
         return redirect()->route('page.not.found');
     }
-    if (request()->is('api/*')) {
-        abort(404); // or handle it differently if needed
-    }
-    if ( str_starts_with($slug, 'powerup')) {
-       
+
+    if (str_starts_with($slug, 'powerup')) {
+        // Handle powerup-prefixed routes here
+        return response()->json(['message' => 'Powerup route'], 200);
     }
 
-    return app(HomeController::class)->dynamicPage(request(), $slug); // Call dynamicPage for other slugs
-})->where('slug', '.*')->name('dynamic.page');
+    // Handle all other dynamic pages
+    return app(HomeController::class)->dynamicPage(request(), $slug);
+})->where('slug', '^(?!api/).*')->name('dynamic.page');

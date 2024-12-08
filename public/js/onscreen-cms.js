@@ -2386,6 +2386,27 @@ function searchphoto() {
   });
 }
 
+document.querySelector('#searchphoto').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const formData = new FormData(this);
+  const fileInput = document.querySelector('input[type="file"]');
+  if (fileInput.files.length > 0) {
+      for (let i = 0; i < fileInput.files.length; i++) {
+          formData.append('images[]', fileInput.files[i]);
+      }
+  }
+
+  fetch(this.action, {
+      method: 'POST',
+      body: formData,
+  })
+      .then(response => response.json())
+      .then(data => console.log('Success:', data))
+      .catch(error => console.error('Error:', error));
+});
+
+
 
 $(".row_position_photo").sortable({
   stop: function () {

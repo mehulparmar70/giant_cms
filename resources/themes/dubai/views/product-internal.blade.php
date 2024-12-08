@@ -146,7 +146,30 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
               <div class="row g-5 px-4">
                 @if(count(getCustomSubCategories($mainCategory->id)) > 0)
                 @foreach(getCustomSubCategories($mainCategory->id) as $key => $topInflatableLp)
-                <?php if (count(getSubCategoryImages($topInflatableLp->id)) > 0) {?>
+
+                <?php if (isset($topInflatableLp->image)) {?>
+                  <div class="col-md-4 col-sm-6" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
+                    <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                      <div class="animated-border-box-glow">
+                        <div class="products-box-img has-slider">
+
+                          <img src="{{url('')}}/images/{{$topInflatableLp->image}}" />
+                         
+  
+                        </div>
+                        <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
+                        data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=sub_category&onscreenCms=true&id={{$current_cat->id}}"
+                        data-create-link="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$current_cat->id}}"
+                        data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                        data-index-link="{{ route('admin.category.list') }}"
+                      @endif></div>
+                        <div class="products-box-heading text-uppercase theme-heading">
+                          <h5>{{ $topInflatableLp->name }}</h5>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                <?php }elseif (count(getSubCategoryImages($topInflatableLp->id)) > 0) {?>
                   <?php $imageName = getSubCategoryImages($topInflatableLp->id, 2, 'DESC')[0]['image']; ?>
                 <div class="col-md-4 col-sm-6" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
                   <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
@@ -161,6 +184,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
                       data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=sub_category&onscreenCms=true&id={{$current_cat->id}}"
                       data-create-link="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$current_cat->id}}"
                       data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                      data-index-link="{{ route('admin.category.list') }}"
                     @endif></div>
                       <div class="products-box-heading text-uppercase theme-heading">
                         <h5>{{ $topInflatableLp->name }}</h5>

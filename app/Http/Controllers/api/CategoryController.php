@@ -71,7 +71,7 @@ class CategoryController extends Controller
 
     public function getSubCategories($id){
         
-        // dd($id);
+       
     $getSubCategories = DB::table('products')
     
     ->join('categories', 'categories.id', '!=', 'products.category_id')

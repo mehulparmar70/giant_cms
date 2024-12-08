@@ -45,19 +45,45 @@
             <div class="products-wrap position-relative">
               <div class="row g-5 px-4">
                 @foreach(customMainCat() as $key => $topInflatableLp)
-                <?php 
+                <?php
+                if(isset($topInflatableLp->image))
+                {?>
+                  <div class="col-md-4 col-sm-6">
+                    <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                      <div class="animated-border-box-glow">
+                        <div class="products-box-img has-slider">
+        
+                          <img src="{{url('/')}}/images/{{$topInflatableLp->image}}"  />
+                          
+                        </div>
+                        <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
+                  data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                  data-edit-link="{{route('admin.category.edit', $topInflatableLp->id)}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"
+                  data-delete-link="{{route('admin.index')}}/category/delete/{{ $topInflatableLp->id}}"
+                  data-index-link="{{ route('admin.category.list') }}"
+                @endif></div>
+                        <div class="products-box-heading text-uppercase theme-heading">
+                          <h5>{{ strip_tags($topInflatableLp->name) }}</h5>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                
+
+                <?php
+                }else{
                 $getSubCategories = getSubCategories($topInflatableLp->id);
+             
                     if (!empty($getSubCategories)) {
-                      $imageName = getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC')[0]['image']; 
-                      /*foreach(getSubCategoryImages($getSubCategories[0]->id,10, 'DESC') as $key => $productImage){
-                        print_r($productImage);
-                      }*/
+                      $imageName = getSubCategoryImagesforMain($topInflatableLp->id, 10, 'DESC')[0]['image']; 
+                    
                 ?>
                 <div class="col-md-4 col-sm-6">
                   <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
                     <div class="animated-border-box-glow">
                       <div class="products-box-img has-slider">
-                        @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
+                        @foreach(getSubCategoryImagesforMain($topInflatableLp->id, 10, 'DESC') as $key => $productImage)
+
                         <img src="{{url('/')}}/images/{{$productImage->image}}"  />
                         @endforeach
                       </div>
@@ -92,7 +118,7 @@
                     </div>
                   </a>
                 </div>
-                <?php } ?>
+                <?php } } ?>
                 @endforeach
            
     

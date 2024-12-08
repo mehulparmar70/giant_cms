@@ -114,9 +114,15 @@
                         <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                           <div class="animated-border-box-glow">
                             <div class="products-box-img">
-                              @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
-                              <img src="{{url('/')}}/images/{{$productImage->image}}"  />
+                              <?php if(!empty($topInflatableLp->image))
+                              {
+                                ?>                  <img src="{{url('')}}/images/{{$topInflatableLp->image}}"  />
+                                <?php }else{?>
+                            @foreach(getSubCategoryImages($getSubCategories[0]->id, 10, 'DESC') as $key => $productImage)
+                              <img src="{{url('')}}/images/{{$productImage->image}}"  />
                               @endforeach
+                              <?php }?>
+                            
                             </div>
                             <div align="right"  class="product_internal_title" @if(session('LoggedUser'))
                             data-create-link="{{route('admin.category.create')}}?type=main_category&onscreenCms=true&id={{$topInflatableLp->id}}"

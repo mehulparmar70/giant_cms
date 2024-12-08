@@ -178,7 +178,7 @@
                       <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
                         <div class="animated-border-box-glow">
                           <div class="products-box-img">
-                            <?php if(!empty($topInflatableLp->image))
+                            <?php if(isset($topInflatableLp->image) && $topInflatableLp->image !== '') 
                             {
                               ?>                  <img src="{{url('')}}/images/{{$topInflatableLp->image}}"  />
                               <?php }else{?>

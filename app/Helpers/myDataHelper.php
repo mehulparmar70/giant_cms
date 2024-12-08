@@ -56,6 +56,7 @@ function checkIsProductAvailable($id){
   }
   
   function getSubCategoryImages($id, $limit=0, $order = 'DESC'){
+ 
     if($limit == 0){
         return Media::where('media_id', $id)->orderBy('item_no')->orderBy('id', 'DESC')->get();
     }
@@ -63,6 +64,19 @@ function checkIsProductAvailable($id){
         return Media::where('media_id', $id)->limit($limit)->orderBy('item_no')->get();
     }
 }
+
+function getSubCategoryImagesforMain($id, $limit = 0, $order = 'DESC') {
+    $query = Category::where('parent_id', $id)
+        ->whereNotNull('image') // Ensure 'image' is not null
+        ->where('image', '!=', ''); // Ensure 'image' is not empty
+    
+    if ($limit > 0) {
+        $query->limit($limit);
+    }
+
+    return $query->orderBy('item_no')->orderBy('id', $order)->get();
+}
+
 
 
 function getProductImages($id, $limit=0, $order = 'asc'){
