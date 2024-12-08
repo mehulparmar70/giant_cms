@@ -551,7 +551,7 @@ $(document).ready(function () {
     <div class="header-top d-flex">
       <div class="header-top-left d-flex align-items-stretch">
         <a href="{{url('')}}" class="header-main-logo">
-          <img src="{{url('/')}}/images/logo.svg" alt="logo">
+          <img src="{{route('index')}}/img/{{getWebsiteOptions()['website_logo']['option_value']}}" alt="logo">
         </a>
         <a href="{{url('')}}" class="header-mobile-logo">
           <img class="d-lg-flex d-none" src="{{url('/')}}/images/sticky-logo.png" alt="small logo">
