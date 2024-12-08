@@ -416,19 +416,40 @@ $(document).ready(function () {
 // video
 
 $(document).ready(function() {
-  $("[data-fancybox]").fancybox({
-    afterShow: function() {
-      // After the show-slide-animation has ended - play the vide in the current slide
-     var vid = document.getElementById("myVideo"); 
-     vid.play(); 
-
-      // Attach the ended callback to trigger the fancybox.next() once the video has ended.
-      this.content.find('video').on('ended', function() {
-        $.fancybox.next();
-      });
+  $('[data-fancybox="gallery"]').fancybox({
+    // Enable History for clean URLs
+    hash: false, // Prevents default hash-based navigation
+    afterShow: function(instance, current) {
+      // Get the image title from the data-title attribute
+      let imageTitle = current.opts.$orig.attr('data-title') || 'image';
+      
+      // Create a clean URL using the image title (slugged version of alt text)
+      let cleanUrl = window.location.origin + window.location.pathname + '/' + imageTitle.replace(/\s+/g, '-').toLowerCase();
+      
+      // Update the browser URL without reloading the page
+      window.history.pushState(null, null, cleanUrl);
+    },
+    afterClose: function() {
+      // Revert to the original URL when the Fancybox is closed
+      window.history.pushState(null, null, window.location.pathname);
     }
   });
 });
+
+// $(document).ready(function() {
+//   $("[data-fancybox]").fancybox({
+//     afterShow: function() {
+//       // After the show-slide-animation has ended - play the vide in the current slide
+//      var vid = document.getElementById("myVideo"); 
+//      vid.play(); 
+
+//       // Attach the ended callback to trigger the fancybox.next() once the video has ended.
+//       this.content.find('video').on('ended', function() {
+//         $.fancybox.next();
+//       });
+//     }
+//   });
+// });
 
 
 // slider

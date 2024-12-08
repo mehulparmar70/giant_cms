@@ -658,6 +658,7 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
 }
 .main-menu li.active a {
     border-color: #d60309;
+    background-color: #d60309;
     color: #d60309;
 }
 .main-menu li.active a:hover, .main-menu li.active a:focus {
@@ -1773,6 +1774,7 @@ a.updates-box:hover, a.updates-box:focus {
 .dropdown {
     display: inline-block;
     margin-left: 90px;
+    z-index: 9999 !important;
 }
 .dropdown .hamburger-lines {
     margin-right: 12px;
@@ -2008,9 +2010,15 @@ a.updates-box:hover, a.updates-box:focus {
     z-index: 999999 !important;
 }
 .fancybox__container {
-    z-index: 9999;
+    z-index: 99999 !important;
 }
 figure .table
 {
     --bs-table-bg:#ffffff00 !important;
+    background-color:#ffffff00 !important;
+}
+figure table
+{
+    --bs-table-bg:#ffffff00 !important;
+    background-color:#ffffff00 !important;
 }

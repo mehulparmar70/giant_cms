@@ -318,6 +318,7 @@ class HomeController extends Controller
     
     public function product_internal($slug)
     {
+        $finalSlug = $slug;
         //Session::forget('homePageCatId');
         $current_cat = Category::where(['slug' => $slug, 'status' => 1])->whereNotIn('parent_id', [0])->first();
 
@@ -349,6 +350,7 @@ class HomeController extends Controller
                 'pageData' =>  $isCheckCategory,
                 'topCategories' => $this->topCategories,
                 'subCategory' => $subCategory,
+                'finalSlug' => $finalSlug,
                 'testimonials' =>  Testimonials::where(['status' => 1])->orderBy('item_no')->orderBy('id','DESC')->limit(50)->get(),
                 'productDetail' =>  $isCheckCategory,
                 'productImages' =>  Media::where('media_id', $current_cat->id)->orderBy('item_no','asc')->get(),

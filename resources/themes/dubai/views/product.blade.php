@@ -128,7 +128,7 @@
                     <div class="updates-slider px-xl-5 px-3">
                       @foreach($blogsSlider as $blogsList)
                       <div class="updates-slider-item">
-                        <a href="{{ $updatesLink->url }}" class="updates-box">
+                        <a href="{{ $updatesLink->url }}/{{$blogsList->slug}}" class="updates-box">
                     
                           <div class="updates-box-img">
                             @if(file_exists(public_path('images/'.$blogsList->image)) && $blogsList->image)
@@ -155,7 +155,7 @@
 
                     </div>
                     <div class="updates-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-md-2 mt-3">
-                      <a href="{{url('updates')}}" class="btn text-uppercase btn-animation--infinity">VIEW ALL UPDATES</a>
+                      <a href="{{ $updatesLink->url }}" class="btn text-uppercase btn-animation--infinity">VIEW ALL UPDATES</a>
                     </div>
                     <div class="updates-mobile-nav owl-nav d-md-none d-block">
                       <button class="owl-prev updates-second-prev"><span aria-label="Previous">‹</span></button>

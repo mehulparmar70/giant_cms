@@ -120,27 +120,55 @@ $( document ).ready( function() {
 		}
 	})
 	/* product-detail-slider */
-	$(function(){
+	$(function () {
 		var productDetailSlider = $('.product-detail-slider');
 		productDetailSlider.owlCarousel({
-			nav:true,
+			nav: true,
 			dots: false,
 			items: 1,
 			navContainer: '.product-detail-custom-nav',
 			onInitialized: counter,
 			onTranslated: counter,
 			loop: true,
-			// autoplay: {
-			// 	delay: 2000,
-			// },
 		});
+	
 		function counter(event) {
-			var items = event.item.count;
-			var item  = event.item.index - 1;
-			if(item > items) { item = item - items }
-			$('.product-slider-counter').html(item+"/"+items)
+			var items = event.item.count; // Total number of items
+			var index = (event.item.index - event.relatedTarget._clones.length / 2) % items;
+	
+			// Correct the index for looping
+			if (index < 0) {
+				index += items;
+			}
+			index += 1; // Convert to 1-based index
+	
+			// Update the counter display
+			$('.product-slider-counter').html(index + " / " + items);
 		}
 	});
+	
+	
+	// $(function(){
+	// 	var productDetailSlider = $('.product-detail-slider');
+	// 	productDetailSlider.owlCarousel({
+	// 		nav:true,
+	// 		dots: false,
+	// 		items: 1,
+	// 		navContainer: '.product-detail-custom-nav',
+	// 		onInitialized: counter,
+	// 		onTranslated: counter,
+	// 		loop: true,
+	// 		// autoplay: {
+	// 		// 	delay: 2000,
+	// 		// },
+	// 	});
+	// 	function counter(event) {
+	// 		var items = event.item.count;
+	// 		var item  = event.item.index - 1;
+	// 		if(item > items) { item = item - items }
+	// 		$('.product-slider-counter').html(item+"/"+items)
+	// 	}
+	// });
 	/* footer slider */
 	var footerTopSlider = $('.footer-top-row');
 	footerTopSlider.owlCarousel({
@@ -267,13 +295,15 @@ $( document ).ready( function() {
 		});
 	}
 
+	  
+
 	$(document).ready(function() {
 		$('[data-fancybox="gallery"]').fancybox({
 		  // Enable History for clean URLs
 		  hash: false, // Prevents default hash-based navigation
 		  afterShow: function(instance, current) {
 			// Update the URL based on the image title
-			let imageTitle = current.opts.$orig.attr('data-title') || 'image';
+			let imageTitle = current.opts.$orig.attr('data-slug') || 'image';
 			let cleanUrl = window.location.origin + window.location.pathname + '/' + imageTitle.replace(/\s+/g, '-').toLowerCase();
 			window.history.pushState(null, null, cleanUrl);
 		  },

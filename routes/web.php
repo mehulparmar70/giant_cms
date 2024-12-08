@@ -65,10 +65,10 @@ Route::get('/load-inquiry-modal', function () {
 
 // Route::get('latest', [HomeController::class, 'updates'])->name('update.index');
 $updatesLink = App\Models\admin\UrlList::find(113);
-if ($updatesLink && $updatesLink->url) {
+
     Route::get($updatesLink->url . '/{slug}', [HomeController::class, 'updates_details'])
         ->name('updates.details');
-}
+
 Route::get('custom-inflatable-manufacturer-dubai', [HomeController::class, 'contact'])->name('contact');
 Route::get('/page-not-found', [HomeController::class, 'pageNotFound'])->name('page.not.found');
 

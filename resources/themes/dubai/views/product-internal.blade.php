@@ -9,24 +9,26 @@
   </head>
   <body>
     <?php $current_page = ''; ?>
-    
-    {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
-    @includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'])
-
-
     @if(isset(getParentCategory($current_cat->id)['category']))
-	<?php $finalSlug = getParentCategory($current_cat->id)['category']->slug.'/';
-		$mainCategorySlug = $finalSlug;
-		$searchCriteria = getParentCategory($current_cat->id)['category']->id;
-	?>
-	@endif
+    <?php $finalSlug = getParentCategory($current_cat->id)['category']->slug.'/';
+      $mainCategorySlug = $finalSlug;
+      $searchCriteria = getParentCategory($current_cat->id)['category']->id;
+    ?>
+    @endif
+  
+      @if(isset(getParentCategory($current_cat->id)['subcategory']))
+        <?php
+          $subCategorySlug = getParentCategory($current_cat->id)['subcategory']->slug.'/';
+          $searchCriteria = $searchCriteria.','.getParentCategory($current_cat->id)['subcategory']->id;
+        ?>
+      @endif
+    {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
+    @includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'], ['finalSlug' => $finalSlug])
 
-		@if(isset(getParentCategory($current_cat->id)['subcategory']))
-			<?php
-				$subCategorySlug = getParentCategory($current_cat->id)['subcategory']->slug.'/';
-				$searchCriteria = $searchCriteria.','.getParentCategory($current_cat->id)['subcategory']->id;
-			?>
-		@endif
+
+
+
+   
 
 		@if(isset(getParentCategory($current_cat->id)['subcategory2']))
 			<?php $finalSlug = $finalSlug.getParentCategory($current_cat->id)['subcategory2']->slug.'/';
@@ -250,7 +252,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
                     <div class="updates-slider px-xl-5 px-3">
                       @foreach($blogsSlider as $blogsList)
                       <div class="updates-slider-item">
-                        <a href="{{ $updatesLink->url }}" class="updates-box">
+                        <a href="{{ $updatesLink->url }}/{{$blogsList->slug}}" class="updates-box">
               
                           <div class="updates-box-img">
                             @if(file_exists(public_path('images/'.$blogsList->image)) && $blogsList->image)
@@ -277,7 +279,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
 
                     </div>
                     <div class="updates-custom-nav slider-reverse-arrows owl-nav position-relative text-center mt-3">
-                      <a href="{{url('updates')}}" class="btn text-uppercase btn-animation--infinity">VIEW ALL UPDATES</a>
+                      <a href="{{ $updatesLink->url }}" class="btn text-uppercase btn-animation--infinity">VIEW ALL UPDATES</a>
                     </div>
                     <div class="updates-mobile-nav owl-nav d-md-none d-block">
                       <button class="owl-prev updates-second-prev"><span aria-label="Previous">‹</span></button>

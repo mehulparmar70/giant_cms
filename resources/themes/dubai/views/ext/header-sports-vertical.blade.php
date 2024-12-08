@@ -647,12 +647,20 @@ $(document).ready(function () {
               <li class="menu_crud {{ basename(url()->current()) == $aboutLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
               data-link="{{route('admin.about-page.editor')}}"
               @endif><a class="btn-animation" href="{{ $aboutLink->url }}">{{ $aboutLink->name }}</a></li>
-              <li class="menu_crud {{ basename(url()->current()) == $productLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
-              data-link="{{route('admin.product-page.editor')}}"
-          @endif><a class="btn-animation" href="{{ $productLink->url }}" @if(session('LoggedUser'))
-                data-link="{{route('admin.product-page.editor')}}"
-            @endif>{{ $productLink->name }}</a></li>
-              <li class="menu_crud {{ basename(url()->current()) == $updatesLink->url ? 'active' : '' }}" @if(session('LoggedUser'))
+             
+              <li class="menu_crud {{ request()->is($productLink->url) || (isset($finalSlug) && trim($finalSlug, '/') === trim($finalSlug, '/')) ? 'active' : '' }}" 
+                @if(session('LoggedUser'))
+                    data-link="{{ route('admin.product-page.editor') }}"
+                @endif>
+                <a class="btn-animation" href="{{ $productLink->url }}" 
+                    @if(session('LoggedUser'))
+                        data-link="{{ route('admin.product-page.editor') }}"
+                    @endif>
+                    {{ $productLink->name }}
+                </a>
+            </li>
+            
+              <li class="menu_crud {{ basename(url()->current()) == $updatesLink->url || (isset($updateslug) && trim($updateslug, '/') === trim($updateslug, '/')) ? 'active' : ''  }}" @if(session('LoggedUser'))
               data-link="{{route('admin.blog-page.editor')}}"
           @endif><a class="btn-animation" href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.blog-page.editor')}}"

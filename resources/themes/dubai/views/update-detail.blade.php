@@ -16,7 +16,7 @@
     ?>
     
     {{-- Try to load 'header-sports-vertical' from the active theme; fallback to default --}}
-    @includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'])
+    @includeFirst(['theme::ext.header-sports-vertical', 'ext.header-sports-vertical'], ['updateslug' => 'internalslug'])
 
     {{-- Main content of the page --}}
         <!-- banner area part -->

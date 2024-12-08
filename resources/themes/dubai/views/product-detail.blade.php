@@ -160,11 +160,11 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                     <div class="product-detail-slider">
 						<?php if (count($productImages) > 0) {?>
 							@foreach($productImages as $productImage)
-		
+             
               <a href="{{ url('images/' . $productImage->image) }}" 
                 class="product-detail-slider-item" 
                 data-fancybox="gallery"
-                data-title="{{ Str::slug($productImage->alt_text) }}">
+                data-slug="{{ Str::slug($productImage->image_alt) }}">
                         <div class="product-detail-slider-img">
                    
                           <img src="{{url('')}}/images/{{$productImage->image}}" alt="{{ $productImage->alt_text }}">
@@ -197,7 +197,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
 					  <?php } ?>
                
                     </div>
-                    <div class="product-detail-custom-nav slider-reverse-arrows d-flex justify-content-between mt-4 px-3">
+                    <div class="product-detail-custom-nav  d-flex justify-content-between mt-4 px-3">
                       <div class="text-uppercase my-auto">Products - <span class="product-slider-counter"></span></div> 
                     </div>
                   </div>
