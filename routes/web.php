@@ -46,8 +46,15 @@ Route::get('sitemapEdit', [HomeController::class, 'sitemapEdit'])->name('sitemap
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('sitemap', [HomeController::class, 'sitemappage'])->name('siteMap');
 Route::get('/load-inquiry-modal', function () {
-    return view('widget.inquirynow');
+    if (!request()->ajax()) {
+        abort(403, 'Direct access is not allowed');
+    }
+
+    return response()
+        ->view('widget.inquirynow')
+        ->header('X-Robots-Tag', 'noindex, nofollow');
 })->name('load-inquiry-modal');
+
 
 // Route::get('giant-advertising-marketing-event-inflatable', [HomeController::class, 'product'])->name('products');
 // Route::get('/custom-inflatable-manufacturer', [HomeController::class, 'about'])->name('admin');

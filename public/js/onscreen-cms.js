@@ -2700,27 +2700,32 @@ function deletephoto(imageId) {
 function loadInquiryModal(event) {
   event.preventDefault();
 
-  fetch(base_url + "/load-inquiry-modal")
-    .then(response => response.text())
+  fetch(base_url + "/load-inquiry-modal", {
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'  // Indicate AJAX request
+    }
+  })
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.text();
+    })
     .then(html => {
       document.getElementById('inquirypopup').innerHTML = html;
 
-      // Initialize and show the modal
       const modalElement = document.getElementById('shareconceptModal');
       const modal = new bootstrap.Modal(modalElement);
       modal.show();
 
-      // Reinitialize Turnstile after ensuring modal content is added
       setTimeout(() => {
         if (typeof turnstile !== 'undefined') {
           turnstile.render('.cf-turnstile', {
             sitekey: "{{ config('services.cloudflare.turnstile.site_key') }}",
-            callback: onTurnstileSuccess  // Ensure this function is globally defined
+            callback: onTurnstileSuccess
           });
         } else {
           console.error('Turnstile library not loaded');
         }
-      }, 100);  // Delay to ensure DOM readiness
+      }, 100);
 
       modalElement.addEventListener('hidden.bs.modal', function () {
         document.getElementById('modal-container').innerHTML = '';

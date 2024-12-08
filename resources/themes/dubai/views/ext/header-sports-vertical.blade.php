@@ -474,9 +474,7 @@ $(document).ready(function () {
                         {{-- <li><a href=""
                             onclick="popupmenu('{{route('admin.index')}}/category?type=sub_category&onscreenCms=true','','','','',''); return false;"
                         >Sub Category</a></li> --}}
-                        <!-- <li><a class="adminEditItem" href=""
-                            onclick="popupmenu('{{route('admin.index')}}/products?page=list&onscreenCms=true','','','','',''); return false;"
-                        >Manage Products</a></li> -->
+                     
                         <li><a class="adminEditItem" href=""
                             onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;"
                         >Manage Photos</a></li>
