@@ -221,9 +221,10 @@ input[type="search"] {
 input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
+form input[type="text"]::placeholder, form input[type="email"]::placeholder, form input[type="number"]::placeholder, textarea::placeholder,
 ::-webkit-input-placeholder {
     opacity: 1 !important;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 :-moz-placeholder {
     opacity: 1 !important;
@@ -539,12 +540,13 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
     width: auto;
 }
 .header-top-home {
-    margin-right: 15px;
+    margin-right: 5px;
 }
 .main-header.sticky .header-search {
     margin: 0 15px 0 auto;
 }
 .header-search {
+    background-color: transparent;
     max-width: 380px;
     width: 100%;
     height: 48px;
@@ -733,6 +735,11 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
     max-width: 20px;
     min-width: 20px;
     margin-right: 10px;
+}
+.main-header .header-top .header-top-right .header-bottom li > a span {
+    font-size: 17px;
+    margin-left: 2px;
+    text-shadow: none;
 }
 .header-main-logo {
     max-width: 400px;
@@ -1384,6 +1391,7 @@ a.products-box:hover .products-box-img .active img {
     max-width: 385px;
     width: 100%;
     margin-left: auto;
+    margin-top: -5rem;
 }
 .about-middle-contect p {
     font-size: 20px;
@@ -1533,11 +1541,11 @@ a.updates-box:hover, a.updates-box:focus {
     font-size: 30px;
     line-height: 1.1em;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-height: 3.3em;
+    min-height: 2.3em;
 } 
 .updates-box-content p {
     overflow: hidden;
@@ -1654,8 +1662,25 @@ a.updates-box:hover, a.updates-box:focus {
     border-radius: 8px;
     padding: 8px 25px;
 }
-.breadcrumb-left span, .breadcrumb-back {
+.breadcrumb-back {
     color: #d60309;
+}
+.breadcrumb-left span {
+    position: relative;
+    z-index: 2;
+}
+.breadcrumb-left span::after {
+    content: "";
+    color: #fff;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    position: absolute;
+    background: red;
+    left: -17px;
+    top: -10px;
+    width: calc(100% + 37px);
+    height: calc(100% + 21px);
+    z-index: -1;
 }
 .breadcrumb-back:hover {
     background-color: #d60309;
@@ -2003,6 +2028,7 @@ a.updates-box:hover, a.updates-box:focus {
 }
 /* Fixes after Laravel Init */
 .updates-box-content > p.MsoNormal + p.MsoNormal,
+.updates-box-content p:not(:empty) + p,
 .updates-box-content > p:empty {
     display: none;
 }

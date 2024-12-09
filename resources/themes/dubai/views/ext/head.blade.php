@@ -66,9 +66,6 @@
   <link href="{{url('/')}}/dubai/css/animate.css" rel="stylesheet">
   <!-- CODROP SLIDER CSS SETTINGS -->
   <link rel="stylesheet" type="text/css" href="{{url('/')}}/dubai/css/base.css" media="screen" />
-  <!-- theme stylesheet -->
-  <link href="{{url('/')}}/dubai/css/style.css" rel="stylesheet" />
-  <link href="{{url('/')}}/dubai/css/responsive.css" rel="stylesheet" />
   
 
 
@@ -82,6 +79,9 @@
     <link rel="stylesheet" href="{{asset('/')}}/front/css/slick-theme.css">
     <link rel="stylesheet" href="{{asset('/')}}/front/fonts/fonts.css">
     <link rel="stylesheet" href="{{asset('/')}}/dubai/css/fancybox.css">
+  <!-- theme stylesheet -->
+  <link href="{{url('/')}}/dubai/css/style.css" rel="stylesheet" />
+  <link href="{{url('/')}}/dubai/css/responsive.css" rel="stylesheet" />
     <!-- <link rel="stylesheet" href="{{asset('/')}}/plugins/toastr/toastr.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>

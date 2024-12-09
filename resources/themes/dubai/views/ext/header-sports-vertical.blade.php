@@ -620,7 +620,7 @@ $(document).ready(function () {
         </div>
       </div>
       <div class="header-top-middle text-center">
-        <div class="header-top-middle-line sticky-hide theme-heading">
+        <div class="header-top-middle-line sticky-hide theme-heading invisible">
           <span>Award</span> Winning Inflatable <span>Designer</span> & Manufacturer
         </div>
         <form action="{{url('search')}}" method="GET" class="header-search position-relative d-flex">
@@ -633,7 +633,7 @@ $(document).ready(function () {
           <a href="{{ $homeLink->url }}" @if(session('LoggedUser'))
             data-link="{{route('admin.home.editor')}}"
         @endif class="header-top-home sticky-hide d-lg-flex d-none align-items-center text-uppercase">
-            <img class="me-2" src="{{url('/')}}/images/home-icon.png" alt="home-icon">
+            <img src="{{url('/')}}/images/home-icon.png" alt="home-icon">
             <!-- <div class="hover-underline-animation left text-red">{{ $homeLink->name }}</div> -->
           </a>
           <div class="main-menu d-lg-flex d-none align-items-center">
@@ -641,16 +641,16 @@ $(document).ready(function () {
           
               <li class="menu_crud {{ rtrim(url()->current(), '/') == rtrim($homeLink->url, '/') ? 'active' : '' }}"  @if(session('LoggedUser'))
               data-link="{{route('admin.home.editor')}}"
-              @endif><a class="btn-animation" href="{{ $homeLink->url }}">{{ $homeLink->name }}</a></li>
+              @endif><a class="btn-animation {{ rtrim(url()->current(), '/') == rtrim($homeLink->url, '/') ? 'btn-animation--infinity' : '' }}" href="{{ $homeLink->url }}">{{ $homeLink->name }}</a></li>
               <li class="menu_crud {{ basename(url()->current()) == $aboutLink->url ? 'active' : '' }}"  @if(session('LoggedUser'))
               data-link="{{route('admin.about-page.editor')}}"
-              @endif><a class="btn-animation" href="{{ $aboutLink->url }}">{{ $aboutLink->name }}</a></li>
+              @endif><a class="btn-animation {{ basename(url()->current()) == $aboutLink->url ? 'btn-animation--infinity' : '' }}" href="{{ $aboutLink->url }}">{{ $aboutLink->name }}</a></li>
              
               <li class="menu_crud {{ request()->is($productLink->url) || (isset($finalSlug) && trim($finalSlug, '/') === trim($finalSlug, '/')) ? 'active' : '' }}" 
                 @if(session('LoggedUser'))
                     data-link="{{ route('admin.product-page.editor') }}"
                 @endif>
-                <a class="btn-animation" href="{{ $productLink->url }}" 
+                <a class="btn-animation {{ request()->is($productLink->url) || (isset($finalSlug) && trim($finalSlug, '/') === trim($finalSlug, '/')) ? 'btn-animation--infinity' : '' }}" href="{{ $productLink->url }}" 
                     @if(session('LoggedUser'))
                         data-link="{{ route('admin.product-page.editor') }}"
                     @endif>
@@ -660,12 +660,12 @@ $(document).ready(function () {
             
               <li class="menu_crud {{ basename(url()->current()) == $updatesLink->url || (isset($updateslug) && trim($updateslug, '/') === trim($updateslug, '/')) ? 'active' : ''  }}" @if(session('LoggedUser'))
               data-link="{{route('admin.blog-page.editor')}}"
-          @endif><a class="btn-animation" href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
+          @endif><a class="btn-animation {{ basename(url()->current()) == $updatesLink->url || (isset($updateslug) && trim($updateslug, '/') === trim($updateslug, '/')) ? 'btn-animation--infinity' : ''  }}" href="{{ $updatesLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.blog-page.editor')}}"
             @endif>{{ $updatesLink->name }}</a></li>
               <li class="menu_crud {{ basename(url()->current()) == $contactLink->url ? 'active' : '' }}" @if(session('LoggedUser'))
               data-link="{{route('admin.contact-page.editor')}}"
-          @endif><a class="btn-animation" href="{{ $contactLink->url }}" @if(session('LoggedUser'))
+          @endif><a class="btn-animation {{ basename(url()->current()) == $contactLink->url ? 'btn-animation--infinity' : '' }}" href="{{ $contactLink->url }}" @if(session('LoggedUser'))
                 data-link="{{route('admin.contact-page.editor')}}"
             @endif>{{ $contactLink->name }}</a></li>
             </ul>

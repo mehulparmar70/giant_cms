@@ -239,7 +239,7 @@ $( document ).ready( function() {
 	/* about-content-height */
 	shareAboutBox = $('.share-about-box').outerHeight();
 	shareAboutBtn = $('.share-about-btn').outerHeight();
-	$('.about-middle-contect-inner').css('height', shareAboutBox-shareAboutBtn-33);
+	$('.about-middle-contect-inner').css('height', shareAboutBox-shareAboutBtn-33+69);
 	lineclamp();
 	/* button tag insert for animation */
 	setTimeout(function () {

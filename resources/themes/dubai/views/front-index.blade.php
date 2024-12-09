@@ -175,7 +175,7 @@
                     ?>
 
                     <div class="col-md-4 col-sm-6">
-                      <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                      <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
                         <div class="animated-border-box-glow">
                           <div class="products-box-img">
                             <?php if(isset($topInflatableLp->image) && $topInflatableLp->image !== '') 
@@ -281,7 +281,7 @@
                         <span>
                         {!! $aboutPageData->description !!}</span>
                     </div>
-                    <div class="text-md-start text-center mt-md-3 mb-md-0 mb-4"><a href="{{ $aboutLink->url }}" class="btn share-about-btn text-uppercase btn-animation--infinity">VIEW MORE</a></div>
+                    <div class="text-md-center text-center mt-md-3 mb-md-0 mb-4"><a href="{{ $aboutLink->url }}" class="btn share-about-btn text-uppercase btn-animation--infinity">VIEW MORE</a></div>
                   </div>
                   <div class="col-xl-3 col-lg-4 col-md-5 wow fadeInRight" data-wow-offset="200">
                     <div class="share-concept-form-box share-about-box mx-md-0 mx-auto -sticky">

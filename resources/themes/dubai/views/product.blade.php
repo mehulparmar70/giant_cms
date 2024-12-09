@@ -49,7 +49,7 @@
                 if(isset($topInflatableLp->image))
                 {?>
                   <div class="col-md-4 col-sm-6">
-                    <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                    <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
                       <div class="animated-border-box-glow">
                         <div class="products-box-img has-slider">
         
@@ -79,7 +79,7 @@
                     
                 ?>
                 <div class="col-md-4 col-sm-6">
-                  <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                  <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
                     <div class="animated-border-box-glow">
                       <div class="products-box-img has-slider">
                         @foreach(getSubCategoryImagesforMain($topInflatableLp->id, 10, 'DESC') as $key => $productImage)
@@ -101,7 +101,7 @@
                 </div>
                 <?php } else { ?>
                 <div class="col-md-4 col-sm-6">
-                  <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                  <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
                     <div class="animated-border-box-glow">
                       <div class="products-box-img has-slider">
                         <img src="{{url('/')}}/images/{{$topInflatableLp->image}}"  />
