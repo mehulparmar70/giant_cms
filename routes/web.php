@@ -46,9 +46,6 @@ Route::get('sitemapEdit', [HomeController::class, 'sitemapEdit'])->name('sitemap
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('sitemap', [HomeController::class, 'sitemappage'])->name('siteMap');
 Route::get('/load-inquiry-modal', function () {
-    if (!request()->ajax()) {
-        abort(403, 'Direct access is not allowed');
-    }
 
     return response()
         ->view('widget.inquirynow')
