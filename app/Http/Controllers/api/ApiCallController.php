@@ -226,7 +226,7 @@ class ApiCallController extends Controller
         // ]);
     
         // Loop through each uploaded image
-        dd($request->file('image'));
+        // dd($request->file('image'));
         foreach ($request->file('image') as $index => $imageData) {
             if ($imageData->isValid()) {
                 $media = new Media;
