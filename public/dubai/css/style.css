@@ -652,7 +652,7 @@ form input[type="text"]::placeholder, form input[type="email"]::placeholder, for
     background-color: #000000;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 8px;
-    padding: 11px 15px;
+    padding: 11px 15px 10px;
     text-transform: uppercase;
     text-align: center;
     white-space: nowrap;
@@ -1389,9 +1389,9 @@ a.products-box:hover .products-box-img .active img {
 /* about-us-section */
 .about-us-section {
     padding: 10px 0 40px;
-    background-image: url(https://www.giantinflatables.ae/images/bg-image-about.png);
+    background-image: url(https://www.giantinflatables.ae/dubai/images/home_page_image.png);
     background-size: cover;
-    background-position: bottom -80px right 0;
+    background-position: bottom 0 right 0;
 }
 .about-left-logo img {
     max-width: 385px;
