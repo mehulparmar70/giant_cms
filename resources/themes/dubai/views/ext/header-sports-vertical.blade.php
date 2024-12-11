@@ -1,367 +1,4 @@
 
-  
-<style>
-  
-  
-  /* Limit the text to 5 characters */
-.text-limit {
-    display: inline-block;
-    max-width: 5ch; /* Limits to 5 characters */
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    vertical-align: middle;
-    cursor: pointer;
-    position: relative;
-}
-
-/* Tooltip styling */
-.text-limit:hover::after {
-    content: attr(data-full-text); /* Display the full content on hover */
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    padding: 5px;
-    border-radius: 3px;
-    top: 100%; /* Position the tooltip below the text */
-    left: 0;
-    white-space: nowrap;
-    z-index: 100;
-    font-size: 12px;
-    min-width: 100px;
-}
-
-  .mac-style-toast {
-    background-color: #f5f5f7 !important;
-    border-radius: 12px !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
-    color: #333 !important;
-}
-
-.mac-style-toast .iziToast-title {
-    font-weight: bold;
-    color: #333 !important;
-}
-
-.mac-style-toast .iziToast-message {
-    font-size: 14px;
-    color: #555 !important;
-}
-
-/* Modal Background */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1050; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: #2e2e2e; /* Dark background color */
-    color: #fff; /* White text */
-    margin: auto;
-    padding: 0;
-    border-radius: 8px; /* Rounded corners */
-    
-    width: 90%; /* Responsive width */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-    position: relative; /* For absolute positioned close button */
-    border: 1px solid #444;
-}
-
-/* Header */
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #444;
-    background-color: #2e2e2e;
-}
-
-.modal-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #fff;
-}
-
-.close {
-    font-size: 1.5rem;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    background: none;
-    outline: none;
-}
-
-/* Body */
-.modal-body {
-    padding: 20px;
-    background-color: #2e2e2e;
-}
-
-/* Input Fields */
-.modal-body input[type="text"],
-.modal-body textarea,
-.modal-body select {
-    background-color: #3c3c3c; /* Slightly lighter background for input fields */
-    color: #ddd; /* Slightly lighter text color */
-    border: 1px solid #444; /* Subtle border */
-    border-radius: 5px; /* Rounded corners */
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding for better UX */
-    margin-bottom: 15px; /* Space between fields */
-    font-size: 0.9rem;
-}
-
-/* File Upload Area */
-.input-group {
-    margin-top: 10px;
-}
-
-.custom-file-input {
-    display: none; /* Hide default file input */
-}
-
-.custom-file-label {
-    background-color: #444; /* Dark background */
-    color: #ccc; /* Light text */
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#imagePreview {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    gap: 10px;
-}
-
-/* Footer */
-.card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    border-top: 1px solid #444;
-    background-color: #2e2e2e;
-}
-
-
-
-#ajaxForm
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addindustires
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#awardeditajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#editcasestudies
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#createtestimonial
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addnewslettercr
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addpartners
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#searchphoto
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addimageproducts
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addaward
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addclient
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#editblogajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addblogajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#partnereditajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#videoajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addvideo
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#socialmediaajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#testimonaileditajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#editnewsletter
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addcasestudies
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#adproductsform
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#editindustries
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#clienteditajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#slideridajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#editCategoryidajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addCategory
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addsliderajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addseoajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#addlogoajax
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#customCodeStore
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#caseStudies
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#editblogpage
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#editlinks
-{
-  background-color: #272B2E; /* Slightly lighter background for input fields */
-  box-shadow: none;
-  width: 100%;
-}
-#clienttable
-{
-  color:white;
-}
-</style>
 
 
      
@@ -411,7 +48,6 @@
 <p class="route-slider-index d-none">{{route('slider.index')}}?onscreenCms=true</p>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <script>
 	
 $(document).ready(function () {
@@ -433,7 +69,7 @@ $(document).ready(function () {
     }
 </style>
 
-<div class="header_bottom">
+<div class="header_bottom d-none">
     <div class="header_nav">
         <div class="container">
           <div class="navbar">
@@ -528,6 +164,41 @@ $(document).ready(function () {
           </div>
         </div>
       </div>
+</div>
+<div class="graphite nav-slide-container">
+  <div class="btn-slide"></div>
+  <div class="dd-menu">
+      <div class="nav-body">
+          <div class="head-slide">Main Menu</div>
+          <div class="body-slide">
+              <ul class="nav">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Contact</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="nav-body">
+          <div class="head-slide">Caterory</div>
+          <div class="body-slide">
+              <ul class="nav">
+                  <li><a href="#">jQuery</a></li>
+                  <li><a href="#">ReactJS</a></li>
+                  <li><a href="#">AngularJS</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="nav-body">
+          <div class="head-slide">Social</div>
+          <div class="body-slide">
+              <ul class="nav">
+                  <li><a href="https://www.jqueryscript.net/tags.php?/Facebook/">Facebook</a></li>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">Google Plus</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
 </div>
 @endif
 <div class="container-fluid">
@@ -732,4 +403,12 @@ $(document).ready(function () {
     })
     .catch(error => console.error('Error loading modal:', error));
 }
+$(document).ready(function(){
+    $('.nav-slide-container').SlideMenu({
+        speedLR: 500,
+        speedUD: 500,
+        expand: true,
+        collapse: true
+    });
+});
 </script>

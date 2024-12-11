@@ -1,0 +1,68 @@
+.nav-slide-container {
+    position: fixed;
+    top:50px;
+    right: -260px;
+    width: 260px;
+    background: #343434;
+    color: #fff;
+    border-top: 1px solid #111;
+    border-right: 1px solid #111;
+    border-left: 1px solid #111;
+    z-index: 1;
+}
+.nav-slide-container .btn-slide {
+    position: absolute;
+    top: 75px;
+    left: -72px;
+    cursor: pointer;
+    background: #d60309;
+    display: flex;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 2px solid #fff;
+    border-right: 0 none;
+}
+.nav-slide-container .dd-menu {
+    
+}
+.nav-slide-container .head-slide {
+    background: linear-gradient(180deg, #323437, #1e1e1e);
+    border-bottom: 1px solid #222;
+    border-top: 1px solid #555;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 18px;
+    padding: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+.nav-slide-container .head-slide .fa {
+    margin-right: 5px;
+}
+.nav-slide-container .body-slide {
+    border-top: 1px solid #111;
+}
+.nav-slide-container .body-slide .nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+}
+.nav-slide-container .body-slide .nav li {
+    padding-bottom: 0;
+}
+.nav-slide-container .body-slide .nav li a {
+    border-bottom: 1px solid #222;
+    border-top: 1px solid #555;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px 10px 10px 35px;
+    display: block;
+    color: #ddd;
+    position: relative;
+}
+.nav-slide-container .body-slide .nav li a:hover {
+    text-decoration: none;
+}

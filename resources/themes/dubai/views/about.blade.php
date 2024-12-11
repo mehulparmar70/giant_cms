@@ -21,7 +21,7 @@
 
     <section class="about-banner-section common-inner-banner header-top-space position-relative">
       <div class="bg-img-wrap">
-        <img class="bg-img-top opacity-50" src="{{asset('/')}}/dubai/images/about-banner.webp" alt="about-banner">
+        <img class="bg-img-top opacity-50" src="{{asset('/')}}/images/bg-image-about.png" alt="about-banner">
         <img class="bg-img-bottom" src="{{asset('/')}}/dubai/images/red-effect-bottom.webp" alt="red-effect-bottom">
       </div>
       <div class="container position-relative">
