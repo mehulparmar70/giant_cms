@@ -708,7 +708,7 @@ class HomeController extends Controller
         $criteriaData = Criteria::where('slug', $slug)->first();
 
         
-        $current_sub_cat = Category::where(['parent_id' => $isProductDetails->id])->get();
+        // $current_sub_cat = Category::where(['parent_id' => $isProductDetails->id])->get();
 
         // $current_sub_cat = DB::table('categories')
         // ->join('products', 'products.category_id', '=', 'categories.id')

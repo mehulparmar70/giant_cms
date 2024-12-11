@@ -273,7 +273,10 @@ Route::get('/thankyou', [HomeController::class, 'thankYouPage'])->name('thank-yo
 Route::get('{slug}', function ($slug) {
     // Skip processing API routes entirely
  
-
+    if (preg_match('/^front\/images\/|favicon\.ico$/i', $slug)) {
+        return redirect()->route('page.not.found');
+    }
+    
     // Handle specific invalid slugs
     if (strpos($slug, '#') !== false || strpos($slug, '!') !== false) {
         return redirect()->route('page.not.found');
