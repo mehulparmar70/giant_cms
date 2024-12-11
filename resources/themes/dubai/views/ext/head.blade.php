@@ -78,7 +78,9 @@
     <link rel="stylesheet" href="{{asset('/')}}/front/css/slick.css">
     <link rel="stylesheet" href="{{asset('/')}}/front/css/slick-theme.css">
     <link rel="stylesheet" href="{{asset('/')}}/front/fonts/fonts.css">
-    <link rel="stylesheet" href="{{asset('/')}}/dubai/css/fancybox.css">
+    <link rel="stylesheet" href="{{asset('/')}}/front/css/fancybox.css">
+    <link rel="stylesheet" href="{{asset('/')}}/css/jquery-slide-menu.css">
+
   <!-- theme stylesheet -->
   <link href="{{url('/')}}/dubai/css/style.css" rel="stylesheet" />
   <link href="{{url('/')}}/dubai/css/responsive.css" rel="stylesheet" />

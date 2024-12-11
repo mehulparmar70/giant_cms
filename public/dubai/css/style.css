@@ -944,7 +944,7 @@ form input[type="text"]::placeholder, form input[type="email"]::placeholder, for
 .footer-top-col::after{
     content: "";
     position: absolute;
-    right: -2px;
+    left: -2px;
     top: 50%;
     transform: translateY(-50%);
     width: 2px;
@@ -1135,7 +1135,7 @@ form input[type="text"]::placeholder, form input[type="email"]::placeholder, for
 }
 .theme-stroke-heading strong {
     position: absolute;
-    top: 0;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
     color: transparent;
@@ -1145,6 +1145,8 @@ form input[type="text"]::placeholder, form input[type="email"]::placeholder, for
     font-size: 145px;
     line-height: 1;
     opacity: 0.7;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .theme-stroke-heading h3, .theme-stroke-heading .h3 {
     position: relative;
@@ -1323,6 +1325,7 @@ form input[type="text"]::placeholder, form input[type="email"]::placeholder, for
     box-shadow: 0 0 0px 14px rgba(255, 255, 255, 0.2);
     transform: none;
 	transition: all 0.5s ease-in-out;
+	overflow: hidden;
 }
 .products-box::after {
     content: '';
@@ -1386,6 +1389,9 @@ a.products-box:hover .products-box-img .active img {
 /* about-us-section */
 .about-us-section {
     padding: 10px 0 40px;
+    background-image: url(https://www.giantinflatables.ae/images/bg-image-about.png);
+    background-size: cover;
+    background-position: bottom -80px right 0;
 }
 .about-left-logo img {
     max-width: 385px;
@@ -1408,13 +1414,13 @@ a.products-box:hover .products-box-img .active img {
     text-overflow:ellipsis; */
 }
 .about-middle-contect-inner:before{
-    content: '';
+    /*content: '';
     position: absolute;
     left: 0;
     bottom: -2px;
     width: 100%;
     height: 40px;
-    background-image: linear-gradient(180deg, rgba(0,0,0,0), black 95%);
+    background-image: linear-gradient(180deg, rgba(0,0,0,0), black 95%);*/
 }
 .share-concept-form-box {
     display: flex;
@@ -1552,6 +1558,7 @@ a.updates-box:hover, a.updates-box:focus {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    text-align: left !important;
 }
 .updates-slider .owl-stage-outer, .products-slider .owl-stage-outer {
     padding: 15px 0;
@@ -1799,7 +1806,7 @@ a.updates-box:hover, a.updates-box:focus {
 .dropdown {
     display: inline-block;
     margin-left: 90px;
-    z-index: 9999 !important;
+    z-index: 9 !important;
 }
 .dropdown .hamburger-lines {
     margin-right: 12px;
