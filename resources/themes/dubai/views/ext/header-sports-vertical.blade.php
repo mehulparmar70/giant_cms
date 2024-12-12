@@ -68,6 +68,7 @@ $(document).ready(function () {
         color: #050505;
     }
 </style>
+<div class="cf-turnstile" data-sitekey="your-site-key"></div>
 
 <div class="header_bottom d-none">
     <div class="header_nav">
@@ -169,34 +170,46 @@ $(document).ready(function () {
   <div class="btn-slide"></div>
   <div class="dd-menu">
       <div class="nav-body">
-          <div class="head-slide">Main Menu</div>
+          <div class="head-slide">Add New</div>
           <div class="body-slide">
               <ul class="nav">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Contact</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=main_category&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Main Category</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.create')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Sub Category</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.photo.manage')}}?type=photo&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Manage Photos</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('blog.create')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Blog</a></li>
               </ul>
           </div>
       </div>
       <div class="nav-body">
-          <div class="head-slide">Caterory</div>
+          <div class="head-slide">Manage Contents</div>
           <div class="body-slide">
               <ul class="nav">
-                  <li><a href="#">jQuery</a></li>
-                  <li><a href="#">ReactJS</a></li>
-                  <li><a href="#">AngularJS</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.list')}}?type=testimonial_create&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Main Category</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.category.list')}}?type=sub_category&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Sub Category</a></li>
+                <li><a class="adminEditItem" href=""
+                  onclick="popupmenu('{{route('admin.index')}}/photo?page=list&onscreenCms=true','','','','',''); return false;"
+              >Manage Photos</a></li>
+              <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('blog.index')}}?type=Testimonial&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Blog</a></li>
+                  
               </ul>
           </div>
       </div>
       <div class="nav-body">
-          <div class="head-slide">Social</div>
+          <div class="head-slide">Global Setting</div>
           <div class="body-slide">
               <ul class="nav">
-                  <li><a href="https://www.jqueryscript.net/tags.php?/Facebook/">Facebook</a></li>
-                  <li><a href="#">Twitter</a></li>
-                  <li><a href="#">Google Plus</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('slider.index')}}?type=Slider&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Slider / Banner</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.setting.seo-manage')}}?type=SocialMediaManagers&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Logo Manage</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('setting.social-media')}}?type=SocialMedia&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Social Media</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('admin.customJs.create')}}?type=customJs&onscreenCms=true', 'toolbar=no, location=no',event); return false;">Header Footer</a></li>
+                <li><a class="adminEditItem" title="Edit" href="`+$(this).attr('data-link')+'?onscreenCms=true'+`"onclick="popupmenu('{{route('sitemapEdit')}}?onscreenCms=true', 'toolbar=no, location=no',event); return false;">Sitemap</a></li>
+               
               </ul>
           </div>
+      </div>
+      <div class="nav-body">
+          <div class="head-slide"> <a href="">{{session('LoggedUser')->name}}</a></div>
+   
       </div>
   </div>
 </div>

@@ -39,16 +39,16 @@
         <!-- banner area part -->
         <section class="error-banner-section common-inner-banner header-top-space position-relative">
           <div class="container">
-            <div class="error-content pt-4 text-center wow zoomIn" data-wow-offset="200">
+            <div class="error-content pt-4 text-center wow zoomIn" data-wow-offset="150">
               <h1 class="h3"><span>Sorry!</span> This page is <span>MOVED,</span> <br>But that's Okay! <br>Redirecting you to <span>HOME</span> <img class="d-block mx-auto mt-md-4 mt-2 mb-md-1" src="{{asset('/')}}/dubai/images/home-big-icon.jpg" alt="home-icon"> <span id="countdown">in 10 Sec</span></h1>
             </div>
             <div class="contact-section position-relative pt-4">
               <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
-                <div class="share-concept-form-box wow flipInY" data-wow-offset="200">
+                <div class="share-concept-form-box wow flipInY" data-wow-offset="150">
                   <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                   @include('widget.contact-form1')
                 </div>
-                <div class="contact-links-box text-center wow flipInY" data-wow-offset="200">
+                <div class="contact-links-box text-center wow flipInY" data-wow-offset="150">
                   <p>Award Winning Inflatable Designer & Manufacturer</p>
                   <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
                   <div class="mt-sm-4 mt-2 mb-2">

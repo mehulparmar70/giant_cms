@@ -2716,16 +2716,16 @@ function loadInquiryModal(event) {
       const modal = new bootstrap.Modal(modalElement);
       modal.show();
 
-      setTimeout(() => {
-        if (typeof turnstile !== 'undefined') {
-          turnstile.render('.cf-turnstile', {
-            sitekey: "{{ config('services.cloudflare.turnstile.site_key') }}",
-            callback: onTurnstileSuccess
-          });
-        } else {
-          console.error('Turnstile library not loaded');
-        }
-      }, 100);
+      // setTimeout(() => {
+      //   if (typeof turnstile !== 'undefined') {
+      //     turnstile.render('.cf-turnstile', {
+      //       sitekey: "{{ config('services.cloudflare.turnstile.site_key') }}",
+      //       callback: onTurnstileSuccess
+      //     });
+      //   } else {
+      //     console.error('Turnstile library not loaded');
+      //   }
+      // }, 100);
 
       modalElement.addEventListener('hidden.bs.modal', function () {
         document.getElementById('modal-container').innerHTML = '';

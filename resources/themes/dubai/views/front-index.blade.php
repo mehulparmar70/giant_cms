@@ -203,7 +203,7 @@
                     <?php } else { ?>
 
                     <div class="col-md-4 col-sm-6">
-                      <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                      <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
                         <div class="animated-border-box-glow">
                           <div class="products-box-img">
                             <?php if(!empty($topInflatableLp->image))
@@ -231,7 +231,7 @@
                     @endforeach
                   @else
                     <div class="col-md-4 col-sm-6">
-                      <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="200">
+                      <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
                         <div class="animated-border-box-glow">
                           <div class="products-box-img">
                             <img src="{{url('')}}/img/no-item.jpeg" />
@@ -272,10 +272,10 @@
               @endif></div>
                 </div>
                 <div class="row">
-                  <div class="col-lg-3 about-left-logo d-flex align-items-center mb-lg-5 mb-4 wow fadeInLeft" data-wow-offset="200">
+                  <div class="col-lg-3 about-left-logo d-flex align-items-center mb-lg-5 mb-4 wow fadeInLeft" data-wow-offset="150">
                     <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
                   </div>
-                  <div class="col-xl-6 col-lg-5 col-md-7 about-middle-contect wow fadeIn" data-wow-offset="200" data-wow-delay="0.5s">
+                  <div class="col-xl-6 col-lg-5 col-md-7 about-middle-contect wow fadeIn" data-wow-offset="150" data-wow-delay="0.5s">
                      
                     <div class="about-middle-contect-inner">
                         <span>
@@ -283,7 +283,7 @@
                     </div>
                     <div class="text-md-center text-center mt-md-3 mb-md-0 mb-4"><a href="{{ $aboutLink->url }}" class="btn share-about-btn text-uppercase btn-animation--infinity">VIEW MORE</a></div>
                   </div>
-                  <div class="col-xl-3 col-lg-4 col-md-5 wow fadeInRight" data-wow-offset="200">
+                  <div class="col-xl-3 col-lg-4 col-md-5 wow fadeInRight" data-wow-offset="150">
                     <div class="share-concept-form-box share-about-box mx-md-0 mx-auto -sticky">
                       <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                           @include('widget.contact-form1')
@@ -312,7 +312,7 @@
                     <img class="bg-img-top" src="{{asset('/')}}/dubai/images/red-effect-top.webp" alt="red-effect-top">
                   </div>
                   <div class="container pt-4">
-                    <div class="position-relative wow zoomInDown" data-wow-offset="200">
+                    <div class="position-relative wow zoomInDown" data-wow-offset="150">
                       <div class="updates-slider px-xl-5 px-3">
                         @foreach($blogsSlider as $blogsList)
                         <div class="updates-slider-item">
@@ -362,12 +362,12 @@
                 </div>
                 <div class="container position-relative pt-4">
                   <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
-                    <div class="share-concept-form-box wow flipInY" data-wow-offset="200">
+                    <div class="share-concept-form-box wow flipInY" data-wow-offset="150">
                       <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                       <form action="" class="share-concept-form ms-2">
                         @include('widget.contact-form1')
                     </div>
-                    <div class="contact-links-box text-center wow flipInY" data-wow-offset="200">
+                    <div class="contact-links-box text-center wow flipInY" data-wow-offset="150">
                       <p>Award Winning Inflatable Designer & Manufacturer</p>
                       <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
                       <div class="mt-sm-4 mt-2 mb-2">

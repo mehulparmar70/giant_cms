@@ -37,7 +37,7 @@
             </div>
             <div class="row g-lg-4 g-3 mt-lg-4 mt-2 pb-3">
               <div class="col-xl-9 col-md-8">
-                <div class="product-detail-wrap wow fadeInLeft" data-wow-offset="200">
+                <div class="product-detail-wrap wow fadeInLeft" data-wow-offset="150">
                   <div class="product-detail-title d-flex justify-content-md-start justify-content-center">
                     <h5 class="me-2 mt-1">{{$blogDetail->title}}</h5>
                     <div class="description_blk onscreen_blog_detail_page" @if(session('LoggedUser'))
@@ -62,14 +62,14 @@
                     </div> -->
                   </div>
                 </div>
-                <div class="about-banner-desc wow zoomIn" data-wow-offset="200">
+                <div class="about-banner-desc wow zoomIn" data-wow-offset="150">
                   <div class="description_blk onscreen_blog_detail_page" @if(session('LoggedUser'))
                   data-link="{{route('blog.edit', $blogDetail->id)}}"
                 @endif></div>
                                {!! html_entity_decode($blogDetail->full_description) !!}
                 </div>
               </div>
-              <div class="col-xl-3 col-md-4 wow fadeInRight" data-wow-offset="200">
+              <div class="col-xl-3 col-md-4 wow fadeInRight" data-wow-offset="150">
                 <div class="share-concept-form-box -sticky mx-md-0 mx-auto">
                   <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                   @include('widget.contact-form1')
@@ -93,7 +93,7 @@
               </div>
               <div class="updates-wrap mt-3">
                 <div class="container pt-2">
-                  <div class="position-relative wow zoomInDown" data-wow-offset="200">
+                  <div class="position-relative wow zoomInDown" data-wow-offset="150">
                     <div class="updates-slider px-3">
                       @foreach($latestUpdates as $updatesList)
                       <div class="updates-slider-item">
@@ -152,7 +152,7 @@
                             print_r($productImage);
                           }*/
                     ?>
-                    <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
+                    <div class="updates-slider-item wow zoomIn" data-wow-offset="150">
                       <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                         <div class="animated-border-box-glow">
                           <div class="products-box-img">
@@ -178,7 +178,7 @@
                       </a>
                     </div>
                     <?php } else { ?>
-                    <div class="updates-slider-item wow zoomIn" data-wow-offset="200">
+                    <div class="updates-slider-item wow zoomIn" data-wow-offset="150">
                       <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                         <div class="animated-border-box-glow">
                           <div class="products-box-img">
@@ -215,11 +215,11 @@
               </div>
               <div class="container position-relative pt-4">
                 <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
-                  <div class="share-concept-form-box wow flipInY" data-wow-offset="200">
+                  <div class="share-concept-form-box wow flipInY" data-wow-offset="150">
                     <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                     @include('widget.contact-form1')
                   </div>
-                  <div class="contact-links-box text-center wow flipInY" data-wow-offset="200">
+                  <div class="contact-links-box text-center wow flipInY" data-wow-offset="150">
                     <p>Award Winning Inflatable Designer & Manufacturer</p>
                     <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
                     <div class="mt-sm-4 mt-2 mb-2">

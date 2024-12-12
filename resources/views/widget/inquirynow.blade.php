@@ -49,10 +49,10 @@
   </div>
 
   <div class="share-concept-field d-flex justify-content-center mb-0">
-  <div class="cf-turnstile"
+  <!-- <div class="cf-turnstile"
                  data-sitekey="{{ config('services.cloudflare.turnstile.site_key') }}"
                  data-callback="onTurnstileSuccess"
-            ></div>
+            ></div> -->
     <!-- <img src="{{asset('/')}}/dubai/images/captcha-image.jpg" alt="captcha-image"> -->
   </div>
 
