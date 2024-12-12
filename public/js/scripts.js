@@ -289,7 +289,7 @@ $( document ).ready( function() {
 /* Script on load
 ------------------------------------------------------------------------------*/
 $( window ).on( 'load',function() {
-
+     
 } );
 
 /* Script on scroll
