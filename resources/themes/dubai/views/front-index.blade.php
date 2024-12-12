@@ -9,6 +9,15 @@
 </head>
 
 <body class="lazyload pr-0">
+    <div class="loader_wrapper">
+        <div class="dubai__loader">
+            <img class="giant_bg" src="https://www.giantinflatables.ae/dubai/images/BUILDINGS.png" alt="" />
+            <img class="giant_text" src="https://www.giantinflatables.ae/dubai/images/GIANT.png" alt="" />
+            <div class="loading-wrapper">
+                <span class="loading-text">Inflating Creativity & Ideas<span class="dots"></span></span>
+            </div>
+        </div>
+    </div>
     <?php $current_page = ''; 
     $productLink = App\Models\admin\UrlList::find(96);  // Our Products link
     $updatesLink = App\Models\admin\UrlList::find(113);  // Updates link
@@ -396,7 +405,11 @@
 
     {{-- Additional custom JavaScript --}}
     @yield('custom-js')
-    
+    <script>
+        $( document ).ready( function() {
+            $('.loader_wrapper').remove();
+        });
+    </script>
 </body>
 
 
