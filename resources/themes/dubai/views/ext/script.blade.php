@@ -55,6 +55,9 @@
 <script src="{{asset('/')}}/js/custom.js"></script>
 <script src="{{asset('/')}}/dist/js/custom.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+<script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+
 <link rel="stylesheet" href="{{url('/')}}/drag-drop/dist/imageuploadify.min.css">
 <script src="{{asset('/')}}drag-drop/dist/imageuploadify.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazyloadjs/3.2.2/lazyload.min.js" integrity="sha512-3WLY2nDlx1c6leUk3gyqneF+bWq4Ub/HsGjmJoo7qRlMFMXcOwzw6gqf+PwKLzd/TUjWlpSaHBy6L6o1hS2y9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
