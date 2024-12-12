@@ -4,6 +4,7 @@
      
         <div id="modalBodyContent"></div>
         <div id="addnewsletter"></div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAA029SfyMhxV397X" style="display: none;"></div>
 
  
 <!-- header -->

@@ -17,6 +17,7 @@ class Kernel extends HttpKernel
         \Illuminate\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \App\Http\Middleware\VerifyGlobalCaptcha::class,
     ];
 
     /**

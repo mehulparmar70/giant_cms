@@ -67,6 +67,7 @@
   <!-- CODROP SLIDER CSS SETTINGS -->
   <link rel="stylesheet" type="text/css" href="{{url('/')}}/dubai/css/base.css" media="screen" />
   
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 
 
