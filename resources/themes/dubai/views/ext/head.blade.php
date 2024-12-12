@@ -69,7 +69,7 @@
   
 
 
-  <link rel="stylesheet" href="{{asset('/')}}css/bootstrap.css">
+
 
     <link rel="stylesheet" href="{{asset('/')}}/front/css/style.css">
 
@@ -89,6 +89,6 @@
     <!-- <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> -->
 <?php
 
-  $headerCode = DB::table('custom_codes')->where('type', 'header-code')->first();
-  echo $headerCode->description;
+  // $headerCode = DB::table('custom_codes')->where('type', 'header-code')->first();
+  // echo $headerCode->description;
 ?>

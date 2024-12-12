@@ -1,7 +1,6 @@
 
-<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-   
+
+    @if(session('LoggedUser'))
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css">
  
 
@@ -24,7 +23,9 @@
 
 
          <!-- jquery library --> 
-    <script src="{{asset('/')}}dubai/js/jquery-3.7.1.min.js"></script>
+
+    @endif
+    <script src="{{asset('/')}}dubai/js/jquery-3.7.1.min.js" ></script>
     <!-- vendor js -->
     <script src="{{asset('/')}}dubai/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('/')}}dubai/js/owl.carousel.min.js"></script>
@@ -35,33 +36,36 @@
     <script src="{{asset('/')}}dubai/js/fancybox.umd.js"></script>
     <script src="{{asset('/')}}js/jquery-slide-menu.js"></script>
     <!-- CODROP SLIDER SCRIPTS  -->
-    <script type="text/javascript" src="{{asset('/')}}dubai/js/imagesloaded.pkgd.min.js"></script>
-    <script type="text/javascript" src="{{asset('/')}}dubai/js/TweenMax.min.js"></script>
-    <script type="text/javascript" src="{{asset('/')}}dubai/js/demo.js"></script>
+    <script type="text/javascript" src="{{asset('/')}}dubai/js/imagesloaded.pkgd.min.js" async></script>
+    <script type="text/javascript" src="{{asset('/')}}dubai/js/TweenMax.min.js" async></script>
+    <script type="text/javascript" src="{{asset('/')}}dubai/js/demo.js" async></script>
     <!-- theme script --> 
     <script src="{{asset('/')}}dubai/js/scripts.js"></script> 
     
+
+
+
+
+
+
+@if(session('LoggedUser'))
     
 <script src="{{asset('/')}}js/bootstrap.min.js"></script>
 
 <script src="{{asset('/')}}/js/custom.js"></script>
 <script src="{{asset('/')}}/dist/js/custom.js"></script>
-
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="{{url('/')}}/drag-drop/dist/imageuploadify.min.css">
 <script src="{{asset('/')}}drag-drop/dist/imageuploadify.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazyloadjs/3.2.2/lazyload.min.js" integrity="sha512-3WLY2nDlx1c6leUk3gyqneF+bWq4Ub/HsGjmJoo7qRlMFMXcOwzw6gqf+PwKLzd/TUjWlpSaHBy6L6o1hS2y9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-@if(session('LoggedUser'))
-
 <script src="{{asset('/')}}js/ckeditor.js" rel="stylesheet"></script>
   <script src="{{asset('/')}}js/onscreen-cms.js" rel="stylesheet"></script>
-
+  <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script>
+  <link rel="stylesheet" href="{{url('/')}}/plugins/summernote/summernote-bs4.min.css">
 @endif
-<script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script>
 
-<link rel="stylesheet" href="{{url('/')}}/plugins/summernote/summernote-bs4.min.css">
+
+
  
    
 

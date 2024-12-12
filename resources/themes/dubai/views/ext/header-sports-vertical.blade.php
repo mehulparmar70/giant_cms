@@ -208,7 +208,7 @@ $(document).ready(function () {
           </div>
       </div>
       <div class="nav-body">
-          <div class="head-slide"> <a href="">{{session('LoggedUser')->name}}</a></div>
+          <div class="head-slide"> <a href="{{route('admin.auth.logoutOnscreen')}}"><i class="nav-icon fa fa-lock "></i> &nbsp;Logout</a></div>
    
       </div>
   </div>
