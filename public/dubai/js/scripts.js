@@ -288,23 +288,21 @@ $( document ).ready( function() {
 
 	$(document).ready(function() {
 		$('[data-fancybox="gallery"]').fancybox({
-			// Disable hash-based navigation
-			hash: false,
-			afterShow: function(instance, current) {
-				// Get the image title or use a default slug
-				let imageSlug = current.opts.$orig.attr('data-slug') || 'image';
-				// Construct a clean URL with `/` instead of `#`
-				let cleanUrl = window.location.origin + window.location.pathname + '/' + imageSlug.replace(/\s+/g, '-').toLowerCase();
-				// Update the browser's address bar without reloading the page
-				window.history.pushState(null, null, cleanUrl);
-			},
-			afterClose: function() {
-				// Revert to the original URL after closing Fancybox
-				window.history.pushState(null, null, window.location.pathname);
-			}
+		  // Enable History for clean URLs
+		  hash: false, // Prevents default hash-based navigation
+		  afterShow: function(instance, current) {
+			// Update the URL based on the image title
+			let imageTitle = current.opts.$orig.attr('data-slug') || 'image';
+			let cleanUrl = window.location.origin + window.location.pathname + '/' + imageTitle.replace(/\s+/g, '-').toLowerCase();
+			window.history.pushState(null, null, cleanUrl);
+		  },
+		  afterClose: function() {
+			// Revert to the original URL when the Fancybox is closed
+			window.history.pushState(null, null, window.location.pathname);
+		  }
 		});
-	});
-	
+	  });
+
 	  
 	setInterval(function () {
 		$(".boxnav__item--next").click();
@@ -357,40 +355,40 @@ function lineclamp() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-	// Initialize Turnstile for all forms with class 'share-concept-form'
-	const forms = document.querySelectorAll('.share-concept-form');
+        // Initialize Turnstile for all forms with class 'share-concept-form'
+        const forms = document.querySelectorAll('.share-concept-form');
 
-	forms.forEach(form => {
-		form.addEventListener('submit', async (event) => {
-			event.preventDefault(); // Prevent default form submission
-			
-			// Generate CAPTCHA token
-			const token = document.querySelector('.cf-turnstile-response').value;
-			if (!token) {
-				alert('CAPTCHA validation failed. Please complete the CAPTCHA.');
-				return;
-			}
+        forms.forEach(form => {
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+                
+                // Generate CAPTCHA token
+                const token = document.querySelector('.cf-turnstile-response').value;
+                if (!token) {
+                    alert('CAPTCHA validation failed. Please complete the CAPTCHA.');
+                    return;
+                }
 
-			// Add CAPTCHA token to the hidden input
-			const captchaInput = form.querySelector('input[name="cf-turnstile-response"]');
-			if (!captchaInput) {
-				const newCaptchaInput = document.createElement('input');
-				newCaptchaInput.type = 'hidden';
-				newCaptchaInput.name = 'cf-turnstile-response';
-				newCaptchaInput.value = token;
-				form.appendChild(newCaptchaInput);
-			} else {
-				captchaInput.value = token;
-			}
+                // Add CAPTCHA token to the hidden input
+                const captchaInput = form.querySelector('input[name="cf-turnstile-response"]');
+                if (!captchaInput) {
+                    const newCaptchaInput = document.createElement('input');
+                    newCaptchaInput.type = 'hidden';
+                    newCaptchaInput.name = 'cf-turnstile-response';
+                    newCaptchaInput.value = token;
+                    form.appendChild(newCaptchaInput);
+                } else {
+                    captchaInput.value = token;
+                }
 
-			form.submit(); // Submit the form
-		});
-	});
+                form.submit(); // Submit the form
+            });
+        });
 
-	// Turnstile success callback
-	window.onTurnstileSuccess = function (token) {
-		document.querySelectorAll('.cf-turnstile-response').forEach(input => {
-			input.value = token; // Assign token to the hidden input
-		});
-	};
-});
+        // Turnstile success callback
+        window.onTurnstileSuccess = function (token) {
+            document.querySelectorAll('.cf-turnstile-response').forEach(input => {
+                input.value = token; // Assign token to the hidden input
+            });
+        };
+    });
