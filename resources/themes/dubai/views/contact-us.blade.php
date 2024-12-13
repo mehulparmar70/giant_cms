@@ -145,12 +145,12 @@ function goBack() {
 			</div>
 			<div class="container position-relative pt-4">
 			  <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
-				<div class="share-concept-form-box wow flipInY" data-wow-offset="150">
+				<div class="share-concept-form-box wow flipInY" data-wow-offset="100">
 				  <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
 
 				  @include('widget.contact-form1')
 				</div>
-				<div class="contact-links-box text-center wow flipInY" data-wow-offset="150">
+				<div class="contact-links-box text-center wow flipInY" data-wow-offset="100">
 					<p>Award Winning Inflatable Designer & Manufacturer</p>
 					<img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
 					<div class="mt-sm-4 mt-2 mb-2">

@@ -129,7 +129,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
             </div>
             <div class="row g-4 mt-4">
               <div class="col-xl-9 col-md-8">
-                <div class="product-detail-wrap wow fadeInLeft" data-wow-offset="150">
+                <div class="product-detail-wrap wow fadeInLeft" data-wow-offset="100">
                   <div class="product-detail-title d-flex gap-1 flex-md-row flex-column justify-content-md-between justify-content-center align-items-center">
 				  @if(getParentCategory($subCategory->id)['subcategory'])
 						<h5 class="me-2 mt-1">{{getParentCategory($subCategory->id)['subcategory']->name}}</h5>
@@ -202,7 +202,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                     </div>
                   </div>
                 </div>
-                <div class="about-banner-desc wow zoomIn" data-wow-offset="150">
+                <div class="about-banner-desc wow zoomIn" data-wow-offset="100">
 					<div class="onscreen_product_internal_title onscreen_product_internal_title3" @if(session('LoggedUser'))
 																	data-link="{{route('admin.category.edit', $current_cat->id)}}?type=sub_category&onscreenCms=true&id={{$mainCategory->id}}"
 																	data-create-subcategory="{{route('admin.category.create')}}?type=sub_category&onscreenCms=true&id={{$mainCategory->id}}"
@@ -212,7 +212,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
 					<p>{!! $productDetail->description !!}</p>
                 </div>
               </div>
-              <div class="col-xl-3 col-md-4 wow fadeInRight" data-wow-offset="150">
+              <div class="col-xl-3 col-md-4 wow fadeInRight" data-wow-offset="100">
                 <button class="btn btn-animation dropdown-toggle py-2 invisible" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Other SUB CATEGORY
                   <img src="{{asset('/')}}/dubai/images/right-arrow-circle.svg" alt="arrow-circle">
@@ -260,7 +260,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                         if (!empty($getSubCategories)) {
                         
                     ?>
-                    <div class="updates-slider-item wow zoomIn" data-wow-offset="150">
+                    <div class="updates-slider-item wow zoomIn" data-wow-offset="100">
                       <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                         <div class="animated-border-box-glow">
                           <div class="products-box-img">
@@ -287,7 +287,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
                       </a>
                     </div>
 					<?php } else { ?>
-                    <div class="updates-slider-item wow zoomIn" data-wow-offset="150">
+                    <div class="updates-slider-item wow zoomIn" data-wow-offset="100">
                       <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                         <div class="animated-border-box-glow">
                           <div class="products-box-img">
@@ -315,7 +315,7 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
 					<?php } ?>
                     @endforeach
                   @else
-                    <div class="updates-slider-item wow zoomIn" data-wow-offset="150">
+                    <div class="updates-slider-item wow zoomIn" data-wow-offset="100">
                       <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                         <div class="animated-border-box-glow">
                           <div class="products-box-img">
@@ -351,11 +351,11 @@ $homeLink = App\Models\admin\UrlList::find(95);  // Home link
               </div>
               <div class="container position-relative pt-4">
                 <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
-                  <div class="share-concept-form-box wow flipInY" data-wow-offset="150">
+                  <div class="share-concept-form-box wow flipInY" data-wow-offset="100">
                     <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                           @include('widget.contact-form1')
                   </div>
-                  <div class="contact-links-box text-center wow flipInY" data-wow-offset="150">
+                  <div class="contact-links-box text-center wow flipInY" data-wow-offset="100">
                     <p>Award Winning Inflatable Designer & Manufacturer</p>
                     <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
                     <div class="mt-sm-4 mt-2 mb-2">

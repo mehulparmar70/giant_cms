@@ -43,7 +43,7 @@
         </div>
         <div class="row g-xxl-5 g-lg-4 g-3">
           <div class="col-xl-9 col-md-8">
-            <div class="about-banner-blocks-wrap wow fadeInLeft" data-wow-offset="150">
+            <div class="about-banner-blocks-wrap wow fadeInLeft" data-wow-offset="100">
               <div class="row g-xxl-5 g-lg-4 g-3">
                 @foreach($sections as $sec)
                 <div class="col-sm-6">
@@ -62,7 +62,7 @@
 
               </div>
             </div>
-            <div class="about-banner-desc wow zoomIn" data-wow-offset="150">
+            <div class="about-banner-desc wow zoomIn" data-wow-offset="100">
               <div >
                 <span>       <div class="menu_crud"  @if(session('LoggedUser'))
                   data-link="{{route('admin.about-page.editor')}}"
@@ -71,7 +71,7 @@
             </div>
             </div>
           </div>
-                  <div class="col-xl-3 col-lg-4 col-md-5 wow fadeInRight" data-wow-offset="150">
+                  <div class="col-xl-3 col-lg-4 col-md-5 wow fadeInRight" data-wow-offset="100">
                     <div class="share-concept-form-box share-about-box mx-md-0 mx-auto -sticky">
                       <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                           @include('widget.contact-form1')
@@ -110,7 +110,7 @@
                               print_r($productImage);
                             }*/
                       ?>
-                      <div class="updates-slider-item wow zoomIn" data-wow-offset="150">
+                      <div class="updates-slider-item wow zoomIn" data-wow-offset="100">
                         <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                           <div class="animated-border-box-glow">
                             <div class="products-box-img">
@@ -137,7 +137,7 @@
                         </a>
                       </div>
                       <?php } else { ?>
-                      <div class="updates-slider-item wow zoomIn" data-wow-offset="150">
+                      <div class="updates-slider-item wow zoomIn" data-wow-offset="100">
                         <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center">
                           <div class="animated-border-box-glow">
                             <div class="products-box-img">
@@ -174,11 +174,11 @@
                 </div>
                 <div class="container position-relative pt-4">
                   <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
-                    <div class="share-concept-form-box wow flipInY" data-wow-offset="150">
+                    <div class="share-concept-form-box wow flipInY" data-wow-offset="100">
                       <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                       @include('widget.contact-form1')
                     </div>
-                    <div class="contact-links-box text-center wow flipInY" data-wow-offset="150">
+                    <div class="contact-links-box text-center wow flipInY" data-wow-offset="100">
                       <p>Award Winning Inflatable Designer & Manufacturer</p>
                       <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
                       <div class="mt-sm-4 mt-2 mb-2">

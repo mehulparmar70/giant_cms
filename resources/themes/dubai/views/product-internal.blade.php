@@ -149,7 +149,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
 
                 <?php if (isset($topInflatableLp->image)) {?>
                   <div class="col-md-4 col-sm-6" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
-                    <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
+                    <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="100">
                       <div class="animated-border-box-glow">
                         <div class="products-box-img has-slider">
 
@@ -172,7 +172,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
                 <?php }elseif (count(getSubCategoryImages($topInflatableLp->id)) > 0) {?>
                   <?php $imageName = getSubCategoryImages($topInflatableLp->id, 2, 'DESC')[0]['image']; ?>
                 <div class="col-md-4 col-sm-6" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
-                  <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
+                  <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="100">
                     <div class="animated-border-box-glow">
                       <div class="products-box-img has-slider">
                         @foreach(getImages($topInflatableLp->id) as $key => $productImage)
@@ -194,7 +194,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
                 </div>
                 <?php } else { ?>
                   <div class="col-md-4 col-sm-6" data-link="{{url('')}}/{{$topInflatableLp->slug}}">
-                    <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
+                    <a href="{{url('')}}/{{$topInflatableLp->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="100">
                       <div class="animated-border-box-glow">
                         <div class="products-box-img has-slider">
                           <img src="{{url('')}}/images/noimage.png" />
@@ -214,7 +214,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
                   @endforeach
                 @else
                 <div class="col-md-4 col-sm-6" data-link="{{url('')}}/{{$mainCategory->slug}}">
-                  <a href="{{url('')}}/{{$mainCategory->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="150">
+                  <a href="{{url('')}}/{{$mainCategory->slug}}" class="products-box text-center wow zoomIn" data-wow-offset="100">
                     <div class="animated-border-box-glow">
                       <div class="products-box-img has-slider">
                         <img src="{{url('')}}/images/noimage.png" />
@@ -233,7 +233,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
           
               </div>
             
-              <div class="about-banner-desc -sub-cat wow zoomIn" data-wow-offset="150">
+              <div class="about-banner-desc -sub-cat wow zoomIn" data-wow-offset="100">
                 <div class="description_blk_item TopContent" @if(session('LoggedUser'))
                 data-link="{{route('admin.category.edit', $current_cat->id)}}?type=main_category&onscreenCms=true&id={{$current_cat->id}}"
             @endif></div>
@@ -272,7 +272,7 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
                   <img class="bg-img-top" src="{{asset('/')}}/dubai/images/red-effect-top.webp" alt="red-effect-top">
                 </div>
                 <div class="container pt-4">
-                  <div class="position-relative wow zoomInDown" data-wow-offset="150">
+                  <div class="position-relative wow zoomInDown" data-wow-offset="100">
                     <div class="updates-slider px-xl-5 px-3">
                       @foreach($blogsSlider as $blogsList)
                       <div class="updates-slider-item">
@@ -322,11 +322,11 @@ $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
               </div>
               <div class="container position-relative pt-4">
                 <div class="d-flex flex-sm-nowrap flex-wrap justify-content-center gap-md-4 gap-3">
-                  <div class="share-concept-form-box wow flipInY" data-wow-offset="150">
+                  <div class="share-concept-form-box wow flipInY" data-wow-offset="100">
                     <img class="w-full" src="{{asset('/')}}/dubai/images/share-concept.png" alt="share-concept">
                     @include('widget.contact-form1')
                   </div>
-                  <div class="contact-links-box text-center wow flipInY" data-wow-offset="150">
+                  <div class="contact-links-box text-center wow flipInY" data-wow-offset="100">
                     <p>Award Winning Inflatable Designer & Manufacturer</p>
                     <img src="{{asset('/')}}/dubai/images/logo.svg" alt="logo">
                     <div class="mt-sm-4 mt-2 mb-2">
