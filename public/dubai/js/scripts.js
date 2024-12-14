@@ -355,11 +355,12 @@ function lineclamp() {
 }
 
 // JavaScript to detect and redirect URLs with '#!'
+// JavaScript to detect and redirect URLs with '#' or '#!'
 document.addEventListener('DOMContentLoaded', function () {
     const currentUrl = window.location.href;
 
-    // Check if the URL contains '#!'
-    if (currentUrl.includes('#!')) {
+    // Check if the URL ends with '#' or contains '#!'
+    if (currentUrl.endsWith('#') || currentUrl.includes('#!')) {
         // Redirect to a "Page Not Found" page
         window.location.href = '/page-not-found'; // Replace '/page-not-found' with your actual 404 URL
     }
