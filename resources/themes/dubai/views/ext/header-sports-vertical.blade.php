@@ -417,12 +417,12 @@ $(document).ready(function () {
     })
     .catch(error => console.error('Error loading modal:', error));
 }
-$(document).ready(function(){
-    $('.nav-slide-container').SlideMenu({
-        speedLR: 500,
-        speedUD: 500,
-        expand: true,
-        collapse: true
-    });
-});
+// $(document).ready(function(){
+//     $('.nav-slide-container').SlideMenu({
+//         speedLR: 500,
+//         speedUD: 500,
+//         expand: true,
+//         collapse: true
+//     });
+// });
 </script>

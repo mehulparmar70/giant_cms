@@ -354,41 +354,13 @@ function lineclamp() {
 	$(".about-middle-contect-inner").css({"-webkit-line-clamp": "" + calc + ""});
 }
 
+// JavaScript to detect and redirect URLs with '#!'
 document.addEventListener('DOMContentLoaded', function () {
-        // Initialize Turnstile for all forms with class 'share-concept-form'
-        const forms = document.querySelectorAll('.share-concept-form');
+    const currentUrl = window.location.href;
 
-        forms.forEach(form => {
-            form.addEventListener('submit', async (event) => {
-                event.preventDefault(); // Prevent default form submission
-                
-                // Generate CAPTCHA token
-                const token = document.querySelector('.cf-turnstile-response').value;
-                if (!token) {
-                    alert('CAPTCHA validation failed. Please complete the CAPTCHA.');
-                    return;
-                }
-
-                // Add CAPTCHA token to the hidden input
-                const captchaInput = form.querySelector('input[name="cf-turnstile-response"]');
-                if (!captchaInput) {
-                    const newCaptchaInput = document.createElement('input');
-                    newCaptchaInput.type = 'hidden';
-                    newCaptchaInput.name = 'cf-turnstile-response';
-                    newCaptchaInput.value = token;
-                    form.appendChild(newCaptchaInput);
-                } else {
-                    captchaInput.value = token;
-                }
-
-                form.submit(); // Submit the form
-            });
-        });
-
-        // Turnstile success callback
-        window.onTurnstileSuccess = function (token) {
-            document.querySelectorAll('.cf-turnstile-response').forEach(input => {
-                input.value = token; // Assign token to the hidden input
-            });
-        };
-    });
+    // Check if the URL contains '#!'
+    if (currentUrl.includes('#!')) {
+        // Redirect to a "Page Not Found" page
+        window.location.href = '/page-not-found'; // Replace '/page-not-found' with your actual 404 URL
+    }
+});
