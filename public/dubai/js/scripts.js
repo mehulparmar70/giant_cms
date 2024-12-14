@@ -286,23 +286,25 @@ $( document ).ready( function() {
 
 	  
 
-	$(document).ready(function() {
-		$('[data-fancybox="gallery"]').fancybox({
-		  // Enable History for clean URLs
-		  hash: false, // Prevents default hash-based navigation
-		  afterShow: function(instance, current) {
-			// Update the URL based on the image title
-			let imageTitle = current.opts.$orig.attr('data-slug') || 'image';
-			let cleanUrl = window.location.origin + window.location.pathname + '/' + imageTitle.replace(/\s+/g, '-').toLowerCase();
-			window.history.pushState(null, null, cleanUrl);
-		  },
-		  afterClose: function() {
-			// Revert to the original URL when the Fancybox is closed
-			window.history.pushState(null, null, window.location.pathname);
-		  }
+	document.addEventListener("DOMContentLoaded", function () {
+		Fancybox.bind("[data-fancybox='gallery']", {
+			// Disable hash-based navigation
+			Hash: false,
+			// Hook into the afterShow event to update the URL
+			on: {
+				done: (fancybox, slide) => {
+					let imageSlug = slide.$trigger.dataset.slug || "image";
+					let cleanUrl = window.location.origin + window.location.pathname + '/' + imageSlug.replace(/\s+/g, '-').toLowerCase();
+					window.history.pushState(null, null, cleanUrl);
+				},
+				closing: (fancybox, slide) => {
+					// Revert the URL when the Fancybox is closed
+					window.history.pushState(null, null, window.location.pathname);
+				}
+			}
 		});
-	  });
-
+	});
+	
 	  
 	setInterval(function () {
 		$(".boxnav__item--next").click();
