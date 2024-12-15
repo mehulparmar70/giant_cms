@@ -50,6 +50,7 @@
         $updatesLink = App\Models\admin\UrlList::find(113);  // Updates link
         $contactLink = App\Models\admin\UrlList::find(101);  // Contact Us link
         $sitemaplink = App\Models\admin\UrlList::find(114);  // Contact Us link
+        $sitemaplinkimages = App\Models\admin\UrlList::find(115);  // Contact Us link
     @endphp
                 <div class="footer-top-heading"><h6>Information</h6></div>
                 <ul>
@@ -79,6 +80,7 @@
                 data-link="{{route('admin.contact-page.editor')}}"
             @endif>{{ $contactLink->name }}</a></li>
                   <li class="menu_crud" ><a href="{{ $sitemaplink->url }}">{{ $sitemaplink->name }}</a></li>
+                  <li class="menu_crud" ><a href="{{ $sitemaplinkimages->url }}">{{ $sitemaplinkimages->name }}</a></li>
                
                 </ul>
               </div>

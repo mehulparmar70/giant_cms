@@ -1524,6 +1524,135 @@ class HomeController extends Controller
         // echo json_encode($response);
     }
 
+    public function getCategoryMediaUrls()
+    {
+        $categories = Category::with('media')->get(); // Get all categories with related media
+    
+        foreach ($categories as $category) {
+            if ($category->parent_id) {
+                // Subcategory logic
+                $mainCategory = Category::find($category->parent_id);  // Find the parent category
+                $url = url("/" . $mainCategory->slug . "/" . $category->slug);
+                $imageAlt = $category->image_alt;
+            } else {
+                // Main category logic
+                $url = url("/" . $category->slug);
+                $imageAlt = $category->image_alt;
+            }
+    
+            echo "URL: " . $url . " | Alt Text: " . $imageAlt . "<br>";
+    
+            // If the category has media images, loop through them
+            foreach ($category->media as $media) {
+                $mediaUrl = url("/" . $mainCategory->slug . "/" . $category->slug . "/" . $media->sub_category . "/" . $media->image_name);
+                echo "Media URL: " . $mediaUrl . " | Alt Text: " . $media->image_alt . "<br>";
+            }
+        }
+    }
+    
+    public function generateImageSitemapXml()
+    {
+        // Fetch categories with media
+        $categories = Category::with('media')->get();
+    
+        // Fetch blogs
+        $blogs = Blog::all();
+    
+        // Create XML structure
+        $xml = new \SimpleXMLElement('<urlset/>');
+        $xml->addAttribute('xmlns:image', 'http://www.google.com/schemas/sitemap-image/1.1');
+    
+        // Process categories
+        foreach ($categories as $category) {
+            if ($category->parent_id) {
+                // Subcategory logic
+                $mainCategory = Category::find($category->parent_id); // Get the parent category
+                
+                if ($mainCategory) {
+                    $url = $xml->addChild('url');
+                    $url->addChild('loc', htmlspecialchars(url("/" . $mainCategory->slug . "/" . $category->slug), ENT_XML1));
+    
+                    // Add subcategory image if exists
+                    if ($category->image) {
+                        $imageNode = $url->addChild('image:image');
+                        $imageNode->addChild('image:loc', htmlspecialchars(url($category->image), ENT_XML1));
+                        $imageNode->addChild('image:alt', htmlspecialchars($category->image_alt, ENT_XML1));
+                        $imageNode->addChild('image:title', htmlspecialchars($category->image_title, ENT_XML1));
+                    }
+    
+                    // Add media images for the subcategory
+                    foreach ($category->media as $media) {
+                        $url = $xml->addChild('url');
+                        $url->addChild('loc', htmlspecialchars(url("/" . $mainCategory->slug . "/" . $category->slug . "/" . $media->image), ENT_XML1));
+    
+                        $imageNode = $url->addChild('image:image');
+                        $imageNode->addChild('image:loc', htmlspecialchars(url($media->image), ENT_XML1));
+                        $imageNode->addChild('image:alt', htmlspecialchars($media->image_alt, ENT_XML1));
+                    }
+                }
+            } else {
+                // Main category logic
+                $url = $xml->addChild('url');
+                $url->addChild('loc', htmlspecialchars(url("/" . $category->slug), ENT_XML1));
+    
+                // Add main category image if exists
+                if ($category->image) {
+                    $imageNode = $url->addChild('image:image');
+                    $imageNode->addChild('image:loc', htmlspecialchars(url($category->image), ENT_XML1));
+                    $imageNode->addChild('image:alt', htmlspecialchars($category->image_alt, ENT_XML1));
+                    $imageNode->addChild('image:title', htmlspecialchars($category->image_title, ENT_XML1));
+                }
+    
+                // Add media images for the main category
+                foreach ($category->media as $media) {
+                    $url = $xml->addChild('url');
+                    $url->addChild('loc', htmlspecialchars(url("/" . $category->slug . "/" . $media->image), ENT_XML1));
+    
+                    $imageNode = $url->addChild('image:image');
+                    $imageNode->addChild('image:loc', htmlspecialchars(url($media->image), ENT_XML1));
+                    $imageNode->addChild('image:alt', htmlspecialchars($media->image_alt, ENT_XML1));
+                }
+            }
+        }
+    
+        // Process blogs
+        foreach ($blogs as $blog) {
+            $url = $xml->addChild('url');
+            $url->addChild('loc', htmlspecialchars(url("/blog/" . $blog->slug), ENT_XML1));
+    
+            // Add blog image if exists
+            if ($blog->image) {
+                $imageNode = $url->addChild('image:image');
+                $imageNode->addChild('image:loc', htmlspecialchars(url($blog->image), ENT_XML1));
+                $imageNode->addChild('image:alt', htmlspecialchars($blog->image_alt, ENT_XML1));
+                $imageNode->addChild('image:title', htmlspecialchars($blog->image_title, ENT_XML1));
+            }
+        }
+    
+        return response($xml->asXML(), 200, ['Content-Type' => 'application/xml']);
+    }
+    
+
+
+    public function generateImageSitemapPage()
+    {
+        $data = [
+            'categories' => Category::with('media')->get(), // Eager load images
+            'blogs' => Blog::all(), // Eager load images
+            'pageData' => Pages::where('type', 'home_page')->first(),
+            'footerTestimonial' => $this->footerTestimonial,
+            'footerVideo' => $this->footerVideo,
+            'footerBlog' => $this->footerBlog,
+            'topCategories' => $this->topCategories,
+            'blogsSlider' => Blog::where('status', 1)->limit(5)->orderBy('item_no')->get(),
+            'clients' => Client::where('status', 1)->limit(20)->orderBy('item_no')->get(),
+            'awardSlider' => Award::where('status', 1)->limit(20)->orderBy('item_no')->get(),
+            'caseStudiesSlider' => CaseStudies::where('status', 1)->orderBy('item_no')->get(),
+            'newsletterSlider' => Newsletter::where('status', 1)->orderBy('item_no')->get(),
+        ];
+        return view('theme::image-sitemap', $data);
+    }
+    
 
     /**
      * Show the form for creating a new resource.

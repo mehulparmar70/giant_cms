@@ -281,29 +281,39 @@ $( document ).ready( function() {
 	if ($("[data-fancybox]").length > 0) {
 		Fancybox.bind("[data-fancybox]", {
 			// Your custom options
+			
 		});
 	}
 
+	$(document).ready(function () {
+		// Disable hash navigation globally for Fancybox
+		Fancybox.defaults.Hash = false;
 	  
-
-	document.addEventListener("DOMContentLoaded", function () {
+		// Bind Fancybox with custom options
 		Fancybox.bind("[data-fancybox='gallery']", {
 			// Disable hash-based navigation
 			Hash: false,
 			// Hook into the afterShow event to update the URL
 			on: {
-				done: (fancybox, slide) => {
-					let imageSlug = slide.$trigger.dataset.slug || "image";
-					let cleanUrl = window.location.origin + window.location.pathname + '/' + imageSlug.replace(/\s+/g, '-').toLowerCase();
-					window.history.pushState(null, null, cleanUrl);
-				},
-				closing: (fancybox, slide) => {
-					// Revert the URL when the Fancybox is closed
-					window.history.pushState(null, null, window.location.pathname);
-				}
+			  done: (fancybox, slide) => {
+				// Generate the custom URL format
+				let imageSlug = slide.$trigger.dataset.slug || "gallery";
+				let cleanUrl =
+				  window.location.origin +
+				  window.location.pathname +
+				  '/' +
+				  imageSlug.replace(/\s+/g, '-').toLowerCase();
+				window.history.pushState(null, null, cleanUrl);
+			  },
+			  closing: (fancybox, slide) => {
+				// Revert the URL when the Fancybox is closed
+				window.history.pushState(null, null, window.location.pathname);
+			  }
 			}
-		});
-	});
+		  });
+	  });
+	  
+
 	
 	  
 	setInterval(function () {

@@ -78,6 +78,10 @@ class Category extends Model
         // return $dataArray;
         
     }
-    
+
+    public function media()
+    {
+        return $this->hasMany(Media::class, 'media_id'); 
+    }
 
 }

@@ -43,6 +43,9 @@ Route::get('theme/selection', [ThemeController::class, 'index'])->name('theme.se
 Route::get('sitemap.xml', [HomeController::class, 'sitemap'])->name('sitemap');
 Route::get('sitemapEdit', [HomeController::class, 'sitemapEdit'])->name('sitemapEdit');
 
+Route::get('/sitemap-images.xml', [HomeController::class, 'generateImageSitemapXml']);
+Route::get('/sitemap-images', [HomeController::class, 'generateImageSitemapPage']);
+
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('sitemap', [HomeController::class, 'sitemappage'])->name('siteMap');
 Route::get('/load-inquiry-modal', function () {

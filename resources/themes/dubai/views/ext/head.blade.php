@@ -77,7 +77,7 @@
     <link rel="stylesheet" href="{{asset('/')}}/front/css/slick.css">
     <link rel="stylesheet" href="{{asset('/')}}/front/css/slick-theme.css">
     <link rel="stylesheet" href="{{asset('/')}}/front/fonts/fonts.css">
-    <link rel="stylesheet" href="{{asset('/')}}/front/css/fancybox.css">
+    <link rel="stylesheet" href="{{asset('/')}}/dubai/css/fancybox.css">
     <link rel="stylesheet" href="{{asset('/')}}/css/jquery-slide-menu.css">
 
   <!-- theme stylesheet -->
@@ -87,11 +87,6 @@
     @if(session('LoggedUser'))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @endif
-
-    <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
-          />
 
 <?php
 

@@ -971,7 +971,7 @@ form input[type="text"]::placeholder, form input[type="email"]::placeholder, for
     list-style: none;
     padding-bottom: 12px;
 }
-.footer-top-col ul li:nth-child(n+7) {
+.footer-top-col ul li:nth-child(n+8) {
     display: none;
 }
 .footer-top-col ul li:before {

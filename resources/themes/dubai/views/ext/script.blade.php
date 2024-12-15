@@ -33,7 +33,7 @@
     <script src="{{asset('/')}}dubai/js/wow.min.js"></script>
     <script src="{{asset('/')}}dubai/js/wowjs-repeat-animation.js"></script>
     <script src="{{asset('/')}}dubai/js/anime.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="{{asset('/')}}dubai/js/fancybox.umd.js"></script>
     <script src="{{asset('/')}}js/jquery-slide-menu.js"></script>
     <!-- CODROP SLIDER SCRIPTS  -->
     <script type="text/javascript" src="{{asset('/')}}dubai/js/imagesloaded.pkgd.min.js" async></script>
