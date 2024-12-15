@@ -36,9 +36,9 @@
     <script src="{{asset('/')}}dubai/js/fancybox.umd.js"></script>
     <script src="{{asset('/')}}js/jquery-slide-menu.js"></script>
     <!-- CODROP SLIDER SCRIPTS  -->
-    <script type="text/javascript" src="{{asset('/')}}dubai/js/imagesloaded.pkgd.min.js" async></script>
-    <script type="text/javascript" src="{{asset('/')}}dubai/js/TweenMax.min.js" async></script>
-    <script type="text/javascript" src="{{asset('/')}}dubai/js/demo.js" async></script>
+    <script type="text/javascript" src="{{asset('/')}}dubai/js/imagesloaded.pkgd.min.js" ></script>
+    <script type="text/javascript" src="{{asset('/')}}dubai/js/TweenMax.min.js" ></script>
+    <script type="text/javascript" src="{{asset('/')}}dubai/js/demo.js" ></script>
     <!-- theme script --> 
     <script src="{{asset('/')}}dubai/js/scripts.js"></script> 
     
@@ -50,7 +50,7 @@
 
 @if(session('LoggedUser'))
     
-<script src="{{asset('/')}}js/bootstrap.min.js"></script>
+<script src="{{asset('/')}}gii/js/bootstrap.min.js"></script>
 
 <script src="{{asset('/')}}/js/custom.js"></script>
 <script src="{{asset('/')}}/dist/js/custom.js"></script>
