@@ -356,21 +356,21 @@ $('.clickExplore', '.top-buttons', '.c_explores a').hover(function () {
 }
 );
 
-$("a").each(function() {
-  var url = $(this).attr('href')
-  //var baseUrl = "<?php echo url('/'); ?>"; 
+// $("a").each(function() {
+//   var url = $(this).attr('href')
+//   //var baseUrl = "<?php echo url('/'); ?>"; 
 
-  if (url == baseUrl+'/products') {
-    // console.log(baseUrl);  
-    $(this).attr('href',baseUrl+'/products')
-  }
-  // console.log(url);
-  // console.log(baseUrl);
-  /*if (url.split("/") != undefined) {
-    var parts = url.split("/");
-    var last_part = parts[parts.length-1];
-  }*/
-});
+//   if (url == baseUrl+'/products') {
+//     // console.log(baseUrl);  
+//     $(this).attr('href',baseUrl+'/products')
+//   }
+//   // console.log(url);
+//   // console.log(baseUrl);
+//   /*if (url.split("/") != undefined) {
+//     var parts = url.split("/");
+//     var last_part = parts[parts.length-1];
+//   }*/
+// });
 
 $(".blur_box").width(function () {
 
