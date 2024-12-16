@@ -121,13 +121,13 @@ class ApiCallController extends Controller
     
         $responseKeys = json_decode($response, true);
     
-        if (!($responseKeys['success'] ?? false)) {
-            \Log::error('CAPTCHA verification failed:', $responseKeys);
-            return response()->json([
-                'success' => false,
-                'message' => 'CAPTCHA verification failed. Please try again.',
-            ]);
-        }
+        // if (!($responseKeys['success'] ?? false)) {
+        //     \Log::error('CAPTCHA verification failed:', $responseKeys);
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'CAPTCHA verification failed. Please try again.',
+        //     ]);
+        // }
     
         try {
             // Send Email
