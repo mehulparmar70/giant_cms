@@ -64,7 +64,5 @@
   </div>
 </form>
 <script>
-  function onTurnstileSuccess(token) {
-    document.querySelector('.cf-turnstile-response').value = token;
-  }
+    const base_url = "{{ url('/') }}";
 </script>
