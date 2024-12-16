@@ -105,75 +105,69 @@ class ApiCallController extends Controller
     // }
 
     public function sendContact(Request $request)
-{
+    {
+        // Retrieve the Turnstile response from the request
+        $turnstileResponse = $request->input('cf-turnstile-response');
+        $secretKey = '0x4AAAAAAA029Z3KTwy3UWm2gh4L04U_raY'; // Replace with your actual Cloudflare secret key
     
-    // Handle Cloudflare Turnstile validation
- 
-    // Retrieve the correct Turnstile response
-    // $turnstileResponse = $request->input('cf-turnstile-response');
-    // $secretKey = '0x4AAAAAAA029Z3KTwy3UWm2gh4L04U_raY'; // Replace with your actual Cloudflare secret key
-
-    // // Set up cURL request
-    // $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
-    // $postData = http_build_query([
-    //     'secret' => $secretKey,
-    //     'response' => $turnstileResponse,
-    // ]);
-
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Content-Type: application/x-www-form-urlencoded'
-    ]);
-
-    $response = curl_exec($ch);
-    if (curl_errno($ch)) {
-        return redirect()->back()->with('fail', 'CAPTCHA verification failed: ' . curl_error($ch));
-    }
-    curl_close($ch);
-
-    $responseKeys = json_decode($response, true);
-
-    // Check if the CAPTCHA validation is successful
-    if (isset($responseKeys['success']) && $responseKeys['success'] == true) {
-        // Proceed with sending the email
-                    // $to = 'sales@giantinflatables.ae, sales@giantinflatables.in, krutarth@live.com';
-        $to = 'mehulp7054@gmail.com'; // Replace with actual email addresses
-        sendMailNotification('contact_inquiry', $to, 'Inquiry From: '.$request->name, [
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'country' => $request->country,
-            'msg' => $request->message,
-            'page_url' => $request->input('page_url'), // Current page URL
+        // Create the payload for CAPTCHA verification
+        $postData = http_build_query([
+            'secret' => $secretKey,
+            'response' => $turnstileResponse,
         ]);
-       
-        // Save the form data into the database
-        $add = new Contactus;
-        $add->full_name = $request->name;
-        $add->country = $request->country;
-        $add->phone_no = $request->phone;
-        $add->email = $request->email;
-        $add->message = $request->message;
-        $add->page_url = $request->input('page_url'); // Capture the current page URL
-        $add->status = 'success';
-        $add->save();
-
-        // Redirect to the thank-you page
-        // Redirect to the thank-you page and pass the original URL as a query parameter
-        return response()->json([
-            'success' => true,
-            'redirect_url' => route('thank-you', ['redirect_url' => $request->input('page_url')])
+    
+        // Set up the cURL request for CAPTCHA verification
+        $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/x-www-form-urlencoded'
         ]);
-
-    } else {
-        // Handle failed CAPTCHA
-        return redirect()->back()->with('fail', 'Failed CAPTCHA. Please try again.');
+    
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return redirect()->back()->with('fail', 'CAPTCHA verification failed: ' . curl_error($ch));
+        }
+        curl_close($ch);
+    
+        $responseKeys = json_decode($response, true);
+    
+        // Check if CAPTCHA validation is successful
+        if (isset($responseKeys['success']) && $responseKeys['success'] === true) {
+            // Proceed with sending the email
+            $to = 'mehulp7054@gmail.com'; // Replace with actual email addresses
+            sendMailNotification('contact_inquiry', $to, 'Inquiry From: '.$request->name, [
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'country' => $request->country,
+                'msg' => $request->message,
+                'page_url' => $request->input('page_url'), // Current page URL
+            ]);
+    
+            // Save the form data into the database
+            $add = new Contactus;
+            $add->full_name = $request->name;
+            $add->country = $request->country;
+            $add->phone_no = $request->phone;
+            $add->email = $request->email;
+            $add->message = $request->message;
+            $add->page_url = $request->input('page_url'); // Capture the current page URL
+            $add->status = 'success';
+            $add->save();
+    
+            // Redirect to the thank-you page with the original URL as a query parameter
+            return response()->json([
+                'success' => true,
+                'redirect_url' => route('thank-you', ['redirect_url' => $request->input('page_url')])
+            ]);
+        } else {
+            // Handle failed CAPTCHA
+            return redirect()->back()->with('fail', 'Failed CAPTCHA. Please try again.');
+        }
     }
-}
-
+    
 
 
     public function sendContactEnquiry(Request $request){
