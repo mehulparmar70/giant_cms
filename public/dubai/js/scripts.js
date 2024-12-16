@@ -1,3 +1,6 @@
+var base_url =window.location.origin;
+var url = base_url;
+console.log('base_url',url);
 var $ = jQuery.noConflict();
 $mainHeaderHeight = $('.main-header').outerHeight();
 
@@ -377,3 +380,31 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = '/page-not-found'; // Replace '/page-not-found' with your actual 404 URL
     }
 });
+
+
+function submitContact() {
+	const form = document.getElementById('contact-form');
+	let formData = new FormData(form);
+  
+	fetch(''+base_url+'/api/admin/send-contact', {
+	  method: 'POST',
+	  headers: {
+		'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+	  },
+	  body: formData
+	})
+	.then(response => response.json())
+	.then(data => {
+	  if (data.success) {
+		// Redirect to the thank you page with the redirect URL passed from the controller
+		window.location.href = data.redirect_url; // Use the redirect URL from the response
+	  } else {
+		alert(data.message || "An error occurred. Please try again.");
+	  }
+	})
+	.catch(error => {
+	  console.error('Error:', error);
+	  alert('Failed to submit the form. Please try again.');
+	});
+  }
+  
