@@ -103,14 +103,12 @@ class ApiCallController extends Controller
 
     //     // return back()->with('success', 'Contact Inquiry Sent...');
     // }
-
     public function sendContact(Request $request)
     {
-     
+        $turnstileResponse = $request->input('cf-turnstile-response');
+        $secretKey = env('TURNSTILE_SITE_SECRET');
     
         // Verify CAPTCHA
-        $turnstileResponse = $request->input('cf-turnstile-response');
-        $secretKey = env('CLOUDFLARE_SECRET_KEY');
         $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -122,15 +120,17 @@ class ApiCallController extends Controller
         curl_close($ch);
     
         $responseKeys = json_decode($response, true);
+    
         if (!($responseKeys['success'] ?? false)) {
+            \Log::error('CAPTCHA verification failed:', $responseKeys);
             return response()->json([
                 'success' => false,
-                'message' => 'CAPTCHA verification failed. Please try again.'
+                'message' => 'CAPTCHA verification failed. Please try again.',
             ]);
         }
     
-        // Send Email
         try {
+            // Send Email
             $to = 'mehulp7054@gmail.com'; // Replace with actual recipient
             sendMailNotification('contact_inquiry', $to, 'Inquiry From: ' . $request->name, [
                 'name' => $request->name,
@@ -140,15 +140,8 @@ class ApiCallController extends Controller
                 'msg' => $request->message,
                 'page_url' => $request->page_url,
             ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to send email. Please try again later.'
-            ]);
-        }
     
-        // Save to Database
-        try {
+            // Save to Database
             Contactus::create([
                 'full_name' => $request->name,
                 'country' => $request->country,
@@ -158,17 +151,21 @@ class ApiCallController extends Controller
                 'page_url' => $request->page_url,
                 'status' => 'success',
             ]);
+    
+            return response()->json([
+                'success' => true,
+                'redirect_url' => route('thank-you', ['redirect_url' => $request->page_url]),
+            ]);
         } catch (\Exception $e) {
+            \Log::error('Error in sendContact:', [
+                'exception' => $e->getMessage()
+            ]);
+    
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to save data. Please try again later.'
+                'message' => 'An error occurred while processing your request. Please try again later.',
             ]);
         }
-    
-        return response()->json([
-            'success' => true,
-            'redirect_url' => route('thank-you', ['redirect_url' => $request->page_url]),
-        ]);
     }
     
 

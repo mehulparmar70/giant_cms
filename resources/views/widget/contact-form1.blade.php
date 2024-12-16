@@ -1,105 +1,92 @@
-
 <form id="contact-form" method="post" class="share-concept-form ms-2">
-  @csrf
-  <input type="hidden" name="cf-turnstile-response" class="cf-turnstile-response">
-  <input type="hidden" name="page_url" value="{{ url()->current() }}">
+    @csrf
+    <input type="hidden" name="cf-turnstile-response" class="cf-turnstile-response">
+    <input type="hidden" name="page_url" value="{{ url()->current() }}">
 
-  <div class="share-concept-field d-flex align-items-start">
-    <div class="share-concept-icon d-flex align-items-center justify-content-center">
-      <img src="{{asset('/')}}/dubai/images/user-icon.svg" alt="user icon">
+    <div class="share-concept-field d-flex align-items-start">
+        <div class="share-concept-icon d-flex align-items-center justify-content-center">
+            <img src="{{asset('/')}}/dubai/images/user-icon.svg" alt="user icon">
+        </div>
+        <input class="share-concept-form-input" type="text" name="name" placeholder="Name" required>
     </div>
-    <input class="share-concept-form-input" type="text" name="name" placeholder="Name" required>
-  </div>
 
-  <div class="share-concept-field d-flex align-items-start">
-    <div class="share-concept-icon d-flex align-items-center justify-content-center">
-      <img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone icon">
+    <div class="share-concept-field d-flex align-items-start">
+        <div class="share-concept-icon d-flex align-items-center justify-content-center">
+            <img src="{{asset('/')}}/dubai/images/phone-icon.svg" alt="phone icon">
+        </div>
+        <input class="share-concept-form-input" type="tel" name="phone" placeholder="Phone Number">
     </div>
-    <input class="share-concept-form-input" type="tel" name="phone" placeholder="Phone Number">
-  </div>
 
-  <div class="share-concept-field d-flex align-items-start">
-    <div class="share-concept-icon d-flex align-items-center justify-content-center">
-      <img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail icon">
+    <div class="share-concept-field d-flex align-items-start">
+        <div class="share-concept-icon d-flex align-items-center justify-content-center">
+            <img src="{{asset('/')}}/dubai/images/mail-icon.svg" alt="mail icon">
+        </div>
+        <input class="share-concept-form-input" type="email" name="email" placeholder="Email">
     </div>
-    <input class="share-concept-form-input" type="email" name="email" placeholder="Email">
-  </div>
 
-  <div class="share-concept-field d-flex align-items-start">
-    <div class="share-concept-icon d-flex align-items-center justify-content-center">
-      <img src="{{asset('/')}}/dubai/images/country-glob-icon.svg" alt="country icon">
+    <div class="share-concept-field d-flex align-items-start">
+        <div class="share-concept-icon d-flex align-items-center justify-content-center">
+            <img src="{{asset('/')}}/dubai/images/country-glob-icon.svg" alt="country icon">
+        </div>
+        <select class="share-concept-form-input" name="country">
+            <option value="">Select Country</option>
+            <option value="Dubai">Dubai</option>
+            <option value="America">America</option>
+        </select>
     </div>
-    <select class="share-concept-form-input" name="country">
-      <option value="">Select Country</option>
-      <option value="Dubai">Dubai</option>
-      <option value="America">America</option>
-    </select>
-  </div>
 
-  <div class="share-concept-field d-flex align-items-start">
-    <div class="share-concept-icon d-flex align-items-center justify-content-center">
-      <img src="{{asset('/')}}/dubai/images/message-icon.svg" alt="message icon">
+    <div class="share-concept-field d-flex align-items-start">
+        <div class="share-concept-icon d-flex align-items-center justify-content-center">
+            <img src="{{asset('/')}}/dubai/images/message-icon.svg" alt="message icon">
+        </div>
+        <textarea class="share-concept-form-input" name="message" placeholder="Share Your Inflatables Requirement"></textarea>
     </div>
-    <textarea class="share-concept-form-input" name="message" placeholder="Share Your Inflatables Requirement"></textarea>
-  </div>
 
-  <div class="share-concept-field d-flex justify-content-center mb-0">
-  <input type="hidden" name="cf-turnstile-response" class="cf-turnstile-response">
+    <div class="share-concept-field d-flex justify-content-center mb-0">
+        <div class="cf-turnstile"
+            data-sitekey="{{ config('services.cloudflare.turnstile.site_key') }}"
+            data-callback="onTurnstileSuccess"></div>
+    </div>
 
-  <div class="cf-turnstile"
-     data-sitekey="{{ config('services.cloudflare.turnstile.site_key') }}"
-     data-callback="onTurnstileSuccess"></div>
+    <div class="share-concept-field text-center share-concept-info mb-4">
+        <strong>We do not sell or rent your information.</strong>
+        {{ Session::get('success') }}
+    </div>
 
-  </div>
-
-  <div class="share-concept-field text-center share-concept-info mb-4">
-    <strong>We do not sell or rent your information.</strong>
-    {{ Session::get('success') }}
-  </div>
-
-  <div class="text-center">
-  <button type="button" class="btn btn-animation--infinity" onclick="submitContact()">SUBMIT</button>
-    <!-- <button class="btn btn-animation--infinity" type="submit">SUBMIT</button> -->
-  </div>
+    <div class="text-center">
+        <button type="button" class="btn btn-animation--infinity" onclick="submitContact()">SUBMIT</button>
+    </div>
 </form>
+
 <script>
-  function onTurnstileSuccess(token) {
-    document.querySelector('.cf-turnstile-response').value = token;
-}
+    function onTurnstileSuccess(token) {
+        document.querySelector('.cf-turnstile-response').value = token;
+    }
+
     const base_url = "{{ url('/') }}";
 
     function submitContact() {
-      const form = document.getElementById('contact-form');
-    const formData = new FormData(form);
+        const form = document.getElementById('contact-form');
+        const formData = new FormData(form);
 
-    // Debug: Log form data
-    for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
+        fetch(base_url + '/api/admin/send-contact', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.redirect_url;
+            } else {
+                alert(data.message || "An error occurred. Please try again.");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to submit the form. Please try again.');
+        });
     }
-
-    fetch(base_url + '/api/admin/send-contact', {
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
-        },
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = data.redirect_url;
-        } else {
-            alert(data.message || "An error occurred. Please try again.");
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Failed to submit the form. Please try again.');
-    });
-
-}
-
-// Attach to global scope
-window.submitContact = submitContact;
-
 </script>
