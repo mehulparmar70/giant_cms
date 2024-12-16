@@ -48,8 +48,7 @@
 
   <div class="cf-turnstile"
      data-sitekey="{{ config('services.cloudflare.turnstile.site_key') }}"
-     data-callback="onTurnstileSuccess">
-</div>
+     data-callback="onTurnstileSuccess"></div>
 
   </div>
 
@@ -64,32 +63,40 @@
   </div>
 </form>
 <script>
+  function onTurnstileSuccess(token) {
+    document.querySelector('.cf-turnstile-response').value = token;
+}
     const base_url = "{{ url('/') }}";
 
     function submitContact() {
-	const form = document.getElementById('contact-form');
-	let formData = new FormData(form);
+      const form = document.getElementById('contact-form');
+    const formData = new FormData(form);
 
-	fetch(''+base_url+'/api/admin/send-contact', {
-		method: 'POST',
-		headers: {
-			'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
-		},
-		body: formData
-	})
-	.then(response => response.json())
-	.then(data => {
-		if (data.success) {
-			// Redirect to the thank you page with the redirect URL passed from the controller
-			window.location.href = data.redirect_url; // Use the redirect URL from the response
-		} else {
-			alert(data.message || "An error occurred. Please try again.");
-		}
-	})
-	.catch(error => {
-		console.error('Error:', error);
-		alert('Failed to submit the form. Please try again.');
-	});
+    // Debug: Log form data
+    for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+    }
+
+    fetch(base_url + '/api/admin/send-contact', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect_url;
+        } else {
+            alert(data.message || "An error occurred. Please try again.");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to submit the form. Please try again.');
+    });
+
 }
 
 // Attach to global scope
