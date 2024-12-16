@@ -1,4 +1,4 @@
-const base_url = "{{ url('/') }}";
+var base_url =window.location.origin;
 var url = base_url;
 console.log('base_url',url);
 var $ = jQuery.noConflict();
@@ -381,45 +381,3 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
-function submitContact() {
-    const form = document.getElementById('contact-form');
-    const formData = new FormData(form);
-
-    // Validate form
-   
-
-    // Show loading spinner (optional)
-    const submitButton = form.querySelector('button[type="button"]');
-    submitButton.disabled = true;
-    submitButton.textContent = 'Submitting...';
-
-    // Perform AJAX request
-    fetch(`${base_url}/api/admin/send-contact`, {
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
-        },
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = data.redirect_url; // Redirect on success
-            } else {
-                displayError(data.message || 'An error occurred. Please try again.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            displayError('Failed to submit the form. Please try again.');
-        })
-        .finally(() => {
-            submitButton.disabled = false;
-            submitButton.textContent = 'SUBMIT';
-        });
-}
-
-function onTurnstileSuccess(token) {
-    document.querySelector('.cf-turnstile-response').value = token;
-}

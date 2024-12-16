@@ -40,7 +40,7 @@
     <script type="text/javascript" src="{{asset('/')}}dubai/js/TweenMax.min.js" ></script>
     <script type="text/javascript" src="{{asset('/')}}dubai/js/demo.js" ></script>
     <!-- theme script --> 
-    <script src="{{asset('/')}}dubai/js/scripts.js"></script> 
+
     
 
 
@@ -69,7 +69,7 @@
 
 
 
- 
+<script src="{{asset('/')}}dubai/js/scripts.js"></script> 
    
 
     
