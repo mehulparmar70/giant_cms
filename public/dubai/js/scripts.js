@@ -1,6 +1,4 @@
-var base_url =window.location.origin;
-var url = base_url;
-console.log('base_url',url);
+
 var $ = jQuery.noConflict();
 $mainHeaderHeight = $('.main-header').outerHeight();
 
