@@ -50,11 +50,11 @@
 
   <div class="share-concept-field d-flex justify-content-center mb-0">
     <input type="hidden" name="cf-turnstile-response" class="cf-turnstile-response">
-
+<!-- 
     <div class="cf-turnstile"
     data-sitekey="{{ config('services.cloudflare.turnstile.site_key') }}"
     data-callback="onTurnstileSuccess">
-</div>
+</div> -->
 
   </div>
 

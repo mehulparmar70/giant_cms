@@ -68,7 +68,7 @@
 @endif
 
 
-<div class="cf-turnstile" data-sitekey="{{ env('TURNSTILE_SITE_KEY') }}"></div>
+<!-- <div class="cf-turnstile" data-sitekey="{{ env('TURNSTILE_SITE_KEY') }}"></div> -->
 <script src="{{asset('/')}}dubai/js/scripts.js"></script> 
    
 

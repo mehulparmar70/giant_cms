@@ -105,21 +105,21 @@ class ApiCallController extends Controller
     // }
     public function sendContact(Request $request)
     {
-        $turnstileResponse = $request->input('cf-turnstile-response');
-        $secretKey = env('TURNSTILE_SITE_SECRET');
+        // $turnstileResponse = $request->input('cf-turnstile-response');
+        // $secretKey = env('TURNSTILE_SITE_SECRET');
     
         // Verify CAPTCHA
-        $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-            'secret' => $secretKey,
-            'response' => $turnstileResponse,
-        ]));
-        $response = curl_exec($ch);
-        curl_close($ch);
+        // $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_POST, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
+        //     'secret' => $secretKey,
+        //     'response' => $turnstileResponse,
+        // ]));
+        // $response = curl_exec($ch);
+        // curl_close($ch);
     
-        $responseKeys = json_decode($response, true);
+        // $responseKeys = json_decode($response, true);
     
         // if (!($responseKeys['success'] ?? false)) {
         //     \Log::error('CAPTCHA verification failed:', $responseKeys);

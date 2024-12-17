@@ -42,11 +42,11 @@
         <textarea class="share-concept-form-input" name="message" placeholder="Share Your Inflatables Requirement"></textarea>
     </div>
 
-    <div class="share-concept-field d-flex justify-content-center mb-0">
+    <!-- <div class="share-concept-field d-flex justify-content-center mb-0">
         <div class="cf-turnstile"
             data-sitekey="{{ config('services.cloudflare.turnstile.site_key') }}"
             data-callback="onTurnstileSuccess"></div>
-    </div>
+    </div> -->
 
     <div class="share-concept-field text-center share-concept-info mb-4">
         <strong>We do not sell or rent your information.</strong>
